@@ -9,8 +9,8 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/elastic/go-elasticsearch/v8"
-	"github.com/elastic/go-elasticsearch/v8/esapi"
+	"github.com/elastic/go-elasticsearch/v7"
+	"github.com/elastic/go-elasticsearch/v7/esapi"
 	"log"
 	"strconv"
 	"strings"
@@ -28,32 +28,36 @@ func main() {
 	//
 	// An `ELASTICSEARCH_URL` environment variable will be used when exported.
 	//
-	es, err := elasticsearch.NewDefaultClient()
+	es, err := elasticsearch.NewClient(elasticsearch.Config{
+		Addresses: []string{"http://47.102.154.244:9200"},
+		Username:  "elastic",
+		Password:  "dna_es_Passw0rd",
+	})
 	if err != nil {
 		log.Fatalf("Error creating the client: %s", err)
 	}
 
 	// 1. Get cluster info 得到集群信息
 	//
-	res, err := es.Info()
-	if err != nil {
-		log.Fatalf("Error getting response: %s", err)
-	}
-	defer res.Body.Close()
-
-	// Check response status
-	if res.IsError() {
-		log.Fatalf("Error: %s", res.String())
-	}
+	//res, err := es.Info()
+	//if err != nil {
+	//	log.Fatalf("Error getting response: %s", err)
+	//}
+	//defer res.Body.Close()
+	//
+	//// Check response status
+	//if res.IsError() {
+	//	log.Fatalf("Error: %s", res.String())
+	//}
 	// Deserialize the response into a map. 将响应反序列化为映射
-	if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
-		log.Fatalf("Error parsing the response body: %s", err)
-	}
+	//if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
+	//	log.Fatalf("Error parsing the response body: %s", err)
+	//}
 
 	// Print client and server version numbers. 打印客户端和服务器版本号
-	log.Printf("Client: %s", elasticsearch.Version)
-	log.Printf("Server, %s", r["version"].(map[string]interface{})["number"])
-	log.Println(strings.Repeat("~", 37))
+	//log.Printf("Client: %s", elasticsearch.Version)
+	//log.Printf("Server, %s", r["version"].(map[string]interface{})["number"])
+	//log.Println(strings.Repeat("~", 37))
 
 	// 2. Index documents concurrently	索引文档并发
 	//
@@ -120,7 +124,7 @@ func main() {
 	}
 
 	// Perform the search request.  执行搜索请求
-	res, err = es.Search(
+	res, err := es.Search(
 		es.Search.WithContext(context.Background()),
 		es.Search.WithIndex("test"),
 		es.Search.WithBody(&buf),

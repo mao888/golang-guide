@@ -8,22 +8,32 @@ package main
 import (
 	"github.com/elastic/go-elasticsearch/v8"
 	"log"
+	"strings"
 )
 
 func main() {
-	es, err := elasticsearch.NewDefaultClient()
+	es, err := elasticsearch.NewClient(elasticsearch.Config{
+		Addresses: []string{"http://localhost:9200"},
+	})
+
+	body := `{
+		"query": {
+			"match": { "message": "myProduct" }		
+		},
+		"aggregations": {
+			"top_10_states": { "terms": {"field": "state", "size":
+		10 } }
+			}
+		}`
+
+	res, err := es.Search(
+		es.Search.WithIndex("social-*"),
+		es.Search.WithBody(strings.NewReader(body)),
+		es.Search.WithPretty(),
+	)
 	if err != nil {
-		log.Fatalf("Error creating the client: %s", err)
+		log.Fatalf("Error getting response:  %s", err)
 	}
 
-	res0, err := es.Info()
-	if err != nil {
-		log.Fatalf("Error getting  response: %s", err)
-	}
-
-	defer res0.Body.Close()
-	log.Println(res0)
-
-	log.Println(elasticsearch.Version)
-	log.Println(es.Info())
+	defer res.Body.Close()
 }
