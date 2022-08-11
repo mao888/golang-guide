@@ -37,8 +37,8 @@ func main() {
 		log.Fatalf("Error creating the client: %s", err)
 	}
 
-	// 1. Get cluster info 得到集群信息
-	//
+	//// 1. Get cluster info 得到集群信息
+	////
 	//res, err := es.Info()
 	//if err != nil {
 	//	log.Fatalf("Error getting response: %s", err)
@@ -49,12 +49,12 @@ func main() {
 	//if res.IsError() {
 	//	log.Fatalf("Error: %s", res.String())
 	//}
-	// Deserialize the response into a map. 将响应反序列化为映射
+	////Deserialize the response into a map. 将响应反序列化为映射
 	//if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
 	//	log.Fatalf("Error parsing the response body: %s", err)
 	//}
-
-	// Print client and server version numbers. 打印客户端和服务器版本号
+	//
+	////Print client and server version numbers. 打印客户端和服务器版本号
 	//log.Printf("Client: %s", elasticsearch.Version)
 	//log.Printf("Server, %s", r["version"].(map[string]interface{})["number"])
 	//log.Println(strings.Repeat("~", 37))
@@ -152,6 +152,7 @@ func main() {
 	if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
 		log.Fatalf("Error parsing the response body: %s", err)
 	}
+	log.Println("Body=", r)
 	// Print the response status, number of results, and request duration.
 	log.Printf(
 		"[%s] %d hits; took: %dms",
