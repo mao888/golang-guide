@@ -1,7 +1,7 @@
 /**
     @author: huChao
     @since: 2022/8/9
-    @desc: //TODO
+    @desc: //TODO https://github.com/elastic/go-elasticsearch/tree/7.10
 **/
 package main
 
@@ -93,13 +93,14 @@ func main() {
 			if res.IsError() {
 				log.Printf("[%s] Error indexing document ID=%d", res.Status(), i+1)
 			} else {
-				// Deserialize the response into a map.
+				// Deserialize the response into a map. 将响应反序列化为映射
 				var r map[string]interface{}
 				if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
 					log.Fatalf("Error parsing the response body: %s", err)
 				} else {
-					// Print the response status and indexed document version.
-					log.Printf("[%s] %s; version=%d", res.Status(), r["resule"], int(r["_result"].(float64)))
+					// Print the response status and indexed document version. 打印响应状态和索引文档版本
+					//log.Printf("[%s] %s; version=%d", res.Status(), r["resule"], int(r["_result"].(float64)))
+					println("打印响应状态和索引文档版本")
 				}
 			}
 		}(i, title)
@@ -152,15 +153,17 @@ func main() {
 	if err := json.NewDecoder(res.Body).Decode(&r); err != nil {
 		log.Fatalf("Error parsing the response body: %s", err)
 	}
+
 	log.Println("Body=", r)
-	// Print the response status, number of results, and request duration.
+
+	// Print the response status, number of results, and request duration.  打印响应状态、结果数量和请求持续时间
 	log.Printf(
-		"[%s] %d hits; took: %dms",
+		"[%s]; took: %dms",
 		res.Status(),
-		int(r["hits"].(map[string]interface{})["total"].(map[string]interface{})["values"].(float64)),
+		//int(r["hits"].(map[string]interface{})["total"].(map[string]interface{})["values"].(float64)),
 		int(r["took"].(float64)),
 	)
-	// Print the ID and document source for each hit.
+	// Print the ID and document source for each hit.  打印每个命中的ID和文档源
 	for _, hit := range r["hits"].(map[string]interface{})["hits"].([]interface{}) {
 		log.Printf(" * ID=%s, %s", hit.(map[string]interface{})["_id"], hit.(map[string]interface{})["_source"])
 	}
