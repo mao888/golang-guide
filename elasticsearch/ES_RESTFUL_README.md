@@ -54,7 +54,7 @@ GitHub: 2013 年初，抛弃了 Solr，采取 Elasticsearch 来做 PB 级的搜�
 - 阿里：使用 Elasticsearch 构建日志采集和分析体系。 
 - Stack Overflow：解决 Bug 问题的网站，全英文，编程人员交流的网站。
 
-![img.png](images/img.png)
+![img.png](images/es_restful/img.png)
 
 ------
 
@@ -89,7 +89,7 @@ health status index    uuid                   pri rep docs.count docs.deleted st
 yellow open   shopping J0WlEhh4R7aDrfIc3AkwWQ   1   1          0            0       208b           208b
 ```
 
-![img_1.png](images/img_1.png)
+![img_1.png](images/es_restful/img_1.png)
 
 ### 查看单个索引
 
@@ -403,7 +403,7 @@ yellow open   shopping J0WlEhh4R7aDrfIc3AkwWQ   1   1          0            0   
 
 查找category为小米的文档，在 Postman 中，向 ES 服务器发 GET请求 ： http://127.0.0.1:9200/shopping/_search?q=category:小米，
 
-![img_2.png](images/img_2.png)
+![img_2.png](images/es_restful/img_2.png)
 
 URL带参数形式查询，这很容易让不善者心怀恶意，或者参数值出现中文会出现乱码情况。为了避免这些情况，我们可用使用带JSON请求体请求进行查询。
 
