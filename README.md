@@ -8,6 +8,7 @@ Golang-Guide
 - 为了粉丝、为了开源，真的是肝死我了
 - 文章均来自本人工作实习经验、实战面试、学习总结、读书笔记、网络博文等(仅供我个人校招实习使用)
 - 仅限制个人使用,严禁商业化,转载在文首注明出处
+- 仓库需要持久的维护与更新，非常期待各位的 **pr**
 - 校招不止,offer不停,更新不断
 
 ![访问个人主页数量](https://komarev.com/ghpvc/?username=duktig666&color=green)
@@ -53,9 +54,12 @@ Golang-Guide
 
 ## 🚀 目录结构（不断更新中）
 
-### Golang基础
+### Golang
+#### golang-Interview
+* [Golang面经](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md)
+#### go-study
 
-* [Golang面试题合集](https://github.com/mao888/golang-guide/blob/main/golang/Go%E9%9D%A2%E7%BB%8F/Golang%E9%9D%A2%E8%AF%95%E9%A2%98%E5%90%88%E9%9B%86.md)
+* [Go语言学习之路](https://github.com/mao888/golang-guide/blob/main/golang/go-study/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
 
 ### Java全栈
 
