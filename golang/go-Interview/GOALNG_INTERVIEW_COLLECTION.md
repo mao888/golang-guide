@@ -36,7 +36,7 @@
 
 var a1 [3]int
 
-var a2 [...]int{1,2,3}
+var a2 = [...]int{1,2,3}
 
 **切片的定义**
 
@@ -68,17 +68,56 @@ b:= make([]int,3,5)
 
 defer，return，return value（函数返回值） 执行顺序：首先return，其次return value，最后defer。defer可以修改函数最终返回值，修改时机：**有名返回值或者函数返回指针** 参考：
 
-[【Golang】Go语言defer用法大总结(含return返回机制)__奶酪的博客-CSDN博客blog.csdn.net/Cassie_zkq/article/details/108567205](https://link.zhihu.com/?target=https%3A//blog.csdn.net/Cassie_zkq/article/details/108567205)
+[【Golang】Go语言defer用法大总结(含return返回机制)](https://blog.csdn.net/Cassie_zkq/article/details/108567205)
 
 **有名返回值**
 
-**func** **b**() (i **int**) { 	**defer** **func**() { 		i**++** 		fmt.**Println**("defer2:", i) 	}() 	**defer** **func**() { 		i**++** 		fmt.**Println**("defer1:", i) 	}() 	**return** i *//或者直接写成return* } **func** **main**() { 	fmt.**Println**("return:", **b**()) } 
+```go
+package main
+import (
+    "fmt"
+)
+func b() (i int) {
+    defer func() {
+        i++
+        fmt.Println("defer2:", i)
+    }()
+    defer func() {
+        i++
+        fmt.Println("defer1:", i)
+    }()
+    return i //或者直接写成return
+}
+func main() {
+    fmt.Println("return:", b())
+}
+```
 
 ////////////////////////////////////////////////////////////////////////////////
 
 **函数返回指针**
 
-func c() *int { 	var i int 	defer func() { 		i++ 		fmt.Println("defer2:", i) 	}() 	defer func() { 		i++ 		fmt.Println("defer1:", i) 	}() 	return &i } func main() { 	fmt.Println("return:", *(c())) }
+```go
+package main
+import (
+    "fmt"
+)
+func c() *int {
+    var i int
+    defer func() {
+        i++
+        fmt.Println("defer2:", i)
+    }()
+    defer func() {
+        i++
+        fmt.Println("defer1:", i)
+    }()
+    return &i
+}
+func main() {
+    fmt.Println("return:", *(c()))
+}
+```
 
 ### **5、uint 类型溢出问题**
 
@@ -108,9 +147,30 @@ rune 等同于int32,常用来处理unicode或utf-8字符
 
 **参考如下连接**
 
-[golang中struct关于反射tag_paladinosment的博客-CSDN博客_golang 反射tagblog.csdn.net/paladinosment/article/details/42570937](https://link.zhihu.com/?target=https%3A//blog.csdn.net/paladinosment/article/details/42570937)
+[golang中struct关于反射tag](https://blog.csdn.net/paladinosment/article/details/42570937)
 
-type User struct { 	name string `json:name-field` 	age  int } func main() { 	user := &User{"John Doe The Fourth", 20} 	field, ok := reflect.TypeOf(user).Elem().FieldByName("name") 	if !ok { 		panic("Field not found") 	} 	fmt.Println(getStructTag(field)) } func getStructTag(f reflect.StructField) string { 	return string(f.Tag) }
+```go
+package main
+import (
+    "fmt"
+    "reflect"
+)
+type User struct {
+    name string `json:name-field`
+    age  int
+}
+func main() {
+    user := &User{"John Doe The Fourth", 20}
+    field, ok := reflect.TypeOf(user).Elem().FieldByName("name")
+    if !ok {
+        panic("Field not found")
+    }
+    fmt.Println(getStructTag(field))
+}
+func getStructTag(f reflect.StructField) string {
+    return string(f.Tag)
+}
+```
 
 Go 中解析的 tag 是通过反射实现的，反射是指计算机程序在运行时（Run time）可以访问、检测和修改它本身状态或行为的一种能力或动态知道给定数据对象的类型和结构，并有机会修改它。反射将接口变量转换成反射对象 Type 和 Value；反射可以通过反射对象 Value 还原成原先的接口变量；反射可以用来修改一个变量的值，前提是这个值可以被修改；tag是啥:结构体支持标记，name string `json:name-field` 就是 `json:name-field` 这部分
 
@@ -234,7 +294,19 @@ panic: assignment to entry in nil map
 
 **hmap 的结构如下：**
 
-type hmap struct {     count     int                  // 元素个数     flags     uint8     B         uint8                // 扩容常量相关字段B是buckets数组的长度的对数 2^B     noverflow uint16               // 溢出的bucket个数     hash0     uint32               // hash seed     buckets    unsafe.Pointer      // buckets 数组指针     oldbuckets unsafe.Pointer      // 结构扩容的时候用于赋值的buckets数组     nevacuate  uintptr             // 搬迁进度     extra *mapextra                // 用于扩容的指针 }
+```go
+type hmap struct {
+    count      int // 元素个数
+    flags      uint8
+    B          uint8          // 扩容常量相关字段B是buckets数组的长度的对数 2^B
+    noverflow  uint16         // 溢出的bucket个数
+    hash0      uint32         // hash seed
+    buckets    unsafe.Pointer // buckets 数组指针
+    oldbuckets unsafe.Pointer // 结构扩容的时候用于赋值的buckets数组
+    nevacuate  uintptr        // 搬迁进度
+    extra      *mapextra      // 用于扩容的指针
+}
+```
 
 **map 的容量大小**
 
@@ -263,7 +335,7 @@ type hmap struct {     count     int                  // 元素个数     flags 
 
 详细参考：
 
-[golang 哪些类型可以作为map keyblog.csdn.net/lanyang123456/article/details/123765745](https://link.zhihu.com/?target=https%3A//blog.csdn.net/lanyang123456/article/details/123765745)
+[golang 哪些类型可以作为map key](https://blog.csdn.net/lanyang123456/article/details/123765745)
 
 ## 三**、context相关**
 
@@ -273,7 +345,7 @@ type hmap struct {     count     int                  // 元素个数     flags 
 
 **参考链接：**
 
-[go context详解 - 卷毛狒狒 - 博客园www.cnblogs.com/juanmaofeifei/p/14439957.html](https://link.zhihu.com/?target=https%3A//www.cnblogs.com/juanmaofeifei/p/14439957.html)
+[go context详解](https://www.cnblogs.com/juanmaofeifei/p/14439957.html)
 
 答：Go 的 Context 的数据结构包含 Deadline，Done，Err，Value，Deadline 方法返回一个 time.Time，表示当前 Context 应该结束的时间，ok 则表示有结束时间，Done 方法当 Context 被取消或者超时时候返回的一个 close 的 channel，告诉给 context 相关的函数要停止当前工作然后返回了，Err 表示 context 被取消的原因，Value 方法表示 context 实现共享数据存储的地方，是协程安全的。context 在业务中是经常被使用的，
 
@@ -440,7 +512,25 @@ mutex 会让当前的 goroutine 去空转 CPU，在空转完后再次调用 CAS 
 
 根据通道中没有数据时读取操作陷入阻塞和通道已满时继续写入操作陷入阻塞的特性，正好实现控制并发数量。
 
-func main() { 	count := 10 // 最大支持并发 	sum := 100 // 任务总数 	wg := sync.WaitGroup{} //控制主协程等待所有子协程执行完之后再退出。 	c := make(chan struct{}, count) // 控制任务并发的chan 	defer close(c) 	for i:=0; i<sum;i++{ 		wg.Add(1) 		c <- struct{}{} // 作用类似于waitgroup.Add(1) 		go func(j int) { 			defer wg.Done() 			fmt.Println(j) 			<- c // 执行完毕，释放资源 		}(i) 	} 	wg.Wait() }
+```go
+func main() {
+    count := 10                     // 最大支持并发
+    sum := 100                      // 任务总数
+    wg := sync.WaitGroup{}          //控制主协程等待所有子协程执行完之后再退出。
+    c := make(chan struct{}, count) // 控制任务并发的chan
+    defer close(c)
+    for i := 0; i < sum; i++ {
+        wg.Add(1)
+        c <- struct{}{} // 作用类似于waitgroup.Add(1)
+        go func(j int) {
+            defer wg.Done()
+            fmt.Println(j)
+            <-c // 执行完毕，释放资源
+        }(i)
+    }
+    wg.Wait()
+}
+```
 
 **第二，三方库实现的协程池**
 
@@ -448,13 +538,38 @@ panjf2000/ants（比较火）
 
 Jeffail/tunny
 
-import ( 	"log" 	"time" 	"github.com/Jeffail/tunny" ) func main() { 	pool := tunny.NewFunc(10, func(i interface{}) interface{} { 		log.Println(i) 		time.Sleep(time.Second) 		return nil 	}) 	defer pool.Close() 	for i := 0; i < 500; i++ { 		go pool.Process(i) 	} 	time.Sleep(time.Second * 4) }
+```go
+import (
+    "github.com/Jeffail/tunny"
+    "log"
+    "time"
+)
+func main() {
+    pool := tunny.NewFunc(10, func(i interface{}) interface{} {
+        log.Println(i)
+        time.Sleep(time.Second)
+        return nil
+    })
+    defer pool.Close()
+    for i := 0; i < 500; i++ {
+        go pool.Process(i)
+    }
+    time.Sleep(time.Second * 4)
+}
+```
 
 ### 2、多个 goroutine 对同一个 map 写会 panic，异常是否可以用 defer 捕获？
 
 可以捕获异常，但是只能捕获一次，Go语言，可以使用多值返回来返回错误。不要用异常代替错误，更不要用来控制流程。在极个别的情况下，才使用Go中引入的Exception处理：defer, panic, recover Go中，对异常处理的原则是：多用error包，少用panic
 
-defer func() { 		if err := recover(); err != nil { 			// 打印异常，关闭资源，退出此函数 			fmt.Println(err) 		} 	}()
+```go
+defer func() {
+    if err := recover(); err != nil {
+        // 打印异常，关闭资源，退出此函数
+        fmt.Println(err)
+    }
+}()
+```
 
 ### 3、如何优雅的实现一个 goroutine 池
 
@@ -464,7 +579,7 @@ defer func() { 		if err := recover(); err != nil { 			// 打印异常，关闭�
 
 **建议参考：**
 
-[Golang学习篇--协程池_Word哥的博客-CSDN博客_golang协程池blog.csdn.net/finghting321/article/details/106492915/](https://link.zhihu.com/?target=https%3A//blog.csdn.net/finghting321/article/details/106492915/)
+[Golang学习篇--协程池](https://blog.csdn.net/finghting321/article/details/106492915/)
 
 **这篇文章的目录是：**
 
@@ -498,11 +613,31 @@ GoV1.8 混合写屏障规则是：
 
 ### 2、go 是 gc 算法是怎么实现的？ （得物，出现频率低）
 
-func GC() { 	n := atomic.Load(&amp;work.cycles) 	gcWaitOnMark(n) 	gcStart(gcTrigger{kind: gcTriggerCycle, n: n + 1}) 	gcWaitOnMark(n + 1) 	for atomic.Load(&amp;work.cycles) == n+1 &amp;&amp; sweepone() != ^uintptr(0) { 		sweep.nbgsweep++ 		Gosched() 	} 	for atomic.Load(&amp;work.cycles) == n+1 &amp;&amp; atomic.Load(&amp;mheap_.sweepers) != 0 { 		Gosched() 	} 	mp := acquirem() 	cycle := atomic.Load(&amp;work.cycles) 	if cycle == n+1 || (gcphase == _GCmark &amp;&amp; cycle == n+2) { 		mProf_PostSweep() 	} 	releasem(mp) }
+```go
+func GC() {
+    n := atomic.Load(&work.cycles)
+    gcWaitOnMark(n)
+    gcStart(gcTrigger{kind: gcTriggerCycle, n: n + 1})
+    gcWaitOnMark(n + 1)
+    for atomic.Load(&work.cycles) == n+1 && sweepone() != ^uintptr(0) {
+        sweep.nbgsweep++
+        Gosched()
+    }
+    for atomic.Load(&work.cycles) == n+1 && atomic.Load(&mheap_.sweepers) != 0 {
+        Gosched()
+    }
+    mp := acquirem()
+    cycle := atomic.Load(&work.cycles)
+    if cycle == n+1 || (gcphase == _GCmark && cycle == n+2) {
+        mProf_PostSweep()
+    }
+    releasem(mp)
+}
+```
 
 底层原理了，可能大厂，中高级才会问，参考：
 
-[Golang GC算法解读_suchy_sz的博客-CSDN博客_go的gc算法blog.csdn.net/shudaqi2010/article/details/90025192](https://link.zhihu.com/?target=https%3A//blog.csdn.net/shudaqi2010/article/details/90025192)
+[Golang GC算法解读](https://blog.csdn.net/shudaqi2010/article/details/90025192)
 
 ### 3、GC 中 stw 时机，各个阶段是如何解决的？ （百度）
 
@@ -548,11 +683,21 @@ func GC() { 	n := atomic.Load(&amp;work.cycles) 	gcWaitOnMark(n) 	gcStart(gcTrig
 
 4）字符串的截取引发临时性的内存泄漏
 
-func main() { 	var str0 = "12345678901234567890" 	str1 := str0[:10] }
+```go
+func main() {
+    var str0 = "12345678901234567890"
+    str1 := str0[:10]
+}
+```
 
 5）切片截取引起子切片内存泄漏
 
-func main() { 	var s0 = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9} 	s1 := s0[:3] }
+```go
+func main() {
+    var s0 = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+    s1 := s0[:3]
+}
+```
 
 6）函数数组传参引发内存泄漏【如果我们在函数传参的时候用到了数组传参，且这个数组够大（我们假设数组大小为 100 万，64 位机上消耗的内存约为 800w 字节，即 8MB 内存），或者该函数短时间内被调用 N 次，那么可想而知，会消耗大量内存，对性能产生极大的影响，如果短时间内分配大量内存，而又来不及 GC，那么就会产生临时性的内存泄漏，对于高并发场景相当可怕。】
 
@@ -646,7 +791,7 @@ PS：爱立信面试都要英文自我介绍，以及问答，如果英文回答
 
 **多进程：pcntl扩展**
 
-[php pcntl用法-PHP问题-PHP中文网www.php.cn/php-ask-473095.html](https://link.zhihu.com/?target=https%3A//www.php.cn/php-ask-473095.html)
+[php pcntl用法](https://www.php.cn/php-ask-473095.html)
 
 **多线程：**
 
@@ -654,7 +799,7 @@ PS：爱立信面试都要英文自我介绍，以及问答，如果英文回答
 
 2）pthread扩展（不常用）
 
-[为什么php多线程没人用?23 赞同 · 18 评论回答](https://www.zhihu.com/question/371492817/answer/1029696815)
+[为什么php多线程没人用?](https://www.zhihu.com/question/371492817/answer/1029696815)
 
 
 
@@ -662,6 +807,6 @@ PS：爱立信面试都要英文自我介绍，以及问答，如果英文回答
 
 1、可可酱 [可可酱：Golang常见面试题](https://zhuanlan.zhihu.com/p/434629143)
 
-2、Bel_Ami同学 [golang 面试题(从基础到高级)](https://link.zhihu.com/?target=https%3A//blog.csdn.net/Bel_Ami_n/article/details/123352478)
+2、Bel_Ami同学 [golang 面试题(从基础到高级)](https://blog.csdn.net/Bel_Ami_n/article/details/123352478)
 
 3、知乎:沪猿小韩
