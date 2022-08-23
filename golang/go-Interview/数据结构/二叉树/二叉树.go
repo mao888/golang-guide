@@ -130,10 +130,10 @@ func (node *BinaryTreeNode) FindValueNode(n *BinaryTreeNode, target int) *Binary
 
 func main() {
 	var node *BinaryTreeNode
-	　　 // 创建一个根节点
+	// 创建一个根节点
 	node = CreateBinaryTree(10)
 	li := []int{9, 11, 8, 5, 6, 4, 12, 15, 18, 17}
-	　　 // 创建一个二叉树
+	// 创建一个二叉树
 	for _, val := range li {
 		node.Insert(node, val)
 	}
