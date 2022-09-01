@@ -39,7 +39,7 @@ func main() {
          {
             "date":"2015",
             "title":"《克拉恋人》"
-         }
+         }w
       ]
    }`)
 	var actress Actress
