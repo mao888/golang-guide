@@ -5,8 +5,8 @@ import "fmt"
 func main() {
 	//answer2()
 	//var arr [][]int = [][]int{{2}, {3, 4}, {6, 5, 7}, {4, 1, 8, 3}}
-	var arr []int = []int{1, 2, 3}
-	fmt.Println(anser(arr))
+	var arr []int = []int{1, 4, 56, 1, 6, 2}
+	fmt.Println(product(arr))
 }
 
 //func answer2(x []int) int {
@@ -48,32 +48,31 @@ func sort(x []int) []int {
 }
 
 // 第二问：
-//func product(a []int) []int {
-//	length := len(a)
-//
-//	// L 和 R 分别表示左右两侧的 和 列表
-//	//L, R, answer1 := make([]int, length), make([]int, length), make([]int, length)
-//	answer
-//	// L[i]为索引 i 左侧所有元素的和
-//	// 0 左侧没有元素，所以 L[0] = 1
-//	L[0] = 1
-//	for i := 1; i < length; i++ {
-//		L[i] = a[i-1] + L[i-1]
-//	}
-//
-//	// R[i]为索引 i 左侧所有元素的和
-//	// length -1 右侧没有元素，所以 R[length - 1] = 1
-//	R[length-1] = 1
-//	for i := length - 2; i >= 0; i-- {
-//		R[i] = a[i+1] + R[i+1]
-//	}
-//
-//	// 对于索引 i, 除 a[i] 之外其余各元素的和就是左侧所有元素的和 加 右侧所有元素的和
-//	for i := 0; i < length; i++ {
-//		answer1[i] = (L[i] + R[i]) * 3
-//	}
-//	return answer1
-//}
+func product(a []int) []int {
+	length := len(a)
+
+	// L 和 R 分别表示左右两侧的 和 列表
+	L, R, answer1 := make([]int, length), make([]int, length), make([]int, length)
+	// L[i]为索引 i 左侧所有元素的和
+	// 0 左侧没有元素，所以 L[0] = 1
+	L[0] = 1
+	for i := 1; i < length; i++ {
+		L[i] = a[i-1] + L[i-1]
+	}
+
+	// R[i]为索引 i 左侧所有元素的和
+	// length -1 右侧没有元素，所以 R[length - 1] = 1
+	R[length-1] = 1
+	for i := length - 2; i >= 0; i-- {
+		R[i] = a[i+1] + R[i+1]
+	}
+
+	// 对于索引 i, 除 a[i] 之外其余各元素的和就是左侧所有元素的和 加 右侧所有元素的和
+	for i := 0; i < length; i++ {
+		answer1[i] = (L[i] + R[i]) * 3
+	}
+	return answer1
+}
 
 func Three(num []int) []int {
 	ints := make([]int, len(num))
