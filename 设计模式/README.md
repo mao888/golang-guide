@@ -4,6 +4,8 @@
 
 [在线阅读地址](https://www.topgoer.cn/docs/golang-design-pattern/golang-design-pattern-1cbgha2ltg796)
 
+[单例模式](https://mp.weixin.qq.com/s/h4m8xzIYd_Dzap6Je0cDxQ)
+
 Go 语言设计模式的实例代码
 
 ## 创建型模式
