@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	// 测试案例： 将template中 $ 后的字符串自定义替换
 	template := "chartid=$user_id & prop=$prop"
 
 	// 声明map
