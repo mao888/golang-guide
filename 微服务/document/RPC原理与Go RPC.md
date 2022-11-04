@@ -39,14 +39,7 @@ func main(){
 
 ### RPC调用
 
-本地过程调用发生在同一进程中——定义`add`函数的代码和调用`add`函数的代码共享同一个内存空间，所以调用能够正常执行。
-![img.png](img.png)
-![本地调用add函数](https://www.liwenzhou.com/images/Go/rpc/rpc01.png)
-
-但是我们无法直接在另一个程序——`app2`中调用`add`函数，因为它们是两个程序——内存空间是相互隔离的。（app1和app2可能部署在同一台服务器上也可能部署在互联网的不同服务器上。）
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1667542871040-1b5dfc3d-49be-45f2-bc0b-192d019ec8d9.png)
-
-RPC就是为了解决类似远程、跨内存空间、的函数/方法调用的。要实现RPC就需要解决以下三个问题。
+本地过程调用发生在同一进程中——定义`add`函数的代码和调用`add`函数的代码共享同一个内存空间，所以调用能够正常执行。![本地调用add函数](https://www.liwenzhou.com/images/Go/rpc/rpc01.png)但是我们无法直接在另一个程序——`app2`中调用`add`函数，因为它们是两个程序——内存空间是相互隔离的。（app1和app2可能部署在同一台服务器上也可能部署在互联网的不同服务器上。）![跨程序调用add函数](https://www.liwenzhou.com/images/Go/rpc/rpc02.png)RPC就是为了解决类似远程、跨内存空间、的函数/方法调用的。要实现RPC就需要解决以下三个问题。
 
 1. 如何确定要执行的函数？ 在本地调用中，函数主体通过函数指针函数指定，然后调用 add 函数，编译器通过函数指针函数自动确定 add 函数在内存中的位置。但是在 RPC 中，调用不能通过函数指针完成，因为它们的内存地址可能完全不同。因此，调用方和被调用方都需要维护一个{ function <-> ID }映射表，以确保调用正确的函数。
 2. 如何表达参数？ 本地过程调用中传递的参数是通过堆栈内存结构实现的，但 RPC 不能直接使用内存传递参数，因此参数或返回值需要在传输期间序列化并转换成字节流，反之亦然。
@@ -264,9 +257,7 @@ ServiceA.Add: 10+20=30
 30
 ```
 
-这个RPC调用过程可以简化如下图所示。
-
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1667542871001-d7228bef-0136-40ee-92c3-d25aed313da2.png)
+这个RPC调用过程可以简化如下图所示。![rpc调用图示](https://www.liwenzhou.com/images/Go/rpc/rpc03.png)
 
 ### 基于TCP协议的RPC
 
@@ -437,7 +428,7 @@ print(rsp)
 
 RPC 让远程调用就像本地调用一样，其调用过程可拆解为以下步骤。
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1667542871056-588d2bfc-56f0-4862-919e-184592a7ab47.png)
+![rpc](https://www.liwenzhou.com/images/Go/rpc/rpc04.png)
 
 ① 服务调用方（client）以本地调用方式调用服务；
 
