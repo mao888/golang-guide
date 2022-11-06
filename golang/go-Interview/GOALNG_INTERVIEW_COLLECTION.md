@@ -1304,7 +1304,13 @@ func GC() {
 
 ## **九、内存相关**
 
-https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiachapter044.1-memory_alloc
+### [内存分配原理](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiachapter044.1-memory_alloc)
+
+### [垃圾回收原理](https://www.topgoer.cn/docs/gozhuanjia/chapter044.2-garbage_collection)
+
+### [逃逸分析](https://www.topgoer.cn/docs/gozhuanjia/chapter044.3-escape_analysis)
+
+### [Go语言的内存模型及堆的分配管理](https://zhuanlan.zhihu.com/p/76802887)
 
 ### 1、谈谈内存泄露，什么情况下内存会泄露？怎么定位排查内存泄漏问题？
 
