@@ -123,8 +123,6 @@ Golang-Guide
 ## 微服务
 * [RPC原理与Go RPC](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/RPC%E5%8E%9F%E7%90%86%E4%B8%8EGo%20RPC.md)
 
-敬请期待 ~~ 
-
 ## 项目
 * [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
