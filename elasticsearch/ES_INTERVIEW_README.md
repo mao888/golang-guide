@@ -1,16 +1,44 @@
-
-
-- [x] [110道 ES面试题及答案整理_zhihu](https://zhuanlan.zhihu.com/p/443724132)
-- [x] [120 道 ES面试题及答案整理，ES常见面试题（持续更新）_csdn](https://blog.csdn.net/yanpenglei/article/details/121859896)
-- [x] [Elasticsearch面经_csdn](https://blog.csdn.net/qq_43703196/article/details/125697126)
+- https://zhuanlan.zhihu.com/p/443724132
+- https://blog.csdn.net/yanpenglei/article/details/121859896
+- https://blog.csdn.net/qq_43703196/article/details/125697126
 
 ------
+
+### MySQL vs ES
+
+**mysql**
+
+1. MySQL作为开源关系型数据库，应用范围非常广泛，非常适合于结构化数据存储和查询。
+2. 在数据查询场景下，默认返回所有满足匹配条件的记录；
+3. 关系型数据库，主要面向OLTP，**支持事务，支持二级索引**，支持sql，支持主从、Group Replication架构模型（本文全部以Innodb为例，不涉及别的存储引擎）
+4. **存储方式**：mySQL中要提前定义表结构，也就是说表共有多少列（属性）需要提前定义好，并且同时需要定义好每个列所占用的存储空间。数据以行为单位组织在一起的，假如某一行的某一列没有数据，也需要占用存储空间。
+5. **读写方式：**Innodb中主键即为聚簇索引，假如根据主键查询，聚簇索引的叶子节点存放就是真正的数据，可以直接查到相应的记录。
+6. **数据量：**对于相对数量较少，多表join 时，mysql优势更高
+
+**ES**
+
+1. ES是一款分布式的全文检索框架，底层基于Lucene实现，天然分布式，p2p架构，不支持事务，采用倒排索引提供全文检索。
+2. 而ES作为新生代NoSQL数据库代表之一，非常适合于非结构化文档类数据存储、更创新支持智能分词匹配模糊查询。
+3. 比如在电商网站商品搜索栏中，用户输入以空格为分隔符的字符串（如：家电电视等），后台ES数据库搜索引擎会根据用户输入的信息，对数据库中保存的非结构化数据进行分词模糊匹配查询，返回满足匹配条件的前N条记录给用户；
+4. 另外ES更典型应用在于根据用户浏览记录日志来追踪用户行为，智能推送用户期望浏览的数据信息，此时通常借助ELK三大组件互相配合完成。
+5. **存储方式：**ES:比较灵活，索引中的field类型可以提前定义（定义mapping），也可以不定义，如果不定义，会有一个默认类型，不过出于可控性考虑，关键字段最好提前定义好。不同的是，ES存的是倒排索引，
+6. **读写方式：**Es: 每个node都可以接收读request，然后该node会把request分发到含有该index的shard的节点上，对应的节点会查询、并计算出符合条件的文档，排序后结果汇聚到分发request的node（所以查询请求默认会轮循的将发送到各个节点上，防止请求全部打到一个节点），由该node将数据返回给client
+7. **数据量：**在面对大数据量简单计算的时候es的效率原高于mysql等传统数据库，
+
+**总结**
+
+关于如何在MySQL和ES之间做到合理技术选型，ES官方网站也给出了指导性建议如下图所示。从英文描述看，基本上和之前的介绍相符合。
+
+1. 因此，MySQL作为开源关系型数据库，应用范围非常广泛，如果业务数据为**结构化数据**，同时**不需要特别关注排名和智能分词模糊匹配查询等特性**，则建议采用关系型数据库如MySQL来作为数据存储介质并使用配套搜索引擎，在数据查询场景下，默认返回所有满足匹配条件的记录；
+2. 反之，ES作为新生代NoSQL数据库代表之一，非常适合于非结构化文档类数据存储、更创新支持智能分词匹配模糊查询。
+
+​       如果业务数据为**非结构化数据**，同时更**关注排名和需要智能分词模糊匹配**的特性，则建议采用非关系型数据库如ES作为数据存储介质并使用配套搜索引擎。
 
 ### 0、Elasticsearch的基本概念
 
 基本概念表(对标MySQL)
 
-![img.png](images/es_interview/img.png)
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1660293008568-b030e91d-bd63-4e12-929d-46ef8b0ca652.png)
 
 **Elasticsearch 是一个分布式、可扩展、实时的搜索与数据分析引擎**。 它能从项目一开始就赋予你的数据以搜索、分析和探索的能力，这是通常没有预料到的。 它存在还因为原始数据如果只是躺在磁盘里面根本就毫无用处。
 
@@ -18,9 +46,40 @@
 
 ### 为什么要使用 Elasticsearch？
 
+https://blog.csdn.net/jq1223/article/details/115897851
+
 系统中的数据， 随着业务的发展，时间的推移， 将会非常多， 而业务中往往采用模糊查询进行数据的搜索， 而模糊查询会导致查询引擎放弃索引，导致系统查询数据时都是全表扫描，在百万级别的数据库中，查询效率是非常低下的，而我们使用 ES 做一个全文索引，将经常查询的系统功能的某些字段，比如说电商系统的商品表中商品名，描述、价格还有 id 这些字段我们放入 ES 索引库里，可以提高查询速度。
 
+
+
+Elasticsearch 很快。由于 Elasticsearch 是在 Lucene 基础上构建而成的，所以在全文本搜索方面表现十分出色。Elasticsearch 同时还是一个近实时的搜索平台，这意味着从文档索引操作到文档变为可搜索状态之间的延时很短，一般只有一秒。因此，Elasticsearch 非常适用于对时间有严苛要求的用例，例如安全分析和基础设施监测。
+
+
+
+Elasticsearch 具有分布式的本质特征。Elasticsearch 中存储的文档分布在不同的容器中，这些容器称为分片，可以进行复制以提供数据冗余副本，以防发生硬件故障。Elasticsearch 的分布式特性使得它可以扩展至数百台（甚至数千台）服务器，并处理 PB 量级的数据。
+
+
+
+Elasticsearch 包含一系列广泛的功能。除了速度、可扩展性和弹性等优势以外，Elasticsearch 还有大量强大的内置功能（例如数据汇总和索引生命周期管理），可以方便用户更加高效地存储和搜索数据。
+
+
+
+Elastic Stack 简化了数据采集、可视化和报告过程。通过与 Beats 和 Logstash 进行集成，用户能够在向 Elasticsearch 中索引数据之前轻松地处理数据。同时，Kibana 不仅可针对 Elasticsearch 数据提供实时可视化，同时还提供 UI 以便用户快速访问应用程序性能监测 (APM)、日志和基础设施指标等数据。
+
+[
+](https://blog.csdn.net/jq1223/article/details/115897851)
+
 ### [1、elasticsearch的倒排索引是什么](https://link.zhihu.com/?target=https%3A//gitee.com/souyunku/DevBooks/blob/master/docs/Elasticsearch/Elasticsearch%E6%9C%80%E6%96%B02021%E5%B9%B4%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%8C%E9%AB%98%E7%BA%A7%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E9%99%84%E7%AD%94%E6%A1%88%E8%A7%A3%E6%9E%90.md%231elasticsearch%E7%9A%84%E5%80%92%E6%8E%92%E7%B4%A2%E5%BC%95%E6%98%AF%E4%BB%80%E4%B9%88)
+
+讲倒排索引之前先讲**正排索引**：
+
+意思就是我们的所有文档都有唯一一个文档id，根据文档里的内容算出每个文档中关键字的内容和次数，类似于通过key去找value的形式，如果正牌索引，我们每次寻找关键字查询，就得搜索所有的文档去看是否有这个关键字，这样查询效率太慢了。
+
+于是有了**倒排索引**：
+
+是通过关键字去查文档，我们建立一个索引库，里面的key是关键字，value是每个文档的id，倒排在构建索引的时候较为耗时且维护成本较高，但是搜索耗时短，所以我们可以定时去更新索引库。
+
+查询出来的文档可以通过一个打分算法来进行排序。
 
 面试官：想了解你对基础概念的认知。
 
@@ -34,7 +93,9 @@
 
 
 
-![img_1.png](images/es_interview/img_1.png)
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1660292763245-57f2a6f0-99de-4c5d-aa80-9c8b939447ec.png)
+
+
 
 学术的解答方式：
 
@@ -87,7 +148,10 @@ lucene从4+版本后开始大量使用的数据结构是FST。FST有两个优点
 记住官方文档中的这个图。
 
 
-![img_2.png](images/es_interview/img_2.png)
+
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1660292763395-a8884d5c-d6d2-4c5b-8553-b42e0c8eb0b3.png)
+
+
 
 第一步：客户写集群某节点写入数据，发送请求。（如果没有指定路由/协调节点，请求的节点扮演路由节点的角色。）
 
@@ -183,7 +247,9 @@ discovery.zen.minimum_master_nodes；
 
 
 
-![img_3.png](images/es_interview/img_3.png)
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1660292763309-ecc4690d-efa9-424d-9df5-6bc5e1f7362b.png)
+
+
 
 ### 1[2、您能解释一下X-Pack for Elasticsearch的功能和重要性吗？](https://link.zhihu.com/?target=https%3A//gitee.com/souyunku/DevBooks/blob/master/docs/Elasticsearch/Elasticsearch%E6%9C%80%E6%96%B02021%E5%B9%B4%E9%9D%A2%E8%AF%95%E9%A2%98%E5%A4%A7%E6%B1%87%E6%80%BB%EF%BC%8C%E9%99%84%E7%AD%94%E6%A1%88.md%232%E6%82%A8%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8Bx-pack-for-elasticsearch%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E9%87%8D%E8%A6%81%E6%80%A7%E5%90%97)
 
@@ -344,7 +410,9 @@ Elasticsearch是一个搜索引擎，输入写入ES的过程就是索引化的�
 ### 2[6、介绍下你们电商搜索的整体技术架构。](https://link.zhihu.com/?target=https%3A//gitee.com/souyunku/DevBooks/blob/master/docs/Elasticsearch/Elasticsearch%E6%9C%80%E6%96%B0%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%8C2021%E5%B9%B4%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88%E6%B1%87%E6%80%BB.md%236%E4%BB%8B%E7%BB%8D%E4%B8%8B%E4%BD%A0%E4%BB%AC%E7%94%B5%E5%95%86%E6%90%9C%E7%B4%A2%E7%9A%84%E6%95%B4%E4%BD%93%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%E3%80%82)
 
 
-![img_4.png](images/es_interview/img_4.png)
+
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1660292763473-e2f08089-b9f4-4912-9445-b115a5704574.png)
+
 
 
 ### 2[7、客户端在和集群连接时，如何选择特定的节点执行请求的？](https://link.zhihu.com/?target=https%3A//gitee.com/souyunku/DevBooks/blob/master/docs/Elasticsearch/Elasticsearch%E6%9C%80%E6%96%B0%E9%9D%A2%E8%AF%95%E9%A2%98%EF%BC%8C2021%E5%B9%B4%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8F%8A%E7%AD%94%E6%A1%88%E6%B1%87%E6%80%BB.md%237%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9C%A8%E5%92%8C%E9%9B%86%E7%BE%A4%E8%BF%9E%E6%8E%A5%E6%97%B6%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E7%89%B9%E5%AE%9A%E7%9A%84%E8%8A%82%E7%82%B9%E6%89%A7%E8%A1%8C%E8%AF%B7%E6%B1%82%E7%9A%84)
