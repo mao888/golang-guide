@@ -13,8 +13,7 @@ service HelloService {
 
 // 请求消息
 message HelloRequest {
-  string greeting = 1;
-  string Name = 2;
+  string Name = 1;
 }
 
 // 响应消息

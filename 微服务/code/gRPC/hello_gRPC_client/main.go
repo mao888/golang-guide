@@ -35,8 +35,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	r, err := c.SayHello(ctx, &proto.HelloRequest{
-		Greeting: "123",
-		Name:     *name,
+		Name: *name,
 	})
 	if err != nil {
 		log.Fatalf("could not greet: %v", err)
