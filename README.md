@@ -121,6 +121,10 @@ Golang-Guide
 * [时间复杂度 O(n^2) 级排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%85%A8%E8%A7%A3%E6%9E%90/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%20O(n%5E2)%20%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
 * [时间复杂度 O(nlogn) 级排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E5%85%A8%E8%A7%A3%E6%9E%90/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%20O(nlogn)%20%E7%BA%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
 
+### LeetCode
+* [怎么高效刷 Leetcode？](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode/%E6%80%8E%E4%B9%88%E9%AB%98%E6%95%88%E5%88%B7%20Leetcode%EF%BC%9F.md)
+* [LeetCode算法提炼](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E7%AE%97%E6%B3%95%E6%8F%90%E7%82%BC.md)
+
 ### 面经
 * [数据结构与算法面经](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%9D%A2%E7%BB%8F.md)
 * [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
