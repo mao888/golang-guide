@@ -1,7 +1,7 @@
 /**
     @author: HuChao
     @since: 2022/8/11
-    @desc: //TODO  An Elasticsearch client for the Go programming language.
+    @desc: //TODO  An Elasticsearch client for the go进阶14讲 programming language.
 			 TODO github: https://github.com/olivere/elastic/
              TODO https://olivere.github.io/elastic/
 **/

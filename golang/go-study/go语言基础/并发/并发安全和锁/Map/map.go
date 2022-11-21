@@ -12,7 +12,7 @@ import (
 )
 
 /*
-	Go 语言中内置的 map 不是并发安全的,如下代码
+	go进阶14讲 语言中内置的 map 不是并发安全的,如下代码
 */
 
 var m = make(map[string]int)

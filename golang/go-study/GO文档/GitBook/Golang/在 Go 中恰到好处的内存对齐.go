@@ -1,7 +1,7 @@
 /**
     @author:Hasee
     @data:2022/3/13
-    @note: 在 Go 中恰到好处的内存对齐
+    @note: 在 go进阶14讲 中恰到好处的内存对齐
 **/
 package main
 
@@ -26,5 +26,3 @@ func main() {
 	fmt.Printf("byte size: %d\n", unsafe.Sizeof(byte(0)))
 	fmt.Printf("string size: %d\n", unsafe.Sizeof("EDDYCJY"))
 }
-
-
