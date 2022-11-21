@@ -57,7 +57,7 @@ Golang-Guide
 ## Golang
 ### golang-Interview
 * [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md)
-* []
+* [Go面试题new](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/Go%E9%9D%A2%E8%AF%95%E9%A2%98new.pdf)
 * [大厂面经](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F)
 * [面试实战](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%AE%9E%E6%88%98)
 ### go-study
