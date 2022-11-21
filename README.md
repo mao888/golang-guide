@@ -61,8 +61,10 @@ Golang-Guide
 * [大厂面经](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F)
 * [面试实战](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%AE%9E%E6%88%98)
 ### go-study
+* [Go语言学习之路--李文周](https://github.com/mao888/golang-guide/blob/main/golang/go-study/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
 
-* [Go语言学习之路](https://github.com/mao888/golang-guide/blob/main/golang/go-study/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
+### 资料库
+* [**golang学习路线**](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
 
 ## ES
 * [ES面经](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)
