@@ -76,6 +76,9 @@
 ### 面经
 * [Java全栈(超详细)](https://github.com/mao888/golang-guide/blob/main/Java/Java.md)
 
+### 资料库
+* [高质量网站](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)
+
 ## MQ
 
 * [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
