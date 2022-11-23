@@ -102,7 +102,7 @@
 * [图解网络-小林coding](https://github.com/mao888/golang-guide/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C-%E5%B0%8F%E6%9E%97coding)
 * [图解TCPIP](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E5%9B%BE%E8%A7%A3TCPIP.pdf)
 * [计算机网络.xmind](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.xmind)
-### [飞书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnQARpyE1UxoBHARHBSR9wSb)
+### [飞书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnQARpyE1UxoBHARHBSR9wSb) (密码私信)
  **内包含：**
 * TCP IP详解
 * 计算机网络（第7版）-谢希仁
