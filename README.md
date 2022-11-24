@@ -89,6 +89,28 @@ Password: E5cT
 * [Java面试题、面经](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/Java%E9%9D%A2%E8%AF%95%E9%A2%98%E3%80%81%E9%9D%A2%E7%BB%8F.pdf)
 * [“java高分面试指南”25专题-227页1000+题50w+字解析](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/%E2%80%9Cjava%E9%AB%98%E5%88%86%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E2%80%9D25%E4%B8%93%E9%A2%98-227%E9%A1%B51000%2B%E9%A2%9850w%2B%E5%AD%97%E8%A7%A3%E6%9E%90.pdf)
 
+### [飞书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcn6PrWKmnB2l5eBrxesbOn2b)
+**内包含：**
+* 120个Java面试题和答案
+* 350道Java面试题手册（整理100家企业）
+* “java高分面试指南”25专题-227页1000+题50w+字解析
+* ActiveMQ消息中间件面试专题
+* Dubbo面试及答案（上）
+* Dubbo面试专题及答案（下）
+* java后端面试题答案
+* Java基础面试题
+* Java架构师面经
+* Java面经
+* Java面试进阶解析笔记
+* Java面试题、面经
+* Java中高级核心知识全面解析 (1)
+* memcached面试专题及答案
+* MongoDB面试专题及答案
+* MyBatis面试专题及答案
+* MySQL55题及答案 - 副本
+* MySQL55题及答案
+* Redis面试专题及答案
+
 ## 计算机网络
 
 * [导读 程序员如何打好计算机领域的基础？](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AF%BC%E8%AF%BB%20%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%89%93%E5%A5%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A2%86%E5%9F%9F%E7%9A%84%E5%9F%BA%E7%A1%80%EF%BC%9F.md)
