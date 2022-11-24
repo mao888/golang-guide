@@ -142,9 +142,8 @@ Password: E5cT
 ### 面经
 * [操作系统](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
 ### 学习
-* [王道计算机考研 操作系统](https://player.bilibili.com/player.html?bvid=BV1YE411D7nH&p=8&page=8)
+* [王道计算机考研-操作系统-学习重点指导](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
 
-  
 
 ## MQ
 
