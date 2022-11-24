@@ -89,7 +89,7 @@ Password: E5cT
 * [Java面试题、面经](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/Java%E9%9D%A2%E8%AF%95%E9%A2%98%E3%80%81%E9%9D%A2%E7%BB%8F.pdf)
 * [“java高分面试指南”25专题-227页1000+题50w+字解析](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/%E2%80%9Cjava%E9%AB%98%E5%88%86%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E2%80%9D25%E4%B8%93%E9%A2%98-227%E9%A1%B51000%2B%E9%A2%9850w%2B%E5%AD%97%E8%A7%A3%E6%9E%90.pdf)
 
-### [飞书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcn6PrWKmnB2l5eBrxesbOn2b)
+### [飞书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcn6PrWKmnB2l5eBrxesbOn2b) (密码私)
 **内包含：**
 * 120个Java面试题和答案
 * 350道Java面试题手册（整理100家企业）
