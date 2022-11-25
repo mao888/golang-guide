@@ -15,6 +15,7 @@ func main() {
 	fmt.Println(retDiff)
 }
 
+// DifferenceSet 返回两个slice切片的差集
 func DifferenceSet(a []int, b []int) []int {
 	var c []int
 	temp := map[int]struct{}{}
