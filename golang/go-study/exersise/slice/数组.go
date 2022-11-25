@@ -8,6 +8,10 @@ package main
 import "fmt"
 
 func main() {
-	var a2 = []int{1, 2, 3}
-	fmt.Println(a2)
+	var a1 = []int{5, 1, 4}
+	var a2 = []int{3}
+	for _, i2 := range a2 {
+		a1 = append(a1, i2)
+	}
+	fmt.Println(a1)
 }
