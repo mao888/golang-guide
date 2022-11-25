@@ -151,31 +151,6 @@ Password: E5cT
 * 现代操作系统原书第四版pdf免费版
 * 图解系统@小林coding
 
-## MQ
-
-* [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
-
-* [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
-
-* [RabbitMq](https://github.com/mao888/golang-guide/blob/main/MQ/RabbitMq.md)
-
-## MySQL
-* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
-* [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
-* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
-
-## Redis
-
-* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/Redis.md)
-
-## zookpper
-
-* [zookpper面经](https://github.com/mao888/golang-guide/blob/main/zookpper/README.md)
-
-## 区块链
-
-* [区块链面试汇总](https://github.com/mao888/golang-guide/tree/main/%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%9D%A2%E7%BB%8F)
-
 ## 数据结构与算法
 
 ### 算法基础
@@ -201,6 +176,33 @@ Password: E5cT
 ### 面经
 * [数据结构与算法面经](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%9D%A2%E7%BB%8F.md)
 * [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
+
+
+## MQ
+
+* [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
+
+* [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
+
+* [RabbitMq](https://github.com/mao888/golang-guide/blob/main/MQ/RabbitMq.md)
+
+## MySQL
+* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
+* [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
+* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
+
+## Redis
+
+* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/Redis.md)
+
+## zookpper
+
+* [zookpper面经](https://github.com/mao888/golang-guide/blob/main/zookpper/README.md)
+
+## 区块链
+
+* [区块链面试汇总](https://github.com/mao888/golang-guide/tree/main/%E5%8C%BA%E5%9D%97%E9%93%BE/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%9D%A2%E7%BB%8F)
+
 
 ## 设计模式
 
