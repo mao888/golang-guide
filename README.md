@@ -180,7 +180,10 @@ Password: E5cT
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnLs8b5pv32REWguwVc23TYo) (密码私信)
 内包含:
 * 《算法 第4版》
-* 
+* 程序员代码面试指南：IT 名企算法与数据结构题目最优解
+* 大话数据结构
+* 剑指OFFER  名企面试官精讲典型编程题  第2版
+* 算法导论（第三版）
 
 ## MQ
 
