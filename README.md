@@ -191,9 +191,30 @@ Password: E5cT
 * 蓝桥杯-往届真题
 
 ## MySQL
+### 面经
 * [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
 * [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
 * [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink)
+* 笔记
+  * 狂神说MySQL系列
+  * MySQL进一步理解
+  * 数据库基础笔记
+  * 数据库设计模式MVC
+* 面试题
+  * 13-Mysql军规
+  * 210道面试题
+  * MySQL面试题及答案
+* 尚硅谷MySQL入门到高级-宋红康版
+  * 高级篇
+  * 基础篇
+* **书籍**
+  * MySQL必知必会（文字版）
+  * MySQL技术内幕：InnoDB存储引擎【TALKDATA】
+  * MySQL是怎样运行的 14884620
+  * 高性能MySQL（第3版）【TALKDATA】
+  * 高性能mysql第三版
+  * 数据库系统概论 萨师煊 王珊 第三版
 
 ## MQ
 
