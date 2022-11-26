@@ -190,6 +190,11 @@ Password: E5cT
 * 蓝桥杯发现杯
 * 蓝桥杯-往届真题
 
+## MySQL
+* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
+* [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
+* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
+
 ## MQ
 
 * [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
@@ -197,11 +202,6 @@ Password: E5cT
 * [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
 
 * [RabbitMq](https://github.com/mao888/golang-guide/blob/main/MQ/RabbitMq.md)
-
-## MySQL
-* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
-* [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
-* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
 
 ## Redis
 
