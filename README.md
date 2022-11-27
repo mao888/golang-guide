@@ -216,9 +216,11 @@ Password: E5cT
 ## Redis
 ### 面经
 * [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)
-### 资料库
-* [Redis设计与实现](https://github.com/mao888/golang-guide/blob/main/Redis/%E8%B5%84%E6%96%99/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
-* [redis设计与实现(第二版)](https://github.com/mao888/golang-guide/blob/main/Redis/%E8%B5%84%E6%96%99/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E7%AC%AC%E4%BA%8C%E7%89%88)%E3%80%90TALKDATA%E6%8E%A8%E8%8D%90%E3%80%91.pdf)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) (密码私信)
+**内包含：**
+* Redis设计与实现
+* redis设计与实现(第二版)【TALKDATA推荐】
+* Redis深度历险：核心原理和应用实践【TALKDATA推荐】
 
 ## MQ
 
