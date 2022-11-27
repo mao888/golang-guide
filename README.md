@@ -216,6 +216,13 @@ Password: E5cT
   * 高性能mysql第三版
   * 数据库系统概论 萨师煊 王珊 第三版
 
+## Redis
+### 面经
+* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)
+### 资料库
+* [Redis设计与实现](https://github.com/mao888/golang-guide/blob/main/Redis/%E8%B5%84%E6%96%99/Redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0.pdf)
+* [redis设计与实现(第二版)](https://github.com/mao888/golang-guide/blob/main/Redis/%E8%B5%84%E6%96%99/redis%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0(%E7%AC%AC%E4%BA%8C%E7%89%88)%E3%80%90TALKDATA%E6%8E%A8%E8%8D%90%E3%80%91.pdf)
+
 ## MQ
 
 * [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
@@ -223,10 +230,6 @@ Password: E5cT
 * [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
 
 * [RabbitMq](https://github.com/mao888/golang-guide/blob/main/MQ/RabbitMq.md)
-
-## Redis
-
-* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/Redis.md)
 
 ## zookpper
 
