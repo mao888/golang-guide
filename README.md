@@ -218,6 +218,7 @@ Password: E5cT
 * [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) (密码私信)
 **内包含：**
+![img.png](img.png)
 * Redis设计与实现
 * redis设计与实现(第二版)【TALKDATA推荐】
 * Redis深度历险：核心原理和应用实践【TALKDATA推荐】
