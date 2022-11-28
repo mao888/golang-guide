@@ -148,7 +148,7 @@ Password: E5cT
 * [现代操作系统-第四版](https://github.com/mao888/golang-guide/tree/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
 
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnK5irYNB0FS9IlqMssL6aAb)
-![img_2.png](images/img_2.png)
+![img_2.png](images/现代操作系统.png)
 * 计算机操作系统（第4版）—汤小丹
 * 现代操作系统原书第四版pdf免费版
 * 图解系统@小林coding
@@ -198,7 +198,7 @@ Password: E5cT
 * [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
 * [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink)
-![img_1.png](images/img_1.png)
+![img_1.png](images/Mysql是怎样运行的.png)
 * 笔记
   * 狂神说MySQL系列
   * MySQL进一步理解
