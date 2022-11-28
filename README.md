@@ -41,6 +41,7 @@
 <div align="center"><img src="https://s1.ax1x.com/2022/08/07/vKj9mQ.jpg" style="zoom:30%;" />
     <p>QQ交流群1：1007576722</p>
     <p>QQ交流群2：579480724</p>
+    <p>官方公众号： 申请中</p>
 </div>
 
 
