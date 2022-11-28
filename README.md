@@ -228,7 +228,6 @@ Password: E5cT
 * Redis深度历险：核心原理和应用实践【TALKDATA推荐】
 
 ## 设计模式
-### 面经
 [Go 语言设计模式](https://github.com/mao888/golang-design-pattern)
 
 
