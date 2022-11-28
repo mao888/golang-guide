@@ -31,7 +31,7 @@
 
 <a name="download"></a>
 
-<b><details><summary> :orange_book: 官方QQ交流群1（1007576722）; QQ交流群2：579480724</summary></b>
+<b><details><summary> :orange_book: 官方QQ交流群1:1007576722; QQ交流群2：579480724</summary></b>
 
 
 请QQ扫描或搜索下方QQ交流群后，催促群主更新最新版本。
