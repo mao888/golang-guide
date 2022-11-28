@@ -73,8 +73,29 @@
 * [超高质量网站](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/%E8%B6%85%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)
 * [Go学习开发地图](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/Go%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E5%9C%B0%E5%9B%BE.png)
 * [go进阶14讲](https://github.com/mao888/golang-guide/tree/main/golang/go-study/go%E8%BF%9B%E9%98%B614%E8%AE%B2)
-* [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink)
-Password: E5cT
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink)
+内包含：
+#### 面经
+* Golang面试题120天
+### 学习资料
+* Golang三色标记+混合写屏障机制
+* Golang修养之路
+* gopl-zh (1)
+* GORM+夜读
+* Go语言中文文档
+* redis
+* Uber Go 语言编程规范
+* 百度Golang编码规范V1.1
+* 部署课程[ubuntu]
+* Golang协程调度器原理与GMP设计思想
+* 用户模块讲义
+* 字节跳动求职精华宝典-西安电子科技大学
+### 知识图谱和路线图
+* 2021版本-Go语言学习路线图
+* Golang来啦
+* Go开发者成长路线图
+* Go语言学习路线图
+* Go知识图谱
 
 ## Java全栈
 
