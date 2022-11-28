@@ -19,7 +19,7 @@ type Tweet struct {
 	User     string                `json:"user"`
 	Message  string                `json:"message"`
 	Retweets int                   `json:"retweets"`
-	Image    string                `json:"image,omitempty"`
+	Image    string                `json:"images,omitempty"`
 	Created  time.Time             `json:"created,omitempty"`
 	Tags     []string              `json:"tags,omitempty"`
 	Location string                `json:"location,omitempty"`
@@ -43,7 +43,7 @@ const mapping = `
 					"store": true,
 					"fielddata": true
 				},
-				"image":{
+				"images":{
 					"type":"keyword"
 				},
 				"created":{
