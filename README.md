@@ -234,6 +234,8 @@ Password: E5cT
 [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
 
 [**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink)
+内包含：
+* 大话设计模式(带目录完整版)
 
 ## MQ
 
