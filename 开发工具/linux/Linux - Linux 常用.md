@@ -1,6 +1,6 @@
 # Linux - Linux 常用
 
-> 本文记录常用的Linux命令, 主要使用CentOS7 @pdai
+> 本文记录常用的Linux命令, 主要使用CentOS7 
 
 - Linux - Linux 常用
   - 常用
