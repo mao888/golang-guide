@@ -8,5 +8,5 @@
 * [Linux - Linux创建自建服务](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/linux/study/Linux%20-%20Linux%E5%88%9B%E5%BB%BA%E8%87%AA%E5%BB%BA%E6%9C%8D%E5%8A%A1.md)
 
 ## 速查
-* [Linux速查备忘手册](https://github.com/mao888/golang-guide/tree/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/linux/linux%E9%80%9F%E6%9F%A5)
+* [Linux速查备忘手册](https://stpnxkbsbf.feishu.cn/file/boxcnsM2G2bszVs4JqcsWIk9Bjf)
 
