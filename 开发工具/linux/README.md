@@ -9,3 +9,4 @@
 
 ## 速查
 * [Linux速查备忘手册](https://github.com/mao888/golang-guide/tree/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/linux/linux%E9%80%9F%E6%9F%A5)
+
