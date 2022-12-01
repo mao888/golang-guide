@@ -18,4 +18,11 @@
 - [Make 命令教程](https://www.ruanyifeng.com/blog/2015/02/make.html)
 - [深入理解Git submodules](https://www.jianshu.com/p/2d74a6f41d07)
 
+- [git的基本使用流程演示](https://blog.csdn.net/weixin_42490398/article/details/90212418?ops_request_misc=%7B%22request%5Fid%22%3A%22164726591316781683915219%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726591316781683915219&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-90212418.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git流程&spm=1018.2226.3001.4187)
+- 
+- [GIT | GIT常见面试题](https://blog.csdn.net/nobody_1/article/details/88956315?ops_request_misc=%7B%22request%5Fid%22%3A%22164726602216780271960516%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726602216780271960516&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-88956315.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git面试题&spm=1018.2226.3001.4187)
+- 
+- [https://libin9ioak.blog.csdn.net/article/details/123318369?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&utm_relevant_index=1](https://libin9ioak.blog.csdn.net/article/details/123318369?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-123318369-blog-88956315.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~Rate-1-123318369-blog-88956315.pc_relevant_recovery_v2&utm_relevant_index=1)
+
+
 注：加粗为宝藏
