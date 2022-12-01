@@ -1,14 +1,14 @@
 ## 版本控制
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#什么是版本控制)什么是版本控制
+### 什么是版本控制
 
 版本控制是一种记录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统。 除了项目源代码，你可以对任何类型的文件进行版本控制。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#为什么要版本控制)为什么要版本控制
+### 为什么要版本控制
 
 有了它你就可以将某个文件回溯到之前的状态，甚至将整个项目都回退到过去某个时间点的状态，你可以比较文件的变化细节，查出最后是谁修改了哪个地方，从而找出导致怪异问题出现的原因，又是谁在何时报告了某个功能缺陷等等。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#本地版本控制系统)本地版本控制系统
+### 本地版本控制系统
 
 许多人习惯用复制整个项目目录的方式来保存不同的版本，或许还会改名加上备份时间以示区别。 这么做唯一的好处就是简单，但是特别容易犯错。 有时候会混淆所在的工作目录，一不小心会写错文件或者覆盖意想外的文件。
 
@@ -16,7 +16,7 @@
 
 ![本地版本控制系统](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3/%E6%9C%AC%E5%9C%B0%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E7%B3%BB%E7%BB%9F.png)
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#集中化的版本控制系统)集中化的版本控制系统
+### 集中化的版本控制系统
 
 接下来人们又遇到一个问题，如何让在不同系统上的开发者协同工作？ 于是，集中化的版本控制系统（Centralized Version Control Systems，简称 CVCS）应运而生。
 
@@ -29,7 +29,7 @@
 - **单点故障：** 中央服务器宕机，则其他人无法使用；如果中心数据库磁盘损坏又没有进行备份，你将丢失所有数据。本地版本控制系统也存在类似问题，只要整个项目的历史记录被保存在单一位置，就有丢失所有历史更新记录的风险。
 - **必须联网才能工作：** 受网络状况、带宽影响。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#分布式版本控制系统)分布式版本控制系统
+### 分布式版本控制系统
 
 于是分布式版本控制系统（Distributed Version Control System，简称 DVCS）面世了。 Git 就是一个典型的分布式版本控制系统。
 
@@ -41,13 +41,13 @@
 
 分布式版本控制系统的优势不单是不必联网这么简单，后面我们还会看到 Git 极其强大的分支管理等功能。
 
-## [#](https://javaguide.cn/tools/git/git-intro.html#认识-git)认识 Git
+## 认识 Git
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#git-简史)Git 简史
+### Git 简史
 
 Linux 内核项目组当时使用分布式版本控制系统 BitKeeper 来管理和维护代码。但是，后来开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统，而且对新的版本控制系统做了很多改进。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#git-与其他版本管理系统的主要区别)Git 与其他版本管理系统的主要区别
+### Git 与其他版本管理系统的主要区别
 
 Git 在保存和对待各种信息的时候与其它版本控制系统有很大差异，尽管操作起来的命令形式非常相近，理解这些差异将有助于防止你使用中的困惑。
 
@@ -73,7 +73,7 @@ Git 不按照以上方式对待或保存数据。 反之，Git 更像是把数�
 
 ![img](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/2019-3snapshots.png)
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#git-的三种状态)Git 的三种状态
+### Git 的三种状态
 
 Git 有三种状态，你的文件可能处于其中之一：
 
@@ -91,16 +91,16 @@ Git 有三种状态，你的文件可能处于其中之一：
 2. 暂存文件，将文件的快照放入暂存区域。
 3. 提交更新，找到暂存区域的文件，将快照永久性存储到 Git 仓库目录。
 
-## [#](https://javaguide.cn/tools/git/git-intro.html#git-使用快速入门)Git 使用快速入门
+## Git 使用快速入门
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#获取-git-仓库)获取 Git 仓库
+### 获取 Git 仓库
 
 有两种取得 Git 项目仓库的方法。
 
 1. 在现有目录中初始化仓库: 进入项目目录运行 `git init` 命令,该命令将创建一个名为 `.git` 的子目录。
 2. 从一个服务器克隆一个现有的 Git 仓库: `git clone [url]` 自定义本地仓库的名字: `git clone [url] directoryname`
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#记录每次更新到仓库)记录每次更新到仓库
+### 记录每次更新到仓库
 
 1. **检测当前文件状态** : `git status`
 2. **提出更改（把它们添加到暂存区**）：`git add filename `(针对特定文件)、`git add *`(所有文件)、`git add *.txt`（支持通配符，所有 .txt 文件）
@@ -110,7 +110,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 6. **移除文件** ：`git rm filename` （从暂存区域移除，然后提交。）
 7. **对文件重命名** ：`git mv README.md README`(这个命令相当于`mv README.md README`、`git rm README.md`、`git add README` 这三条命令的集合)
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#一个好的-git-提交消息)一个好的 Git 提交消息
+### 一个好的 Git 提交消息
 
 一个好的 Git 提交消息如下：
 
@@ -124,7 +124,7 @@ Git 有三种状态，你的文件可能处于其中之一：
 
 提交的标题行描述应该尽量的清晰和尽量的一句话概括。这样就方便相关的 Git 日志查看工具显示和其他人的阅读。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#推送改动到远程仓库)推送改动到远程仓库
+### 推送改动到远程仓库
 
 - 如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：`git remote add origin <server>` ,比如我们要让本地的一个仓库和 Github 上创建的一个仓库关联可以这样`git remote add origin https://github.com/Snailclimb/test.git`
 
@@ -132,12 +132,12 @@ Git 有三种状态，你的文件可能处于其中之一：
 
   如此你就能够将你的改动推送到所添加的服务器上去了。
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#远程仓库的移除与重命名)远程仓库的移除与重命名
+### 远程仓库的移除与重命名
 
 - 将 test 重命名为 test1：`git remote rename test test1`
 - 移除远程仓库 test1:`git remote rm test1`
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#查看提交历史)查看提交历史
+### 查看提交历史
 
 在提交了若干更新，又或者克隆了某个项目之后，你也许想回顾下提交历史。 完成这个任务最简单而又有效的工具是 `git log` 命令。`git log` 会按提交时间列出所有的更新，最近的更新排在最上面。
 
@@ -196,7 +196,7 @@ git reset --hard origin/master
 
 
 
-### [#](https://javaguide.cn/tools/git/git-intro.html#分支)分支
+### 分支
 
 分支是用来将特性开发绝缘开来的。在你创建仓库的时候，*master* 是“默认”的分支。在其他分支上进行开发，完成后再将它们合并到主分支上。
 
@@ -274,7 +274,7 @@ git push origin
 
 
 
-## [#](https://javaguide.cn/tools/git/git-intro.html#推荐)推荐
+## 推荐
 
 **在线演示学习工具：**
 
@@ -290,7 +290,3 @@ git push origin
 - [一个好的 Git 提交消息，出自 Linus 之手open in new window](https://github.com/torvalds/subsurface-for-dirk/blob/a48494d2fbed58c751e9b7e8fbff88582f9b2d02/README#L88)
 
 [编辑此页open in new window](https://github.com/Snailclimb/JavaGuide/edit/main/docs/tools/git/git-intro.md)
-
-
-
-摘自: guide
