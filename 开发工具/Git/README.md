@@ -10,10 +10,10 @@
 
 ## 资料
 
-- [Git Cheat Sheet](http://git-cheatsheet.com/)
+- [**Git Book**](https://git-scm.com/book/zh/v2)
+- [**Git Cheat Sheet**](http://git-cheatsheet.com/)
 - [Git Cheat Sheet中文版](https://www.w3cschool.cn/tspiu3/)	
-- https://www.toptal.com/developers/gitignore
-- https://git-scm.com/book/zh/v2
+- [gitignore.io](https://www.toptal.com/developers/gitignore)
 - https://www.gnu.org/software/make/
 - https://www.ruanyifeng.com/blog/2015/02/make.html
 - https://www.jianshu.com/p/2d74a6f41d07
