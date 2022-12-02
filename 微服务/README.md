@@ -5,6 +5,7 @@
 * [RPC原理与Go RPC](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/RPC%E5%8E%9F%E7%90%86%E4%B8%8EGo%20RPC.md)
 * [Protocol Buffers V3中文语法指南[翻译]](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/protobuf%20v3%E8%AF%AD%E6%B3%95%E4%B8%AD%E6%96%87%E6%8C%87%E5%8D%97.md)
 * [protocol buffers使用指南](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/protocol%20buffers%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.md)
+* [protobuf中oneof、WrapValue和FieldMask的使用](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/protobuf%E4%B8%ADoneof%E3%80%81WrapValue%E5%92%8CFieldMask%E7%9A%84%E4%BD%BF%E7%94%A8.md)
 * [gRPC](https://github.com/mao888/golang-guide/blob/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/document/gRPC.md)
 ## CODE
 
