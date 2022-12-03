@@ -342,11 +342,7 @@
 - [如何使用Docker部署Go Web应用](https://www.liwenzhou.com/posts/Go/how_to_deploy_go_app_using_docker/)
 - [Docker 10分钟快速入门](https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.788.recommend_more_video.-1&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 
-
-
 ## MQ
-
-
 * [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
 
 * [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
