@@ -31,25 +31,27 @@
 
 <a name="download"></a>
 
-<b><details><summary> :orange_book: QQ交流群2：579480724；官方QQ交流群1(满):1007576722;</summary></b>
+<b><details><summary> :orange_book: QQ交流群2：579480724；官方QQ交流群1(满) :1007576722;(点击此处可展开)</summary></b>
 
 
-请QQ扫描或搜索下方QQ交流群后，催促群主更新最新版本。
+请扫描或搜索下方二维码或公众号，或者想要的资料或者交流。
 
 <a name="公众号"></a>
-
-<div align="center"><img src="https://i.postimg.cc/R0SpQsfD/image.jpg" style="zoom:80%;" />
-    <p>官方公众号： Gopher毛</p>    
-    <p>QQ交流群2：579480724</p>    
-    <p>QQ交流群1(满)：1007576722</p>
-    <p>官方微信群： 加我v(18864470086)拉</p>
+<div align="center"><img src="https://i.postimg.cc/zXkfPv6P/image.png" style="zoom:50%;" />
+    <p>官方公众号：Gopher毛</p>
 </div>
-
+<div align="center"><img src="https://i.postimg.cc/VkLNy1cs/Gophers2.png" style="zoom:40%;" />
+   <p>QQ交流群2：579480724</p>
+</div>
+<div align="center"><img src="https://i.postimg.cc/C5QQDnnv/Gophers-1.png" style="zoom:40%;" />
+   <p>QQ交流群1(满)：1007576722</p>
+</div>
+<div align="center"><img src="https://i.postimg.cc/wxZ5TfBd/image.jpg" style="zoom:40%;" />
+    <p>博主微信：(18836288306)加我v拉微信群</p>
+</div>
 
 </details>
 
-![image-20221124232250425](C:\Users\Hasee\AppData\Roaming\Typora\typora-user-images\image-20221124232250425.png)
-![](D:/桌面/文件/Gophers2️⃣群聊二维码.png)
 
 大家在阅读过程中，如果遇到错误的地方或者新的见解，都可以通过邮箱：2557523039@qq.com 与我交流！
 
