@@ -20,7 +20,8 @@
 [![简书](https://img.shields.io/badge/-简书-c14438?style=flat-square&logo=简&logoColor=white)](https://www.jianshu.com/u/https://www.jianshu.com/u/89b7bf8342cb)
 [![Gmail Badge](https://img.shields.io/badge/gmail-2557523039@qq.com-Green?style=flat-square&logo=Gmail&logoColor=white&link=mailto:ren_shi_wei@163.com)](mailto:2557523039@qq.com)
 
-![Java 全栈知识体系](https://www.pdai.tech/_images/index-read.gif)
+[//]: # (![Java 全栈知识体系]&#40;https://www.pdai.tech/_images/index-read.gif&#41;)
+[![index-read.gif](https://i.postimg.cc/QCHx6djL/index-read.gif)](https://postimg.cc/q6HTq0tQ)
 
 
 <div>
@@ -31,7 +32,7 @@
 
 <a name="download"></a>
 
-<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛; QQ交流群2：579480724；QQ交流群1(满) :1007576722</summary></b>
+<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛； QQ交流群2：579480724；QQ交流群1(满) :1007576722</summary></b>
 
 
 请扫描或搜索下方二维码、公众号，进群交流或者获取想要的资料。
