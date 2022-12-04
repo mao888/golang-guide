@@ -38,10 +38,10 @@
 
 <a name="公众号"></a>
 
-<div align="center"><img src="https://s1.ax1x.com/2022/08/07/vKj9mQ.jpg" style="zoom:30%;" />
+<div align="center"><img src="https://i.postimg.cc/R0SpQsfD/image.jpg" style="zoom:0%;" />
+    <p>官方公众号： Gopher毛</p>    
     <p>QQ交流群2：579480724</p>    
     <p>QQ交流群1(满)：1007576722</p>
-    <p>官方公众号： 申请中</p>
     <p>官方微信群： 加我v(18864470086)拉</p>
 </div>
 
