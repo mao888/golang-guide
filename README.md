@@ -37,16 +37,16 @@
 请扫描或搜索下方二维码或公众号，或者想要的资料或者交流。
 
 <a name="公众号"></a>
-<div align="center"><img src="https://i.postimg.cc/zXkfPv6P/image.png" style="zoom:50%;" />
+<div align="center"><img src="https://i.postimg.cc/zXkfPv6P/image.png" style="zoom:30%;" />
     <p>官方公众号：Gopher毛</p>
 </div>
-<div align="center"><img src="https://i.postimg.cc/VkLNy1cs/Gophers2.png" style="zoom:40%;" />
+<div align="center"><img src="https://i.postimg.cc/VkLNy1cs/Gophers2.png" style="zoom:45%;" />
    <p>QQ交流群2：579480724</p>
 </div>
-<div align="center"><img src="https://i.postimg.cc/C5QQDnnv/Gophers-1.png" style="zoom:40%;" />
+<div align="center"><img src="https://i.postimg.cc/C5QQDnnv/Gophers-1.png" style="zoom:45%;" />
    <p>QQ交流群1(满)：1007576722</p>
 </div>
-<div align="center"><img src="https://i.postimg.cc/wxZ5TfBd/image.jpg" style="zoom:40%;" />
+<div align="center"><img src="https://i.postimg.cc/wxZ5TfBd/image.jpg" style="zoom:20%;" />
     <p>博主微信：(18836288306)加我v拉微信群</p>
 </div>
 
