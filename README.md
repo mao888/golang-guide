@@ -25,6 +25,9 @@
 [//]: # "![Java 全栈知识体系]&#40;https://www.pdai.tech/_images/index-read.gif&#41;"
 [![index-read.gif](https://i.postimg.cc/QCHx6djL/index-read.gif)](https://postimg.cc/q6HTq0tQ)
 
+<div align="center"><img src="https://i.postimg.cc/vmfCXL1X/index-read.gif" style="zoom:0%;" />
+
+</div>
 
 <div>
  <br> <strong>👍推荐<a href="https://github.com/cosen1024/awesome-cs-books">免费下载几百本计算机经典 电子书</a></strong> <br>
