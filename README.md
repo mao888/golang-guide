@@ -1,4 +1,7 @@
 # Golang-Guide 
+<div align="center"><img src="https://i.postimg.cc/vmfCXL1X/index-read.gif" style="zoom:50%;" />
+
+</div>
 
 - 「Golang面试小抄」一份通向理想互联网公司的面试指南
 - 人性化超详细 **MD版本** , 务必给个 **STAR** 支持一下吧
@@ -26,9 +29,6 @@
 
 [//]: # ([![index-read.gif]&#40;https://i.postimg.cc/QCHx6djL/index-read.gif&#41;]&#40;https://postimg.cc/q6HTq0tQ&#41;)
 
-<div align="center"><img src="https://i.postimg.cc/vmfCXL1X/index-read.gif" style="zoom:50%;" />
-
-</div>
 
 <div>
  <br> <strong>👍推荐<a href="https://github.com/cosen1024/awesome-cs-books">免费下载几百本计算机经典 电子书</a></strong> <br>
