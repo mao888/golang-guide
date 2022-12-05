@@ -64,17 +64,17 @@
 
 ## Golang
 ### golang-Interview
-* [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md)
+* [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md)(必看👍 )
 * [Go面试题new](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/Go%E9%9D%A2%E8%AF%95%E9%A2%98new.pdf)
 * [大厂面经](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F)
 * [面试实战](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%AE%9E%E6%88%98)
-* [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md)
+* [Gin源码阅读与分析(必看👍 )](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md)
 ### go-study
 * [Go语言学习之路--李文周](https://github.com/mao888/golang-guide/blob/main/golang/go-study/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
 
 #### 资料库
 * [**golang学习路线**](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
-* [超高质量网站](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/%E8%B6%85%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)
+* [超高质量网站](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/%E8%B6%85%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md) (必看👍 )
 * [Go学习开发地图](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/Go%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E5%9C%B0%E5%9B%BE.png)
 * [go进阶14讲](https://github.com/mao888/golang-guide/tree/main/golang/go-study/go%E8%BF%9B%E9%98%B614%E8%AE%B2)
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink)
@@ -104,10 +104,10 @@
 ## Java全栈
 
 ### 面经
-* [Java全栈(超详细)](https://github.com/mao888/golang-guide/blob/main/Java/Java.md)
+* [Java全栈(超详细)](https://github.com/mao888/golang-guide/blob/main/Java/Java.md) (必看👍 )
 
 ### 资料库
-* [高质量网站](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)
+* [高质量网站](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)(必看👍 )
 
 ### PDF
 * [Java中高级核心知识全面解析](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/Java%E4%B8%AD%E9%AB%98%E7%BA%A7%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E5%85%A8%E9%9D%A2%E8%A7%A3%E6%9E%90%20(1).pdf)
@@ -145,9 +145,9 @@
 * [一次搞定计算机网络，高效修炼程序员内功](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%AC%A1%E6%90%9E%E5%AE%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%8C%E9%AB%98%E6%95%88%E4%BF%AE%E7%82%BC%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%85%E5%8A%9F.md)
 
 ### 计网面经
-* [计算机网络上](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8A.md)
+* [计算机网络上](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8A.md) 
 * [计算机网络下](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8B.md)
-* [计算机网络经典面试题](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98.md)
+* [计算机网络经典面试题  ](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98.md)(必看👍 )
 
 ### 资料库
 * [图解网络-小林coding](https://github.com/mao888/golang-guide/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C-%E5%B0%8F%E6%9E%97coding)
@@ -167,7 +167,7 @@
 
 ## 操作系统
 ### 面经
-* [操作系统](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E7%BB%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
+* [操作系统](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E7%BB%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)(必看👍 )
 ### 学习
 * [王道计算机考研-操作系统-学习重点指导](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
 * [现代操作系统-第四版](https://github.com/mao888/golang-guide/tree/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
@@ -201,8 +201,8 @@
 * [LeetCode算法提炼](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E7%AE%97%E6%B3%95%E6%8F%90%E7%82%BC.md)
 
 ### 面经
-* [数据结构与算法面经](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%9D%A2%E7%BB%8F.md)
-* [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)
+* [数据结构与算法面经](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%9D%A2%E7%BB%8F.md)(必看👍 )
+* [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)(必看👍 )
 
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnLs8b5pv32REWguwVc23TYo) (密码私信)
 内包含:
@@ -219,9 +219,9 @@
 
 ## MySQL
 ### 面经
-* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)
+* [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)(必看👍 )
 * [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
-* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)
+* [MySQL索引连环18问！](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E8%BF%9E%E7%8E%AF18%E9%97%AE%EF%BC%81.md)(必看👍 )
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink)
 ![img_1.png](images/Mysql是怎样运行的.png)
 * 笔记
@@ -246,7 +246,7 @@
 
 ## Redis
 ### 面经
-* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)
+* [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)(必看👍 )
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) (密码私信)
 ![img.png](images/redis设计与实现.png)
 
@@ -256,7 +256,7 @@
 * Redis深度历险：核心原理和应用实践【TALKDATA推荐】
 
 ## 设计模式
-* [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
+* [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
 * [常见设计模式](https://github.com/mao888/golang-guide/blob/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
 [**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink)
@@ -275,8 +275,8 @@
 
 ### 资料
 
-- [**Git Book**](https://git-scm.com/book/zh/v2)
-- [**Git Cheat Sheet**](http://git-cheatsheet.com/)
+- [**Git Book**](https://git-scm.com/book/zh/v2)(必看👍 )
+- [**Git Cheat Sheet**](http://git-cheatsheet.com/)(必看👍 )
 - [Git Cheat Sheet中文版](https://www.w3cschool.cn/tspiu3/)
 - [git的基本使用流程演示](https://blog.csdn.net/weixin_42490398/article/details/90212418?ops_request_misc=%7B%22request%5Fid%22%3A%22164726591316781683915219%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726591316781683915219&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-1-90212418.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git流程&spm=1018.2226.3001.4187)
 
@@ -284,7 +284,7 @@
 - [GIT | GIT常见面试题](https://blog.csdn.net/nobody_1/article/details/88956315?ops_request_misc=%7B%22request%5Fid%22%3A%22164726602216780271960516%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726602216780271960516&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-88956315.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git面试题&spm=1018.2226.3001.4187)
 - [2022 最新 Git 面试题](https://libin9ioak.blog.csdn.net/article/details/123318369?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&utm_relevant_index=1)
 
-- **Git Pro 2**
+- **Git Pro 2 **  (必看👍 )
   - [Git Pro2英文Github仓库在新窗口打开](https://github.com/progit/progit2)
   - [Git Pro2中文Gitbook在新窗口打开](https://bingohuang.gitbooks.io/progit2/content/01-introduction/sections/about-version-control.html)
   - [Git Pro2对应的中文Markdown版本的仓库地址在新窗口打开](https://github.com/bingohuang/progit2-gitbook)
@@ -410,12 +410,12 @@
 
 ## 面试求职宝典
 * [国内软件厂商公司名单库](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E5%8E%82%E5%95%86%E5%85%AC%E5%8F%B8%E5%90%8D%E5%8D%95.md)
-* [面试官：你有什么想问的吗](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E6%83%B3%E9%97%AE%E7%9A%84%E5%90%97.md)
+* [面试官：你有什么想问的吗](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E6%83%B3%E9%97%AE%E7%9A%84%E5%90%97.md)(必看👍 )
 
 
 ## 关于我
 
-* [Github](https://github.com/mao888)
+* [Github](https://github.com/mao888)(必看👍 )
 * [CSDN](https://blog.csdn.net/qq_45696377?spm=1000.2115.3001.5343)
 * [简书](https://www.jianshu.com/)
 
