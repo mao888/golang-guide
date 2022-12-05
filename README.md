@@ -68,6 +68,7 @@
 * [Go面试题new](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/Go%E9%9D%A2%E8%AF%95%E9%A2%98new.pdf)
 * [大厂面经](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F)
 * [面试实战](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%AE%9E%E6%88%98)
+* [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md)
 ### go-study
 * [Go语言学习之路--李文周](https://github.com/mao888/golang-guide/blob/main/golang/go-study/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
 
