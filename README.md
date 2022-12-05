@@ -20,6 +20,8 @@
 [![简书](https://img.shields.io/badge/-简书-c14438?style=flat-square&logo=简&logoColor=white)](https://www.jianshu.com/u/https://www.jianshu.com/u/89b7bf8342cb)
 [![Gmail Badge](https://img.shields.io/badge/gmail-2557523039@qq.com-Green?style=flat-square&logo=Gmail&logoColor=white&link=mailto:ren_shi_wei@163.com)](mailto:2557523039@qq.com)
 
+[![A5-DAFBD783844-AC402-DC469-AAEB9733-E.jpg](https://i.postimg.cc/QC0b0Vkf/A5-DAFBD783844-AC402-DC469-AAEB9733-E.jpg)](https://postimg.cc/MffVG6LB)
+
 [//]: # "![Java 全栈知识体系]&#40;https://www.pdai.tech/_images/index-read.gif&#41;"
 [![index-read.gif](https://i.postimg.cc/QCHx6djL/index-read.gif)](https://postimg.cc/q6HTq0tQ)
 
