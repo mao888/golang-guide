@@ -35,7 +35,7 @@
 <b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛； QQ交流群2：579480724；QQ交流群1(满) :1007576722</summary></b>
 
 
-请扫描或搜索下方二维码、公众号，进群交流或者获取想要的资料。
+请扫描或搜索下方二维码、公众号，获取想要的资料、八股或进群交流。
 
 <a name="公众号"></a>
 <div align="center"><img src="https://i.postimg.cc/zXkfPv6P/image.png" style="zoom:20%;" />
