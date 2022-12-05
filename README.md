@@ -20,7 +20,7 @@
 [![简书](https://img.shields.io/badge/-简书-c14438?style=flat-square&logo=简&logoColor=white)](https://www.jianshu.com/u/https://www.jianshu.com/u/89b7bf8342cb)
 [![Gmail Badge](https://img.shields.io/badge/gmail-2557523039@qq.com-Green?style=flat-square&logo=Gmail&logoColor=white&link=mailto:ren_shi_wei@163.com)](mailto:2557523039@qq.com)
 
-[//]: # (![Java 全栈知识体系]&#40;https://www.pdai.tech/_images/index-read.gif&#41;)
+[//]: # "![Java 全栈知识体系]&#40;https://www.pdai.tech/_images/index-read.gif&#41;"
 [![index-read.gif](https://i.postimg.cc/QCHx6djL/index-read.gif)](https://postimg.cc/q6HTq0tQ)
 
 
@@ -384,8 +384,26 @@
 * [hello_gRPC_server](https://github.com/mao888/golang-guide/tree/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/code/gRPC/hello_gRPC_server)
 * [hello_gRPC_client](https://github.com/mao888/golang-guide/tree/main/%E5%BE%AE%E6%9C%8D%E5%8A%A1/code/gRPC/hello_gRPC_client)
 
+### 安全
+
+#### 认证授权
+
+- [认证授权基础概念详解](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/basis-of-authority-certification.md)
+- [JWT 基础概念详解](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/jwt-intro.md)
+- [JWT 优缺点分析以及常见问题解决方案](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/advantages&disadvantages-of-jwt.md)
+- [SSO 单点登录详解](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/sso-intro.md)
+- [权限系统设计详解](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/design-of-authority-system.md)
+
+#### 数据脱敏
+
+数据脱敏说的就是我们根据特定的规则对敏感信息数据进行变形，比如我们把手机号、身份证号某些位数使用 * 来代替。
+
+#### 敏感词过滤
+
+[敏感词过滤方案总结](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/sentive-words-filter.md)
 
 ## 项目
+
 * [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
 
