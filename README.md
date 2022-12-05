@@ -355,6 +355,7 @@
 * [zookpper面经](https://github.com/mao888/golang-guide/blob/main/zookpper/README.md)
 
 ## 搜索引擎
+用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
 ## ES
 * [ES面经](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)
 * [各种查询的golang实现](https://github.com/mao888/golang-guide/tree/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0)
