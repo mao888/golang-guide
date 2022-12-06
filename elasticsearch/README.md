@@ -12,7 +12,7 @@
 * [ES详解 - 原理：ES原理知识点补充和整体结构]()
 * [ES详解 - 原理：ES原理之索引文档流程详解]()
 * [ES详解 - 原理：ES原理之读取文档流程详解]()
-* [ES详解 - 优化：ElasticSearch性能优化详解]()
+* [ES详解 - 优化：ElasticSearch性能优化详解](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/%E2%99%A5ElasticSearch%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E8%AF%A6%E8%A7%A3%E2%99%A5/ES%E8%AF%A6%E8%A7%A3%20-%20%E4%BC%98%E5%8C%96%EF%BC%9AElasticSearch%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E8%AF%A6%E8%A7%A3.md)
 ### esercise
 * [olivere-elastic](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/olivere-elastic.go)
 * [elastic-go-elasticsearch](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/elastic-go-elasticsearch.go)
