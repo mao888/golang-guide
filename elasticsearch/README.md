@@ -1,7 +1,7 @@
 ## ES
 * [ES-RESTFUL](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_RESTFUL_README.md)
 * [search-Demo](https://github.com/mao888/golang-guide/blob/main/elasticsearch/search/search.go)
-### ♥ElasticSearch知识体系详解♥
+### ♥ElasticSearch知识体系详解♥ (必看👍 )
 * [ES详解 - 认知：ElasticSearch基础概念]()
 * [ES详解 - 认知：Elastic Stack生态和场景方案]()
 * [ES详解 - 安装：ElasticSearch和Kibana安装]()
@@ -17,7 +17,7 @@
 * [olivere-elastic](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/olivere-elastic.go)
 * [elastic-go-elasticsearch](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/elastic-go-elasticsearch.go)
 * [go-elasticsearch](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/go-elasticsearch.go)
-### 各种查询的golang实现
+### 各种查询的golang实现 (必看👍 )
 * [es实现mysql or查询](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/es%E5%AE%9E%E7%8E%B0mysql%20or%E6%9F%A5%E8%AF%A2.md)
 * [es实现mysql where in 查询](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/es%E5%AE%9E%E7%8E%B0mysql%20where%20in%20%E6%9F%A5%E8%AF%A2.md)
 * [es根据app.Id分组，统计每组的OwnerBid数量，过滤空值并去重](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/es%E6%A0%B9%E6%8D%AEapp.Id%E5%88%86%E7%BB%84%EF%BC%8C%E7%BB%9F%E8%AE%A1%E6%AF%8F%E7%BB%84%E7%9A%84OwnerBid%E6%95%B0%E9%87%8F%EF%BC%8C%E8%BF%87%E6%BB%A4%E7%A9%BA%E5%80%BC%E5%B9%B6%E5%8E%BB%E9%87%8D.md)
