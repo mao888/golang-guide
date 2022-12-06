@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/olivere/elastic/v7"
 )
 
 type EsInfo struct {
