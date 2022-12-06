@@ -5,8 +5,6 @@
 * [olivere-elastic](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/olivere-elastic.go)
 * [elastic-go-elasticsearch](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/elastic-go-elasticsearch.go)
 * [go-elasticsearch](https://github.com/mao888/golang-guide/blob/main/elasticsearch/study/exercise/go-elasticsearch.go)
-### 面经
-* [ES面经 ](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)(必看👍 )
 ### 各种查询的golang实现
 * [es实现mysql or查询](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/es%E5%AE%9E%E7%8E%B0mysql%20or%E6%9F%A5%E8%AF%A2.md)
 * [es实现mysql where in 查询](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/es%E5%AE%9E%E7%8E%B0mysql%20where%20in%20%E6%9F%A5%E8%AF%A2.md)
@@ -16,4 +14,7 @@
 * [根据app.Id分组，统计每组dna数量](https://github.com/mao888/golang-guide/blob/main/elasticsearch/%E5%90%84%E7%A7%8D%E6%9F%A5%E8%AF%A2%E7%9A%84golang%E5%AE%9E%E7%8E%B0/%E6%A0%B9%E6%8D%AEapp.Id%E5%88%86%E7%BB%84%EF%BC%8C%E7%BB%9F%E8%AE%A1%E6%AF%8F%E7%BB%84dna%E6%95%B0%E9%87%8F.md)
 
 ### 场景
-* 
+
+
+### 面经
+* [ES面经 ](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)(必看👍 )
