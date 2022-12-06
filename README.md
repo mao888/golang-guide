@@ -369,7 +369,7 @@
 
 ## ES
 * [ES-RESTFUL](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_RESTFUL_README.md)
-* 
+* [search-Demo](https://github.com/mao888/golang-guide/blob/main/elasticsearch/search/search.go)
 ### 面经
 * [ES面经](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)
 ### 各种查询的golang实现
