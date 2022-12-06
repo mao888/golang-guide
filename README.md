@@ -368,6 +368,8 @@
 用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
 
 ## ES
+* [ES-RESTFUL](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_RESTFUL_README.md)
+* 
 ### 面经
 * [ES面经](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_INTERVIEW_README.md)
 ### 各种查询的golang实现
