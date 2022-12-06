@@ -15,7 +15,7 @@
 
 下图红色勾选的是我们前面的系列详解的，除此之外你可以看到搜索库ElasticSearch在前十名内：
 
-![img](/images/db/es/es-introduce-1-2.png)
+![img](https://www.pdai.tech/images/db/es/es-introduce-1-2.png)
 
 所以为什么要学习ElasticSearch呢？
 
@@ -108,7 +108,7 @@ Elasticsearch 也是使用 Java 编写的，它的内部使用 Lucene 做索引�
 
 为了方便理解，作一个ES和数据库的对比
 
-![img](/images/db/es/es-introduce-1-3.png)
+![img](https://www.pdai.tech/images/db/es/es-introduce-1-3.png)
 
 ## [#](#参考文章) 参考文章
 
