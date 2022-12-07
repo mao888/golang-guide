@@ -441,7 +441,7 @@
 
 * [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/%E9%A1%B9%E7%9B%AE/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
-
+* [go-excel](github.com/mao888/go-excel)
 
 ## 面试求职宝典
 * [国内软件厂商公司名单库](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E5%8E%82%E5%95%86%E5%85%AC%E5%8F%B8%E5%90%8D%E5%8D%95.md)
