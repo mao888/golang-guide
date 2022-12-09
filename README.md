@@ -446,6 +446,7 @@
 ## 分布式
 * [API 网关详解](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/API%20%E7%BD%91%E5%85%B3%E8%AF%A6%E8%A7%A3.md)
 * [分布式 ID 详解](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%20ID%20%E8%AF%A6%E8%A7%A3.md)
+* [分布式锁详解](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E8%AF%A6%E8%A7%A3.md)
 ### 理论&算法&模型
 * [CAP & BASE理论](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/%E7%90%86%E8%AE%BA%26%E7%AE%97%E6%B3%95%26%E5%8D%8F%E8%AE%AE/CAP%20%26%20BASE%E7%90%86%E8%AE%BA.md)
 * [Paxos 算法](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/%E7%90%86%E8%AE%BA%26%E7%AE%97%E6%B3%95%26%E5%8D%8F%E8%AE%AE/Paxos%20%E7%AE%97%E6%B3%95.md)
