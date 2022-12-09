@@ -471,8 +471,8 @@
 ## 关于我
 
 * [Github](https://github.com/mao888)(必看👍 )
-* [哔哩哔哩]()
-* [牛客]()
+* [哔哩哔哩](https://space.bilibili.com/289144374?spm_id_from=333.1007.0.0)
+* [牛客](https://www.nowcoder.com/users/621876812)
 * [CSDN](https://blog.csdn.net/qq_45696377?spm=1000.2115.3001.5343)
 * [简书](https://www.jianshu.com/)
 
