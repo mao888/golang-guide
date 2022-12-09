@@ -457,15 +457,16 @@
 * [ZooKeeper 相关概念总结(入门)](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93(%E5%85%A5%E9%97%A8).md)
 * [ZooKeeper 相关概念总结(进阶)](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93(%E8%BF%9B%E9%98%B6).md)
 * [ZooKeeper 实战](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E5%AE%9E%E6%88%98.md)
-## 面试求职宝典
-* [国内软件厂商公司名单库](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E5%8E%82%E5%95%86%E5%85%AC%E5%8F%B8%E5%90%8D%E5%8D%95.md)
-* [面试官：你有什么想问的吗](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E6%83%B3%E9%97%AE%E7%9A%84%E5%90%97.md)(必看👍 )
 
 ## 高性能
 
 ## 高可用
 
-## 搞并发
+## 高并发
+
+## 面试求职宝典
+* [国内软件厂商公司名单库](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E5%8E%82%E5%95%86%E5%85%AC%E5%8F%B8%E5%90%8D%E5%8D%95.md)
+* [面试官：你有什么想问的吗](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%EF%BC%9A%E4%BD%A0%E6%9C%89%E4%BB%80%E4%B9%88%E6%83%B3%E9%97%AE%E7%9A%84%E5%90%97.md)(必看👍 )
 
 ## 关于我
 
