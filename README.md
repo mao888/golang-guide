@@ -458,7 +458,9 @@
 * [ZooKeeper 实战](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E5%AE%9E%E6%88%98.md)
 
 ## 高性能
-
+* [读写分离和分库分表详解](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E6%80%A7%E8%83%BD/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%92%8C%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E8%AF%A6%E8%A7%A3.md)
+* []()
+* []()
 ## 高可用
 
 ## 高并发
