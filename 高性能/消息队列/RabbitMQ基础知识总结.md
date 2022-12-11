@@ -345,5 +345,3 @@ Setting permissions for user "root" in vhost "/" ...
 再次访问:http://你的ip地址:15672/ ,输入用户名和密码：root root
 
 ![RabbitMQ控制台](https://my-blog-to-use.oss-cn-beijing.aliyuncs.com/18-12-12/45835332.jpg)
-
-[编辑此页](https://github.com/Snailclimb/JavaGuide/edit/main/docs/high-performance/message-queue/rabbitmq-intro.md)
