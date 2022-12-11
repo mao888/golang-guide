@@ -183,7 +183,7 @@
 * [现代操作系统-第四版](https://github.com/mao888/golang-guide/tree/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
 
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnK5irYNB0FS9IlqMssL6aAb)
-![img_2.png](images/现代操作系统.png)
+[![image.png](https://i.postimg.cc/d394dBW7/image.png)](https://postimg.cc/XBpf6w63)
 * 计算机操作系统（第4版）—汤小丹
 * 现代操作系统原书第四版pdf免费版
 * 图解系统@小林coding
