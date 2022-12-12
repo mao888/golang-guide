@@ -491,6 +491,7 @@
 * [HR问我目前拿到哪几个offer了，该怎么回答？](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/HR%E9%97%AE%E6%88%91%E7%9B%AE%E5%89%8D%E6%8B%BF%E5%88%B0%E5%93%AA%E5%87%A0%E4%B8%AAoffer%E4%BA%86%EF%BC%8C%E8%AF%A5%E6%80%8E%E4%B9%88%E5%9B%9E%E7%AD%94%EF%BC%9F.md)
 * [北京哪些知名的科技公司](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%8C%97%E4%BA%AC%E5%93%AA%E4%BA%9B%E7%9F%A5%E5%90%8D%E7%9A%84%E7%A7%91%E6%8A%80%E5%85%AC%E5%8F%B8.md)
 * [北京有哪些好公司推荐？这些神仙公司能落京户、955、高薪还不内卷！](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%8C%97%E4%BA%AC%E6%9C%89%E5%93%AA%E4%BA%9B%E5%A5%BD%E5%85%AC%E5%8F%B8%E6%8E%A8%E8%8D%90%EF%BC%9F%E8%BF%99%E4%BA%9B%E7%A5%9E%E4%BB%99%E5%85%AC%E5%8F%B8%E8%83%BD%E8%90%BD%E4%BA%AC%E6%88%B7%E3%80%81955%E3%80%81%E9%AB%98%E8%96%AA%E8%BF%98%E4%B8%8D%E5%86%85%E5%8D%B7%EF%BC%81.md)
+* [如何巧妙推迟面试时间](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%A6%82%E4%BD%95%E5%B7%A7%E5%A6%99%E6%8E%A8%E8%BF%9F%E9%9D%A2%E8%AF%95%E6%97%B6%E9%97%B4.md)
 * 
 
 ## 关于我
