@@ -5,13 +5,15 @@
 
 - 「Golang面试小抄」一份通向理想互联网公司的面试指南
 - 人性化超详细 **MD版本** , 务必给个 **STAR** 支持一下吧
-- 包括 Golang基础、map、context、channel、GMP、锁、并发、GC、内存问题
-- MySQL、Redis、Kafka
-- 操作系统、计算机网络、系统设计、分布式、Golang项目实战等
+- 包括 Golang基础、map、context、channel、GMP、锁、并发、GC、内存、Gin源码等
+- Java、MySQL、Redis、MQ、Git、linux、Docker、Kafka、zookpper、区块链
+- 操作系统、计算机网络、数据结构与算法、微服务
+- 设计模式、分布式、高可用、高性能、高并发、安全
+- 简历指导、求职宝典 等等~~
 - 为了粉丝、为了开源，真的是肝死我了
 - 文章均来自本人工作实习经验、实战面试、学习总结、读书笔记、网络博文等(仅供我个人校招实习使用)
 - 仅限制个人使用,严禁商业化,转载在文首注明出处
-- 仓库需要持久的维护与更新，非常期待各位的 **pr**
+- 本仓库会长期的维护与更新，非常期待各位的 **pr**
 - 校招不止,offer不停,更新不断
 
 ![访问个人主页数量](https://komarev.com/ghpvc/?username=duktig666&color=green)
