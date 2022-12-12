@@ -482,6 +482,8 @@
 
 ## 提问的智慧
 * [提问的智慧](https://github.com/mao888/golang-guide/blob/main/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7.md)
+## 如何make money
+* [how2makemoney](https://github.com/mao888/golang-guide/blob/main/%E5%A6%82%E4%BD%95makemoney/how2makemoney.md)
 
 ## 面试求职宝典
 * [国内软件厂商公司名单库](https://github.com/mao888/golang-guide/blob/main/%E9%9D%A2%E8%AF%95%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%9B%BD%E5%86%85%E8%BD%AF%E4%BB%B6%E5%8E%82%E5%95%86%E5%85%AC%E5%8F%B8%E5%90%8D%E5%8D%95.md)
