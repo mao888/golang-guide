@@ -1,0 +1,22 @@
+syntax = "proto3";  // 版本声明，使用Protocol Buffers v3版本
+
+option go_package = "hello_gRPC_client/proto";  // 指定生成的Go代码在你项目中的导入路径
+
+package proto;    // 包名
+
+// 定义一个 HelloService 服务
+service HelloService {
+  // 普通 rpc，客户端向服务器发送一个请求，然后得到一个响应，就像普通的函数调用一样
+  // SayHello 方法
+  rpc SayHello (HelloRequest) returns (HelloResponse);
+}
+
+// 请求消息
+message HelloRequest {
+  string Name = 1;
+}
+
+// 响应消息
+message HelloResponse {
+  string reply = 1;
+}

@@ -208,7 +208,7 @@ hello-world   latest    bf756fb1ae65   12 months ago   13.3kB
 该指令能够查询指定镜像名：
 
 ```bash
-docker image MySQL
+docker images MySQL
 ```
 
 若如此做，则会查询出 Docker 中的所有 MySQL 镜像：
@@ -264,7 +264,7 @@ docker search MySQL:5.5
 删除镜像使用指令：
 
 ```bash
-docker image rm MySQL:5.5
+docker images rm MySQL:5.5
 ```
 
 若是不指定版本，则默认删除的也是最新版本。
@@ -272,20 +272,20 @@ docker image rm MySQL:5.5
 还可以通过指定镜像 id 进行删除：
 
 ```bash
-docker image rm bf756fb1ae65
+docker images rm bf756fb1ae65
 ```
 
 然而此时报错了：
 
 ```bash
-[root@izrcf5u3j3q8xaz ~]# docker image rm bf756fb1ae65
-Error response from daemon: conflict: unable to delete bf756fb1ae65 (must be forced) - image is being used by stopped container d5b6c177c151
+[root@izrcf5u3j3q8xaz ~]# docker images rm bf756fb1ae65
+Error response from daemon: conflict: unable to delete bf756fb1ae65 (must be forced) - images is being used by stopped container d5b6c177c151
 ```
 
 这是因为要删除的`hello-world`镜像正在运行中，所以无法删除镜像，此时需要强制执行删除：
 
 ```bash
-docker image rm -f bf756fb1ae65
+docker images rm -f bf756fb1ae65
 ```
 
 该指令会将镜像和通过该镜像执行的容器全部删除，谨慎使用。
@@ -766,7 +766,7 @@ root@centos-7 ~]# docker load -i my-tomcat-1.0.tar
 b28ef0b6fef8: Loading layer [==================================================>]  105.5MB/105.5MB
 0b703c74a09c: Loading layer [==================================================>]  23.99MB/23.99MB
 ......
-Loaded image: my_tomcat:1.0
+Loaded images: my_tomcat:1.0
 [root@centos-7 ~]# docker images
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my_tomcat           1.0                 79ab047fade5        7 minutes ago       463MB

@@ -34,7 +34,7 @@ func (u User) consoleLog() {
 
 func (u User) fileLog() {
 	t := time.Now()
-	file, err := os.OpenFile("./Go/go语言基础/接口/"+u.username+".txt", os.O_RDWR|os.O_CREATE, 0766)
+	file, err := os.OpenFile("./go进阶14讲/go语言基础/接口/"+u.username+".txt", os.O_RDWR|os.O_CREATE, 0766)
 	if err != nil {
 		fmt.Println(err)
 	}
