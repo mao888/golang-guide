@@ -265,6 +265,7 @@
 * Redis设计与实现
 * redis设计与实现(第二版)【TALKDATA推荐】
 * Redis深度历险：核心原理和应用实践【TALKDATA推荐】
+* Redis实战 【gebilxs推荐】
 
 ## 设计模式
 * [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
