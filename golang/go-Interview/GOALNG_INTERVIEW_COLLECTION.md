@@ -1157,6 +1157,17 @@ func main() {
 
 ### 9、[如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
 
+`Go` 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承等概念，但它通过接口却非常优雅地支持了面向对象的特性。
+
+多态是一种运行期的行为，它有以下几个特点：
+
+> 1. 一种类型具有多种类型的能力
+> 2. 允许不同的对象对同一消息做出灵活的反应
+> 3. 以一种通用的方式对待个使用的对象
+> 4. 非动态语言必须通过继承和接口的方式来实现
+
+`main` 函数里先生成 `Student` 和 `Programmer` 的对象，再将它们分别传入到函数 `whatJob` 和 `growUp`。函数中，直接调用接口函数，实际执行的时候是看最终传入的实体类型是什么，调用的是实体类型实现的函数。于是，不同对象针对同一消息就有多种表现，`多态`就实现了。
+
 ### 10、[Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
 
 ## 四**、context相关**
