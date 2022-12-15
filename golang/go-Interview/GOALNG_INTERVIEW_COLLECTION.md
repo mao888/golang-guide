@@ -959,6 +959,8 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 
 ### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
 
+总结一下，鸭子类型是一种动态语言的风格，在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由它"当前方法和属性的集合"决定。Go 作为一种静态语言，通过接口实现了 `鸭子类型`，实际上是 Go 的编译器在其中作了隐匿的转换工作。
+
 ### 2、[值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
 
 #### 方法
