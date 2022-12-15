@@ -39,6 +39,7 @@ func main() {
 		start += LEN
 	}
 
+	// runtime.NumGoroutine()返回正在运行的goroutine的数量
 	for runtime.NumGoroutine() > 1 {
 		time.Sleep(100 * time.Millisecond)
 	}
