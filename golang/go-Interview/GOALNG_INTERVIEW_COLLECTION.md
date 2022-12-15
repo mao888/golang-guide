@@ -1,3 +1,4 @@
+- 
 - https://zhuanlan.zhihu.com/p/519979757?utm_medium=social&utm_oi=1128258938146394112&utm_psn=1536909217579855872&utm_source=qq
 - https://m.php.cn/be/go/465769.html
 
@@ -953,6 +954,28 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 详细参考：
 
 [golang 哪些类型可以作为map keyblog.csdn.net/lanyang123456/article/details/123765745](https://link.zhihu.com/?target=https%3A//blog.csdn.net/lanyang123456/article/details/123765745)
+
+## 四、接口
+
+### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
+
+### 2、[值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
+
+### 3、[iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
+
+### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
+
+### 5、[编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
+
+### 6、[接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
+
+### 7、[类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
+
+### 8、[接口转换的原理](http://golang.design/go-questions/interface/convert/)
+
+### 9、[如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
+
+### 10、[Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
 
 ## 四**、context相关**
 
