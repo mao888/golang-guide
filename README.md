@@ -115,7 +115,7 @@
 
 <div align="center"><img src="https://i.postimg.cc/MH9rg45y/Go.jpg" style="zoom:100%;" />
 
-[![Go.jpg](https://i.postimg.cc/MH9rg45y/Go.jpg)](https://postimg.cc/K3gNM0dz)
+[//]: # ([![Go.jpg]&#40;https://i.postimg.cc/MH9rg45y/Go.jpg&#41;]&#40;https://postimg.cc/K3gNM0dz&#41;)
 
 ## Java全栈
 
