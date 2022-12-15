@@ -1007,7 +1007,72 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 
 ### 3、[iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
 
+`iface` 和 `eface` 都是 Go 中描述接口的底层结构体，区别在于 `iface` 描述的接口包含方法，而 `eface` 则是不包含任何方法的空接口：`interface{}`。
+
+从源码层面看一下：
+
+```go
+type iface struct {
+	tab  *itab
+	data unsafe.Pointer
+}
+
+type itab struct {
+	inter  *interfacetype
+	_type  *_type
+	link   *itab
+	hash   uint32 // copy of _type.hash. Used for type switches.
+	bad    bool   // type does not implement interface
+	inhash bool   // has this itab been added to hash?
+	unused [2]byte
+	fun    [1]uintptr // variable sized
+}
+```
+
+`iface` 内部维护两个指针，`tab` 指向一个 `itab` 实体， 它表示接口的类型以及赋给这个接口的实体类型。`data` 则指向接口具体的值，一般而言是一个指向堆内存的指针。
+
+再来仔细看一下 `itab` 结构体：`_type` 字段描述了实体的类型，包括内存对齐方式，大小等；`inter` 字段则描述了接口的类型。`fun` 字段放置和接口方法对应的具体数据类型的方法地址，实现接口调用方法的动态分派，一般在每次给接口赋值发生转换时会更新此表，或者直接拿缓存的 itab。
+
+这里只会列出实体类型和接口相关的方法，实体类型的其他方法并不会出现在这里。
+
+另外，你可能会觉得奇怪，为什么 `fun` 数组的大小为 1，要是接口定义了多个方法可怎么办？实际上，这里存储的是第一个方法的函数指针，如果有更多的方法，在它之后的内存空间里继续存储。从汇编角度来看，通过增加地址就能获取到这些函数指针，没什么影响。顺便提一句，这些方法是按照函数名称的字典序进行排列的。
+
+再看一下 `interfacetype` 类型，它描述的是接口的类型：
+
+```go
+type interfacetype struct {
+	typ     _type
+	pkgpath name
+	mhdr    []imethod
+}
+```
+
+可以看到，它包装了 `_type` 类型，`_type` 实际上是描述 Go 语言中各种数据类型的结构体。我们注意到，这里还包含一个 `mhdr` 字段，表示接口所定义的函数列表， `pkgpath` 记录定义了接口的包名。
+
+这里通过一张图来看下 `iface` 结构体的全貌：
+
+![iface 结构体全景](https://golang.design/go-questions/interface/assets/0.png)
+
+接着来看一下 `eface` 的源码：
+
+```go
+type eface struct {
+    _type *_type
+    data  unsafe.Pointer
+}
+```
+
+相比 `iface`，`eface` 就比较简单了。只维护了一个 `_type` 字段，表示空接口所承载的具体的实体类型。`data` 描述了具体的值。
+
+![eface 结构体全景](https://golang.design/go-questions/interface/assets/1.png)
+
+
+
+
+
 ### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
+
+
 
 ### 5、[编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
 
