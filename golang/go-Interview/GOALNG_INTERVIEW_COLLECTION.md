@@ -1072,13 +1072,72 @@ type eface struct {
 
 ### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
 
+从源码里可以看到：`iface`包含两个字段：`tab` 是接口表指针，指向类型信息；`data` 是数据指针，则指向具体的数据。它们分别被称为`动态类型`和`动态值`。而接口值包括`动态类型`和`动态值`。
 
+【引申1】接口类型和 `nil` 作比较
+
+接口值的零值是指`动态类型`和`动态值`都为 `nil`。当仅且当这两部分的值都为 `nil` 的情况下，这个接口值就才会被认为 `接口值 == nil`。
 
 ### 5、[编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
 
 ### 6、[接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
 
 ### 7、[类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
+
+我们知道，Go 语言中不允许隐式类型转换，也就是说 `=` 两边，不允许出现类型不相同的变量。
+
+`类型转换`、`类型断言`本质都是把一个类型转换成另外一个类型。不同之处在于，类型断言是对接口变量进行的操作。
+
+#### **类型转换**
+
+对于`类型转换`而言，转换前后的两个类型要相互兼容才行。类型转换的语法为：
+
+> <结果类型> := <目标类型> ( <表达式> )
+
+```go
+func main() {
+	var i int = 9
+
+	var f float64
+	f = float64(i)
+	fmt.Printf("%T, %v\n", f, f)
+
+	f = 10.8
+	a := int(f)
+	fmt.Printf("%T, %v\n", a, a)
+}
+```
+
+
+
+#### 断言
+
+前面说过，因为空接口 `interface{}` 没有定义任何函数，因此 Go 中所有类型都实现了空接口。当一个函数的形参是 `interface{}`，那么在函数中，需要对形参进行断言，从而得到它的真实类型。
+
+断言的语法为：
+
+> <目标类型的值>，<布尔参数> := <表达式>.( 目标类型 ) // 安全类型断言 
+>
+> <目标类型的值> := <表达式>.( 目标类型 )　　//非安全类型断言
+
+类型转换和类型断言有些相似，不同之处，在于类型断言是对接口进行的操作。
+
+```go
+type Student struct {
+	Name string
+	Age int
+}
+
+func main() {
+	var i interface{} = new(Student)
+	s, ok := i.(Student)
+	if ok {
+		fmt.Println(s)
+	}
+}
+```
+
+断言其实还有另一种形式，就是用在利用 `switch` 语句判断接口的类型。每一个 `case` 会被顺序地考虑。当命中一个 `case` 时，就会执行 `case` 中的语句，因此 `case` 语句的顺序是很重要的，因为很有可能会有多个 `case` 匹配的情况。
 
 ### 8、[接口转换的原理](http://golang.design/go-questions/interface/convert/)
 
