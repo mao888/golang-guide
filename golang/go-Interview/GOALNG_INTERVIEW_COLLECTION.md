@@ -1858,7 +1858,79 @@ src 存放源文件，pkg 存放源文件编译后的库文件，后缀为 `.a`�
 
 ### [Go 编译链接过程概述](http://golang.design/go-questions/compile/link-process/)
 
+
+
 ### [Go 编译相关的命令详解](http://golang.design/go-questions/compile/cmd/)
+
+和编译相关的命令主要是：
+
+```go
+go build
+go install
+go run
+```
+
+#### go build
+
+`go build` 用来编译指定 packages 里的源码文件以及它们的依赖包，编译的时候会到 `$GoPath/src/package` 路径下寻找源码文件。`go build` 还可以直接编译指定的源码文件，并且可以同时指定多个。
+
+通过执行 `go help build` 命令得到 `go build` 的使用方法：
+
+```go
+usage: go build [-o output] [-i] [build flags] [packages]
+```
+
+`-o` 只能在编译单个包的时候出现，它指定输出的可执行文件的名字。
+
+`-i` 会安装编译目标所依赖的包，安装是指生成与代码包相对应的 `.a` 文件，即静态库文件（后面要参与链接），并且放置到当前工作区的 pkg 目录下，且库文件的目录层级和源码层级一致。
+
+至于 build flags 参数，`build, clean, get, install, list, run, test` 这些命令会共用一套：
+
+| 参数  | 作用                                                         |
+| ----- | ------------------------------------------------------------ |
+| -a    | 强制重新编译所有涉及到的包，包括标准库中的代码包，这会重写 /usr/local/go 目录下的 `.a` 文件 |
+| -n    | 打印命令执行过程，不真正执行                                 |
+| -p n  | 指定编译过程中命令执行的并行数，n 默认为 CPU 核数            |
+| -race | 检测并报告程序中的数据竞争问题                               |
+| -v    | 打印命令执行过程中所涉及到的代码包名称                       |
+| -x    | 打印命令执行过程中所涉及到的命令，并执行                     |
+| -work | 打印编译过程中的临时文件夹。通常情况下，编译完成后会被删除   |
+
+我们知道，Go 语言的源码文件分为三类：命令源码、库源码、测试源码。
+
+> 命令源码文件：是 Go 程序的入口，包含 `func main()` 函数，且第一行用 `package main` 声明属于 main 包。
+
+> 库源码文件：主要是各种函数、接口等，例如工具类的函数。
+
+> 测试源码文件：以 `_test.go` 为后缀的文件，用于测试程序的功能和性能。
+
+注意，`go build` 会忽略 `*_test.go` 文件。
+
+#### go install
+
+`go install` 用于编译并安装指定的代码包及它们的依赖包。相比 `go build`，它只是多了一个“安装编译后的结果文件到指定目录”的步骤。
+
+还是使用之前 hello-world 项目的例子，我们先将 pkg 目录删掉，在项目根目录执行：
+
+```go
+go install src/main.go
+
+或者
+
+go install util
+```
+
+两者都会在根目录下新建一个 `pkg` 目录，并且生成一个 `util.a` 文件。
+
+并且，在执行前者的时候，会在 GOBIN 目录下生成名为 main 的可执行文件。
+
+所以，运行 `go install` 命令，库源码包对应的 `.a` 文件会被放置到 `pkg` 目录下，命令源码包生成的可执行文件会被放到 GOBIN 目录。
+
+`go install` 在 GoPath 有多个目录的时候，会产生一些问题，具体可以去看郝林老师的 `Go 命令教程`，这里不展开了。
+
+#### go run
+
+`go run` 用于编译并运行命令源码文件。
 
 ### [Go 程序启动过程是怎样的](http://golang.design/go-questions/compile/booting/)
 
