@@ -1793,7 +1793,21 @@ Channel 被设计用来实现协程间通信的组件，其作用域和生命周
 
 大对象：如果申请大于 32k 以上的大对象时，可能会触发 GC 行为。
 
-## 十一、框架
+## 十二、编译
+
+### [逃逸分析是怎么进行的](http://golang.design/go-questions/compile/escape/)
+
+
+
+### [GoRoot 和 GoPath 有什么用](http://golang.design/go-questions/compile/gopath/)
+
+### [Go 编译链接过程概述](http://golang.design/go-questions/compile/link-process/)
+
+### [Go 编译相关的命令详解](http://golang.design/go-questions/compile/cmd/)
+
+### [Go 程序启动过程是怎样的](http://golang.design/go-questions/compile/booting/)
+
+## 十三、框架
 
 ### Gin
 
