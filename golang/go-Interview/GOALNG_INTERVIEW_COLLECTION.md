@@ -1193,7 +1193,7 @@ C++ 定义接口的方式称为“侵入式”，而 Go 采用的是 “非侵�
 
 C++ 和 Go 在定义接口方式上的不同，也导致了底层实现上的不同。C++ 通过虚函数表来实现基类调用派生类的函数；而 Go 通过 `itab` 中的 `fun` 字段来实现接口变量调用实体类型的函数。C++ 中的虚函数表是在编译期生成的；而 Go 的 `itab` 中的 `fun` 字段是在运行期间动态生成的。原因在于，Go 中实体类型可能会无意中实现 N 多接口，很多接口并不是本来需要的，所以不能为类型实现的所有接口都生成一个 `itab`， 这也是“非侵入式”带来的影响；这在 C++ 中是不存在的，因为派生需要显示声明它继承自哪个基类。
 
-## 四**、context相关**
+## 五**、context相关**
 
 ### **1、context 结构是什么样的？context 使用场景和用途？**
 
@@ -1209,7 +1209,7 @@ C++ 和 Go 在定义接口方式上的不同，也导致了底层实现上的不
 
 1：上下文控制，2：多个 goroutine 之间的数据交互等，3：超时控制：到某个时间点超时，过多久超时。
 
-## **五、channel相关**
+## **六、channel相关**
 
 ### **1、channel 是否线程安全？锁用在什么地方？**
 
@@ -1335,7 +1335,7 @@ https://zhuanlan.zhihu.com/p/355487940
 
 无缓存channel适用于数据要求同步的场景，而有缓存channel适用于无数据同步的场景。可以根据实现项目需求选择。
 
-## **六、GMP相关**
+## **七、GMP相关**
 
 - https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmeduvk27bo0
 - https://www.mubucm.com/doc/7pukUL_nuCI-刘超
@@ -1469,7 +1469,7 @@ func main() {
 
 调度器的生命周期几乎占满了一个Go程序的一生，runtime.main的goroutine执行之前都是为调度器做准备工作，runtime.main的goroutine运行，才是调度器的真正开始，直到runtime.main结束而结束。
 
-## 七、锁相关
+## 八、锁相关
 
 https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamutex
 
@@ -1536,7 +1536,7 @@ Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为�
 
 mutex 会让当前的 goroutine 去空转 CPU，在空转完后再次调用 CAS 方法去尝试性的占有锁资源，直到不满足自旋条件，则最终会加入到等待队列里。
 
-## **八、并发相关**
+## **九、并发相关**
 
 ### 1、怎么控制并发数？
 
@@ -1621,7 +1621,7 @@ defer func() {
 
 **所以直接研究ants底层吧，省的造轮子。**
 
-## **九、GC相关**
+## **十、GC相关**
 
 https://www.topgoer.cn/docs/gozhuanjia/chapter044.2-garbage_collection
 
@@ -1699,7 +1699,7 @@ func GC() {
 
 4）手动触发的 runtime.GC 方法。
 
-## **十、内存相关**
+## **十一、内存相关**
 
 ### [内存分配原理](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiachapter044.1-memory_alloc)
 
@@ -1988,7 +1988,7 @@ go install util
 
 
 
-## 十二、其他问题
+## 十四、其他问题
 
 ### 0、为什么选择golang
 
