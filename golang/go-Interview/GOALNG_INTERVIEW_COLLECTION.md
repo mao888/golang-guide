@@ -1858,7 +1858,19 @@ src 存放源文件，pkg 存放源文件编译后的库文件，后缀为 `.a`�
 
 ### [Go 编译链接过程概述](http://golang.design/go-questions/compile/link-process/)
 
+Go 程序并不能直接运行，每条 Go 语句必须转化为一系列的低级机器语言指令，将这些指令打包到一起，并以二进制磁盘文件的形式存储起来，也就是可执行目标文件。
 
+从源文件到可执行目标文件的转化过程：
+
+![compile](https://golang.design/go-questions/compile/assets/7.png)
+
+完成以上各个阶段的就是 Go 编译系统。你肯定知道大名鼎鼎的 GCC（GNU Compile Collection），中文名为 GNU 编译器套装，它支持像 C，C++，Java，Python，Objective-C，Ada，Fortran，Pascal，能够为很多不同的机器生成机器码。
+
+可执行目标文件可以直接在机器上执行。一般而言，先执行一些初始化的工作；找到 main 函数的入口，执行用户写的代码；执行完成后，main 函数退出；再执行一些收尾的工作，整个过程完毕。
+
+在接下来的文章里，我们将探索`编译`和`运行`的过程。
+
+Go 源码里的编译器源码位于 `src/cmd/compile` 路径下，链接器源码位于 `src/cmd/link` 路径下。
 
 ### [Go 编译相关的命令详解](http://golang.design/go-questions/compile/cmd/)
 
