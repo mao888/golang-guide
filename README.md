@@ -482,6 +482,7 @@
 
 ## 提问的智慧
 * [提问的智慧](https://github.com/mao888/golang-guide/blob/main/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7.md)
+
 ## 如何make money
 * [how2makemoney](https://github.com/mao888/golang-guide/blob/main/%E5%A6%82%E4%BD%95makemoney/how2makemoney.md)
 
