@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// SelectSort 选择排序
+//SelectSort 选择排序
 func SelectSort(arr []int) []int {
 	//1. 先完成将第一个最大值和 arr[0] => 先易后难
 	//1 假设  arr[0] 最大值
@@ -12,7 +12,7 @@ func SelectSort(arr []int) []int {
 
 		max := arr[j]
 		maxIndex := j
-		//2. 遍历后面 j+1---[len(arr) -1] 比较
+		//2. 遍历后面 1---[len(arr) -1] 比较
 		for i := j + 1; i < len(arr); i++ {
 			if max < arr[i] { //找到真正的最大值
 				max = arr[i]
@@ -23,6 +23,7 @@ func SelectSort(arr []int) []int {
 		if maxIndex != j {
 			arr[j], arr[maxIndex] = arr[maxIndex], arr[j]
 		}
+		fmt.Printf("第%d次 %v\n  ", j+1, arr)
 	}
 	return arr
 }
