@@ -1,4 +1,4 @@
-// loopmutex project main.go
+// loopmutex project selectsort.go
 package main
 
 import (
