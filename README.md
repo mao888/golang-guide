@@ -103,12 +103,15 @@
 * Golang协程调度器原理与GMP设计思想
 * 用户模块讲义
 * 字节跳动求职精华宝典-西安电子科技大学
+#### Go ApI
+* Golang_Manual_By_AstaXie_20120522
 #### 知识图谱和路线图
 * 2021版本-Go语言学习路线图
 * Golang来啦
 * Go开发者成长路线图
 * Go语言学习路线图
 * Go知识图谱
+#### 尚硅谷Go语言核心编程全套资料
 
 ## 框架 ~
 * [Gin源码阅读与分析(必看👍 )](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md)
