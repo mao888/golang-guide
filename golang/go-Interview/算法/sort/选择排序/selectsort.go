@@ -15,7 +15,7 @@ func SelectSort(arr []int) []int {
 
 		max := arr[j]
 		maxIndex := j
-		//2. 遍历后面 1---[len(arr) -1] 比较
+		//2. 遍历后面 j + 1---[len(arr) -1] 比较
 		for i := j + 1; i < len(arr); i++ {
 			if max < arr[i] { //找到真正的最大值
 				max = arr[i]
