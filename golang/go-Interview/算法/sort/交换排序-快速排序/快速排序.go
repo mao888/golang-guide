@@ -1,7 +1,7 @@
 /**
     @author:huchao
     @data:2022/3/5
-    @note:快速排序
+    @note:交换排序-快速排序
 **/
 package main
 
