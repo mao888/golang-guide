@@ -7,7 +7,7 @@ package main
 
 import "fmt"
 
-func QuickSort(arr []int) []int {
+func QuickSort1(arr []int) []int {
 	if len(arr) <= 1 {
 		return arr
 	}
@@ -25,7 +25,7 @@ func QuickSort(arr []int) []int {
 			mid = append(mid, arr[i])
 		}
 	}
-	low, hight = QuickSort(low), QuickSort(hight)
+	low, hight = QuickSort1(low), QuickSort1(hight)
 	myarr := append(append(low, mid...), hight...)
 	return myarr
 }
@@ -33,5 +33,5 @@ func QuickSort(arr []int) []int {
 //快速排序算法
 func main() {
 	arr := []int{1, 9, 10, 30, 2, 5, 45, 8, 63, 234, 12}
-	fmt.Println(QuickSort(arr))
+	fmt.Println(QuickSort1(arr))
 }
