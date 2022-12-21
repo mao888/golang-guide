@@ -7,7 +7,7 @@ package main
 
 func main() {
 	l := []int{0, 0, 0, 14124, 124124, 1}
-	quicksort(l, 0, len(l)-1)
+	quicksort2(l, 0, len(l)-1)
 }
 
 func partion(a []int, start int, end int) int {
@@ -32,10 +32,10 @@ func partion(a []int, start int, end int) int {
 	a[i] = pivot //这时i是pivot最终位置
 	return i
 }
-func quicksort(a []int, start int, end int) {
+func quicksort2(a []int, start int, end int) {
 	if start < end {
 		d := partion(a, start, end)
-		quicksort(a, start, d-1)
-		quicksort(a, d+1, end)
+		quicksort2(a, start, d-1)
+		quicksort2(a, d+1, end)
 	}
 }
