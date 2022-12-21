@@ -63,5 +63,5 @@ func QuickSort(left int, right int, array []int) []int {
 func main() {
 	arr := []int{-9, 78, 0, 23, -567, 70, 123, 90, -23}
 	quickSort := QuickSort(0, len(arr)-1, arr)
-	fmt.Println(quickSort)
+	fmt.Println(quickSort) // [-567 -23 -9 0 23 70 78 90 123]
 }
