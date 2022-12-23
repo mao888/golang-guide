@@ -13,7 +13,7 @@ func main() {
 	fmt.Println(GetMax(arr))     // 冒泡排序获取最大值
 }
 
-//冒泡排序获取最大值
+// GetMax 冒泡排序获取最大值
 func GetMax(arr []int) int {
 	for i := 1; i < len(arr); i++ {
 		if arr[i-1] > arr[i] {
@@ -23,7 +23,7 @@ func GetMax(arr []int) int {
 	return arr[len(arr)-1]
 }
 
-//交换排序-冒泡排序
+// BubbleSort 交换排序-冒泡排序
 func BubbleSort(arr []int) []int {
 	for i := 0; i < len(arr); i++ {
 		for j := i + 1; j < len(arr); j++ {
