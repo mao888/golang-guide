@@ -214,11 +214,9 @@
 * [整数在计算机中的表示方式](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97/%E6%95%B4%E6%95%B0%E5%9C%A8%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%B8%AD%E7%9A%84%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F.md)
 * [位运算符的概念和性质](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97/%E4%BD%8D%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E6%A6%82%E5%BF%B5%E5%92%8C%E6%80%A7%E8%B4%A8.md)
 * [例题](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%BF%9B%E5%88%B6%E5%92%8C%E4%BD%8D%E8%BF%90%E7%AE%97/%E4%BE%8B%E9%A2%98.md)
-
 ### LeetCode
 * [怎么高效刷 Leetcode？](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode/%E6%80%8E%E4%B9%88%E9%AB%98%E6%95%88%E5%88%B7%20Leetcode%EF%BC%9F.md)
 * [LeetCode算法提炼](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/LeetCode/LeetCode%E7%AE%97%E6%B3%95%E6%8F%90%E7%82%BC.md)
-
 ### 面经
 * [数据结构与算法面经](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%9D%A2%E7%BB%8F.md) (必看👍 )
 * [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)(必看👍 )
@@ -236,6 +234,7 @@
 * 牛客算法
 * 蓝桥杯发现杯
 * 蓝桥杯-往届真题
+* 等等...
 
 ## MySQL
 ### 面经
