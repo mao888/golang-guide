@@ -39,13 +39,14 @@ func merge(nums []int, left, mid, right int) {
 	}
 }
 
+/* 归并排序 */
 func mergeSort(nums []int, left, right int) {
 	// 终止条件
-	if left >= right {
+	if left >= right { // 当子数组长度为 1 时终止递归
 		return
 	}
 	// 划分阶段
-	mid := (left + right) / 2
+	mid := (left + right) / 2 // 计算中点
 	mergeSort(nums, left, mid)
 	mergeSort(nums, mid+1, right)
 	// 合并阶段

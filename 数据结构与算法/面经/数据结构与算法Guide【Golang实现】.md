@@ -1,3 +1,4 @@
+- https://www.hello-algo.com/
 - [https://www.topgoer.com/Go%E9%AB%98%E7%BA%A7/](https://www.topgoer.com/Go高级/)
 - https://www.topgoer.cn/docs/goalgorithm/goalgorithm-1cm6akian87vb
 - go算法模板：https://greyireland.gitbook.io/algorithm-pattern/
@@ -732,7 +733,72 @@ func main() {
 
 ## 选择排序—树形选择排序
 
-## 选择排序—堆排序
+## 选择排序—[堆排序](https://www.topgoer.com/Go高级/堆排序算法.html)
+
+### 原理
+
+是对直接选择排序的改进，不稳定，时间复杂度 O(nlogn)，空间复杂度 O(1)。
+
+将待排序记录看作完全⼆叉树，可以建⽴⼤根堆或⼩根堆，⼤根堆中每个节点的值都不⼩于它的⼦节点 值，⼩根堆中每个节点的值都不⼤于它的⼦节点值。
+
+以⼤根堆为例，在建堆时⾸先将最后⼀个节点作为当前节点，如果当前节点存在⽗节点且值⼤于⽗节点，就将当前节点和⽗节点交换。在移除时⾸先暂存根节点的值，然后⽤最后⼀个节点代替根节点并作 为当前节点，如果当前节点存在⼦节点且值⼩于⼦节点，就将其与值较⼤的⼦节点进⾏交换，调整完堆 后返回暂存的值。
+
+
+
+### 实现
+
+算法描述：首先建一个堆，然后调整堆，调整过程是将节点和子节点进行比较，将 其中最大的值变为父节点，递归调整调整次数lgn,最后将根节点和尾节点交换再n次 调整**O(nlgn)**.
+
+#### 算法步骤
+
+- 创建最大堆或者最小堆（我是最小堆）
+- 调整堆
+- 交换首尾节点(为了维持一个完全二叉树才要进行收尾交换)
+
+```go
+package sort
+
+import "fmt"
+
+//堆排序
+func main() {
+    arr := []int{1, 9, 10, 30, 2, 5, 45, 8, 63, 234, 12}
+    fmt.Println(HeapSort(arr))
+}
+func HeapSortMax(arr []int, length int) []int {
+    // length := len(arr)
+    if length <= 1 {
+        return arr
+    }
+    depth := length/2 - 1 //二叉树深度
+    for i := depth; i >= 0; i-- {
+        topmax := i //假定最大的位置就在i的位置
+        leftchild := 2*i + 1
+        rightchild := 2*i + 2
+        if leftchild <= length-1 && arr[leftchild] > arr[topmax] { //防止越过界限
+            topmax = leftchild
+        }
+        if rightchild <= length-1 && arr[rightchild] > arr[topmax] { //防止越过界限
+            topmax = rightchild
+        }
+        if topmax != i {
+            arr[i], arr[topmax] = arr[topmax], arr[i]
+        }
+    }
+    return arr
+}
+func HeapSort(arr []int) []int {
+    length := len(arr)
+    for i := 0; i < length; i++ {
+        lastlen := length - i
+        HeapSortMax(arr, lastlen)
+        if i < length {
+            arr[0], arr[lastlen-1] = arr[lastlen-1], arr[0]
+        }
+    }
+    return arr
+}
+```
 
 ## 插入排序
 
@@ -846,74 +912,170 @@ func main() {
 
 把记录按下标的⼀定增量分组，对每组进⾏直接插⼊排序，每次排序后减⼩增量，当增量减⾄ 1 时排序完毕。
 
-## Q13：[堆排序的原理及实现](https://www.topgoer.com/Go高级/堆排序算法.html)？
+## [归并排序](https://hunterhug.gitlab.io/goa.c/#/algorithm/sort/merge_sort)—内部排序
 
-### 原理
+### 基本介绍
 
-是对直接选择排序的改进，不稳定，时间复杂度 O(nlogn)，空间复杂度 O(1)。
+1. 归并排序是一种分治策略的排序算法。
+2. 它是一种比较特殊的排序算法，通过递归地先使每个子序列有序，再将两个有序的序列进行合并成一个有序的序列。
+3. **归并排序(Merging Sort)**就是将两个或两个以上的有序表合并成一个有序表的过程。将两个有序表合并成一个有序表的过程称为**2-路归并**，2-路归并 最为简单和常用。
 
-将待排序记录看作完全⼆叉树，可以建⽴⼤根堆或⼩根堆，⼤根堆中每个节点的值都不⼩于它的⼦节点 值，⼩根堆中每个节点的值都不⼤于它的⼦节点值。
+### 思想
 
-以⼤根堆为例，在建堆时⾸先将最后⼀个节点作为当前节点，如果当前节点存在⽗节点且值⼤于⽗节点，就将当前节点和⽗节点交换。在移除时⾸先暂存根节点的值，然后⽤最后⼀个节点代替根节点并作 为当前节点，如果当前节点存在⼦节点且值⼩于⼦节点，就将其与值较⼤的⼦节点进⾏交换，调整完堆 后返回暂存的值。
+「归并排序 Merge Sort」是算法中“分治思想”的典型体现，其有「划分」和「合并」两个阶段：
+
+1. **划分阶段：** 通过递归不断 **将数组从中点位置划分开**，将长数组的排序问题转化为短数组的排序问题；
+2. **合并阶段：** 划分到子数组长度为 1 时，开始向上合并，不断将 **左、右两个短排序数组** 合并为 **一个长排序数组**，直至合并至原数组时完成排序；
+
+### 算法步骤
+
+**「递归划分」** 从顶至底递归地 **将数组从中点切为两个子数组** ，直至长度为 1 ；
+
+1. 计算数组中点 mid ，递归划分左子数组（区间 [left, mid] ）和右子数组（区间 [mid + 1, right] ）；
+2. 递归执行 1. 步骤，直至子数组区间长度为 1 时，终止递归划分；
+
+**「回溯合并」** 从底至顶地将左子数组和右子数组合并为一个 **有序数组** ；
+
+需要注意，由于从长度为 1 的子数组开始合并，所以 **每个子数组都是有序的** 。因此，合并任务本质是要 **将两个有序子数组合并为一个有序数组** 。
+
+观察发现，归并排序的递归顺序就是二叉树的「后序遍历」。
+
+- **后序遍历：** 先递归左子树、再递归右子树、最后处理根结点。
+- **归并排序：** 先递归左子树、再递归右子树、最后处理合并。
+
+### 思路分析图
 
 
+![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1672062301725-1c8e0d4c-49c1-4438-b560-30ce7a95b2b8.png)
 
-### 实现
-
-算法描述：首先建一个堆，然后调整堆，调整过程是将节点和子节点进行比较，将 其中最大的值变为父节点，递归调整调整次数lgn,最后将根节点和尾节点交换再n次 调整**O(nlgn)**.
-
-#### 算法步骤
-
-- 创建最大堆或者最小堆（我是最小堆）
-- 调整堆
-- 交换首尾节点(为了维持一个完全二叉树才要进行收尾交换)
+### 代码实现
 
 ```go
-package sort
+package main
 
 import "fmt"
 
-//堆排序
+// 合并左子数组和右子数组
+// 左子数组区间 [left, mid]
+// 右子数组区间 [mid + 1, right]
+func merge(nums []int, left, mid, right int) {
+	// 初始化辅助数组 借助 copy模块
+	tmp := make([]int, right-left+1)
+	for i := left; i <= right; i++ {
+		tmp[i-left] = nums[i]
+	}
+	// 左子数组的起始索引和结束索引
+	leftStart, leftEnd := left-left, mid-left
+	// 右子数组的起始索引和结束索引
+	rightStart, rightEnd := mid+1-left, right-left
+	// i, j 分别指向左子数组、右子数组的首元素
+	i, j := leftStart, rightStart
+	// 通过覆盖原数组 nums 来合并左子数组和右子数组
+	for k := left; k <= right; k++ {
+		// 若“左子数组已全部合并完”，则选取右子数组元素，并且 j++
+		if i > leftEnd {
+			nums[k] = tmp[j]
+			j++
+			// 否则，若“右子数组已全部合并完”或“左子数组元素 < 右子数组元素”，则选取左子数组元素，并且 i++
+		} else if j > rightEnd || tmp[i] <= tmp[j] {
+			nums[k] = tmp[i]
+			i++
+			// 否则，若“左子数组元素 > 右子数组元素”，则选取右子数组元素，并且 j++
+		} else {
+			nums[k] = tmp[j]
+			j++
+		}
+	}
+}
+
+func mergeSort(nums []int, left, right int) {
+	// 终止条件
+	if left >= right {
+		return
+	}
+	// 划分阶段
+	mid := (left + right) / 2
+	mergeSort(nums, left, mid)
+	mergeSort(nums, mid+1, right)
+	// 合并阶段
+	merge(nums, left, mid, right)
+}
+
 func main() {
-    arr := []int{1, 9, 10, 30, 2, 5, 45, 8, 63, 234, 12}
-    fmt.Println(HeapSort(arr))
-}
-func HeapSortMax(arr []int, length int) []int {
-    // length := len(arr)
-    if length <= 1 {
-        return arr
-    }
-    depth := length/2 - 1 //二叉树深度
-    for i := depth; i >= 0; i-- {
-        topmax := i //假定最大的位置就在i的位置
-        leftchild := 2*i + 1
-        rightchild := 2*i + 2
-        if leftchild <= length-1 && arr[leftchild] > arr[topmax] { //防止越过界限
-            topmax = leftchild
-        }
-        if rightchild <= length-1 && arr[rightchild] > arr[topmax] { //防止越过界限
-            topmax = rightchild
-        }
-        if topmax != i {
-            arr[i], arr[topmax] = arr[topmax], arr[i]
-        }
-    }
-    return arr
-}
-func HeapSort(arr []int) []int {
-    length := len(arr)
-    for i := 0; i < length; i++ {
-        lastlen := length - i
-        HeapSortMax(arr, lastlen)
-        if i < length {
-            arr[0], arr[lastlen-1] = arr[lastlen-1], arr[0]
-        }
-    }
-    return arr
+	nums := []int{7, 3, 2, 6, 0, 1, 5, 4}
+	mergeSort(nums, 0, len(nums)-1)
+	fmt.Println("归并排序完成后 nums = ", nums)
 }
 ```
 
-## Q16：[基数排序算法](https://www.topgoer.com/Go高级/基数排序算法.html)
+### 下面重点解释一下合并方法 merge() 的流程：
+
+1. 初始化一个辅助数组 tmp 暂存待合并区间 [left, right] 内的元素，后续通过覆盖原数组 nums 的元素来实现合并；
+2. 初始化指针 i , j , k 分别指向左子数组、右子数组、原数组的首元素；
+3. 循环判断 tmp[i] 和 tmp[j] 的大小，将较小的先覆盖至 nums[k] ，指针 i , j 根据判断结果交替前进（指针 k 也前进），直至两个子数组都遍历完，即可完成合并。
+
+合并方法 merge() 代码中的主要难点：
+
+- nums 的待合并区间为 [left, right] ，而因为 tmp 只复制了 nums 该区间元素，所以 tmp 对应区间为 [0, right - left] ，**需要特别注意代码中各个变量的含义**。
+- 判断 tmp[i] 和 tmp[j] 的大小的操作中，还 **需考虑当子数组遍历完成后的索引越界问题**，即 i > leftEnd 和 j > rightEnd 的情况，索引越界的优先级是最高的，例如如果左子数组已经被合并完了，那么不用继续判断，直接合并右子数组元素即可。
+
+### 复杂度
+
+#### 时间复杂度
+
+每次都是一分为二，特别均匀，所以**最差和最坏**时间复杂度**都一样**。归并操作的时间复杂度为：O(n)，因此总的时间复杂度为：T(n)=2T(n/2)+O(n)，根据主定理公式可以知道时间复杂度为：**O(nlogn)**。我们可以自己计算一下：
+
+```go
+归并排序，每次归并操作比较的次数为两个有序数组的长度： n/2
+
+T(n) = 2*T(n/2) + n/2
+T(n/2) = 2*T(n/4) + n/4
+T(n/4) = 2*T(n/8) + n/8
+T(n/8) = 2*T(n/16) + n/16
+...
+T(4) = 2*T(2) + 4
+T(2) = 2*T(1) + 2
+T(1) = 1
+
+进行合并也就是：
+
+T(n) = 2*T(n/2) + n/2
+     = 2^2*T(n/4)+ n/2 + n/2
+     = 2^3*T(n/8) + n/2 + n/2 + n/2
+     = 2^4*T(n/16) + n/2 + n/2 + n/2 + n/2
+     = ...
+     = 2^logn*T(1) + logn * n/2
+     = 2^logn + 1/2*nlogn
+     = n + 1/2*nlogn
+
+因为当问题规模 n 趋于无穷大时 nlogn 比 n 大，所以 T(n) = O(nlogn)。
+
+因此时间复杂度为：O(nlogn)。
+```
+
+#### 空间复杂度 **O(n)** **：** 
+
+1. 用顺序表实现归并排序时， 需要和待排序记录个数相等的辅助存储空间， 所以空间复杂度为O(n)。
+2. 递归深度为 log⁡n ，使用 O(log⁡n) 大小的栈帧空间。
+
+### 稳定性
+
+在合并时可保证相等元素的相对位置不变。
+
+### 算法特点
+
+- **非原地排序：** 辅助数组需要使用 O(n) 额外空间。
+- **非自适应排序：** 对于任意输入数据，归并排序的时间复杂度皆相同。
+
+### 适用场景
+
+1. 归并排序在数据量比较大的时候也有较为出色的表现（效率上），但是，其空间复杂度O(n)使得在数据量特别大的时候（例如，1千万数据）几乎不可接受。而且，考虑到有的机器内存本身就比较小，因此，采用归并排序一定要注意。
+2. 归并排序有一个很特别的优势，用于排序链表时有很好的性能表现，**空间复杂度可被优化至 O(1)** ，这是因为：
+
+- 由于链表可仅通过改变指针来实现结点增删，因此“将两个短有序链表合并为一个长有序链表”无需使用额外空间，即回溯合并阶段不用像排序数组一样建立辅助数组 tmp ；
+- 通过使用「迭代」代替「递归划分」，可省去递归使用的栈帧空间；
+
+## [基数排序算法](https://www.topgoer.com/Go高级/基数排序算法.html)
 
 
 
