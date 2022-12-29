@@ -86,7 +86,7 @@
 * [超高质量网站](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/%E8%B6%85%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md) (必看👍 )
 * [Go学习开发地图](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/Go%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E5%9C%B0%E5%9B%BE.png)
 * [go进阶14讲](https://github.com/mao888/golang-guide/tree/main/golang/go-study/go%E8%BF%9B%E9%98%B614%E8%AE%B2)
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
 内包含：
 #### 面经
 * Golang面试题120天
@@ -135,7 +135,7 @@
 * [Java面试题、面经](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/Java%E9%9D%A2%E8%AF%95%E9%A2%98%E3%80%81%E9%9D%A2%E7%BB%8F.pdf)
 * [“java高分面试指南”25专题-227页1000+题50w+字解析](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/PDF/%E2%80%9Cjava%E9%AB%98%E5%88%86%E9%9D%A2%E8%AF%95%E6%8C%87%E5%8D%97%E2%80%9D25%E4%B8%93%E9%A2%98-227%E9%A1%B51000%2B%E9%A2%9850w%2B%E5%AD%97%E8%A7%A3%E6%9E%90.pdf)
 
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcn6PrWKmnB2l5eBrxesbOn2b) (密码私)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcn6PrWKmnB2l5eBrxesbOn2b) [关注公众号回复：飞书书库 获取密码]
 **内包含：**
 * 120个Java面试题和答案
 * 350道Java面试题手册（整理100家企业）
@@ -172,7 +172,7 @@
 * [图解网络-小林coding](https://github.com/mao888/golang-guide/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E5%9B%BE%E8%A7%A3%E7%BD%91%E7%BB%9C-%E5%B0%8F%E6%9E%97coding)
 * [图解TCPIP](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E5%9B%BE%E8%A7%A3TCPIP.pdf)
 * [计算机网络.xmind](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B5%84%E6%96%99%E5%BA%93/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C.xmind)
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnQARpyE1UxoBHARHBSR9wSb) (密码私信)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnQARpyE1UxoBHARHBSR9wSb) [关注公众号回复：飞书书库 获取密码]
  **内包含：**
 * TCP IP详解
 * 计算机网络（第7版）-谢希仁
@@ -191,7 +191,7 @@
 * [王道计算机考研-操作系统-学习重点指导](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
 * [现代操作系统-第四版](https://github.com/mao888/golang-guide/tree/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
 
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnK5irYNB0FS9IlqMssL6aAb)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnK5irYNB0FS9IlqMssL6aAb) [关注公众号回复：飞书书库 获取密码]
 [![image.png](https://i.postimg.cc/d394dBW7/image.png)](https://postimg.cc/XBpf6w63)
 * 计算机操作系统（第4版）—汤小丹
 * 现代操作系统原书第四版pdf免费版
@@ -219,7 +219,7 @@
 * [十大排序算法](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E5%8D%81%E5%A4%A7%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95.md)(必看👍 )
 ### 资料库
 * [学习、刷题相关网站](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E8%B5%84%E6%96%99%E5%BA%93/README.md)
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnLs8b5pv32REWguwVc23TYo) (密码私信)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnLs8b5pv32REWguwVc23TYo) [关注公众号回复：飞书书库 获取密码]
 内包含:
 * 《算法 第4版》
 * 程序员代码面试指南：IT 名企算法与数据结构题目最优解
