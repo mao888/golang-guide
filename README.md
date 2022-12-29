@@ -238,7 +238,7 @@
 * [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)(必看👍 )
 * [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
 * [MySQL索引及优化全总结](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E5%8F%8A%E4%BC%98%E5%8C%96%E5%85%A8%E6%80%BB%E7%BB%93.md)(必看👍 )
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
 [![Mysql.png](https://i.postimg.cc/brMjXqhH/Mysql.png)](https://postimg.cc/GTkfGw9H)
 * 笔记
   * 狂神说MySQL系列
@@ -263,7 +263,7 @@
 ## Redis
 ### 面经
 * [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)(必看👍 )
-### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) (密码私信)
+### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
 [![redis.png](https://i.postimg.cc/50DMTx15/redis.png)](https://postimg.cc/1n0TN184)
 **内包含：**
 * Redis设计与实现
@@ -275,7 +275,7 @@
 * [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
 * [常见设计模式](https://github.com/mao888/golang-guide/blob/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
-[**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink)
+[**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink) 
 内包含：
 * 大话设计模式(带目录完整版)
 
