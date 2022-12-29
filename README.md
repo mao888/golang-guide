@@ -275,7 +275,8 @@
 * [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
 * [常见设计模式](https://github.com/mao888/golang-guide/blob/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
 
-[**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink) 
+[**飞书书库**](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnPVqTrhYmrjw7F5kVEISkuh?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
+
 内包含：
 * 大话设计模式(带目录完整版)
 
