@@ -1,4 +1,4 @@
-// server/main.go
+// server/selectsort.go
 
 package main
 

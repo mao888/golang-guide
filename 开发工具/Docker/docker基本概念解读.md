@@ -191,10 +191,10 @@ mysql/mysql-server                Optimized MySQL Server Docker images. Create�
 
 ```bash
 docker version # 查看docker版本
-docker images # 查看所有已下载镜像，等价于：docker image ls 命令
+docker images # 查看所有已下载镜像，等价于：docker images ls 命令
 docker container ls #	查看所有容器
 docker ps #查看正在运行的容器
-docker image prune # 清理临时的、没有被使用的镜像文件。-a, --all: 删除所有没有用的镜像，而不仅仅是临时文件；
+docker images prune # 清理临时的、没有被使用的镜像文件。-a, --all: 删除所有没有用的镜像，而不仅仅是临时文件；
 ```
 
 ### [#](https://javaguide.cn/tools/docker/docker-intro.html#_5-2-拉取镜像)5.2 拉取镜像
@@ -204,7 +204,7 @@ docker image prune # 清理临时的、没有被使用的镜像文件。-a, --al
 ```bash
 docker search mysql # 查看mysql相关镜像
 docker pull mysql:5.7 # 拉取mysql镜像
-docker image ls # 查看所有已下载镜像
+docker images ls # 查看所有已下载镜像
 ```
 
 
