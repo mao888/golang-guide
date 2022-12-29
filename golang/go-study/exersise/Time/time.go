@@ -17,10 +17,14 @@ func main() {
 	a = "2021-04-30 03:21:18"
 	b = "2022-04-30 03:21:18"
 	c = "2022-05-01 03:21:18"
-	baseFormat := "2006-01-02 15:04:05"      //常规类型
-	a1, _ := time.Parse(baseFormat, a)       // a1: "2021-04-30 03:21:18"
-	b1, _ := time.Parse(baseFormat, b)       // b1: "2022-04-30 03:21:18"
-	c1, _ := time.Parse(baseFormat, c)       // c1: "2022-05-01 03:21:18"
+	d := "2022-11-20T23:16:48-0800"
+	baseFormat := "2006-01-02 15:04:05" //常规类型
+	baseFormat2 := "2006-01-02T15:04:05Z0700"
+
+	a1, _ := time.Parse(baseFormat, a) // a1: "2021-04-30 03:21:18"
+	b1, _ := time.Parse(baseFormat, b) // b1: "2022-04-30 03:21:18"
+	c1, _ := time.Parse(baseFormat, c) // c1: "2022-05-01 03:21:18"
+	d1, _ := time.Parse(baseFormat2, d)
 	fmt.Println(a1)                          // 2021-04-30 03:21:18 +0000 UTC
 	fmt.Println(b1)                          // 2022-04-30 03:21:18 +0000 UTC
 	fmt.Println(c1)                          // 2022-05-01 03:21:18 +0000 UTC
@@ -31,4 +35,5 @@ func main() {
 	fmt.Println(c1.YearDay())                // 121
 	fmt.Println(c1.YearDay() - b1.YearDay()) // 1
 	fmt.Println(a1.UnixNano())               // 1619752878000000000
+	fmt.Println(d1.Unix())
 }
