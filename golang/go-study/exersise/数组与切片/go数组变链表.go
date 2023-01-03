@@ -19,6 +19,7 @@ func SliceToLinkList(nums []int, head *ListNode) *ListNode {
 func main() {
 	arr := []int{1, 2, 3, 4, 5, 6}
 	node := new(ListNode)
+
 	linkNode := SliceToLinkList(arr, node)
 	for {
 		if linkNode != nil {
