@@ -683,7 +683,7 @@ func SkipIfStillRunning(logger Logger) JobWrapper {
 
 `cron`实现比较小巧，且优雅，代码行数也不多，非常值得一看！
 
-大家如果发现好玩、好用的 Go 语言库，欢迎到 [golang-guide]() 上提交 issue
+大家如果发现好玩、好用的 Go 语言库，欢迎到 [golang-guide](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%BA%93) 上提交 issue
 
 ## 参考
 
