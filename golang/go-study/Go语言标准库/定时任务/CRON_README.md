@@ -683,11 +683,12 @@ func SkipIfStillRunning(logger Logger) JobWrapper {
 
 `cron`实现比较小巧，且优雅，代码行数也不多，非常值得一看！
 
-大家如果发现好玩、好用的 Go 语言库，欢迎到 Go 每日一库 GitHub 上提交 issue?
+大家如果发现好玩、好用的 Go 语言库，欢迎到 golang-guide 上提交 issue
 
 ## 参考
 
 1. cron GitHub：https://github.com/robfig/cron
-2. Go 每日一库之 carbon：https://darjun.github.io/2020/02/14/godailylib/carbon/
-3. Go 每日一库之 gron：https://darjun.github.io/2020/04/20/godailylib/gron/
-4. Go 每日一库 GitHub：https://github.com/darjun/go-daily-lib
+2. Cron Documentation here: https://godoc.org/github.com/robfig/cron
+3. Go 每日一库之 carbon：https://darjun.github.io/2020/02/14/godailylib/carbon/
+4. Go 每日一库之 gron：https://darjun.github.io/2020/04/20/godailylib/gron/
+5. Go 每日一库 GitHub：https://github.com/darjun/go-daily-lib
