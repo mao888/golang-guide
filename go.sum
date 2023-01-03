@@ -63,6 +63,8 @@ github.com/mao888/go-utils v1.0.1 h1:4MJZgXGxzOyo0hvpFwP/lKOIkZOoxaGYsdQGsT1GIxY
 github.com/mao888/go-utils v1.0.1/go.mod h1:2E0MWhB9/qnIyeME9iDFs1SM4lfw2Q/edHpJF0p8nU0=
 github.com/mao888/go-utils v1.0.2 h1:OkYWH1m0nglRws4wzYrZsBUj0UtnO/H/L8ncGWgRilY=
 github.com/mao888/go-utils v1.0.2/go.mod h1:2E0MWhB9/qnIyeME9iDFs1SM4lfw2Q/edHpJF0p8nU0=
+github.com/mao888/go-utils v1.1.0 h1:HBBXWbDCB1mcR41IZK1EZy7h+657kEjAavYTE1A08oE=
+github.com/mao888/go-utils v1.1.0/go.mod h1:2E0MWhB9/qnIyeME9iDFs1SM4lfw2Q/edHpJF0p8nU0=
 github.com/mattn/go-isatty v0.0.14 h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=
 github.com/mattn/go-isatty v0.0.14/go.mod h1:7GGIvUiUoEMVVmxf/4nioHXj79iQHKdU27kJ6hsGG94=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 h1:ZqeYNhU3OHLH3mGKHDcjJRFFRrJa6eAM5H+CtDdOsPc=
