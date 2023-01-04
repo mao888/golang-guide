@@ -2,14 +2,14 @@
 // Created Time: 2022-12-29
 // Author: GuoWei (gongguowei01@gmail.com), cathay (cathaycchen@gmail.com)
 
-package 数组
+package array
 
 import (
 	"math/rand"
 )
 
 /**
-我们将 Go 中的 Slice 切片看作 Array 数组，降低理解成本，
+我们将 Go 中的 Slice 切片看作 Array array，降低理解成本，
 有利于我们将关注点放在数据结构与算法上。
 */
 

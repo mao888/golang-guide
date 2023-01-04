@@ -2,10 +2,10 @@
 // Created Time: 2022-12-29
 // Author: GuoWei (gongguowei01@gmail.com), cathay (cathaycchen@gmail.com)
 
-package 数组
+package array
 
 /**
-我们将 Go 中的 Slice 切片看作 Array 数组。因为这样可以
+我们将 Go 中的 Slice 切片看作 Array array。因为这样可以
 降低理解成本，利于我们将关注点放在数据结构与算法上。
 */
 
@@ -18,9 +18,9 @@ import (
 func TestArray(t *testing.T) {
 	/* 初始化数组 */
 	var arr []int
-	fmt.Println("数组 arr =", arr)
+	fmt.Println("array arr =", arr)
 	nums := []int{1, 3, 2, 5, 4}
-	fmt.Println("数组 nums =", nums)
+	fmt.Println("array nums =", nums)
 
 	/* 随机访问 */
 	randomNum := randomAccess(nums)

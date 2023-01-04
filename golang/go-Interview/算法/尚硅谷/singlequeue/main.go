@@ -1,29 +1,30 @@
 package main
+
 import (
+	"errors"
 	"fmt"
 	"os"
-	"errors"
 )
 
 //使用一个结构体管理队列
 type Queue struct {
-	maxSize int 
-	array [5]int // 数组=>模拟队列
-	front int // 表示指向队列首
-	rear int // 表示指向队列的尾部
+	maxSize int
+	array   [5]int // array=>模拟队列
+	front   int    // 表示指向队列首
+	rear    int    // 表示指向队列的尾部
 }
 
 //添加数据到队列
 func (this *Queue) AddQueue(val int) (err error) {
 
 	//先判断队列是否已满
-	if this.rear == this.maxSize - 1 { //重要重要的提示; rear 是队列尾部(含最后元素)
+	if this.rear == this.maxSize-1 { //重要重要的提示; rear 是队列尾部(含最后元素)
 		return errors.New("queue full")
 	}
 
 	this.rear++ //rear 后移
 	this.array[this.rear] = val
-	return 
+	return
 }
 
 //从队列中取出数据
@@ -34,7 +35,7 @@ func (this *Queue) GetQueue() (val int, err error) {
 	}
 	this.front++
 	val = this.array[this.front]
-	return val ,err 
+	return val, err
 }
 
 //显示队列, 找到队首，然后到遍历到队尾
@@ -48,20 +49,17 @@ func (this *Queue) ShowQueue() {
 	fmt.Println()
 }
 
-
-
 //编写一个主函数测试，测试
 func main() {
 
 	//先创建一个队列
 	queue := &Queue{
-		maxSize : 5,
-		front : -1,
-		rear : -1,
-
+		maxSize: 5,
+		front:   -1,
+		rear:    -1,
 	}
 
-	var key string 
+	var key string
 	var val int
 	for {
 		fmt.Println("1. 输入add 表示添加数据到队列")
@@ -71,27 +69,27 @@ func main() {
 
 		fmt.Scanln(&key)
 		switch key {
-			case "add":
-				fmt.Println("输入你要入队列数")
-				fmt.Scanln(&val)
-				err := queue.AddQueue(val)
-				if err != nil {
-					fmt.Println(err.Error())
-				} else {
+		case "add":
+			fmt.Println("输入你要入队列数")
+			fmt.Scanln(&val)
+			err := queue.AddQueue(val)
+			if err != nil {
+				fmt.Println(err.Error())
+			} else {
 
-					fmt.Println("加入队列ok")
-				}
-			case "get":
-				val, err := queue.GetQueue()
-				if err != nil {
-					fmt.Println(err.Error())
-				} else {
-					fmt.Println("从队列中取出了一个数=", val)
-				}
-			case "show":
-				queue.ShowQueue()
-			case "exit":
-				os.Exit(0)
+				fmt.Println("加入队列ok")
+			}
+		case "get":
+			val, err := queue.GetQueue()
+			if err != nil {
+				fmt.Println(err.Error())
+			} else {
+				fmt.Println("从队列中取出了一个数=", val)
+			}
+		case "show":
+			queue.ShowQueue()
+		case "exit":
+			os.Exit(0)
 		}
 	}
 }
