@@ -861,7 +861,7 @@ $ declare [-aixr] variable
 ```bash
 $ array[1]=a
 $ array[2]=b
-$ echo ${array[1]}
+$ echo ${数组-array[1]}
 ```
 
 ### [#](#指令搜索顺序) 指令搜索顺序
