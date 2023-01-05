@@ -213,7 +213,602 @@ func find(nums []int, target int) (index int) {
 1. **随机访问。** 如果我们想要随机抽取一些样本，那么可以用数组存储，并生成一个随机序列，根据索引实现样本的随机抽取。
 2. **二分查找。** 例如前文查字典的例子，我们可以将字典中的所有字按照拼音顺序存储在数组中，然后使用与日常查纸质字典相同的“翻开中间，排除一半”的方式，来实现一个查电子字典的算法。
 3. **深度学习。** 神经网络中大量使用了向量、矩阵、张量之间的线性代数运算，这些数据都是以数组的形式构建的。数组是神经网络编程中最常使用的数据结构。
-    
+
+##  线性表
+
+##### 基本概念
+
+- `定义：零个或者多个数据元素的有限序列，在复杂的线性表中，一个数据元素可以由若干个数据项组成。`
+- `直接前驱元素：若线性表记为(a1a2a3...an),则表中a2领先于a3，则称a2是a3的直接前驱元素，且有且仅有一个直接前驱元素`
+- `直接后继元素：称a3是a2的直接后继元素，且有且仅有一个直接后继元素`
+- `线性表的长度：线性表的元素个数n，为线性表的长度，随着线性表插入和删除操作，该值是变动的，线性表的存储长度一般小于数组的长度`
+- `数组的长度：存放线性表的存储空间的长度，存储分配后这个值一般是不变的`
+- `空表：长度n为0时，该线性表为空表`
+- `地址：存储器的每个存储单元都有自己在内存的编号，简称为地址`
+
+##### 线性表的存储
+
+###### 顺序存储结构
+
+```
+线性表的顺序存储结构是指用一段地址连续的存储单元依次存储线性表的数据元素，可以用一维数组来实现。
+```
+
+
+
+```go
+package linelist
+
+import (
+    "errors"
+)
+
+const MaxLength = 20
+
+type LineList struct {
+    MaxLength       int
+    Length          int
+    LineListContent []interface{}
+}
+
+//线性表的初始化操作
+func InitLineList() *LineList {
+    return &LineList{MaxLength: MaxLength, Length: 0, LineListContent: make([]interface{}, 0)}
+}
+
+//判断线性表是否为空
+func (l *LineList) Empty() bool {
+    return l.Length == 0
+}
+
+//获取线性表第i个元素的值，第一个元素对应线性表下表为0的元素
+func (l *LineList) GetElem(i int) (interface{}, error) {
+    if i < 1 || i > l.Length {
+        return "", errors.New("查找的元素不在线性表范围内")
+    }
+    return l.LineListContent[i-1], nil
+}
+
+//删除线性表的第i个元素
+func (l *LineList) DelElem(i int) (bool, error) {
+    if i < 1 || i > l.Length {
+        return false, errors.New("查找的元素不在线性表范围内")
+    }
+    if l.Empty() {
+        return false, errors.New("空表没有可以删除的数据")
+    }
+    for j := i - 1; j < l.Length-1; j++ {
+        l.LineListContent[j] = l.LineListContent[j+1]
+    }
+    l.LineListContent = l.LineListContent[:l.Length-1]
+    l.Length--
+    return true, nil
+}
+
+// 在线性表中的第i个位置插入元素data
+func (l *LineList) Insert(i int, data interface{}) (bool, error) {
+    if i < 1 || i > l.Length {
+        return false, errors.New("查找的元素不在线性表范围内")
+    }
+    if b, _ := l.Append(""); !b {
+        return false, errors.New("线性表已满，无法添加数据")
+    }
+    for j := l.Length - 1; j > i-1; j-- {
+        l.LineListContent[j] = l.LineListContent[j-1]
+    }
+    l.LineListContent[i-1] = data
+    return true, nil
+}
+
+// 从末尾弹出一个元素
+func (l *LineList) Pop() (interface{}, error) {
+    if l.Empty() {
+        return "", errors.New("线性表长度为0，没有可弹出的元素")
+    }
+    result := l.LineListContent[l.Length-1]
+    l.LineListContent = l.LineListContent[:l.Length-1]
+    l.Length--
+    return result, nil
+}
+
+// 从末尾插入一个元素
+func (l *LineList) Append(data interface{}) (bool, error) {
+    if l.Length == l.MaxLength {
+        return false, errors.New("线性表已满，无法添加数据")
+    }
+    l.LineListContent = append(l.LineListContent, data)
+    l.Length++
+    return true, nil
+}
+```
+
+##### 链式存储结构
+
+- `特点：是用一组任意的存储单元存储线性表的数据元素，可以是连续的也可以是不连续的。`
+- `数据域：为了表示每个数据元素ai与其直接后继元素ai+1之间的逻辑关系，对数据元素ai来说，除了存储其本身的信息之外，还需要存储一个指示其直接后继的信息（即直接后继的存储位置)，存储信息的域叫数据域`
+- `指针域：把存储直接后继位置的域称为指针域`
+- `指针|链：指针域中存储的信息称为指针或域`
+- `结点：数据域和指针域组成数据元素ai的存储映像，称为结点`
+- `头指针：把链表中第一个结点的存储位置叫做头指针，线性表的最后一个结点指针为空`
+- `头结点：在单链表的第一个结点前附设一个结点，称为头结点，头结点的数据域可以不存储任何信息，也可以存储线性表的长度等附加信息，头结点的指针域存储指向第一个结点的指针。`
+
+###### 单链表
+
+```
+单链表：n个结点链接成一个链表，即为线性表(a1a2a3...an)的链式存储结构，因为此链表的每个结点中只包含一个指针域，所以叫做单链表。单链表正是通过每个结点的指针域将线性表的数据元素按其逻辑次序链接在一起的。
+```
+
+
+
+```go
+package linelist
+
+// 单链表结点
+type SingleList struct {
+    Data interface{} //单链表的数据域
+    Next *SingleList //单链表的指针域
+}
+
+func NewSingleList() *SingleList {
+    return &SingleList{Data: "", Next: nil}
+}
+
+type SingleListr interface {
+    GetFirst() *SingleList
+    GetLast() *SingleList
+    Length() int
+    Add(data interface{}) bool
+    GetElem(index int) (interface{}, error)
+    Delete(index int) bool
+}
+
+//返回第一个结点
+func (this *SingleList) GetFirst() *SingleList {
+    if this.Next == nil {
+        return nil
+    }
+    return this.Next
+}
+
+//返回最后一个结点
+func (this *SingleList) GetLast() *SingleList {
+    if this.Next == nil {
+        return nil
+    }
+    point := this
+    for point.Next != nil {
+        point = point.Next
+    }
+    if point.Next == nil {
+        return point
+    }
+    return nil
+}
+
+//获取单链表的长度
+func (this *SingleList) Length() int {
+    point := this
+    length := 0
+
+    for point.Next != nil {
+        length++
+        point = point.Next
+    }
+    return length
+}
+
+//往单链表的末尾加一个元素
+func (this *SingleList) Add(data interface{}) bool {
+    point := this
+    for point.Next != nil {
+        point = point.Next
+    }
+    tmpSingle := SingleList{Data: data}
+    point.Next = &tmpSingle
+    return true
+}
+
+//获取所有结点的值
+func (this *SingleList) GetAll() []interface{} {
+    result := make([]interface{}, 0)
+    point := this
+    for point.Next != nil {
+        result = append(result, point.Data)
+        point = point.Next
+    }
+    result = append(result, point.Data)
+    return result
+}
+
+//获取索引为index的结点
+func (this *SingleList) GetElem(index int) *SingleList {
+    point := this
+    if index < 0 || index > this.Length() {
+        panic("check index error")
+        return nil
+    }
+    for i := 0; i < index; i++ {
+        point = point.Next
+    }
+    return point
+}
+
+//删除第index个结点
+func (this *SingleList) Delete(index int) bool {
+    if index < 0 || index > this.Length() {
+        panic("please check index")
+        return false
+    }
+    point := this
+    for i := 0; i < index-1; i++ {
+        point = point.Next
+    }
+    point.Next = point.Next.Next
+    return true
+}
+```
+
+###### 单循环链表
+
+```
+定义：将单链表中终端节点的指针端由空指针改为指向头节点，就使得整个单链表形成一个环，这种头尾相接的单链表简称为循环链表
+```
+
+
+
+```go
+package linelist
+
+import "errors"
+
+//定义单循环链表的节点数据结构
+type CircleNode struct {
+    data interface{}
+    next *CircleNode
+}
+
+//定义单循环链表的数据结构
+type CircleList struct {
+    tail *CircleNode
+    size int
+}
+
+func InitCircleList() *CircleList {
+    return &CircleList{tail: nil, size: 0}
+}
+
+func InitCircleNode(data interface{}) *CircleNode {
+    return &CircleNode{data: data, next: nil}
+}
+
+//单链表在表尾添加数据
+func (cl *CircleList) Append(data *CircleNode) bool {
+    if data == nil {
+        return false
+    }
+    if cl.size == 0 {
+        data.next = data
+    } else {
+        curNode := cl.tail.next
+        data.next = curNode
+        cl.tail.next = data
+    }
+    cl.tail = data
+    cl.size++
+    return true
+}
+
+//单循环链表插入数据
+func (cl *CircleList) Insert(num int, data *CircleNode) error {
+    if data == nil {
+        return errors.New("要插入的节点数据为空")
+    }
+    if cl.size == 0 || cl.size == num {
+        cl.Append(data)
+    } else {
+        var curNode *CircleNode
+        if num == 0 {
+            curNode = cl.tail
+        } else {
+            curNode = cl.Get(num)
+            if cl.size == num {
+                cl.tail = data
+            }
+        }
+        data.next = curNode.next
+        curNode.next = data
+        cl.size++
+    }
+    return nil
+}
+
+//单循环链表查询数据
+func (cl *CircleList) Get(num int) *CircleNode {
+    if num < 0 || num > cl.size-1 {
+        return nil
+    }
+    curNode := cl.tail
+    for i := 0; i < num; i++ {
+        curNode = curNode.next
+    }
+    return curNode
+}
+
+//单循环链表查询全部数据
+func (cl *CircleList) GetAll() []interface{} {
+    result := make([]interface{}, 0)
+    curNode := cl.tail
+    for i := 0; i < cl.size; i++ {
+        result = append(result, curNode.data)
+        curNode = curNode.next
+    }
+    return result
+}
+
+//单循环链表按序号删除数据
+func (cl *CircleList) RemoveInt(num int) error {
+    if cl.size == 0 {
+        return errors.New("循环链表为空")
+    }
+    if num > cl.size-1 {
+        return errors.New("越界")
+    }
+
+    if cl.size == 1 {
+        cl.tail = nil
+        cl.size = 0
+        return nil
+    } else {
+        var curNode *CircleNode
+        var data *CircleNode
+        if num == 0 {
+            curNode = cl.tail
+        } else {
+            curNode = cl.Get(num - 1)
+        }
+
+        data = curNode.next
+        curNode.next = data.next
+
+        if num == cl.size-1 {
+            cl.tail = curNode
+        }
+
+        data.next = nil
+        data = nil
+        cl.size--
+
+        return nil
+    }
+}
+
+//单循环链表删除全部数据
+func (cl *CircleList) RemoveAll() bool {
+    if cl.size == 0 {
+        return false
+    }
+
+    for i := 0; i < cl.size; i++ {
+        curNode := cl.tail
+        cl.tail = curNode.next
+        curNode.next = nil
+    }
+    cl.tail = nil
+    cl.size = 0
+
+    return true
+}
+```
+
+###### 双向链表
+
+```
+定义：在单链表的每个节点中，再设置一个指向其前驱节点的指针域。所以在双向链表中的节点都有两个指针域，一个指向直接后继，另一个直接指向前驱
+```
+
+
+
+```go
+package linelist
+
+import (
+    "errors"
+)
+
+var (
+    NUMERROR = errors.New("链表越界")
+)
+//定义双向链表节点结构体
+type DoubleNode struct {
+    data interface{}
+    prev *DoubleNode
+    next *DoubleNode
+}
+
+//定义双向链表结构体
+type DoubleList struct {
+    head *DoubleNode
+    tail *DoubleNode
+    size int
+}
+
+//初始化链表
+
+func InitDoubleList() *DoubleList {
+    return &DoubleList{head: nil, tail: nil, size: 0}
+}
+
+func InitDoubleNode(data interface{}) *DoubleNode {
+    return &DoubleNode{data: data, prev: nil, next: nil}
+}
+
+//获取链表的长度
+func (dl *DoubleList) GetSize() int {
+    return dl.size
+}
+
+//获取链表头部节点
+func (dl *DoubleList) GetHead() *DoubleNode {
+    return dl.head
+}
+
+//获取链表尾部节点
+func (dl *DoubleList) GetTail() *DoubleNode {
+    return dl.tail
+}
+
+//在头部追加节点
+func (dl *DoubleList) AddHeadNode(node *DoubleNode) int {
+    if dl.GetSize() == 0 {
+        dl.head = node
+        dl.tail = node
+        node.prev = nil
+        node.next = nil
+    } else {
+        dl.head.prev = node
+        node.prev = nil
+        node.next = dl.head
+        dl.head = node
+    }
+    dl.size += 1
+    return dl.size
+}
+
+//在尾部追加节点
+func (dl *DoubleList) AddTailNode(node *DoubleNode) int {
+    if dl.GetSize() == 0 {
+        dl.head = node
+        dl.tail = node
+        node.prev = nil
+        node.next = nil
+    } else {
+        dl.tail.next = node
+        node.prev = dl.tail
+        node.next = nil
+        dl.tail = node
+    }
+    dl.size += 1
+    return dl.size
+}
+
+//在链表某个序号之后插入节点
+func (dl *DoubleList) InsertNextInt(num int, data *DoubleNode) bool {
+    if data == nil || num > dl.GetSize()-1 || num < 0 {
+        return false
+    }
+    switch {
+    case dl.GetSize() == 0:
+        dl.AddHeadNode(data)
+    case num == dl.GetSize()-1:
+        dl.AddTailNode(data)
+    default:
+        curNode, err := dl.GetOrder(num)
+        if err != nil {
+            return false
+        }
+        data.prev = curNode
+        data.next = curNode.next
+        curNode.next = data
+        curNode.next.prev = data
+        dl.size++
+    }
+    return true
+}
+
+//顺序查询某个序号的数据
+func (dl *DoubleList) GetOrder(num int) (*DoubleNode, error) {
+    switch {
+    case dl.GetSize() == 0:
+        return nil, NUMERROR
+    case num == 0:
+        return dl.head, nil
+    case num > dl.GetSize()-1:
+        return nil, NUMERROR
+    case num == dl.GetSize()-1:
+        return dl.tail, nil
+    default:
+        data := dl.head
+        for i := 0; i < num; i++ {
+            data = data.next
+        }
+        return data, nil
+    }
+}
+
+//倒序查询某个序号数据
+func (dl *DoubleList) GetReverse(num int) (data *DoubleNode, err error) {
+    switch {
+    case num == 0:
+        data = dl.tail
+    case num > dl.GetSize()-1:
+        err = NUMERROR
+    case num == dl.GetSize()-1:
+        data = dl.head
+    default:
+        data = dl.tail
+        for i := 0; i < num; i++ {
+            data = data.prev
+        }
+    }
+    return
+}
+
+//获取链表中所有数据
+func (dl *DoubleList) GetAll() []interface{} {
+    result := make([]interface{}, 0)
+    if dl.GetSize() == 0 {
+        return nil
+    }
+    curNode := dl.head
+    for i := 0; i < dl.GetSize(); i++ {
+        result = append(result, curNode.data)
+        curNode = curNode.next
+    }
+    return result
+}
+
+//删除某个序号的数据
+func (dl *DoubleList) Remove(num int) error {
+    if dl.GetSize() == 0 {
+        return NUMERROR
+    }
+
+    var curNode *DoubleNode
+    var err error
+    if curNode, err = dl.GetOrder(num); err != nil {
+        return err
+    }
+
+    if num == 0 {
+        curNode.next.prev = nil
+        dl.head = curNode.next
+    } else if num == dl.size-1 {
+        curNode.prev.next = nil
+        dl.tail = curNode.prev
+    } else {
+        curNode.prev.next = curNode.next
+        curNode.next.prev = curNode.prev
+    }
+
+    curNode.prev = nil
+    curNode.next = nil
+    dl.size--
+    return nil
+}
+
+//删除链表中的全部数据
+func (dl *DoubleList) RemoveAll() bool {
+    for i := 0; i < dl.GetSize(); i++ {
+        curNode := dl.head
+        dl.head = curNode.next
+        curNode.next = nil
+        curNode.prev = nil
+    }
+    dl.tail = nil
+    dl.size = 0
+    return true
+}
+```
 
 ## Q1：链表，队列和栈的区别 
 
