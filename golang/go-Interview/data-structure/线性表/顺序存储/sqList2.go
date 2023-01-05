@@ -18,6 +18,7 @@ type MyList interface {
 	ListInsert(index int, elem interface{}) bool    // 插入元素,index为插入的位置，elem为插入值
 	ListDelete(index int) bool                      // 删除元素
 	TraverseList()                                  // 遍历
+
 }
 
 // SqList 顺序表的结构类型为SqList
@@ -42,6 +43,11 @@ func (l *SqList) ListEmpty() bool {
 	} else {
 		return false
 	}
+}
+
+// ListLength 获取长度
+func (l *SqList) ListLength() int {
+	return l.Len
 }
 
 // ListFul 判满
@@ -167,6 +173,8 @@ func main() {
 	// 1000
 	// GoGO
 	li.TraverseList()
+	// 4
+	fmt.Println(li.ListLength())
 	// true
 	fmt.Println(li.ListFul())
 	// false,已满插入失败
