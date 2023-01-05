@@ -5,6 +5,7 @@
 package array
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -57,11 +58,13 @@ func traverse(nums []int) {
 	count := 0
 	// 通过索引遍历数组
 	for i := 0; i < len(nums); i++ {
+		fmt.Println(nums[count])
 		count++
 	}
 	count = 0
 	// 直接遍历数组
 	for range nums {
+		fmt.Println(nums[count])
 		count++
 	}
 }
