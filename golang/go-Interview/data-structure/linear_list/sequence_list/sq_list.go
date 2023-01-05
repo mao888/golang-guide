@@ -1,9 +1,23 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
+
+// Singer 接口
+//type Singer interface {
+//	Sing()
+//}
+//type Bird struct{}
+//
+//// Sing Bird类型的Sing方法
+//func (b *Bird) Sing() {
+//	fmt.Println("汪汪汪")
+//}
 
 type MyList interface {
 	InitList(capacity int)                          // 初始化
@@ -18,7 +32,8 @@ type MyList interface {
 	ListInsert(index int, elem interface{}) bool    // 插入元素,index为插入的位置，elem为插入值
 	ListDelete(index int) bool                      // 删除元素
 	TraverseList()                                  // 遍历
-
+	Pop() (interface{}, error)                      // 从末尾弹出一个元素
+	Append(elem interface{}) (bool, error)          // 从末尾插入一个元素
 }
 
 // SqList 顺序表的结构类型为SqList
@@ -148,56 +163,95 @@ func (l *SqList) ListClear() {
 	l.Prt = nil
 }
 
-func main() {
-	var li SqList
-	li.InitList(4)
-	// true
-	fmt.Println(li.ListEmpty())
-	// false
-	fmt.Println(li.ListFul())
-	// 定义一个Struct类型
-	type s struct {
-		name string
-		age  int
+// Pop 从末尾弹出一个元素
+func (l *SqList) Pop() (interface{}, error) {
+	if l.ListEmpty() {
+		return nil, errors.New("线性表长度为0，没有可弹出的元素")
 	}
-	student1 := s{name: "abc", age: 10}
-	student2 := s{name: "efg", age: 10}
-	li.ListInsert(0, student1)
-	li.ListInsert(1, student2)
-	// false
-	fmt.Println(li.ListEmpty())
-	li.ListInsert(2, 1000)
-	li.ListInsert(3, "GOGO")
-	// {abc 10}
-	// {efg 10}
-	// 1000
-	// GoGO
-	li.TraverseList()
-	// 4
-	fmt.Println(li.ListLength())
-	// true
-	fmt.Println(li.ListFul())
-	// false,已满插入失败
-	fmt.Println(li.ListInsert(4, "jjj"))
-	li.DelElem(2)
-	// {abc 10}
-	// {efg 10}
-	// GoGO
-	li.TraverseList()
-	el, _ := li.GetElem(1)
-	// {efg 10}
-	fmt.Println(el)
-	b, b1 := li.LocateELem(student2)
-	// 1 true
-	fmt.Println(b, b1)
-	n1, n2 := li.NextElem(student2)
-	// GOGO true
-	fmt.Println(n1, n2)
-	p1, p2 := li.PriorElem("GOGO")
-	// {efg 10} true
-	fmt.Println(p1, p2)
-	li.ListClear()
-	// true
-	fmt.Println(li.ListEmpty())
-	li.TraverseList()
+	result := (*l.Prt)[l.Len-1]
+	*l.Prt = (*l.Prt)[:l.Len-1]
+	l.Len--
+	return result, nil
 }
+
+// Append 从末尾插入一个元素
+func (l *SqList) Append(elem interface{}) bool {
+	if l.Len == l.Capacity {
+		//return false, errors.New("线性表已满，无法添加数据")
+		return false
+	}
+	*l.Prt = append(*l.Prt, elem)
+	l.Len++
+	return true
+}
+
+//func main() {
+//	var li SqList
+//	// 初始化
+//	li.InitList(4)
+//	// 判空
+//	fmt.Println(li.ListEmpty()) // true
+//	// 判满
+//	fmt.Println(li.ListFul()) // false
+//	// 定义一个Struct类型
+//	type s struct {
+//		name string
+//		age  int
+//	}
+//	student1 := s{name: "abc", age: 10}
+//	student2 := s{name: "efg", age: 10}
+//	// 插入元素
+//	li.ListInsert(0, student1)
+//	li.ListInsert(1, student2)
+//	// 判空
+//	fmt.Println(li.ListEmpty()) // false
+//	// 插入元素
+//	li.ListInsert(2, 1000)
+//	li.ListInsert(3, "GOGO")
+//
+//	// 遍历
+//	li.TraverseList() // {abc 10} {efg 10} 1000 GoGO
+//	// 获取长度
+//	fmt.Println(li.ListLength()) // 4
+//	// 判满
+//	fmt.Println(li.ListFul()) // true
+//	// 插入元素
+//	fmt.Println(li.ListInsert(4, "jjj")) // false,已满插入失败
+//	// 删除元素,索引为2
+//	li.DelElem(2)
+//	// 遍历
+//	li.TraverseList() // {abc 10} {efg 10} GoGO
+//
+//	// 根据下标Get元素
+//	el, _ := li.GetElem(1)
+//	fmt.Println(el) // {efg 10}
+//
+//	// 根据传入的值，返回第一个匹配的元素下标
+//	b, b1 := li.LocateELem(student2)
+//	fmt.Println(b, b1) // 1 true
+//
+//	// 寻找元素的后驱
+//	n1, n2 := li.NextElem(student2)
+//	fmt.Println(n1, n2) // GOGO true
+//
+//	// 寻找元素的前驱
+//	p1, p2 := li.PriorElem("GOGO")
+//	fmt.Println(p1, p2) // {efg 10} true
+//
+//	// {abc 10} {efg 10} GoGO
+//	// 从末尾弹出一个元素
+//	p1, _ = li.Pop()
+//	fmt.Println("从末尾弹出一个元素:", p1) // 从末尾弹出一个元素: GOGO
+//	li.TraverseList()             // 遍历 {abc 10} {efg 10}
+//
+//	// 从末尾插入一个元素
+//	//b = li.Append("超哥")
+//	//fmt.Println(b)
+//
+//	// 清空
+//	li.ListClear()
+//	fmt.Println(li.ListEmpty()) // true
+//
+//	// 遍历
+//	li.TraverseList()
+//}

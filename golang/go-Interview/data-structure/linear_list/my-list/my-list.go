@@ -27,7 +27,7 @@ type MyList interface {
 	Test()
 }
 
-//顺序存储
+//sequence_list
 type SqList struct {
 	Element [MAXSIZE]ElemType
 	Length  int
