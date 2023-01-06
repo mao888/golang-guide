@@ -14,7 +14,11 @@
 - 文章均来自本人工作实习经验、实战面试、学习总结、读书笔记、网络博文等(仅供我个人校招实习使用)
 - 仅限制个人使用,严禁商业化,转载在文首注明出处
 - 本仓库会长期的维护与更新，非常期待各位的 **pr**
+- 配套哔站讲解视频：
+- [【golang-guide】golang学习、实习、校招求职之路全总结【超全八股】](https://www.bilibili.com/video/BV1wd4y1v7Fu/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28) 
+- [算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 - 校招不止,offer不停,更新不断
+
 
 ![访问个人主页数量](https://komarev.com/ghpvc/?username=duktig666&color=green)
 [![个人博客](https://img.shields.io/badge/-个人博客（huchao.vip）-c14438?style=flat-square&logo=B&logoColor=white)](http://www.huchao.vip/blogs)
@@ -76,7 +80,8 @@
 * [数据结构与算法Guide【Golang实现】](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Guide%E3%80%90Golang%E5%AE%9E%E7%8E%B0%E3%80%91.md) (必看👍)
 * [数据结构-Golang代码](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/data-structure) 
 * [算法-Golang代码](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E7%AE%97%E6%B3%95) 
-* [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) (必看👍 )
+* 配套哔站讲解：[算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28) (必看👍 )
+* [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) 
 * 更多资料见飞书书库
 ### golang-study
 * [常用组件库](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%BA%93) (必看👍) 更新中～
