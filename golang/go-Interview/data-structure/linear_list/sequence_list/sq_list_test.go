@@ -61,7 +61,7 @@ func TestSqList(t *testing.T) {
 	fmt.Println(el) // {efg 10}
 
 	// 更新元素
-	fmt.Println("更新元素：", li.SetElem("超哥哥", 2))
+	fmt.Println("更新元素：", li.SetElem("超哥哥", 2)) // true
 	// 遍历
 	li.TraverseList() // {abc 10} {efg 10} 超哥哥 jjj
 
@@ -84,7 +84,7 @@ func TestSqList(t *testing.T) {
 	li.TraverseList()             // 遍历 {abc 10} {efg 10} 超哥哥
 
 	// 从末尾插入一个元素
-	b = li.Append("超哥")
+	//b = li.Append("超哥")
 	//fmt.Println(b)
 
 	// 清空
