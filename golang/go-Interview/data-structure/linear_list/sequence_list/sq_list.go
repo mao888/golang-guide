@@ -8,22 +8,11 @@ import (
 // https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
 
-// Singer 接口
-//type Singer interface {
-//	Sing()
-//}
-//type Bird struct{}
-//
-//// Sing Bird类型的Sing方法
-//func (b *Bird) Sing() {
-//	fmt.Println("汪汪汪")
-//}
-
 type MyList interface {
 	InitList(capacity int)                          // 初始化
 	ClearList()                                     // 清空
 	ListEmpty() bool                                // 判空
-	ListLength()                                    // 返回数据元素个数。
+	ListLength() int                                // 返回数据元素个数。
 	ListFul() bool                                  // 判满
 	GetElem(index int) (interface{}, bool)          // 返回第i个数据元素的值
 	LocateELem(elem interface{}) (int, bool)        // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0。
@@ -37,6 +26,7 @@ type MyList interface {
 }
 
 // SqList 顺序表的结构类型为SqList
+// 使用golang语言的interface接口类型创建顺序表
 type SqList struct {
 	Len      int            // 线性表长度
 	Capacity int            // 表容量
@@ -134,8 +124,8 @@ func (l *SqList) ListInsert(index int, elem interface{}) bool {
 	}
 }
 
-// DelElem 删除元素
-func (l *SqList) DelElem(index int) bool {
+// ListDelete 删除元素
+func (l *SqList) ListDelete(index int) bool {
 	// 判断下标有效性，以及表是否空
 	if index < 0 || index > l.Capacity || l.ListEmpty() {
 		return false
@@ -156,8 +146,8 @@ func (l *SqList) TraverseList() {
 	}
 }
 
-// ListClear 清空
-func (l *SqList) ListClear() {
+// ClearList 清空
+func (l *SqList) ClearList() {
 	l.Len = 0
 	// 指针为空
 	l.Prt = nil
@@ -175,14 +165,13 @@ func (l *SqList) Pop() (interface{}, error) {
 }
 
 // Append 从末尾插入一个元素
-func (l *SqList) Append(elem interface{}) bool {
+func (l *SqList) Append(elem interface{}) (bool, error) {
 	if l.Len == l.Capacity {
-		//return false, errors.New("线性表已满，无法添加数据")
-		return false
+		return false, errors.New("线性表已满，无法添加数据")
 	}
 	*l.Prt = append(*l.Prt, elem)
 	l.Len++
-	return true
+	return true, nil
 }
 
 //func main() {

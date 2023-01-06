@@ -1,7 +1,7 @@
 /**
-    @author:Hasee
+    @author:Huchao
     @data:2023/1/6
-    @note:
+    @note:数据结构之线性表--顺序表 测试
 **/
 package main
 
@@ -43,7 +43,7 @@ func TestSqList(t *testing.T) {
 	// 插入元素
 	fmt.Println(li.ListInsert(4, "jjj")) // false,已满插入失败
 	// 删除元素,索引为2
-	li.DelElem(2)
+	li.ListDelete(2)
 	// 遍历
 	li.TraverseList() // {abc 10} {efg 10} GoGO
 
@@ -74,7 +74,7 @@ func TestSqList(t *testing.T) {
 	//fmt.Println(b)
 
 	// 清空
-	li.ListClear()
+	li.ClearList()
 	fmt.Println(li.ListEmpty()) // true
 
 	// 遍历
