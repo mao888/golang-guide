@@ -11,11 +11,13 @@ import (
 
 type MyList interface {
 	// 基本操作
-	InitList(capacity int) // 初始化
-	ListEmpty() bool       // 判空
-	ListFul() bool         // 判满
-	ListLength() int       // 返回数据元素个数
-	ClearList()            // 清空
+	NewSeqList(capacity int) *SqList // 初始化
+	InitList(capacity int)           // 初始化
+	ListEmpty() bool                 // 判空
+	ListFul() bool                   // 判满
+	ListLength() int                 // 返回数据元素个数
+	ClearList()                      // 清空
+	DestroyList()                    // 销毁
 	// 元素操作
 	ListInsert(index int, elem interface{}) bool // 插入元素
 	ListDelete(index int) bool                   // 删除元素
@@ -38,6 +40,16 @@ type SqList struct {
 	Capacity    int           // 表容量
 	Data        []interface{} // 指向线性表空间指针
 	ExtendRatio int           // 每次列表扩容的倍数
+}
+
+// NewSeqList 初始化
+func (l *SqList) NewSeqList(capacity int) *SqList {
+	return &SqList{
+		Len:         0,
+		Capacity:    capacity,
+		Data:        make([]interface{}, capacity),
+		ExtendRatio: constants.NumberTwo,
+	}
 }
 
 // InitList 初始化
@@ -168,6 +180,14 @@ func (l *SqList) ClearList() {
 	l.Len = 0
 	// 指针为空
 	l.Data = nil
+}
+
+// DestroyList 销毁
+func (l *SqList) DestroyList() {
+	l.Data = nil
+	l.Len = 0
+	l.Capacity = 0
+	l.ExtendRatio = 0
 }
 
 // Pop 从末尾弹出一个元素

@@ -12,8 +12,10 @@ import (
 
 func TestSqList(t *testing.T) {
 	var li SqList
-	// 初始化
+	// 初始化 1
 	li.InitList(4)
+	// 初始化 2
+	//li = NewSeqList(4)
 	// 判空
 	fmt.Println(li.ListEmpty()) // true
 	// 判满
