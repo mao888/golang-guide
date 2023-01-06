@@ -62,7 +62,7 @@ O(1) <O(log⁡n)<O(n)   <O(nlog⁡n)  <O(n^2) <O(2^n)<O(n!)
 
 我们一般将逻辑结构分为「线性」和「非线性」两种。“线性”这个概念很直观，即表明数据在逻辑关系上是排成一条线的；而如果数据之间的逻辑关系是非线形的（例如是网状或树状的），那么就是非线性数据结构。
 
-- **线性数据结构：** 数组、链表、栈、队列、哈希表；
+- **线性数据结构：** **线性表**（顺序表、链表）、堆栈、队列、哈希表、字符串、数组等；
 - **非线性数据结构：** 树、图、堆、哈希表；
 
 ![img](https://cdn.nlark.com/yuque/0/2023/png/22219483/1672752991894-12779e9b-debb-41a2-a5f6-4f2ab47c88c9.png)
@@ -198,11 +198,13 @@ func traverse(nums []int) {
 	count := 0
 	// 通过索引遍历数组
 	for i := 0; i < len(nums); i++ {
+		fmt.Println(nums[count])
 		count++
 	}
 	count = 0
 	// 直接遍历数组
 	for range nums {
+		fmt.Println(nums[count])
 		count++
 	}
 }
@@ -217,6 +219,49 @@ func find(nums []int, target int) (index int) {
 		}
 	}
 	return
+}
+package array
+
+/**
+我们将 Go 中的 Slice 切片看作 Array array。因为这样可以
+降低理解成本，利于我们将关注点放在数据结构与算法上。
+*/
+
+import (
+	"fmt"
+	"testing"
+)
+
+/* Driver Code */
+func TestArray(t *testing.T) {
+	/* 初始化数组 */
+	var arr []int
+	fmt.Println("array arr =", arr)
+	nums := []int{1, 3, 2, 5, 4}
+	fmt.Println("array nums =", nums)
+
+	/* 随机访问 */
+	randomNum := randomAccess(nums)
+	fmt.Println("在 nums 中获取随机元素", randomNum)
+
+	/* 长度扩展 */
+	nums = extend(nums, 3)
+	fmt.Println("将数组长度扩展至 8 ，得到 nums =", nums)
+
+	/* 插入元素 */
+	insert(nums, 6, 3)
+	fmt.Println("在索引 3 处插入数字 6 ，得到 nums =", nums)
+
+	/* 删除元素 */
+	remove(nums, 2)
+	fmt.Println("删除索引 2 处的元素，得到 nums =", nums)
+
+	/* 遍历数组 */
+	traverse(nums)
+
+	/* 查找元素 */
+	index := find(nums, 3)
+	fmt.Println("在 nums 中查找元素 3 ，得到索引 =", index)
 }
 ```
 
@@ -241,109 +286,390 @@ func find(nums []int, target int) (index int) {
 - `空表：长度n为0时，该线性表为空表`
 - `地址：存储器的每个存储单元都有自己在内存的编号，简称为地址`
 
+#### 线性结构的定义
+
+若结构是非空有限集，则有且仅有一个开始结点和一个终端结点，并且所有结点都最多只有一个直接前趋和一个直接后继。
+
+#### 线性结构的特点
+
+- ① 只有一个首结点和尾结点；
+- ② 除首尾结点外，其他结点只有一个直接前驱和一个直接后继。
+- 简言之，线性结构反映结点间的逻辑关系是 一对一  的
+
+线性结构包括 线性表、堆栈、队列、字符串、数组等等，其中，最典型、最常用的是：**线性表**
+
+### 顺序表
+
+#### 基本概述
+
+- 线性表的顺序表示又称为顺序存储结构或顺序映像，是线性表的一种。
+- 顺序表不仅要求数据在逻辑上是连续的一条直线，还要求用一段**物理地址连续的存储单元**以次存储表中数据元素，一般情况下采用数组存储。
 
 
-##### 线性表的存储
 
+- **顺序存储定义：**把逻辑上相邻的数据元素存储在物理上相邻的存储单元中的存储结构。
+- 简言之，逻辑上相邻，物理上也相邻
+- **顺序存储方法：**用一组地址连续的存储单元依次存储线性表的元素，可通过数组V[n]来实现。
 
-
-###### 顺序存储结构
-
-
-
-```plain
-线性表的顺序存储结构是指用一段地址连续的存储单元依次存储线性表的数据元素，可以用一维数组来实现。
-```
-
-
+#### 基本操作的代码实现
 
 ```go
-package linelist
+package main
 
 import (
-    "errors"
+	"fmt"
+
+	"github.com/mao888/go-utils/constants"
 )
 
-const MaxLength = 20
+// https://www.jianshu.com/p/f3dedd768de4
+// 数据结构之线性表--顺序表
 
-type LineList struct {
-    MaxLength       int
-    Length          int
-    LineListContent []interface{}
+type MyList interface {
+	InitList(capacity int)                          // 初始化
+	ListEmpty() bool                                // 判空
+	ListFul() bool                                  // 判满
+	ListInsert(index int, elem interface{}) bool    // 插入元素
+	ListDelete(index int) bool                      // 删除元素
+	ListLength() int                                // 返回数据元素个数
+	GetElem(index int) (interface{}, bool)          // 获取元素
+	SetElem(elem interface{}, index int) bool       // 更新元素
+	LocateELem(elem interface{}) (int, bool)        // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+	PriorElem(elem interface{}) (interface{}, bool) // 寻找元素的前驱（当前元素的前一个元素）
+	NextElem(elem interface{}) (interface{}, bool)  // 寻找元素的后驱（当前元素的后一个元素）
+	TraverseList()                                  // 遍历
+	Pop() interface{}                               // 从末尾弹出一个元素
+	Append(elem interface{}) bool                   // 从末尾插入一个元素
+	ClearList()                                     // 清空
 }
 
-//线性表的初始化操作
-func InitLineList() *LineList {
-    return &LineList{MaxLength: MaxLength, Length: 0, LineListContent: make([]interface{}, 0)}
+// SqList 顺序表的结构类型为SqList
+// 使用golang语言的interface接口类型创建顺序表
+type SqList struct {
+	Len         int           // 线性表长度
+	Capacity    int           // 表容量
+	Data        []interface{} // 指向线性表空间指针
+	ExtendRatio int           // 每次列表扩容的倍数
 }
 
-//判断线性表是否为空
-func (l *LineList) Empty() bool {
-    return l.Length == 0
+// InitList 初始化
+func (l *SqList) InitList(capacity int) {
+	l.Capacity = capacity
+	l.Len = 0
+	m := make([]interface{}, capacity)
+	l.Data = m
+	l.ExtendRatio = constants.NumberTwo
 }
 
-//获取线性表第i个元素的值，第一个元素对应线性表下表为0的元素
-func (l *LineList) GetElem(i int) (interface{}, error) {
-    if i < 1 || i > l.Length {
-        return "", errors.New("查找的元素不在线性表范围内")
-    }
-    return l.LineListContent[i-1], nil
+// ListEmpty 判空
+func (l *SqList) ListEmpty() bool {
+	if l.Len == 0 {
+		return true
+	} else {
+		return false
+	}
 }
 
-//删除线性表的第i个元素
-func (l *LineList) DelElem(i int) (bool, error) {
-    if i < 1 || i > l.Length {
-        return false, errors.New("查找的元素不在线性表范围内")
-    }
-    if l.Empty() {
-        return false, errors.New("空表没有可以删除的数据")
-    }
-    for j := i - 1; j < l.Length-1; j++ {
-        l.LineListContent[j] = l.LineListContent[j+1]
-    }
-    l.LineListContent = l.LineListContent[:l.Length-1]
-    l.Length--
-    return true, nil
+// ListLength 获取长度
+func (l *SqList) ListLength() int {
+	return l.Len
 }
 
-// 在线性表中的第i个位置插入元素data
-func (l *LineList) Insert(i int, data interface{}) (bool, error) {
-    if i < 1 || i > l.Length {
-        return false, errors.New("查找的元素不在线性表范围内")
-    }
-    if b, _ := l.Append(""); !b {
-        return false, errors.New("线性表已满，无法添加数据")
-    }
-    for j := l.Length - 1; j > i-1; j-- {
-        l.LineListContent[j] = l.LineListContent[j-1]
-    }
-    l.LineListContent[i-1] = data
-    return true, nil
+// ListFul 判满
+func (l *SqList) ListFul() bool {
+	if l.Len == l.Capacity {
+		return true
+	} else {
+		return false
+	}
 }
 
-// 从末尾弹出一个元素
-func (l *LineList) Pop() (interface{}, error) {
-    if l.Empty() {
-        return "", errors.New("线性表长度为0，没有可弹出的元素")
-    }
-    result := l.LineListContent[l.Length-1]
-    l.LineListContent = l.LineListContent[:l.Length-1]
-    l.Length--
-    return result, nil
+// GetElem 根据下标Get元素
+func (l *SqList) GetElem(index int) (interface{}, bool) {
+	if index < 0 || index > l.Len {
+		return nil, false
+	} else {
+		return l.Data[index], true
+	}
 }
 
-// 从末尾插入一个元素
-func (l *LineList) Append(data interface{}) (bool, error) {
-    if l.Length == l.MaxLength {
-        return false, errors.New("线性表已满，无法添加数据")
-    }
-    l.LineListContent = append(l.LineListContent, data)
-    l.Length++
-    return true, nil
+// SetElem 更新元素
+func (l *SqList) SetElem(elem interface{}, index int) bool {
+	if index >= l.Len {
+		panic("索引越界")
+	}
+	l.Data[index] = elem
+	return true
+}
+
+// LocateELem 根据传入的值，返回第一个匹配的元素下标
+func (l *SqList) LocateELem(elem interface{}) (int, bool) {
+	for i, _ := range l.Data {
+		if elem == l.Data[i] {
+			return i, true
+		}
+	}
+	return -1, false
+}
+
+// PriorElem 寻找元素的前驱（当前元素的前一个元素）
+func (l *SqList) PriorElem(elem interface{}) (interface{}, bool) {
+	i, _ := l.LocateELem(elem)
+	// 顺序表中不存在该元素，或者元素为第一个元素，无前驱元素
+	if i == -1 || i == 0 {
+		return nil, false
+	} else {
+		pre := l.Data[i-1]
+		return pre, true
+	}
+}
+
+// NextElem 寻找元素的后驱（当前元素的后一个元素）
+func (l *SqList) NextElem(elem interface{}) (interface{}, bool) {
+	i, _ := l.LocateELem(elem)
+	// 顺序表中不存在该元素，或者元素为最后一个元素，无后驱元素
+	if i == -1 || i == l.Len-1 {
+		return nil, false
+	} else {
+		N := l.Data[i+1]
+		return N, true
+	}
+}
+
+// ListInsert 插入元素,index为插入的位置，elem为插入值
+func (l *SqList) ListInsert(index int, elem interface{}) bool {
+	// 判断下标有效性，以及表是否满
+	if index < 0 || index > l.Capacity || l.ListFul() {
+		return false
+	} else {
+		// 先将index位置元素以及之后的元素后移一位
+		for i := l.Len - 1; i >= index; i-- {
+			l.Data[i+1] = l.Data[i]
+		}
+		// 插入元素
+		l.Data[index] = elem
+		l.Len++
+		return true
+	}
+}
+
+// ListDelete 删除元素
+func (l *SqList) ListDelete(index int) bool {
+	// 判断下标有效性，以及表是否空
+	if index < 0 || index > l.Capacity || l.ListEmpty() {
+		return false
+	} else {
+		// 注意边界
+		for i := index; i < l.Len-1; i++ {
+			l.Data[i] = l.Data[i+1]
+		}
+		l.Len--
+		return true
+	}
+}
+
+// TraverseList 遍历
+func (l *SqList) TraverseList() {
+	for i := 0; i < l.Len; i++ {
+		fmt.Println(l.Data[i])
+	}
+}
+
+// ClearList 清空
+func (l *SqList) ClearList() {
+	l.Len = 0
+	// 指针为空
+	l.Data = nil
+}
+
+// Pop 从末尾弹出一个元素
+func (l *SqList) Pop() interface{} {
+	if l.ListEmpty() {
+		panic("线性表长度为0，没有可弹出的元素")
+	}
+	result := l.Data[l.Len-1]
+	l.Data = l.Data[:l.Len-1]
+	l.Len--
+	return result
+}
+
+// Append 从末尾插入一个元素
+func (l *SqList) Append(elem interface{}) bool {
+	if l.Len == l.Capacity {
+		panic("线性表已满，无法添加数据")
+	}
+	l.Data = append(l.Data, elem)
+	l.Len++
+	return true
+}
+
+// ExtendCapacity 扩容
+func (l *SqList) ExtendCapacity() {
+	// 新建一个长度为 self.__size 的数组，并将原数组拷贝到新数组
+	l.Data = append(l.Data, make([]interface{}, l.Capacity*(l.ExtendRatio-1))...)
+	// 更新列表容量
+	l.Capacity = len(l.Data)
 }
 ```
 
+#### 测试代码
 
+```go
+/**
+    @author:Huchao
+    @data:2023/1/6
+    @note:数据结构之线性表--顺序表 测试
+**/
+package main
+
+import (
+	"fmt"
+	"testing"
+)
+
+func TestSqList(t *testing.T) {
+	var li SqList
+	// 初始化
+	li.InitList(4)
+	// 判空
+	fmt.Println(li.ListEmpty()) // true
+	// 判满
+	fmt.Println(li.ListFul()) // false
+	// 定义一个Struct类型
+	type s struct {
+		name string
+		age  int
+	}
+	student1 := s{name: "abc", age: 10}
+	student2 := s{name: "efg", age: 10}
+	// 插入元素
+	li.ListInsert(0, student1)
+	li.ListInsert(1, student2)
+	// 判空
+	fmt.Println(li.ListEmpty()) // false
+	// 插入元素
+	li.ListInsert(2, 1000)
+	li.ListInsert(3, "GOGO")
+
+	// 遍历
+	li.TraverseList() // {abc 10} {efg 10} 1000 GoGO
+	// 获取长度
+	fmt.Println(li.ListLength()) // 4
+	// 判满
+	fmt.Println(li.ListFul()) // true
+	// 插入元素
+	fmt.Println(li.ListInsert(4, "jjj")) // false,已满插入失败
+
+	// 扩容
+	li.ExtendCapacity()
+	// 获取长度
+	fmt.Println("扩容后的容量：", li.Capacity)  // 8
+	fmt.Println(li.ListInsert(4, "jjj")) // true
+	// 遍历
+	li.TraverseList() // {abc 10} {efg 10} 1000 GoGO jjj
+
+	// 删除元素,索引为2
+	li.ListDelete(2)
+	// 遍历
+	li.TraverseList() // {abc 10} {efg 10} GoGO jjj
+
+	// 根据下标Get元素
+	el, _ := li.GetElem(1)
+	fmt.Println(el) // {efg 10}
+
+	// 更新元素
+	fmt.Println("更新元素：", li.SetElem("超哥哥", 2)) // true
+	// 遍历
+	li.TraverseList() // {abc 10} {efg 10} 超哥哥 jjj
+
+	// 根据传入的值，返回第一个匹配的元素下标
+	b, b1 := li.LocateELem(student2)
+	fmt.Println(b, b1) // 1 true
+
+	// 寻找元素的后驱
+	n1, n2 := li.NextElem(student2)
+	fmt.Println(n1, n2) // 超哥哥 true
+
+	// 寻找元素的前驱
+	p1, p2 := li.PriorElem("超哥哥")
+	fmt.Println(p1, p2) // {efg 10} true
+
+	// {abc 10} {efg 10} 超哥哥 jjj
+	// 从末尾弹出一个元素
+	p1 = li.Pop()
+	fmt.Println("从末尾弹出一个元素:", p1) // 从末尾弹出一个元素: jjj
+	li.TraverseList()             // 遍历 {abc 10} {efg 10} 超哥哥
+
+	// 从末尾插入一个元素
+	//b = li.Append("超哥")
+	//fmt.Println(b)
+
+	// 清空
+	li.ClearList()
+	fmt.Println(li.ListEmpty()) // true
+
+	// 遍历
+	li.TraverseList()
+}
+```
+
+#### 复杂度
+
+**取值** **O(1)**
+
+只要i 的数值在数组下标范围内，就是把数组第 i - 1 下标的值返回即可，顺序表取值算法的时间复杂度为：**O(1)**
+
+**查找** **O(n)**
+
+顺序表按值查找算法的平均时间复杂度为 **O(n)**
+
+**插入** **O(n)**
+
+
+
+1. 若插入在尾结点之后，则根本无需移动（特别快）；
+2. 若插入在首结点之前，则表中元素全部后移（特别慢）；
+3. 在各种位置插入（共n+1种可能）的平均移动次数
+
+![img](https://cdn.nlark.com/yuque/0/2023/png/22219483/1673021483253-fb6c4189-307b-444b-ae91-1df22fbc856b.png)
+
+由此可见， 顺序表插入算法的平均时间复杂度为 **O(n)**。
+
+**删除** **O(n)**
+
+1. 若删除尾结点，则根本无需移动（特别快）；
+2. 若删除首结点，则表中n-1个元素全部前移（特别慢）；
+3. 若要考虑在各种位置删除（共n种可能）的平均移动次数
+
+![img](https://cdn.nlark.com/yuque/0/2023/png/22219483/1673021587107-3dba8712-ad36-4e7d-a59f-9fe020a71880.png)
+
+顺序表删除算法的平均时间复杂度为：**O(n)**。
+
+顺序表可以随机存取表中任一元素，其存储位置可用一个简单、直观的公式来表示。然而，从另一方面来看，这个特点也造成了这种存储结构的缺点：在做插入或删除操作时，需移动大最元素。 另外由于数组有长度相对固定的静态特性， 当表中数据元素个数较多且变化较大时，操作过程相对复杂，必然导致存储空间的浪费。 所有这些问题，都可以通过线性表的另一种表示方法——链式存储结构来解决。
+
+#### 顺序表（顺序存储结构）的特点
+
+（1）利用数据元素的存储位置表示线性表中相邻数据元素之间的前后关系，即线性表的逻辑结构与存储结构一致
+
+（2）在访问线性表时，可以快速地计算出任何一个数据元素的存储地址。因此可以粗略地认为，访问每个元素所花时间相等　
+
+#### 顺序表的优缺点 
+
+**优点**
+
+1. **存储密度大**（结点本身所占存储量/结点结构所占存储量）
+2. 无须为表示表中元素之间的逻辑关系而增加额外的存储空间
+3. 可以快速地存取表中任一位置的元素
+
+**缺点**
+
+1. 在插入、删除某一元素时，需要移动大量元素
+2. 当线性表长度变化较大肘，难以确定存储空间的容量，造成存储空间的"碎片"，浪费存储
+3. 空间属于静态存储形式，数据元素的个数不能自由扩充
+
+为克服这一缺点 ==》 链表
+
+### 链表
 
 ##### 链式存储结构
 
@@ -848,6 +1174,31 @@ func (dl *DoubleList) RemoveAll() bool {
 ```
 
 ------
+
+## 数组、线性表的区别
+
+**线性表**
+
+1. 线性表（linear list）是数据结构的一种，一个线性表是 n 个具有相同特性的数据元素的有限序列。
+2. 线性表在逻辑上是线性结构，也就说是连续的一条直线，但是在物理结构上并不一定是连续的。
+3. 常见的线性表：顺序表、链表、栈、队列、字符串
+
+**顺序表**
+
+1. 顺序表，全名顺序存储结构，是线性表的一种。
+2. 顺序表不仅要求数据在逻辑上是连续的一条直线，还要求用一段物理地址连续的存储单元以存储表中数据元素，一般情况下采用数组存储。
+
+**什么是数组**
+
+1. 数组是相同数据类型的元素按一定顺序排列的的集合。数组中的元素存储在一个连续性的内存块中，并通过索引来访问。
+2. 简单的说，数组是在物理空间中连续存储的相同数据类型的元素的集合。
+
+**总结**
+
+1. **数组**是数据结构中顺序存储的物理结构，而**顺序表**是数据结构中的逻辑结构
+2. **顺序表**是从逻辑结构的角度来说的，它的每一个元素都只有一个前驱元素和一个后驱元素除了头和尾，逻辑结构还有队列，堆栈，树，图等
+3. **数组**是从物理存贮的角度来说的，顺序表用数组存贮也可以用链表来存贮。
+4. 可以用**数组**实现顺序表，但我们同样可以用数组实现二叉树、队列等结构，因此不能直接认为顺序表就是数组
 
 ## Q1：链表，队列和栈的区别 
 
