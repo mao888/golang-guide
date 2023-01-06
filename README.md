@@ -70,12 +70,14 @@
 ## 🚀 目录结构（不断更新中）
 
 ## Golang
+工作量较大,急需pr
 ### golang-Interview
 * [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md) (必看👍 )
-* [Go面试题new](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F/Go%E9%9D%A2%E8%AF%95%E9%A2%98new.pdf)
-* [大厂面经](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%A4%A7%E5%8E%82%E9%9D%A2%E7%BB%8F)
-* [面试实战](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E5%AE%9E%E6%88%98)
-* [Gin源码阅读与分析(必看👍 )](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md)
+* [数据结构与算法Guide【Golang实现】](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Guide%E3%80%90Golang%E5%AE%9E%E7%8E%B0%E3%80%91.md) (必看👍)
+* [数据结构-Golang代码](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/data-structure) 
+* [算法-Golang代码](https://github.com/mao888/golang-guide/tree/main/golang/go-Interview/%E7%AE%97%E6%B3%95) 
+* [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) (必看👍 )
+* 更多资料见飞书书库
 ### golang-study
 * [常用组件库](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%BA%93) (必看👍) 更新中～
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md) (必看👍 )
