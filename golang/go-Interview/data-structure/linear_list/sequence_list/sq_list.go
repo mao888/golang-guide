@@ -10,21 +10,25 @@ import (
 // 数据结构之线性表--顺序表
 
 type MyList interface {
-	InitList(capacity int)                          // 初始化
-	ListEmpty() bool                                // 判空
-	ListFul() bool                                  // 判满
-	ListInsert(index int, elem interface{}) bool    // 插入元素
-	ListDelete(index int) bool                      // 删除元素
-	ListLength() int                                // 返回数据元素个数
-	GetElem(index int) (interface{}, bool)          // 获取元素
-	SetElem(elem interface{}, index int) bool       // 更新元素
-	LocateELem(elem interface{}) (int, bool)        // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+	// 基本操作
+	InitList(capacity int) // 初始化
+	ListEmpty() bool       // 判空
+	ListFul() bool         // 判满
+	ListLength() int       // 返回数据元素个数
+	ClearList()            // 清空
+	// 元素操作
+	ListInsert(index int, elem interface{}) bool // 插入元素
+	ListDelete(index int) bool                   // 删除元素
+	GetElem(index int) (interface{}, bool)       // 获取元素
+	SetElem(elem interface{}, index int) bool    // 更新元素
+	LocateELem(elem interface{}) (int, bool)     // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+	// 其他操作
 	PriorElem(elem interface{}) (interface{}, bool) // 寻找元素的前驱（当前元素的前一个元素）
 	NextElem(elem interface{}) (interface{}, bool)  // 寻找元素的后驱（当前元素的后一个元素）
 	TraverseList()                                  // 遍历
 	Pop() interface{}                               // 从末尾弹出一个元素
 	Append(elem interface{}) bool                   // 从末尾插入一个元素
-	ClearList()                                     // 清空
+	Reserve()                                       // 反转
 }
 
 // SqList 顺序表的结构类型为SqList
@@ -193,4 +197,13 @@ func (l *SqList) ExtendCapacity() {
 	l.Data = append(l.Data, make([]interface{}, l.Capacity*(l.ExtendRatio-1))...)
 	// 更新列表容量
 	l.Capacity = len(l.Data)
+}
+
+// Reserve 反转
+func (l *SqList) Reserve() {
+	for i := 0; i < l.Len/2; i++ {
+		tmp := l.Data[i]
+		l.Data[i] = l.Data[l.Len-i-1]
+		l.Data[l.Len-i-1] = tmp
+	}
 }

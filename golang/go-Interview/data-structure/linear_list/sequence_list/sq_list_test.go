@@ -87,6 +87,10 @@ func TestSqList(t *testing.T) {
 	//b = li.Append("超哥")
 	//fmt.Println(b)
 
+	// 反转
+	li.Reserve()
+	li.TraverseList() // 遍历 超哥哥 {efg 10} {abc 10}
+
 	// 清空
 	li.ClearList()
 	fmt.Println(li.ListEmpty()) // true
