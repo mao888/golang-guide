@@ -3,7 +3,7 @@
     @data:2023/1/6
     @note:数据结构之线性表--顺序表 测试
 **/
-package main
+package sequence_list
 
 import (
 	"fmt"
@@ -86,12 +86,12 @@ func TestSqList(t *testing.T) {
 	li.TraverseList()             // 遍历 {abc 10} {efg 10} 超哥哥
 
 	// 从末尾插入一个元素
-	//b = li.Append("超哥")
-	//fmt.Println(b)
+	fmt.Println("从末尾插入一个元素", li.Append("超哥12")) // true
+	li.TraverseList()                           // 遍历 {abc 10} {efg 10} 超哥哥 超哥12
 
 	// 反转
 	li.Reserve()
-	li.TraverseList() // 遍历 超哥哥 {efg 10} {abc 10}
+	li.TraverseList() // 遍历   超哥12 超哥哥 {efg 10} {abc 10}
 
 	// 清空
 	li.ClearList()

@@ -1,4 +1,4 @@
-package main
+package sequence_list
 
 import (
 	"fmt"
@@ -9,7 +9,7 @@ import (
 // https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
 
-type MyList interface {
+type SqListInterface interface {
 	// 基本操作
 	NewSeqList(capacity int) *SqList // 初始化
 	InitList(capacity int)           // 初始化

@@ -36,6 +36,7 @@ github.com/kr/text v0.2.0/go.mod h1:eLer722TekiGuMkidMxC/pM04lWEeraHUUmBw8l2grE=
 github.com/leodido/go-urn v1.2.0/go.mod h1:+8+nEpDfqqsY+g338gtMEUOtuK+4dEMhiQEgxpxOKII=
 github.com/leodido/go-urn v1.2.1 h1:BqpAaACuzVSgi/VLzGZIobT2z4v53pjosyNd9Yv6n/w=
 github.com/leodido/go-urn v1.2.1/go.mod h1:zt4jvISO2HfUBqxjfIshjdMTYS56ZS/qv49ictyFfxY=
+github.com/mao888/go-errors v1.0.0 h1:J32KN2wokdk0cwqxBDcZsH/lQ+GR70nLG1oya24X3XY=
 github.com/mao888/go-errors v1.0.0/go.mod h1:VB2gnhqgYO+OcUUdk6WzS8eM1OZWezwK8+wRrhSfpLE=
 github.com/mao888/go-utils v1.1.1 h1:9ZFTnBHsalh7+u3uYSatU18CHH/ZSIufC+J1LNSh2O4=
 github.com/mao888/go-utils v1.1.1/go.mod h1:2E0MWhB9/qnIyeME9iDFs1SM4lfw2Q/edHpJF0p8nU0=
