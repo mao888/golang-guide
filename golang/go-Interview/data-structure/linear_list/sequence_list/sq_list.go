@@ -6,7 +6,6 @@ import (
 	"github.com/mao888/go-utils/constants"
 )
 
-// https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
 
 type SqListInterface interface {
