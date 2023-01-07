@@ -12,5 +12,8 @@ func main() {
 	//internal.RunSdkReleaseRecord()
 
 	// 将mongo数据迁移到mysql中的child_sdk表
-	internal.RunChildSdk()
+	//internal.RunChildSdk()
+
+	// 将mongo数据迁移到mysql中的child_sdk_release_record表
+	internal.RunChildSdkReleaseRecord()
 }
