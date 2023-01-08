@@ -278,7 +278,7 @@ func TestArray(t *testing.T) {
 
 ### 基本概念
 
-- `定义：零个或者多个数据元素的有限序列，在复杂的线性表中，一个数据元素可以由若干个数据项组成。`
+- `**定义**：零个或者多个数据元素的有限序列，在复杂的线性表中，一个数据元素可以由若干个数据项组成。`
 - `直接前驱元素：若线性表记为(a1a2a3...an),则表中a2领先于a3，则称a2是a3的直接前驱元素，且有且仅有一个直接前驱元素`
 - `直接后继元素：称a3是a2的直接后继元素，且有且仅有一个直接后继元素`
 - `线性表的长度：线性表的元素个数n，为线性表的长度，随着线性表插入和删除操作，该值是变动的，线性表的存储长度一般小于数组的长度`
@@ -314,7 +314,7 @@ func TestArray(t *testing.T) {
 #### 基本操作的代码实现
 
 ```go
-package main
+package sequence_list
 
 import (
 	"fmt"
@@ -322,25 +322,30 @@ import (
 	"github.com/mao888/go-utils/constants"
 )
 
-// https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
 
-type MyList interface {
-	InitList(capacity int)                          // 初始化
-	ListEmpty() bool                                // 判空
-	ListFul() bool                                  // 判满
-	ListInsert(index int, elem interface{}) bool    // 插入元素
-	ListDelete(index int) bool                      // 删除元素
-	ListLength() int                                // 返回数据元素个数
-	GetElem(index int) (interface{}, bool)          // 获取元素
-	SetElem(elem interface{}, index int) bool       // 更新元素
-	LocateELem(elem interface{}) (int, bool)        // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+type SqListInterface interface {
+	// 基本操作
+	NewSeqList(capacity int) *SqList // 初始化
+	InitList(capacity int)           // 初始化
+	ListEmpty() bool                 // 判空
+	ListFul() bool                   // 判满
+	ListLength() int                 // 返回数据元素个数
+	ClearList()                      // 清空
+	DestroyList()                    // 销毁
+	// 元素操作
+	ListInsert(index int, elem interface{}) bool // 插入元素
+	ListDelete(index int) bool                   // 删除元素
+	GetElem(index int) (interface{}, bool)       // 获取元素
+	SetElem(elem interface{}, index int) bool    // 更新元素
+	LocateELem(elem interface{}) (int, bool)     // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+	// 其他操作
 	PriorElem(elem interface{}) (interface{}, bool) // 寻找元素的前驱（当前元素的前一个元素）
 	NextElem(elem interface{}) (interface{}, bool)  // 寻找元素的后驱（当前元素的后一个元素）
 	TraverseList()                                  // 遍历
 	Pop() interface{}                               // 从末尾弹出一个元素
 	Append(elem interface{}) bool                   // 从末尾插入一个元素
-	ClearList()                                     // 清空
+	Reserve()                                       // 反转
 }
 
 // SqList 顺序表的结构类型为SqList
@@ -350,6 +355,16 @@ type SqList struct {
 	Capacity    int           // 表容量
 	Data        []interface{} // 指向线性表空间指针
 	ExtendRatio int           // 每次列表扩容的倍数
+}
+
+// NewSeqList 初始化
+func (l *SqList) NewSeqList(capacity int) *SqList {
+	return &SqList{
+		Len:         0,
+		Capacity:    capacity,
+		Data:        make([]interface{}, capacity),
+		ExtendRatio: constants.NumberTwo,
+	}
 }
 
 // InitList 初始化
@@ -482,6 +497,14 @@ func (l *SqList) ClearList() {
 	l.Data = nil
 }
 
+// DestroyList 销毁
+func (l *SqList) DestroyList() {
+	l.Data = nil
+	l.Len = 0
+	l.Capacity = 0
+	l.ExtendRatio = 0
+}
+
 // Pop 从末尾弹出一个元素
 func (l *SqList) Pop() interface{} {
 	if l.ListEmpty() {
@@ -510,6 +533,15 @@ func (l *SqList) ExtendCapacity() {
 	// 更新列表容量
 	l.Capacity = len(l.Data)
 }
+
+// Reserve 反转
+func (l *SqList) Reserve() {
+	for i := 0; i < l.Len/2; i++ {
+		tmp := l.Data[i]
+		l.Data[i] = l.Data[l.Len-i-1]
+		l.Data[l.Len-i-1] = tmp
+	}
+}
 ```
 
 #### 测试代码
@@ -520,7 +552,7 @@ func (l *SqList) ExtendCapacity() {
     @data:2023/1/6
     @note:数据结构之线性表--顺序表 测试
 **/
-package main
+package sequence_list
 
 import (
 	"fmt"
@@ -529,8 +561,10 @@ import (
 
 func TestSqList(t *testing.T) {
 	var li SqList
-	// 初始化
+	// 初始化 1
 	li.InitList(4)
+	// 初始化 2
+	//li = NewSeqList(4)
 	// 判空
 	fmt.Println(li.ListEmpty()) // true
 	// 判满
@@ -601,8 +635,12 @@ func TestSqList(t *testing.T) {
 	li.TraverseList()             // 遍历 {abc 10} {efg 10} 超哥哥
 
 	// 从末尾插入一个元素
-	//b = li.Append("超哥")
-	//fmt.Println(b)
+	fmt.Println("从末尾插入一个元素", li.Append("超哥12")) // true
+	li.TraverseList()                           // 遍历 {abc 10} {efg 10} 超哥哥 超哥12
+
+	// 反转
+	li.Reserve()
+	li.TraverseList() // 遍历   超哥12 超哥哥 {efg 10} {abc 10}
 
 	// 清空
 	li.ClearList()
