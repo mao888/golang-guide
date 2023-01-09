@@ -5,39 +5,39 @@ import (
 	"strings"
 )
 
-// ListInterface 数据结构之线性表--单链表
-type ListInterface interface {
-	NewListNode(val int) *ListNode
-	InsertNode(n0 *ListNode, P *ListNode)
-	RemoveNode(n0 *ListNode)
-	Access(head *ListNode, index int) *ListNode
-	FindNode(head *ListNode, target int) int
-	PrintLinkedList(node *ListNode)
+// LinkListInterface 数据结构之线性表--单链表
+type LinkListInterface interface {
+	NewListNode(val int) *LNode
+	InsertNode(n0 *LNode, P *LNode)
+	RemoveNode(n0 *LNode)
+	Access(head *LNode, index int) *LNode
+	FindNode(head *LNode, target int) int
+	PrintLinkedList(node *LNode)
 }
 
-/*ListNode 链表结点结构体 */
-type ListNode struct {
+/*LNode 链表结点结构体 */
+type LNode struct {
 	Val  interface{} // 结点值
-	Next *ListNode   // 指向下一结点的指针（引用）
+	Next *LNode      // 指向下一结点的指针（引用）
 }
 
 // NewListNode 构造函数，创建一个新的链表
-func (l *ListNode) NewListNode(val int) *ListNode {
-	return &ListNode{
+func (l *LNode) NewListNode(val int) *LNode {
+	return &LNode{
 		Val:  val,
 		Next: nil,
 	}
 }
 
 /*InsertNode 在链表的结点 n0 之后插入结点 P */
-func (l *ListNode) InsertNode(n0 *ListNode, P *ListNode) {
+func (l *LNode) InsertNode(n0 *LNode, P *LNode) {
 	n1 := n0.Next
 	n0.Next = P
 	P.Next = n1
 }
 
 /*RemoveNode 删除链表的结点 n0 之后的首个结点 */
-func (l *ListNode) RemoveNode(n0 *ListNode) {
+func (l *LNode) RemoveNode(n0 *LNode) {
 	if n0.Next == nil {
 		return
 	}
@@ -48,7 +48,7 @@ func (l *ListNode) RemoveNode(n0 *ListNode) {
 }
 
 /*Access 访问链表中索引为 index 的结点 */
-func (l *ListNode) Access(head *ListNode, index int) *ListNode {
+func (l *LNode) Access(head *LNode, index int) *LNode {
 	for i := 0; i < index; i++ {
 		head = head.Next
 		if head == nil {
@@ -59,7 +59,7 @@ func (l *ListNode) Access(head *ListNode, index int) *ListNode {
 }
 
 /*FindNode 在链表中查找值为 target 的首个结点 */
-func (l *ListNode) FindNode(head *ListNode, target int) int {
+func (l *LNode) FindNode(head *LNode, target int) int {
 	index := 0
 	for head != nil {
 		if head.Val == target {
@@ -72,7 +72,7 @@ func (l *ListNode) FindNode(head *ListNode, target int) int {
 }
 
 //PrintLinkedList PrintLinkedList Print a linked list
-func (l *ListNode) PrintLinkedList(node *ListNode) {
+func (l *LNode) PrintLinkedList(node *LNode) {
 	if node == nil {
 		return
 	}

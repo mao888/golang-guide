@@ -1,4 +1,4 @@
-// File: linked_list_test.go
+// File: link_list_test.go
 // Created Time: 2022-12-29
 // Author: cathay (cathaycchen@gmail.com)
 
