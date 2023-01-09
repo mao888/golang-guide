@@ -12,7 +12,7 @@ import (
 func TestLikedList(t *testing.T) {
 	/* 初始化链表 1 -> 3 -> 2 -> 5 -> 4 */
 	// 初始化各个结点
-	var li ListNode
+	var li LNode
 	n0 := li.NewListNode(1)
 	n1 := li.NewListNode(3)
 	n2 := li.NewListNode(2)
