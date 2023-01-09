@@ -18,8 +18,11 @@ func main() {
 	//mongo_to_mysql.RunChildSdkReleaseRecord()
 
 	// 将 gm-system/m_activities 入库 application_console/activities
-	mysql_to_mysql.RunActivity()
+	//mysql_to_mysql.RunActivity()
 
 	// 将 gm-system/m_command 入库 application_console/command
-	mysql_to_mysql.RunCommand()
+	//mysql_to_mysql.RunCommand()
+
+	// 将 gm-system/m_command_project_team gm-system/m_project_team_player 入库 application_console/gm_config
+	mysql_to_mysql.RunGmConfig()
 }

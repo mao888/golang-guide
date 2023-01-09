@@ -37,7 +37,7 @@ type MActivities struct {
 	Remark     string `gorm:"column:remark;" json:"remark"`                    // 备注
 	StartAt    int64  `gorm:"column:start_at;" json:"start_at"`                // 开始时间
 	EndAt      int64  `gorm:"column:end_at;" json:"end_at"`                    // 结束时间
-	OperatorID int64  `gorm:"column:operator_id; " json:"operator_id"`         // 创建人
+	OperatorID int32  `gorm:"column:operator_id; " json:"operator_id"`         // 创建人
 	CreatedAt  int64  `gorm:"column:created_at;" json:"created_at"`
 	UpdatedAt  int64  `gorm:"column:updated_at;" json:"updated_at"`
 	IsDeleted  bool   `gorm:"column:is_deleted;softDelete:flag" json:"is_deleted"`
@@ -81,7 +81,7 @@ func RunActivity() {
 	mActivities := make([]*MActivities, 0)
 	err = db2.MySQLClientGM.Table("m_activities").Find(&mActivities).Error
 	if err != nil {
-		fmt.Println("从mysql查询 m_activities错误：", err)
+		fmt.Println("从mysql查询 m_activities 错误：", err)
 	}
 
 	// 5、将 gm-system/m_activities 入库 application_console/activities
@@ -95,6 +95,7 @@ func RunActivity() {
 			ActStatus: mActivity.ActStatus,
 			StartAt:   mActivity.StartAt,
 			EndAt:     mActivity.EndAt,
+			CreatorID: mActivity.OperatorID,
 			CreatedAt: mActivity.CreatedAt,
 			UpdatedAt: mActivity.UpdatedAt,
 			IsDeleted: mActivity.IsDeleted,
@@ -102,7 +103,7 @@ func RunActivity() {
 		}
 		activity = append(activity, ac)
 	}
-	
+
 	fmt.Println(activity)
 
 	err = db2.MySQLClient.Table("activities").CreateInBatches(activity, len(activity)).Error

@@ -79,6 +79,7 @@ func RunCommand() {
 			SendAt:       m.SendAt,
 			CreatedAt:    m.CreatedAt,
 			UpdatedAt:    m.UpdatedAt,
+			IsDeleted:    m.IsDeleted,
 		}
 		command = append(command, co)
 	}
