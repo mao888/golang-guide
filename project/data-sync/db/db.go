@@ -15,6 +15,7 @@ var MySQLClientCruiser *gorm.DB
 var MySQLClientPayment *gorm.DB
 var MySQLClientAuth *gorm.DB
 var MySQLClientAdmin *gorm.DB
+var MySQLClientGM *gorm.DB
 
 func init() {
 	ctx := context.Background()
@@ -51,4 +52,11 @@ func init() {
 		fmt.Println(err)
 	}
 	MySQLClientAdmin = db4
+
+	dsn5 := "root:Redhat@123@(192.168.1.52:3306)/gm-system?charset=utf8mb4&parseTime=True&loc=Local"
+	db5, err := gorm.Open(mysql.Open(dsn5), &gorm.Config{})
+	if err != nil {
+		fmt.Println(err)
+	}
+	MySQLClientGM = db5
 }
