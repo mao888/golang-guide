@@ -2,7 +2,6 @@ package linkedlist
 
 import (
 	"fmt"
-	"strconv"
 	"strings"
 )
 
@@ -18,8 +17,8 @@ type ListInterface interface {
 
 /*ListNode 链表结点结构体 */
 type ListNode struct {
-	Val  int       // 结点值
-	Next *ListNode // 指向下一结点的指针（引用）
+	Val  interface{} // 结点值
+	Next *ListNode   // 指向下一结点的指针（引用）
 }
 
 // NewListNode 构造函数，创建一个新的链表
@@ -79,9 +78,9 @@ func (l *ListNode) PrintLinkedList(node *ListNode) {
 	}
 	var builder strings.Builder
 	for node.Next != nil {
-		builder.WriteString(strconv.Itoa(node.Val) + " -> ")
+		builder.WriteString(fmt.Sprintf("%v", node.Val) + " -> ") // 使用 fmt.Sprintf 将interface value转换为字符串
 		node = node.Next
 	}
-	builder.WriteString(strconv.Itoa(node.Val))
+	builder.WriteString(fmt.Sprintf("%v", node.Val))
 	fmt.Println(builder.String())
 }
