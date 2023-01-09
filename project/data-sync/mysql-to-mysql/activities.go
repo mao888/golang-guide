@@ -102,6 +102,9 @@ func RunActivity() {
 		}
 		activity = append(activity, ac)
 	}
+	
+	fmt.Println(activity)
+
 	err = db2.MySQLClient.Table("activities").CreateInBatches(activity, len(activity)).Error
 	if err != nil {
 		fmt.Println("入mysql错误：", err)

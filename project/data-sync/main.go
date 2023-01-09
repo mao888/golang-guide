@@ -1,6 +1,6 @@
 package main
 
-import mysql "github.com/mao888/golang-guide/project/data-sync/mysql-to-mysql"
+import mysql_to_mysql "github.com/mao888/golang-guide/project/data-sync/mysql-to-mysql"
 
 func main() {
 	//data-sync.RunGame()
@@ -18,5 +18,8 @@ func main() {
 	//mongo_to_mysql.RunChildSdkReleaseRecord()
 
 	// 将 gm-system/m_activities 入库 application_console/activities
-	mysql.RunActivity()
+	mysql_to_mysql.RunActivity()
+
+	// 将 gm-system/m_command 入库 application_console/command
+	mysql_to_mysql.RunCommand()
 }
