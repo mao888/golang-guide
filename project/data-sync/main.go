@@ -1,19 +1,19 @@
 package main
 
-import "github.com/mao888/golang-guide/project/mongo-to-mysql/internal"
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql"
 
 func main() {
-	//internal.RunGame()
+	//data-sync.RunGame()
 
 	// 将mongo数据迁移到mysql中的sdk_project表
-	//internal.RunSdkProject()
+	//data-sync.RunSdkProject()
 
 	// 将mongo数据迁移到mysql中的sdk_release_record表
-	//internal.RunSdkReleaseRecord()
+	//data-sync.RunSdkReleaseRecord()
 
 	// 将mongo数据迁移到mysql中的child_sdk表
-	//internal.RunChildSdk()
+	//data-sync.RunChildSdk()
 
 	// 将mongo数据迁移到mysql中的child_sdk_release_record表
-	internal.RunChildSdkReleaseRecord()
+	mongo_to_mysql.RunChildSdkReleaseRecord()
 }

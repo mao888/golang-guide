@@ -1,9 +1,9 @@
-package internal
+package mongo_to_mysql
 
 import (
 	"context"
 	"fmt"
-	db2 "github.com/mao888/golang-guide/project/mongo-to-mysql/db"
+	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"time"
 )
