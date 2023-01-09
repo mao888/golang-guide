@@ -6,7 +6,6 @@ import (
 	"github.com/mao888/go-utils/constants"
 )
 
-// https://www.jianshu.com/p/f3dedd768de4
 // 数据结构之线性表--顺序表
 
 type SqListInterface interface {
@@ -30,6 +29,7 @@ type SqListInterface interface {
 	TraverseList()                                  // 遍历
 	Pop() interface{}                               // 从末尾弹出一个元素
 	Append(elem interface{}) bool                   // 从末尾插入一个元素
+	ExtendCapacity()                                // 扩容
 	Reserve()                                       // 反转
 }
 
@@ -38,7 +38,7 @@ type SqListInterface interface {
 type SqList struct {
 	Len         int           // 线性表长度
 	Capacity    int           // 表容量
-	Data        []interface{} // 指向线性表空间指针
+	Data        []interface{} // 指向线性表空间
 	ExtendRatio int           // 每次列表扩容的倍数
 }
 
