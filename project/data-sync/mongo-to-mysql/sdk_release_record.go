@@ -3,7 +3,8 @@ package mongo_to_mysql
 import (
 	"context"
 	"fmt"
-	gutil "github.com/mao888/go-utils/json"
+	"github.com/mao888/go-utils/json"
+	"github.com/mao888/go-utils/version"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"time"
@@ -65,6 +66,7 @@ type SdkReleaseRecord struct {
 	ID              int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	SdkProjectID    int32  `gorm:"column:sdk_project_id;not null" json:"sdk_project_id"`     // SDK项目id
 	VersionNumber   string `gorm:"column:version_number;not null" json:"version_number"`     // 版本号
+	VersionOrdinal  string `gorm:"column:version_ordinal;not null" json:"version_ordinal"`   // 可比较的版本号
 	Status          int32  `gorm:"column:status;not null" json:"status"`                     // 状态（1：Alpha版、2:Beta版、3:正式版、4:废弃）
 	Model           string `gorm:"column:model;not null" json:"model"`                       // 模型（Unitypackage）
 	AbandonedReason string `gorm:"column:abandoned_reason;not null" json:"abandoned_reason"` // 废弃原因
@@ -182,6 +184,7 @@ func RunSdkReleaseRecord() {
 			//ID:              0,
 			SdkProjectID:    projectversion.ProjectID,
 			VersionNumber:   projectversion.VersionName,
+			VersionOrdinal:  version.VersionOrdinal(projectversion.VersionName),
 			Status:          projectversion.Status,
 			Model:           projectversion.SdkModel,
 			AbandonedReason: projectversion.Reason,
