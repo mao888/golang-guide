@@ -18,6 +18,8 @@ func main() {
 	// 将mongo数据迁移到mysql中的child_sdk_release_record表
 	//mongo_to_mysql.RunChildSdkReleaseRecord()
 
+	// 二、gm-system 数据迁移到 ARK application_console
+
 	// 将 gm-system/m_activities 入库 application_console/activities
 	//mysql_to_mysql.RunActivity()
 
