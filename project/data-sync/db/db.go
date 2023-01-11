@@ -19,15 +19,15 @@ var MySQLClientGM *gorm.DB
 
 func init() {
 	ctx := context.Background()
-	//client, err := qmgo.NewClient(ctx, &qmgo.Config{Uri: "mongodb://mongodb-test01.nuclearport.com:27000"})
-	client, err := qmgo.NewClient(ctx, &qmgo.Config{Uri: "mongodb://mongodb01.nuclearport.com:27000,mongodb02.nuclearport.com:27000,mongodb03.nuclearport.com:27000/plat_console?replicaSet=giadb"})
+	client, err := qmgo.NewClient(ctx, &qmgo.Config{Uri: "mongodb://mongodb-test01.nuclearport.com:27000"})
+	//client, err := qmgo.NewClient(ctx, &qmgo.Config{Uri: "mongodb://mongodb01.nuclearport.com:27000,mongodb02.nuclearport.com:27000,mongodb03.nuclearport.com:27000/plat_console?replicaSet=giadb"})
 	if err != nil {
 		fmt.Println(err)
 	}
 	MongoClient = client
 
-	//dsn := "root:Redhat@123@(192.168.1.52:3306)/application_console?charset=utf8mb4&parseTime=True&loc=Local"
-	dsn := "root:EBc3lHqqzR5F2tt2@(rm-2ze030tf526174x36.mysql.rds.aliyuncs.com:3306)/application_console?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:Redhat@123@(192.168.1.52:3306)/application_console?charset=utf8mb4&parseTime=True&loc=Local"
+	//dsn := "root:EBc3lHqqzR5F2tt2@(rm-2ze030tf526174x36.mysql.rds.aliyuncs.com:3306)/application_console?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		fmt.Println(err)

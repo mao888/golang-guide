@@ -1,5 +1,7 @@
 package main
 
+import mysql_to_mysql "github.com/mao888/golang-guide/project/data-sync/mysql-to-mysql"
+
 func main() {
 	//mongo_to_mysql.RunGame()
 
@@ -29,8 +31,9 @@ func main() {
 	// 将 gm-system/m_command 入库 application_console/command
 	//mysql_to_mysql.RunCommand()
 
-	// 将 gm-system/m_command_project_team gm-system/m_project_team_player 入库 application_console/gm_config
+	// 将 gm-system/m_command_project_team gm-system/m_project_team_player plat_console/gameconfigs入库 application_console/gm_config
 	// mysql_to_mysql.RunGmConfig()
+	mysql_to_mysql.RunMGameConfigs()
 
 	// 将 gm-system/m_mail_goods 入库 application_console/mail_goods
 	// mysql_to_mysql.RunMailGoods()
