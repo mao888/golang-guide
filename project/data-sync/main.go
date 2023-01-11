@@ -3,8 +3,8 @@ package main
 func main() {
 	//mongo_to_mysql.RunGame()
 
-	// 将mongo数据迁移到mysql中的sdk_project表
-	//mongo_to_mysql.RunSdkProject()
+	// 将mongo数据 plat_console/projects 迁移到mysql中的 admin_console/sdk_project表
+	// mongo_to_mysql.RunSdkProject()
 
 	// 将mongo数据迁移到mysql中的sdk_release_record表
 	// mongo_to_mysql.RunSdkReleaseRecord()

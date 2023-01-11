@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// MProjects From Mongo
 type MProjects struct {
 	ID         int32      `bson:"_id" json:"_id"`
 	Show       bool       `bson:"show" json:"show"`
@@ -17,6 +18,7 @@ type MProjects struct {
 	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
 }
 
+// SdkProject From admin_console
 type SdkProject struct {
 	ID          int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Sdk         string `gorm:"column:sdk;not null" json:"sdk"`                     // SDK项目（中文名称）
