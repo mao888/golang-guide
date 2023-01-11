@@ -6,6 +6,7 @@ import (
 )
 
 // list包实现了双向链表
+// http://doc.golang.ltd/
 
 func main() {
 	// Create a new list and put some numbers in it.
@@ -19,13 +20,13 @@ func main() {
 		fmt.Println(e.Value)
 	}
 
-	len := l.Len()                        // Len返回链表中元素的个数，复杂度O(1)。
+	len := l.Len()                // Len返回链表中元素的个数，复杂度O(1)。
 	fmt.Println("链表中元素的个数:", len) // 4
 
-	front := l.Front()                          // Front返回链表第一个元素或nil。
+	front := l.Front()                   // Front返回链表第一个元素或nil。
 	fmt.Println("链表第一个元素:", front.Value) // 1
 
-	back := l.Back()                             // Back返回链表最后一个元素或nil。
+	back := l.Back()                     // Back返回链表最后一个元素或nil。
 	fmt.Println("链表最后一个元素:", back.Value) // 4
 
 	l.PushFrontList(l) // PushFrontList创建链表other的拷贝，并将拷贝的最后一个位置连接到链表l的第一个位置。

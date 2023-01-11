@@ -1,7 +1,7 @@
 .idea
 *.iml
 *.exe
-db.go
+*db.go
 
 # .DS_Store
 .DS_Store
