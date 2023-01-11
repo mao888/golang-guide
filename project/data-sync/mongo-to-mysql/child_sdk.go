@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// MSdks From Mongo
 type MSdks struct {
 	ID          int32      `bson:"_id" json:"_id"`
 	JenkinsName string     `bson:"jenkins_name" json:"jenkins_name"`
@@ -19,6 +20,7 @@ type MSdks struct {
 	Shared      bool       `bson:"shared" json:"shared"`
 }
 
+// ChildSdk From admin_console
 type ChildSdk struct {
 	ID           int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	SdkProjectID int32  `gorm:"column:sdk_project_id;not null" json:"sdk_project_id"` // SDK项目id

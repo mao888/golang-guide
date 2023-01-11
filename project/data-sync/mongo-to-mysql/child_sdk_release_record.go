@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// Msdkversions From Mongo
 type Msdkversions struct {
 	ID          string     `bson:"_id" json:"_id"`
 	JenkinsName string     `bson:"jenkins_name" json:"jenkins_name"`
@@ -23,6 +24,7 @@ type Msdkversions struct {
 	CreateTime  *time.Time `bson:"create_time" json:"create_time"`
 }
 
+// ChildSdkReleaseRecord From admin_console
 type ChildSdkReleaseRecord struct {
 	ID            int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	ChildSdkID    int32  `gorm:"column:child_sdk_id;not null" json:"child_sdk_id"`     // 子sdk项目id

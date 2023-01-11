@@ -1,22 +1,24 @@
 package main
 
+import mongo_to_mysql "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql"
+
 func main() {
 	//mongo_to_mysql.RunGame()
 
 	// 将mongo数据 plat_console/projects 迁移到mysql中的 admin_console/sdk_project表
 	// mongo_to_mysql.RunSdkProject()
 
-	// 将mongo数据迁移到mysql中的sdk_release_record表
-	// mongo_to_mysql.RunSdkReleaseRecord()
+	// 将mongo数据 plat_console/projectversions 迁移到mysql中的 admin_console/sdk_release_record表
+	//mongo_to_mysql.RunSdkReleaseRecord()
 
 	// 更新 sdk_release_record表中 version_number 字段为 可排序字段 version_ordinal
 	// mongo_to_mysql.VersionNumberToOrdinal()
 
-	// 将mongo数据迁移到mysql中的child_sdk表
-	//data-sync.RunChildSdk()
+	// 将mongo数据 plat_console/sdks 迁移到mysql中的 admin_console/child_sdk表
+	//mongo_to_mysql.RunChildSdk()
 
-	// 将mongo数据迁移到mysql中的child_sdk_release_record表
-	//mongo_to_mysql.RunChildSdkReleaseRecord()
+	// 将mongo数据 plat_console/sdkversions 迁移到mysql中的 admin_console/child_sdk_release_record表
+	mongo_to_mysql.RunChildSdkReleaseRecord()
 
 	// 二、gm-system 数据迁移到 ARK application_console
 
