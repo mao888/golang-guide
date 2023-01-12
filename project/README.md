@@ -8,5 +8,6 @@
 ### 数据迁移 data-sync
 * [mongo-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mongo-to-mysql)
 * [mysql-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mysql-to-mysql)
+> 由于涉及到数据库安全问题,故未上传db.go文件。请自行编写数据连接初始化文件。
 ### 推荐项目
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/project/%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md)
