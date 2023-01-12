@@ -12,7 +12,8 @@ import (
 
 func TestDoubleLinkedList(t *testing.T) {
 	// Create a new list and put some numbers in it.
-	l := New()            // New创建一个链表
+	var l List
+	l.New()               // New创建一个链表
 	e4 := l.PushBack(4)   // PushBack将一个值为v的新元素插入链表的最后一个位置，返回生成的新元素
 	e1 := l.PushFront(1)  // PushFront将一个值为v的新元素插入链表的第一个位置，返回生成的新元素。
 	l.InsertBefore(3, e4) // InsertBefore将一个值为v的新元素插入到mark前面，并返回生成的新元素。如果mark不是l的元素，l不会被修改。
@@ -31,12 +32,12 @@ func TestDoubleLinkedList(t *testing.T) {
 	back := l.Back()                     // Back返回链表最后一个元素或nil。
 	fmt.Println("链表最后一个元素:", back.Value) // 4
 
-	l.PushFrontList(l) // PushFrontList创建链表other的拷贝，并将拷贝的最后一个位置连接到链表l的第一个位置。
+	l.PushFrontList(&l) // PushFrontList创建链表other的拷贝，并将拷贝的最后一个位置连接到链表l的第一个位置。
 	for e := l.Front(); e != nil; e = e.Next() {
 		fmt.Println("PushFrontList:", e.Value) // 1 2 3 4  1 2 3 4
 	}
 
-	l.PushBackList(l) // PushBackList创建链表other的拷贝，并将链表l的最后一个位置连接到拷贝的第一个位置。
+	l.PushBackList(&l) // PushBackList创建链表other的拷贝，并将链表l的最后一个位置连接到拷贝的第一个位置。
 	for e := l.Front(); e != nil; e = e.Next() {
 		fmt.Println("PushBackList:", e.Value) // 1 2 3 4  1 2 3 4  1 2 3 4 1 2 3 4
 	}

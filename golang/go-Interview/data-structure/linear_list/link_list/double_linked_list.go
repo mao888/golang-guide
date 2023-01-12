@@ -3,19 +3,13 @@ package linkedlist
 // 线性表 - 双向链表
 // https://studygolang.com/pkgdoc
 
-// Copyright 2009 The Go Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style
-// license that can be found in the LICENSE file.
-
-// Package list implements a doubly linked list.
-//
-// To iterate over a list (where l is a *List):
+// 对链表进行遍历 (where l is a *List):
 //	for e := l.Front(); e != nil; e = e.Next() {
 //		// do something with e.Value
 //	}
 //
 
-// Element is an element of a linked list.
+// Element 是链表中的元素
 type Element struct {
 	// Next and previous pointers in the doubly-linked list of elements.
 	// To simplify the implementation, internally a list l is implemented
@@ -24,14 +18,14 @@ type Element struct {
 	// element (l.Front()).
 	next, prev *Element
 
-	// The list to which this element belongs.
+	// 该元素所属的链表
 	list *List
 
 	// The value stored with this element.
-	Value any
+	Value interface{}
 }
 
-// Next returns the next list element or nil.
+// Next 返回链表的后一个元素或者nil
 func (e *Element) Next() *Element {
 	if p := e.next; e.list != nil && p != &e.list.root {
 		return p
@@ -39,7 +33,7 @@ func (e *Element) Next() *Element {
 	return nil
 }
 
-// Prev returns the previous list element or nil.
+// Prev 返回链表的前一个元素或者nil
 func (e *Element) Prev() *Element {
 	if p := e.prev; e.list != nil && p != &e.list.root {
 		return p
@@ -47,14 +41,31 @@ func (e *Element) Prev() *Element {
 	return nil
 }
 
-// List represents a doubly linked list.
-// The zero value for List is an empty list ready to use.
+type DoublyLinkedListInterface interface {
+	New() *List                                        // 创建一个链表
+	Init() *List                                       // 清空链表
+	Len() int                                          // 返回链表中元素的个数，复杂度O(1)
+	Front() *Element                                   // 返回链表第一个元素或nil
+	Back() *Element                                    // 返回链表最后一个元素或nil
+	PushFront(v interface{}) *Element                  // 将一个值为v的新元素插入链表的第一个位置，返回生成的新元素
+	PushFrontList(other *List)                         // 创建链表other的拷贝，并将拷贝的最后一个位置连接到链表l的第一个位置
+	PushBack(v interface{}) *Element                   // 将一个值为v的新元素插入链表的最后一个位置，返回生成的新元素
+	PushBackList(other *List)                          // 创建链表other的拷贝，并将链表l的最后一个位置连接到拷贝的第一个位置
+	InsertAfter(v interface{}, mark *Element) *Element // 将一个值为v的新元素插入到mark后面，并返回新生成的元素。如果mark不是l的元素，l不会被修改
+	MoveToFront(e *Element)                            // 将元素e移动到链表的第一个位置，如果e不是l的元素，l不会被修改
+	MoveToBack(e *Element)                             // 将元素e移动到链表的最后一个位置，如果e不是l的元素，l不会被修改
+	MoveBefore(e, mark *Element)                       // 将元素e移动到mark的前面。如果e或mark不是l的元素，或者e==mark，l不会被修改
+	MoveAfter(e, mark *Element)                        // 将元素e移动到mark的后面。如果e或mark不是l的元素，或者e==mark，l不会被修改
+	Remove(e *Element) interface{}                     // 删除链表中的元素e，并返回e.Value
+}
+
+// List 代表一个双向链表。List零值为一个空的、可用的链表。
 type List struct {
 	root Element // sentinel list element, only &root, root.prev, and root.next are used
 	len  int     // current list length excluding (this) sentinel element
 }
 
-// Init initializes or clears list l.
+// Init 清空链表
 func (l *List) Init() *List {
 	l.root.next = &l.root
 	l.root.prev = &l.root
@@ -62,14 +73,17 @@ func (l *List) Init() *List {
 	return l
 }
 
-// New returns an initialized list.
-func New() *List { return new(List).Init() }
+// New 创建一个链表
+func (l *List) New() *List {
+	return new(List).Init()
+}
 
-// Len returns the number of elements of list l.
-// The complexity is O(1).
-func (l *List) Len() int { return l.len }
+// Len 返回链表中元素的个数，复杂度O(1)
+func (l *List) Len() int {
+	return l.len
+}
 
-// Front returns the first element of list l or nil if the list is empty.
+// Front 返回链表第一个元素或nil
 func (l *List) Front() *Element {
 	if l.len == 0 {
 		return nil
@@ -77,7 +91,7 @@ func (l *List) Front() *Element {
 	return l.root.next
 }
 
-// Back returns the last element of list l or nil if the list is empty.
+// Back 返回链表最后一个元素或nil
 func (l *List) Back() *Element {
 	if l.len == 0 {
 		return nil
@@ -85,14 +99,14 @@ func (l *List) Back() *Element {
 	return l.root.prev
 }
 
-// lazyInit lazily initializes a zero List value.
+// lazyInit 惰性初始化一个0 List值
 func (l *List) lazyInit() {
 	if l.root.next == nil {
 		l.Init()
 	}
 }
 
-// insert inserts e after at, increments l.len, and returns e.
+// insert 在at之后插入e，增加l.len，并返回e
 func (l *List) insert(e, at *Element) *Element {
 	e.prev = at
 	e.next = at.next
@@ -104,21 +118,21 @@ func (l *List) insert(e, at *Element) *Element {
 }
 
 // insertValue is a convenience wrapper for insert(&Element{Value: v}, at).
-func (l *List) insertValue(v any, at *Element) *Element {
+func (l *List) insertValue(v interface{}, at *Element) *Element {
 	return l.insert(&Element{Value: v}, at)
 }
 
-// remove removes e from its list, decrements l.len
+// remove 从链表中删除e, l.len减1
 func (l *List) remove(e *Element) {
 	e.prev.next = e.next
 	e.next.prev = e.prev
-	e.next = nil // avoid memory leaks
-	e.prev = nil // avoid memory leaks
+	e.next = nil // 避免内存泄漏
+	e.prev = nil // 避免内存泄漏
 	e.list = nil
 	l.len--
 }
 
-// move moves e to next to at.
+// move 移动e到at的next.
 func (l *List) move(e, at *Element) {
 	if e == at {
 		return
@@ -132,10 +146,8 @@ func (l *List) move(e, at *Element) {
 	e.next.prev = e
 }
 
-// Remove removes e from l if e is an element of list l.
-// It returns the element value e.Value.
-// The element must not be nil.
-func (l *List) Remove(e *Element) any {
+// Remove 删除链表中的元素e，并返回e.Value。
+func (l *List) Remove(e *Element) interface{} {
 	if e.list == l {
 		// if e.list == l, l must have been initialized when e was inserted
 		// in l or l == nil (e is a zero Element) and l.remove will crash
@@ -144,22 +156,22 @@ func (l *List) Remove(e *Element) any {
 	return e.Value
 }
 
-// PushFront inserts a new element e with value v at the front of list l and returns e.
+// PushFront 将一个值为v的新元素插入链表的第一个位置，返回生成的新元素。
 func (l *List) PushFront(v any) *Element {
 	l.lazyInit()
 	return l.insertValue(v, &l.root)
 }
 
-// PushBack inserts a new element e with value v at the back of list l and returns e.
-func (l *List) PushBack(v any) *Element {
+// PushBack 将一个值为v的新元素插入链表的最后一个位置，返回生成的新元素。
+func (l *List) PushBack(v interface{}) *Element {
 	l.lazyInit()
 	return l.insertValue(v, l.root.prev)
 }
 
-// InsertBefore inserts a new element e with value v immediately before mark and returns e.
+// InsertBefore 将一个值为v的新元素插入到mark前面，并返回生成的新元素。如果mark不是l的元素，l不会被修改。
 // If mark is not an element of l, the list is not modified.
 // The mark must not be nil.
-func (l *List) InsertBefore(v any, mark *Element) *Element {
+func (l *List) InsertBefore(v interface{}, mark *Element) *Element {
 	if mark.list != l {
 		return nil
 	}
@@ -167,7 +179,7 @@ func (l *List) InsertBefore(v any, mark *Element) *Element {
 	return l.insertValue(v, mark.prev)
 }
 
-// InsertAfter inserts a new element e with value v immediately after mark and returns e.
+// InsertAfter 将一个值为v的新元素插入到mark后面，并返回新生成的元素。如果mark不是l的元素，l不会被修改
 // If mark is not an element of l, the list is not modified.
 // The mark must not be nil.
 func (l *List) InsertAfter(v any, mark *Element) *Element {
@@ -178,7 +190,7 @@ func (l *List) InsertAfter(v any, mark *Element) *Element {
 	return l.insertValue(v, mark)
 }
 
-// MoveToFront moves element e to the front of list l.
+// MoveToFront 将元素e移动到链表的第一个位置，如果e不是l的元素，l不会被修改。
 // If e is not an element of l, the list is not modified.
 // The element must not be nil.
 func (l *List) MoveToFront(e *Element) {
@@ -189,7 +201,7 @@ func (l *List) MoveToFront(e *Element) {
 	l.move(e, &l.root)
 }
 
-// MoveToBack moves element e to the back of list l.
+// MoveToBack 将元素e移动到链表的最后一个位置，如果e不是l的元素，l不会被修改
 // If e is not an element of l, the list is not modified.
 // The element must not be nil.
 func (l *List) MoveToBack(e *Element) {
@@ -200,7 +212,7 @@ func (l *List) MoveToBack(e *Element) {
 	l.move(e, l.root.prev)
 }
 
-// MoveBefore moves element e to its new position before mark.
+// MoveBefore 将元素e移动到mark的前面。如果e或mark不是l的元素，或者e==mark，l不会被修改。
 // If e or mark is not an element of l, or e == mark, the list is not modified.
 // The element and mark must not be nil.
 func (l *List) MoveBefore(e, mark *Element) {
@@ -210,7 +222,7 @@ func (l *List) MoveBefore(e, mark *Element) {
 	l.move(e, mark.prev)
 }
 
-// MoveAfter moves element e to its new position after mark.
+// MoveAfter 将元素e移动到mark的后面。如果e或mark不是l的元素，或者e==mark，l不会被修改。
 // If e or mark is not an element of l, or e == mark, the list is not modified.
 // The element and mark must not be nil.
 func (l *List) MoveAfter(e, mark *Element) {
@@ -220,7 +232,7 @@ func (l *List) MoveAfter(e, mark *Element) {
 	l.move(e, mark)
 }
 
-// PushBackList inserts a copy of another list at the back of list l.
+// PushBackList 创建链表other的拷贝，并将链表l的最后一个位置连接到拷贝的第一个位置。
 // The lists l and other may be the same. They must not be nil.
 func (l *List) PushBackList(other *List) {
 	l.lazyInit()
@@ -229,7 +241,7 @@ func (l *List) PushBackList(other *List) {
 	}
 }
 
-// PushFrontList inserts a copy of another list at the front of list l.
+// PushFrontList 创建链表other的拷贝，并将拷贝的最后一个位置连接到链表l的第一个位置
 // The lists l and other may be the same. They must not be nil.
 func (l *List) PushFrontList(other *List) {
 	l.lazyInit()
