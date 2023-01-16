@@ -1,4 +1,4 @@
-package mongo_to_mysql
+package sdk发版管理
 
 import (
 	"fmt"
