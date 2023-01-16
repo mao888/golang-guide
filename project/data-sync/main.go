@@ -1,5 +1,7 @@
 package main
 
+import remote_config "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/remote-config"
+
 func main() {
 	//mongo_to_mysql.RunGame()
 
@@ -38,4 +40,7 @@ func main() {
 
 	// 将 gm-system/m_mails 入库 application_console/mails
 	//mysql_to_mysql.RunMails()
+
+	// 二、Mongo/app_console/remote_config 数据迁移到 ARK application_console/remote_config
+	remote_config.RunRemoteConfig()
 }
