@@ -35,6 +35,7 @@ func RunEnv() {
 	// 3、将mongo数据装入切片
 	envs := make([]*Env, 0)
 	for _, environment := range mEnvironment {
+		fmt.Println(environment.AppID)
 		// Type
 		t := -1
 		if environment.EnvID == 0 {
@@ -55,7 +56,7 @@ func RunEnv() {
 		}
 		env := &Env{
 			//ID:        0,
-			AppID:     environment.AppID,
+			AppID:     int32(environment.AppID),
 			Type:      int32(t),
 			Name:      environment.Name,
 			UpdatedAt: environment.UpdateTime.Unix(),
