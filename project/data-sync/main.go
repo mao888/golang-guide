@@ -45,7 +45,7 @@ func main() {
 
 	// 四、版本检查数据迁移
 	// Mongo/plat_console/environments 数据迁移到 ARK version_console/env
-	//version_console.RunEnv()
+	// version_console.RunEnv()
 
 	// Mongo/plat_console/gamelanguageconfs 数据迁移到 ARK version_console/language
 	// version_console.RunLanguage()
