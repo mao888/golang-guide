@@ -7,12 +7,23 @@ type MEnvironment struct {
 	ID         string     `bson:"_id" json:"_id"`
 	CompanyID  int32      `bson:"company_id" json:"company_id"`
 	GameID     int32      `bson:"game_id" json:"game_id"`
-	AppID      float64    `bson:"app_id" json:"app_id"`
+	AppID      int32      `bson:"app_id" json:"app_id"`
 	EnvID      int32      `bson:"env_id" json:"env_id"` //0开发；1测试；2预发布；3生产；其他为自定义
 	Name       string     `bson:"name" json:"name"`     //环境名称
 	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
 	Enable     bool       `bson:"enable" json:"enable"`
 	DeleteTime *time.Time `bson:"delete_time,omitempty" json:"delete_time,omitempty"`
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+}
+
+// MGameLanguageConf From Mongo plat_console <gamelanguageconfs>
+type MGameLanguageConf struct {
+	ID         string     `bson:"_id" json:"_id"`
+	AppID      int32      `bson:"app_id" json:"app_id"`
+	NameEn     string     `bson:"name_en" json:"name_en"`
+	NameShort  string     `bson:"name_short" json:"name_short"`
+	DefaultLng bool       `bson:"default_lng" json:"default_lng"`
 	CreateTime *time.Time `bson:"create_time" json:"create_time"`
 	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
 }
