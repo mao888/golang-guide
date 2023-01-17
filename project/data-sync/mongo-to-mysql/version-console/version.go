@@ -2,10 +2,13 @@ package version_console
 
 import (
 	"context"
+	"errors"
 	"fmt"
+	gj "github.com/mao888/go-utils/json"
 	gutil "github.com/mao888/go-utils/strings"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
+	"gorm.io/gorm"
 )
 
 // Version mapped from table version_console <version>
@@ -25,6 +28,40 @@ type Version struct {
 	UpdatedAt   int64  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"` // 更新时间
 	CreatedAt   int64  `gorm:"column:created_at;autoCreateTime" json:"created_at"` // 创建时间
 	IsDeleted   int32  `gorm:"column:is_deleted;not null" json:"is_deleted"`       // 是否删除(0否1是)
+}
+
+// VersionConfig 版本配置，包括更新提示、全局配置、语言配置
+type VersionConfig struct {
+	Update *VersionConfigUpdate   `json:"update"` // 更新提示
+	Global []*VersionConfigGlobal `json:"global"` // 全局配置
+	Lang   []*VersionConfigLang   `json:"lang"`   // 语言配置
+}
+type VersionConfigUpdate struct {
+	IsNotice    bool                       `json:"is_notice"`
+	LangType    int32                      `json:"lang_type"`
+	EnableClose bool                       `json:"enable_close"`
+	IsRestart   bool                       `json:"is_restart"`
+	Text        []*VersionConfigUpdateText `json:"text"`
+}
+type VersionConfigUpdateText struct {
+	Lang      string `json:"lang"`
+	LangShort string `json:"lang_short"`
+	IsDefault bool   `json:"is_default"`
+	Text      string `json:"text"`
+}
+type VersionConfigGlobal struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
+}
+type VersionConfigLang struct {
+	Lang      string                  `json:"lang"`
+	LangShort string                  `json:"lang_short"`
+	IsDefault bool                    `json:"is_default"`
+	Args      []*VersionConfigLangArg `json:"args"`
+}
+type VersionConfigLangArg struct {
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }
 
 func RunVersion() {
@@ -94,8 +131,25 @@ func RunVersion() {
 			Where("update_type = ?", parent.UpdateType).
 			Where("status = ?", parent.Status).
 			First(&v).Error
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			v.ID = 0
+		} else if err != nil {
+			fmt.Println("mysql查询version_id错误：", err)
+			return
+		}
+
+		// Config 版本配置，包括更新提示、全局配置、语言配置
+		var config VersionConfig
+		config.Update.EnableClose = version.CloseFlag
+		config.Update.IsNotice = version.NoticeFlag
+		config.Update.IsRestart = version.RestartFlag
+		config.Update.LangType = 1 // ?
+		//config.Update.Text
+
+		configJson, err := gj.Object2JSONE(&config)
 		if err != nil {
-			fmt.Println("mysql查询id错误：", err)
+			fmt.Println(err)
+			return
 		}
 
 		ver := &Version{
@@ -110,7 +164,7 @@ func RunVersion() {
 			GrayScale:   version.GrayScale,
 			Status:      int32(status),
 			PublishTime: version.PublishTime.Unix(),
-			Config:      "",
+			Config:      configJson,
 			UpdatedAt:   version.UpdateTime.Unix(),
 			CreatedAt:   version.CreateTime.Unix(),
 			IsDeleted:   int32(isDeleted),
