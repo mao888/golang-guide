@@ -78,3 +78,16 @@ type KV struct {
 	Key   string `bson:"key" json:"key"`
 	Value string `bson:"value" json:"value"`
 }
+
+type MWhiteList struct {
+	ID         string     `bson:"_id" json:"_id"`
+	CompanyID  int32      `bson:"company_id" json:"company_id"`
+	GameID     int32      `bson:"game_id" json:"game_id"`
+	AppID      int32      `bson:"app_id" json:"app_id"`
+	DevName    string     `bson:"dev_name" json:"dev_name"`
+	DevCode    string     `bson:"dev_code" json:"dev_code"`
+	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
+	Enable     bool       `bson:"enable" json:"enable"`
+	DeleteTime *time.Time `bson:"delete_time,omitempty" json:"delete_time,omitempty"`
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+}

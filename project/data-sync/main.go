@@ -48,5 +48,8 @@ func main() {
 	// version_console.RunEnv()
 
 	// Mongo/plat_console/gamelanguageconfs 数据迁移到 ARK version_console/language
-	// version_console.RunLanguage()
+	//version_console.RunLanguage()
+
+	// Mongo/plat_console/whitelists 数据迁移到 ARK version_console/whitelist
+	// version_console.RunWhitelist()
 }
