@@ -1,0 +1,6 @@
+{"level":"debug","timestamp":"2023-01-19T15:10:47.608+0800","label":"go-zap/go-log.go:38","message":"test debug","s_code":"30800"}
+{"level":"info","timestamp":"2023-01-19T15:10:47.608+0800","label":"go-zap/go-log.go:39","message":"test: info","s_code":"30800"}
+{"level":"debug","timestamp":"2023-01-19T15:10:47.608+0800","label":"go-zap/go-log.go:40","message":"debugf: dddd","s_code":"30800"}
+{"level":"debug","timestamp":"2023-01-19T15:10:47.609+0800","label":"go-zap/go-log.go:41","message":"debugf: dddd","s_code":"30800"}
+{"level":"info","timestamp":"2023-01-19T15:10:47.609+0800","label":"go-zap/go-log.go:42","message":"test: info","s_code":"30800"}
+{"level":"info","timestamp":"2023-01-19T15:10:47.609+0800","label":"go-zap/go-log.go:44","message":"msg1msg2","s_code":"30800","temp_field":"glog is good "}

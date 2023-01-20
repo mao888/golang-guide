@@ -10,7 +10,13 @@ require (
 )
 
 require (
+	go.uber.org/atomic v1.7.0 // indirect
+	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/zap v1.24.0 // indirect
+	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
+)
 
+require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
@@ -26,7 +32,8 @@ require (
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mao888/go-errors v1.0.0 // indirect
-	github.com/mao888/go-utils v1.1.2
+	github.com/mao888/go-log v1.0.7
+	github.com/mao888/go-utils v1.1.3
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect

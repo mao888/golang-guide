@@ -1,5 +1,7 @@
 package main
 
+import version_console "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/version-console"
+
 func main() {
 	//mongo_to_mysql.RunGame()
 
@@ -38,4 +40,21 @@ func main() {
 
 	// 将 gm-system/m_mails 入库 application_console/mails
 	//mysql_to_mysql.RunMails()
+
+	// 三、远程配置数据迁移
+	// Mongo/app_console/remote_config 数据迁移到 ARK application_console/remote_config
+	// remote_config.RunRemoteConfig()
+
+	// 四、版本检查数据迁移
+	// Mongo/plat_console/environments 数据迁移到 ARK version_console/env
+	// version_console.RunEnv()
+
+	// Mongo/plat_console/gamelanguageconfs 数据迁移到 ARK version_console/language
+	//version_console.RunLanguage()
+
+	// Mongo/plat_console/whitelists 数据迁移到 ARK version_console/whitelist
+	// version_console.RunWhitelist()
+
+	// Mongo/plat_console/versions 数据迁移到 ARK version_console/version
+	version_console.RunVersion()
 }
