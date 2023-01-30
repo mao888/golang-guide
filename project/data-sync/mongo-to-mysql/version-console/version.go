@@ -236,7 +236,7 @@ func RunVersion() {
 			continue
 		}
 
-		// 根据ParentID从mongo查询version信息
+		// 根据ParentID从mongo查询父version信息
 		parent := make([]*MVersion, 0)
 		err = coll.Find(context.TODO(), bson.M{"_id": parentID[0].ParentID}).All(&parent)
 		if err != nil {
@@ -245,7 +245,7 @@ func RunVersion() {
 		}
 		fmt.Println("parent:", len(parent))
 
-		// 根据 version中的 app_id 和 env_id 更新mysql对应的 parent_id
+		// 根据 mongo父version中的 app_id 和 env_id 查出mysql父version
 		var v Version
 		err = db2.MySQLClientVersion.Table("version").
 			Joins("inner join env on version.env_id = env.id").
@@ -254,11 +254,12 @@ func RunVersion() {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			v.ParentID = 0
 		} else if err != nil {
-			fmt.Println("mysql查询version_id错误：", err)
+			fmt.Println("根据 mongo父version中的 app_id 和 env_id 查出mysql父version 错误：", err)
 			return
 		}
+		// 更新mysql对应的 parent_id
 		err = db2.MySQLClientVersion.Table("version").Where("id = ?", version.ID).
-			UpdateColumn("parent_id", v.ParentID).Error
+			UpdateColumn("parent_id", v.ID).Error
 		if err != nil {
 			fmt.Println("更新 ParentID 错误", err)
 			return

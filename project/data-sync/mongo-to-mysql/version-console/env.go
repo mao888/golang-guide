@@ -39,11 +39,16 @@ func RunEnv() {
 			continue
 		}
 		// Type
-		if environment.EnvID == 1 {
+		if environment.EnvID == 0 {
+			continue
+		} else if environment.EnvID == 2 {
+			continue
+		} else if environment.EnvID == 1 {
 			environment.EnvID = 2
-		}
-		if environment.EnvID == 3 {
+		} else if environment.EnvID == 3 {
 			environment.EnvID = 1
+		} else {
+			environment.EnvID = 3
 		}
 		// IsDeleted
 		isDeleted := 0
@@ -60,10 +65,13 @@ func RunEnv() {
 			IsDeleted: int32(isDeleted),
 		}
 		envs = append(envs, env)
+
+		err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
 	}
 	// 4、将装有mongo数据的切片入库
 	err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
 	if err != nil {
 		fmt.Println("入mysql错误：", err)
 	}
+
 }

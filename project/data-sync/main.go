@@ -1,7 +1,5 @@
 package main
 
-import version_console "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/version-console"
-
 func main() {
 	//mongo_to_mysql.RunGame()
 
@@ -56,5 +54,5 @@ func main() {
 	// version_console.RunWhitelist()
 
 	// Mongo/plat_console/versions 数据迁移到 ARK version_console/version
-	version_console.RunVersion()
+	//version_console.RunVersion()
 }

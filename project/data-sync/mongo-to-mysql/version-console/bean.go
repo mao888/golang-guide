@@ -2,13 +2,16 @@ package version_console
 
 import "time"
 
+// app : env      1 : 多
+// env : version  1 : 多
+
 // MEnvironment From Mongo plat_console <environments>
 type MEnvironment struct {
 	ID         string     `bson:"_id" json:"_id"`
 	CompanyID  int32      `bson:"company_id" json:"company_id"`
 	GameID     int32      `bson:"game_id" json:"game_id"`
 	AppID      int32      `bson:"app_id" json:"app_id"`
-	EnvID      int32      `bson:"env_id" json:"env_id"` //0开发；1测试；2预发布；3生产；其他为自定义
+	EnvID      int32      `bson:"env_id" json:"env_id"` //0开发(bu)；1测试；2预发布(bu)；3生产；其他为自定义
 	Name       string     `bson:"name" json:"name"`     //环境名称
 	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
 	Enable     bool       `bson:"enable" json:"enable"`
