@@ -44,7 +44,7 @@ type MVersion struct {
 	UpdateType      int32      `bson:"update_type" json:"update_type"`           //1强更;2非强更;3热更新
 	GrayFlag        bool       `bson:"gray_flag" json:"gray_flag"`               //false非灰度发布；true灰度发布  默认false
 	GrayScale       int32      `bson:"gray_scale" json:"gray_scale"`             //灰度发布值 默认0
-	Status          int32      `bson:"status" json:"status"`                     //0未发布；1已发布；2已发布并且已推送到生成；3已废弃  默认0
+	Status          int32      `bson:"status" json:"status"`                     //0未发布；1已发布；2已发布并且已推送到生产；3已废弃  默认0
 	NoticeFlag      bool       `bson:"notice_flag" json:"notice_flag"`           //true显示新版本提示
 	NoticeText      string     `bson:"notice_text" json:"notice_text"`           //新版本提示内容
 	NoticeLngText   []LngText  `bson:"notice_lng_text" json:"notice_lng_text"`   //选择多种语言时起作用

@@ -3,6 +3,9 @@ package version_console
 import (
 	"context"
 	"fmt"
+	"github.com/mao888/go-utils/constants"
+	gj "github.com/mao888/go-utils/json"
+	gutil "github.com/mao888/go-utils/strings"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
 )
@@ -18,32 +21,39 @@ type Env struct {
 	IsDeleted int32  `gorm:"column:is_deleted;not null" json:"is_deleted"`       // 是否删除(0否1是)
 }
 
-func RunEnv() {
+func RunEnvAndVersion() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("plat_console")
-	coll := db.Collection("environments")
+	collEnv := db.Collection("environments")
+	collVersion := db.Collection("versions")
 
 	// 2、从mongo查询数据
+	// env
 	mEnvironment := make([]*MEnvironment, 0)
-	err := coll.Find(context.TODO(), bson.M{}).All(&mEnvironment)
+	err := collEnv.Find(context.TODO(), bson.M{}).All(&mEnvironment)
 	if err != nil {
 		fmt.Println("Mongo查询错误：", err)
 		return
 	}
-	fmt.Println(mEnvironment)
+	//fmt.Println(mEnvironment)
 
 	// 3、将mongo数据装入切片
-	envs := make([]*Env, 0)
+	//envs := make([]*Env, 0)
+	countCha := 0
+	countRu := 0
 	for _, environment := range mEnvironment {
-		if environment.EnvID == 0 || environment.EnvID == 2 || environment.EnvID >= 3 {
+
+		if environment.EnvID != 1 || environment.AppID != 232323 {
 			continue
 		}
+
+		arkEnvID := int(environment.EnvID)
+		// 1、将mongo/environments -> mysql/env,并获得自增env.id
 		// Type
-		if environment.EnvID == 0 {
+		if environment.EnvID == 0 || environment.EnvID == 2 {
 			continue
-		} else if environment.EnvID == 2 {
-			continue
-		} else if environment.EnvID == 1 {
+		}
+		if environment.EnvID == 1 {
 			environment.EnvID = 2
 		} else if environment.EnvID == 3 {
 			environment.EnvID = 1
@@ -64,14 +74,305 @@ func RunEnv() {
 			CreatedAt: environment.CreateTime.Unix(),
 			IsDeleted: int32(isDeleted),
 		}
-		envs = append(envs, env)
+		//envs = append(envs, env)
+		//err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
+		err = db2.MySQLClientVersion.Table("env").Create(env).Error
+		if err != nil {
+			fmt.Println("将mongo/environments -> mysql/env", err)
+			return
+		}
+		//fmt.Println("env.id = ", env.ID)
 
-		err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
-	}
-	// 4、将装有mongo数据的切片入库
-	err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
-	if err != nil {
-		fmt.Println("入mysql错误：", err)
-	}
+		// 2、根据 mysql/env app_id、type(原arkEnvID) 匹配 mongo/versions app_id、env_id 并mysql/env.id 并赋值 mongo/version.env_id 并入库mysql/version
+		mVersion := make([]*MVersion, 0)
+		err = collVersion.Find(context.TODO(), bson.M{"app_id": env.AppID, "env_id": arkEnvID}).All(&mVersion)
+		if err != nil {
+			fmt.Println("匹配 mongo/versions app_id、env_id错误：", err)
+			return
+		}
+		countCha = countCha + len(mVersion)
+		fmt.Printf("env: %d下共有version数：%d", env.ID, countCha)
+		fmt.Println()
+		//for _, m := range mVersion {
+		//	m.EnvID = env.ID
+		//	fmt.Println(m.EnvID)
+		//}
+		// 3、如果mongo/versions parent_id 为空 入库mysql/version
+		mapVersion := make(map[string]int32, 0)
+		for _, version := range mVersion {
+			fmt.Println("version1:", version)
+			if version.ParentID != constants.EmptyString {
+				continue
+			}
 
+			// type 版本类型 1市场版本 2热更版本
+			t := 0
+			if version.UpdateType == 1 || version.UpdateType == 2 {
+				t = 1
+			}
+			if version.UpdateType == 3 {
+				t = 2
+			}
+
+			// Status 版本状态 1未发布 2已发布 3已废弃
+			if version.Status == 2 {
+				continue
+			}
+			status := 0
+			if version.Status == 0 {
+				status = 1
+			} else if version.Status == 1 {
+				status = 2
+			} else if version.Status == 3 {
+				status = 3
+			}
+
+			// IsGray 是否灰度 0未发布无灰度 1是 2否
+			isGray := 0
+			if version.GrayFlag == true {
+				isGray = 1
+			} else if version.GrayFlag == false {
+				isGray = 2
+			}
+
+			// IsDeleted 是否删除(0否1是)
+			isDeleted := 0
+			if version.DeleteTime != nil {
+				isDeleted = 1
+			}
+
+			// PublishTime 发布时间
+			var publishTime int64
+			if version.PublishTime != nil {
+				publishTime = version.PublishTime.Unix()
+			} else if version.PublishTime == nil {
+				publishTime = 0
+			}
+
+			// Config 版本配置，包括更新提示、全局配置、语言配置
+			var config VersionConfig
+			// 更新提示
+			var versionConfigUpdate VersionConfigUpdate
+			versionConfigUpdate.EnableClose = version.CloseFlag
+			versionConfigUpdate.IsNotice = version.NoticeFlag
+			versionConfigUpdate.IsRestart = version.RestartFlag
+			if version.MultiLngFlag == true {
+				versionConfigUpdate.LangType = 2
+			} else if version.MultiLngFlag == false {
+				versionConfigUpdate.LangType = 1
+			}
+
+			for _, text := range version.NoticeLngText {
+				df := false
+				if version.DefaultLanguage == text.Lng {
+					df = true
+				}
+				t := &VersionConfigUpdateText{
+					Lang:      "",
+					LangShort: text.Lng,
+					IsDefault: df,
+					Text:      text.Text,
+				}
+				versionConfigUpdate.Text = append(versionConfigUpdate.Text, t)
+			}
+			config.Update = &versionConfigUpdate
+
+			// 全局配置
+			for _, kv := range version.GlobalConf {
+				versionConfigGlobal := &VersionConfigGlobal{
+					Key:   kv.Key,
+					Value: kv.Value,
+				}
+				config.Global = append(config.Global, versionConfigGlobal)
+			}
+
+			// 语言配置
+			for _, conf := range version.LanguageConf {
+				var lang VersionConfigLang
+
+				lang.LangShort = conf.Language
+				lang.IsDefault = conf.DefaultLng
+				for _, kv := range conf.ConfList {
+					k := &VersionConfigLangArg{
+						Key:   kv.Key,
+						Value: kv.Value,
+					}
+					lang.Args = append(lang.Args, k)
+				}
+			}
+
+			configJson, err := gj.Object2JSONE(&config)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+
+			ver := &Version{
+				//ID:          0,
+				ParentID:    0,
+				EnvID:       env.ID,
+				Version:     version.VersionName,
+				VersionNum:  gutil.VersionOrdinal(version.VersionName),
+				Type:        int32(t),
+				UpdateType:  version.UpdateType,
+				IsGray:      int32(isGray),
+				GrayScale:   version.GrayScale,
+				Status:      int32(status),
+				PublishTime: publishTime,
+				Config:      configJson,
+				UpdatedAt:   version.UpdateTime.Unix(),
+				CreatedAt:   version.CreateTime.Unix(),
+				IsDeleted:   int32(isDeleted),
+			}
+			// mongo/versions parent_id 为空的 入库mysql/version
+			err = db2.MySQLClientVersion.Table("version").Create(ver).Error
+			fmt.Println("version1插入：", ver)
+			countRu++
+			if err != nil {
+				fmt.Println("mongo/versions parent_id 为空的 入库mysql/version 错误：", err)
+				return
+			}
+			mapVersion[version.ID] = ver.ID
+		}
+		//fmt.Printf("mapVersion := %v", mapVersion)
+		fmt.Println("入库1:", countRu)
+
+		// 4、mongo/versions parent_id 不为空 入库mysql/version
+		for _, version := range mVersion {
+			fmt.Println("version2:", version)
+			if version.ParentID == constants.EmptyString {
+				continue
+			}
+			// type 版本类型 1市场版本 2热更版本
+			t := 0
+			if version.UpdateType == 1 || version.UpdateType == 2 {
+				t = 1
+			}
+			if version.UpdateType == 3 {
+				t = 2
+			}
+
+			// Status 版本状态 1未发布 2已发布 3已废弃
+			if version.Status == 2 {
+				continue
+			}
+			status := 0
+			if version.Status == 0 {
+				status = 1
+			} else if version.Status == 1 {
+				status = 2
+			} else if version.Status == 3 {
+				status = 3
+			}
+
+			// IsGray 是否灰度 0未发布无灰度 1是 2否
+			isGray := 0
+			if version.GrayFlag == true {
+				isGray = 1
+			} else if version.GrayFlag == false {
+				isGray = 2
+			}
+
+			// IsDeleted 是否删除(0否1是)
+			isDeleted := 0
+			if version.DeleteTime != nil {
+				isDeleted = 1
+			}
+
+			// PublishTime 发布时间
+			var publishTime int64
+			if version.PublishTime != nil {
+				publishTime = version.PublishTime.Unix()
+			} else if version.PublishTime == nil {
+				publishTime = 0
+			}
+
+			// Config 版本配置，包括更新提示、全局配置、语言配置
+			var config VersionConfig
+			// 更新提示
+			var versionConfigUpdate VersionConfigUpdate
+			versionConfigUpdate.EnableClose = version.CloseFlag
+			versionConfigUpdate.IsNotice = version.NoticeFlag
+			versionConfigUpdate.IsRestart = version.RestartFlag
+			if version.MultiLngFlag == true {
+				versionConfigUpdate.LangType = 2
+			} else if version.MultiLngFlag == false {
+				versionConfigUpdate.LangType = 1
+			}
+
+			for _, text := range version.NoticeLngText {
+				df := false
+				if version.DefaultLanguage == text.Lng {
+					df = true
+				}
+				t := &VersionConfigUpdateText{
+					Lang:      "",
+					LangShort: text.Lng,
+					IsDefault: df,
+					Text:      text.Text,
+				}
+				versionConfigUpdate.Text = append(versionConfigUpdate.Text, t)
+			}
+			config.Update = &versionConfigUpdate
+
+			// 全局配置
+			for _, kv := range version.GlobalConf {
+				versionConfigGlobal := &VersionConfigGlobal{
+					Key:   kv.Key,
+					Value: kv.Value,
+				}
+				config.Global = append(config.Global, versionConfigGlobal)
+			}
+
+			// 语言配置
+			for _, conf := range version.LanguageConf {
+				var lang VersionConfigLang
+
+				lang.LangShort = conf.Language
+				lang.IsDefault = conf.DefaultLng
+				for _, kv := range conf.ConfList {
+					k := &VersionConfigLangArg{
+						Key:   kv.Key,
+						Value: kv.Value,
+					}
+					lang.Args = append(lang.Args, k)
+				}
+			}
+
+			configJson, err := gj.Object2JSONE(&config)
+			if err != nil {
+				fmt.Println(err)
+				return
+			}
+
+			ver := &Version{
+				//ID:          0,
+				ParentID:    mapVersion[version.ParentID],
+				EnvID:       env.ID,
+				Version:     version.VersionName,
+				VersionNum:  gutil.VersionOrdinal(version.VersionName),
+				Type:        int32(t),
+				UpdateType:  version.UpdateType,
+				IsGray:      int32(isGray),
+				GrayScale:   version.GrayScale,
+				Status:      int32(status),
+				PublishTime: publishTime,
+				Config:      configJson,
+				UpdatedAt:   version.UpdateTime.Unix(),
+				CreatedAt:   version.CreateTime.Unix(),
+				IsDeleted:   int32(isDeleted),
+			}
+			// mongo/versions parent_id 不为空的 入库mysql/version
+			err = db2.MySQLClientVersion.Table("version").Create(ver).Error
+			fmt.Println("version2插入:", env)
+			countRu++
+			if err != nil {
+				fmt.Println("mongo/versions parent_id 不为空的 入库mysql/version 错误：", err)
+				return
+			}
+		}
+		fmt.Println("入库2:", countRu)
+	}
+	fmt.Println("countCha:", countCha)
+	fmt.Println("countRu:", countRu)
 }
