@@ -91,10 +91,10 @@ func RunVersion() {
 		}
 
 		// Status 版本状态 1未发布 2已发布 3已废弃
-		if version.Status == 2 {
-			continue
-		}
 		status := 0
+		if version.Status == 2 {
+			status = 1
+		}
 		if version.Status == 0 {
 			status = 1
 		} else if version.Status == 1 {

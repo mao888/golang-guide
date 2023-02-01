@@ -43,10 +43,6 @@ func RunEnvAndVersion() {
 	countRu := 0
 	for _, environment := range mEnvironment {
 
-		if environment.EnvID != 1 || environment.AppID != 232323 {
-			continue
-		}
-
 		arkEnvID := int(environment.EnvID)
 		// 1、将mongo/environments -> mysql/env,并获得自增env.id
 		// Type
@@ -115,10 +111,10 @@ func RunEnvAndVersion() {
 			}
 
 			// Status 版本状态 1未发布 2已发布 3已废弃
-			if version.Status == 2 {
-				continue
-			}
 			status := 0
+			if version.Status == 2 {
+				status = 1
+			}
 			if version.Status == 0 {
 				status = 1
 			} else if version.Status == 1 {
@@ -253,10 +249,10 @@ func RunEnvAndVersion() {
 			}
 
 			// Status 版本状态 1未发布 2已发布 3已废弃
-			if version.Status == 2 {
-				continue
-			}
 			status := 0
+			if version.Status == 2 {
+				status = 1
+			}
 			if version.Status == 0 {
 				status = 1
 			} else if version.Status == 1 {
