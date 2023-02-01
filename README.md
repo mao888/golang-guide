@@ -90,8 +90,6 @@
 #### 资料库
 * [**golang学习路线**](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
 * [超高质量网站](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/%E8%B6%85%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md) (必看👍 )
-* [Go学习开发地图](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/Go%E5%AD%A6%E4%B9%A0%E5%BC%80%E5%8F%91%E5%9C%B0%E5%9B%BE.png)
-* [go进阶14讲](https://github.com/mao888/golang-guide/tree/main/golang/go-study/go%E8%BF%9B%E9%98%B614%E8%AE%B2)
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
 内包含：
 #### 面经
