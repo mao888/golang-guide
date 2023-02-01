@@ -927,7 +927,7 @@ bucket数据结构指示下一个bucket的指针称为overflow bucket，意为�
 #### 增量扩容
 
 当负载因子过大时，就新建一个bucket，新的bucket长度是原来的2倍，然后旧bucket数据搬迁到新的bucket。
-考虑到如果map存储了数以亿计的key-value，一次性搬迁将会造成比较大的延时，Go采用逐步搬迁策略，即每次访问map时都会触发一次搬迁，每次搬迁2个键值对。
+考虑到如果map存储了数以亿计的key-value，一次性搬迁将会造成比较大的延时，Go采用逐步搬迁策略，即每次访问map时都会触发一次搬迁，每次搬迁2个bucket。
 
 下图展示了包含一个bucket满载的map(为了描述方便，图中bucket省略了value区域):
 
