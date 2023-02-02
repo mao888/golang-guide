@@ -70,11 +70,9 @@ func RunEnvAndVersion() {
 			CreatedAt: environment.CreateTime.Unix(),
 			IsDeleted: int32(isDeleted),
 		}
-		//envs = append(envs, env)
-		//err = db2.MySQLClientVersion.Table("env").CreateInBatches(envs, len(envs)).Error
 		err = db2.MySQLClientVersion.Table("env").Create(env).Error
 		if err != nil {
-			fmt.Println("将mongo/environments -> mysql/env", err)
+			fmt.Println("将mongo/environments -> mysql/env 错误", err)
 			return
 		}
 		//fmt.Println("env.id = ", env.ID)
@@ -87,12 +85,8 @@ func RunEnvAndVersion() {
 			return
 		}
 		countCha = countCha + len(mVersion)
-		fmt.Printf("env: %d下共有version数：%d", env.ID, countCha)
-		fmt.Println()
-		//for _, m := range mVersion {
-		//	m.EnvID = env.ID
-		//	fmt.Println(m.EnvID)
-		//}
+		fmt.Printf("env: %d 下共有version数: %d \n", env.ID, countCha)
+
 		// 3、如果mongo/versions parent_id 为空 入库mysql/version
 		mapVersion := make(map[string]int32, 0)
 		for _, version := range mVersion {
@@ -222,12 +216,12 @@ func RunEnvAndVersion() {
 			}
 			// mongo/versions parent_id 为空的 入库mysql/version
 			err = db2.MySQLClientVersion.Table("version").Create(ver).Error
-			fmt.Println("version1插入：", ver)
-			countRu++
 			if err != nil {
 				fmt.Println("mongo/versions parent_id 为空的 入库mysql/version 错误：", err)
 				return
 			}
+			fmt.Println("version1插入：", ver)
+			countRu++
 			mapVersion[version.ID] = ver.ID
 		}
 		//fmt.Printf("mapVersion := %v", mapVersion)
@@ -360,12 +354,12 @@ func RunEnvAndVersion() {
 			}
 			// mongo/versions parent_id 不为空的 入库mysql/version
 			err = db2.MySQLClientVersion.Table("version").Create(ver).Error
-			fmt.Println("version2插入:", env)
-			countRu++
 			if err != nil {
 				fmt.Println("mongo/versions parent_id 不为空的 入库mysql/version 错误：", err)
 				return
 			}
+			fmt.Println("version2插入:", env)
+			countRu++
 		}
 		fmt.Println("入库2:", countRu)
 	}
