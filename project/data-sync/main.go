@@ -58,5 +58,5 @@ func main() {
 
 	// 五、bi数据工具数据迁移
 	// Mongo/rambler/thirdadvconfigs 数据迁移到 ARK admin_console/bi_data
-	// bi_data.RunBiData()
+	//bi_data.RunBiData()
 }
