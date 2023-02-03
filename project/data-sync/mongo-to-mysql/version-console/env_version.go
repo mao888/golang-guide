@@ -14,7 +14,7 @@ import (
 type Env struct {
 	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`  // 主键
 	AppID     int32  `gorm:"column:app_id;not null" json:"app_id"`               // 应用id
-	Type      int32  `gorm:"column:type;not null" json:"type"`                   // 环境类型 0未知 1生产 2测试 3自定义
+	Type      int32  `gorm:"column:type;not null" json:"type"`                   // 环境类型 0未知 1测试  3生产 4 自定义
 	Name      string `gorm:"column:name;not null" json:"name"`                   // 环境名称
 	UpdatedAt int64  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"` // 更新时间
 	CreatedAt int64  `gorm:"column:created_at;autoCreateTime" json:"created_at"` // 创建时间
@@ -49,12 +49,8 @@ func RunEnvAndVersion() {
 		if environment.EnvID == 0 || environment.EnvID == 2 {
 			continue
 		}
-		if environment.EnvID == 1 {
-			environment.EnvID = 2
-		} else if environment.EnvID == 3 {
-			environment.EnvID = 1
-		} else {
-			environment.EnvID = 3
+		if environment.EnvID != 1 && environment.EnvID != 3 {
+			environment.EnvID = 4
 		}
 		// IsDeleted
 		isDeleted := 0
