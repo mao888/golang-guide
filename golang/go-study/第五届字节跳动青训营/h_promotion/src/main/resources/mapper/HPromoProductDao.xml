@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HPromoProductDao">
+
+    <resultMap type="com.camp.promotion.entity.HPromoProduct" id="HPromoProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="promoId" column="promo_id" jdbcType="INTEGER"/>
+        <result property="promoName" column="promo_name" jdbcType="VARCHAR"/>
+        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+        <result property="skuId" column="sku_id" jdbcType="INTEGER"/>
+        <result property="promoStock" column="promo_stock" jdbcType="INTEGER"/>
+        <result property="promoPrice" column="promo_price" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="queryByPromoIdAndSkuId" resultMap="HPromoProductMap">
+        select id,
+               promo_id,
+               promo_name,
+               spu_id,
+               sku_id,
+               promo_stock,
+               promo_price,
+               create_time,
+               update_time
+        from h_promo_product
+        where promo_id = #{promoId}
+          and sku_id = #{skuId}
+          and spu_id = #{spuId}
+    </select>
+
+    <update id="decreaseStock">
+        update h_promo_product
+        set promo_stock = promo_stock - #{quantity}
+        where promo_stock >= #{quantity}
+        and promo_id = #{promoId}
+        and sku_id = #{skuId}
+    </update>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HPromoProductMap">
+        select id,
+               promo_id,
+               promo_name,
+               spu_id,
+               sku_id,
+               promo_stock,
+               promo_price,
+               create_time,
+               update_time
+        from h_promo_product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HPromoProductMap">
+        select
+        id, promo_id, promo_name, spu_id, sku_id, promo_stock, promo_price, create_time, update_time
+        from h_promo_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="promoId != null">
+                and promo_id = #{promoId}
+            </if>
+            <if test="promoName != null and promoName != ''">
+                and promo_name = #{promoName}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="promoStock != null">
+                and promo_stock = #{promoStock}
+            </if>
+            <if test="promoPrice != null">
+                and promo_price = #{promoPrice}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_promo_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="promoId != null">
+                and promo_id = #{promoId}
+            </if>
+            <if test="promoName != null and promoName != ''">
+                and promo_name = #{promoName}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="promoStock != null">
+                and promo_stock = #{promoStock}
+            </if>
+            <if test="promoPrice != null">
+                and promo_price = #{promoPrice}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into h_promo_product(id, promo_id, promo_name, spu_id, sku_id, promo_stock, promo_price, create_time,
+                                    update_time)
+        values (#{id}, #{promoId}, #{promoName}, #{spuId}, #{skuId}, #{promoStock}, #{promoPrice}, #{createTime},
+                #{updateTime})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into h_promo_product(id, promo_id, promo_name, spu_id, sku_id, promo_stock, promo_price, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.id}, #{entity.promoId}, #{entity.promoName}, #{entity.spuId}, #{entity.skuId}, #{entity.promoStock},
+            #{entity.promoPrice}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_promo_product(promo_id, promo_name, spu_id, sku_id, promo_stock, promo_price, create_time,
+        update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.promoId}, #{entity.promoName}, #{entity.spuId}, #{entity.skuId}, #{entity.promoStock},
+            #{entity.promoPrice}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        promo_id = values(promo_id),
+        promo_name = values(promo_name),
+        spu_id = values(spu_id),
+        sku_id = values(sku_id),
+        promo_stock = values(promo_stock),
+        promo_price = values(promo_price),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_promo_product
+        <set>
+            <if test="promoId != null">
+                promo_id = #{promoId},
+            </if>
+            <if test="promoName != null and promoName != ''">
+                promo_name = #{promoName},
+            </if>
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="promoStock != null">
+                promo_stock = #{promoStock},
+            </if>
+            <if test="promoPrice != null">
+                promo_price = #{promoPrice},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from h_promo_product
+        where id = #{id}
+    </delete>
+
+</mapper>
+

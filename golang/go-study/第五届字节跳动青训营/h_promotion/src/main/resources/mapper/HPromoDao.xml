@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HPromoDao">
+
+    <resultMap type="com.camp.promotion.entity.HPromo" id="HPromoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="promoName" column="promo_name" jdbcType="VARCHAR"/>
+        <result property="startDate" column="start_date" jdbcType="TIMESTAMP"/>
+        <result property="endDate" column="end_date" jdbcType="TIMESTAMP"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HPromoMap">
+        select id,
+               promo_name,
+               start_date,
+               end_date,
+               status,
+               create_time,
+               update_time
+        from h_promo
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HPromoMap">
+        select
+        id, promo_name, start_date, end_date, status, create_time, update_time
+        from h_promo
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="promoName != null and promoName != ''">
+                and promo_name = #{promoName}
+            </if>
+            <if test="startDate != null">
+                and start_date = #{startDate}
+            </if>
+            <if test="endDate != null">
+                and end_date = #{endDate}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_promo
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="promoName != null and promoName != ''">
+                and promo_name = #{promoName}
+            </if>
+            <if test="startDate != null">
+                and start_date = #{startDate}
+            </if>
+            <if test="endDate != null">
+                and end_date = #{endDate}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into h_promo(id, promo_name, start_date, end_date, status, create_time, update_time)
+        values (#{id}, #{promoName}, #{startDate}, #{endDate}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into h_promo(promo_name, start_date, end_date, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.promoName}, #{entity.startDate}, #{entity.endDate}, #{entity.status}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch">
+        insert into h_promo(promo_name, start_date, end_date, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.promoName}, #{entity.startDate}, #{entity.endDate}, #{entity.status}, #{entity.createTime},
+            #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        promo_name = values(promo_name),
+        start_date = values(start_date),
+        end_date = values(end_date),
+        status = values(status),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_promo
+        <set>
+            <if test="promoName != null and promoName != ''">
+                promo_name = #{promoName},
+            </if>
+            <if test="startDate != null">
+                start_date = #{startDate},
+            </if>
+            <if test="endDate != null">
+                end_date = #{endDate},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from h_promo
+        where id = #{id}
+    </delete>
+
+</mapper>
+

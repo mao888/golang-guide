@@ -1,7 +1,5 @@
 package main
 
-import version_console "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/version-console"
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -9,7 +7,7 @@ func main() {
 	// mongo_to_mysql.RunSdkProject()
 
 	// 将mongo数据 plat_console/projectversions 迁移到mysql中的 admin_console/sdk_release_record表
-	// mongo_to_mysql.RunSdkReleaseRecord()
+	//sdk_release.RunSdkReleaseRecord()
 
 	// 更新 sdk_release_record表中 version_number 字段为 可排序字段 version_ordinal
 	// mongo_to_mysql.VersionNumberToOrdinal()
@@ -47,7 +45,7 @@ func main() {
 
 	// 四、版本检查数据迁移
 	// Mongo/plat_console/environments 数据迁移到 ARK version_console/env
-	version_console.RunEnvAndVersion()
+	//version_console.RunEnvAndVersion()
 
 	// Mongo/plat_console/gamelanguageconfs 数据迁移到 ARK version_console/language
 	//version_console.RunLanguage()

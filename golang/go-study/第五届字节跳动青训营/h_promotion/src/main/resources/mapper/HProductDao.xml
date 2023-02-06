@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HProductDao">
+
+    <resultMap type="com.camp.promotion.entity.HProduct" id="HProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="categoryId" column="category_id" jdbcType="INTEGER"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="subtitle" column="subtitle" jdbcType="VARCHAR"/>
+        <result property="mainImage" column="main_image" jdbcType="VARCHAR"/>
+        <result property="subImages" column="sub_images" jdbcType="VARCHAR"/>
+        <result property="detail" column="detail" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="categoryData" column="category_data" jdbcType="VARCHAR"/>
+        <result property="specData" column="spec_data" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HProductMap">
+        select id,
+               category_id,
+               shop_id,
+               title,
+               subtitle,
+               main_image,
+               sub_images,
+               detail,
+               price,
+               category_data,
+               spec_data,
+               status,
+               create_time,
+               update_time
+        from h_product
+        where id = #{id}
+    </select>
+
+    <select id="queryByIdList" resultMap="HProductMap">
+        select id,
+               category_id,
+               shop_id,
+               title,
+               subtitle,
+               main_image,
+               sub_images,
+               detail,
+               price,
+               category_data,
+               spec_data,
+               status,
+               create_time,
+               update_time
+        from h_product
+        where id in
+              <foreach collection="ids" item="id" index="index" open="(" close=")" separator=",">
+                  #{id}
+              </foreach>
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HProductMap">
+        select
+        id, category_id, shop_id, title, subtitle, main_image, sub_images, detail, price, category_data, spec_data,
+        status, create_time, update_time
+        from h_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="subtitle != null and subtitle != ''">
+                and subtitle = #{subtitle}
+            </if>
+            <if test="mainImage != null and mainImage != ''">
+                and main_image = #{mainImage}
+            </if>
+            <if test="subImages != null and subImages != ''">
+                and sub_images = #{subImages}
+            </if>
+            <if test="detail != null and detail != ''">
+                and detail = #{detail}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="categoryData != null and categoryData != ''">
+                and category_data = #{categoryData}
+            </if>
+            <if test="specData != null and specData != ''">
+                and spec_data = #{specData}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="categoryId != null">
+                and category_id = #{categoryId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="title != null and title != ''">
+                and title = #{title}
+            </if>
+            <if test="subtitle != null and subtitle != ''">
+                and subtitle = #{subtitle}
+            </if>
+            <if test="mainImage != null and mainImage != ''">
+                and main_image = #{mainImage}
+            </if>
+            <if test="subImages != null and subImages != ''">
+                and sub_images = #{subImages}
+            </if>
+            <if test="detail != null and detail != ''">
+                and detail = #{detail}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="categoryData != null and categoryData != ''">
+                and category_data = #{categoryData}
+            </if>
+            <if test="specData != null and specData != ''">
+                and spec_data = #{specData}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into h_product(category_id, shop_id, title, subtitle, main_image, sub_images, detail, price,
+                              category_data, spec_data, status, create_time, update_time)
+        values (#{categoryId}, #{shopId}, #{title}, #{subtitle}, #{mainImage}, #{subImages}, #{detail}, #{price},
+                #{categoryData}, #{specData}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_product(category_id, shop_id, title, subtitle, main_image, sub_images, detail, price,
+        category_data, spec_data, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.categoryId}, #{entity.shopId}, #{entity.title}, #{entity.subtitle}, #{entity.mainImage},
+            #{entity.subImages}, #{entity.detail}, #{entity.price}, #{entity.categoryData}, #{entity.specData},
+            #{entity.status}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_product(category_id, shop_id, title, subtitle, main_image, sub_images, detail, price,
+        category_data, spec_data, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.categoryId}, #{entity.shopId}, #{entity.title}, #{entity.subtitle}, #{entity.mainImage},
+            #{entity.subImages}, #{entity.detail}, #{entity.price}, #{entity.categoryData}, #{entity.specData},
+            #{entity.status}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        category_id = values(category_id),
+        shop_id = values(shop_id),
+        title = values(title),
+        subtitle = values(subtitle),
+        main_image = values(main_image),
+        sub_images = values(sub_images),
+        detail = values(detail),
+        price = values(price),
+        category_data = values(category_data),
+        spec_data = values(spec_data),
+        status = values(status),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_product
+        <set>
+            <if test="categoryId != null">
+                category_id = #{categoryId},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId},
+            </if>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="subtitle != null and subtitle != ''">
+                subtitle = #{subtitle},
+            </if>
+            <if test="mainImage != null and mainImage != ''">
+                main_image = #{mainImage},
+            </if>
+            <if test="subImages != null and subImages != ''">
+                sub_images = #{subImages},
+            </if>
+            <if test="detail != null and detail != ''">
+                detail = #{detail},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="categoryData != null and categoryData != ''">
+                category_data = #{categoryData},
+            </if>
+            <if test="specData != null and specData != ''">
+                spec_data = #{specData},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from h_product
+        where id = #{id}
+    </delete>
+
+</mapper>
+

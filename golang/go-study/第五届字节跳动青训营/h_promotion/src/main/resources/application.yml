@@ -1,0 +1,70 @@
+server:
+  port: 8999
+  tomcat:
+    connection-timeout: 1000
+    threads:
+      max: 500
+      min-spare: 100
+    accept-count: 1000
+
+
+spring:
+  application:
+    name: h_promotion
+  datasource:
+    url: jdbc:mysql://{ip}:3306/big_promotion?useSSL=false&autoReconnect=true&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password:
+    # 指定为HikariDataSource
+    type: com.zaxxer.hikari.HikariDataSource
+    # hikari连接池配置
+    hikari:
+      #连接池名
+      pool-name: h_promotion
+      #最小空闲连接数
+      minimum-idle: 5
+      # 空闲连接存活最大时间，默认10分钟
+      idle-timeout: 600000
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 20
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认1秒
+      connection-timeout: 1000
+      # 连接测试query
+      connection-test-query: SELECT 1
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+  redis:
+    host:  # Redis服务器地址
+    port: 6379  # Redis服务器连接端口
+    connect-timeout: 100 # 连接超时时间（毫秒）
+    timeout: 1000 # 操作超时时间（毫秒）
+    lettuce:
+      pool:
+        max-active: 20  # 连接池最大连接数（使用负值表示没有限制） 默认 8
+        max-wait: 100   # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+        max-idle: 8    # 连接池中的最大空闲连接 默认 8
+        min-idle: 0    # 连接池中的最小空闲连接 默认 0
+
+mybatis:
+  # 映射文件所在路径
+  mapper-locations: classpath:mapper/*.xml
+
+worker:
+  id: 1
+
+rocketmq:
+  nameserver:
+    addr: {ip}:9876
+  topic:
+    name: promotion_craete_order_topic
+
+
+logging:
+  config: classpath:log4j2.xml

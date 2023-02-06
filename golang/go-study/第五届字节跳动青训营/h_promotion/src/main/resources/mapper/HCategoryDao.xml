@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HCategoryDao">
+
+    <resultMap type="com.camp.promotion.entity.HCategory" id="HCategoryMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="parentId" column="parent_id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="beParent" column="be_parent" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="sortOrder" column="sort_order" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HCategoryMap">
+        select id,
+               parent_id,
+               name,
+               level,
+               be_parent,
+               status,
+               sort_order,
+               create_time,
+               update_time
+        from h_category
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HCategoryMap">
+        select
+        id, parent_id, name, level, be_parent, status, sort_order, create_time, update_time
+        from h_category
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="beParent != null">
+                and be_parent = #{beParent}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="sortOrder != null">
+                and sort_order = #{sortOrder}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_category
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="parentId != null">
+                and parent_id = #{parentId}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="level != null">
+                and level = #{level}
+            </if>
+            <if test="beParent != null">
+                and be_parent = #{beParent}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="sortOrder != null">
+                and sort_order = #{sortOrder}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into h_category(parent_id, name, level, be_parent, status, sort_order, create_time, update_time)
+        values (#{parentId}, #{name}, #{level}, #{beParent}, #{status}, #{sortOrder}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_category(parent_id, name, level, be_parent, status, sort_order, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.parentId}, #{entity.name}, #{entity.level}, #{entity.beParent}, #{entity.status},
+            #{entity.sortOrder}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_category(parent_id, name, level, be_parent, status, sort_order, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.parentId}, #{entity.name}, #{entity.level}, #{entity.beParent}, #{entity.status},
+            #{entity.sortOrder}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        parent_id = values(parent_id),
+        name = values(name),
+        level = values(level),
+        be_parent = values(be_parent),
+        status = values(status),
+        sort_order = values(sort_order),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_category
+        <set>
+            <if test="parentId != null">
+                parent_id = #{parentId},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="level != null">
+                level = #{level},
+            </if>
+            <if test="beParent != null">
+                be_parent = #{beParent},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="sortOrder != null">
+                sort_order = #{sortOrder},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from h_category
+        where id = #{id}
+    </delete>
+
+</mapper>
+
