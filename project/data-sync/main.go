@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -59,4 +61,7 @@ func main() {
 	// 五、bi数据工具数据迁移
 	// Mongo/rambler/thirdadvconfigs 数据迁移到 ARK admin_console/bi_data
 	// bi_data.RunBiData()
+
+	// 六、美术需求数据迁移
+	art_need.RunArtNeeds()
 }
