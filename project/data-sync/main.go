@@ -63,5 +63,9 @@ func main() {
 	// bi_data.RunBiData()
 
 	// 六、美术需求数据迁移
-	art_need.RunArtNeeds()
+	// Mongo/plat_console/artneeds 数据迁移到 ARK cruiser_console/art_needs
+	//art_need.RunArtNeeds()
+
+	// Mongo/plat_console/artneeds.tag 数据迁移到 ARK cruiser_console/art_need_tag_relations
+	art_need.RunArtNeedTagRelation()
 }

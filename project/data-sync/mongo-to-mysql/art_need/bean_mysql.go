@@ -29,6 +29,16 @@ type ArtNeedTagRelation struct {
 	TagID  int32 `gorm:"column:tag_id;not null" json:"tag_id"`   // 标签id
 }
 
+// Dictionary 系统码表 mapped from table <dictionaries>
+type Dictionary struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	Label     string `gorm:"column:label;not null" json:"label"`   // 字段名称
+	Code      string `gorm:"column:code;not null" json:"code"`     // 字段编码
+	Type      int32  `gorm:"column:type;not null" json:"type"`     // 类型 1: keyword, 2: material_size, 3 task_type, 4: tag
+	Remark    string `gorm:"column:remark;not null" json:"remark"` // 备注
+	CreatedAt int64  `gorm:"column:created_at;autoCreateTime" json:"created_at"`
+}
+
 // ArtNeedRelation 美术需求关联需求多对多关联表 mapped from table cruiser_console <art_need_relations>
 type ArtNeedRelation struct {
 	ID             int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
