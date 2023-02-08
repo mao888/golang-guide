@@ -54,6 +54,23 @@ type ArtNeedPersonRelation struct {
 	Weight   int32 `gorm:"column:weight;not null" json:"weight"`       // 创意人权重
 }
 
+// User 员工表 mapped from table user_console <user>
+type User struct {
+	ID           int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`           // 主键id
+	DingID       string `gorm:"column:ding_id;not null" json:"ding_id"`                      // 钉钉id
+	Name         string `gorm:"column:name;not null" json:"name"`                            // 员工名称
+	Email        string `gorm:"column:email;not null;default:''" json:"email"`               // 员工邮箱
+	Tel          string `gorm:"column:tel;not null" json:"tel"`                              // 员工手机
+	Avatar       string `gorm:"column:avatar;not null;default:''" json:"avatar"`             // 员工头像url
+	Password     string `gorm:"column:password;not null" json:"password"`                    // 密码
+	Region       int32  `gorm:"column:region;not null;default:0" json:"region"`              // 地域  0：其他，1：北京，2：成都，3：海外
+	Abbreviation string `gorm:"column:abbreviation;not null;default:''" json:"abbreviation"` // 名字简称
+	Status       int32  `gorm:"column:status;not null;default:0" json:"status"`              // 状态 0在职 1离职
+	UpdatedAt    int32  `gorm:"column:updated_at;not null" json:"updated_at"`                // 更新时间
+	CreatedAt    int32  `gorm:"column:created_at;not null" json:"created_at"`                // 创建时间
+	IsDeleted    int32  `gorm:"column:is_deleted;not null;default:0" json:"is_deleted"`      // 是否删除（0:否，1:是）
+}
+
 // ArtNeedMaterialSizeRelation 美术需求素材尺寸多对多关联表 mapped from table cruiser_console <art_need_material_size_relations>
 type ArtNeedMaterialSizeRelation struct {
 	ID             int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
