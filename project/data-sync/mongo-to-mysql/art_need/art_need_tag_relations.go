@@ -31,7 +31,7 @@ func RunArtNeedTagRelation() {
 		if len(tag) == 1 || len(tag) == 0 {
 			continue
 		}
-		// 根据"+"后的字符串去mysql/dictionaries中查，若没有则添加，若有，则拿到id
+		// 根据"+"后的字符串去mysql/dictionaries中查type为4，若没有则添加，若有，则拿到id
 		dictionary := make([]*Dictionary, 0)
 		err = db2.MySQLClientCruiser.Table("dictionaries").
 			Where("label = ?", tag[1]).Find(&dictionary).Error
@@ -44,7 +44,7 @@ func RunArtNeedTagRelation() {
 			dic := &Dictionary{
 				//ID:        0,
 				Label:     tag[1],
-				Code:      "",
+				Code:      tag[1],
 				Type:      constants.NumberFour,
 				Remark:    "",
 				CreatedAt: time.Now().Unix(),
