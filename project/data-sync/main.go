@@ -4,7 +4,7 @@ func main() {
 	// mongo_to_mysql.RunGame()
 
 	// 将mongo数据 plat_console/projects 迁移到mysql中的 admin_console/sdk_project表
-	// mongo_to_mysql.RunSdkProject()
+	//sdk_release.RunSdkProject()
 
 	// 将mongo数据 plat_console/projectversions 迁移到mysql中的 admin_console/sdk_release_record表
 	//sdk_release.RunSdkReleaseRecord()
@@ -13,13 +13,13 @@ func main() {
 	// mongo_to_mysql.VersionNumberToOrdinal()
 
 	// 将mongo数据 plat_console/sdks 迁移到mysql中的 admin_console/child_sdk表
-	// mongo_to_mysql.RunChildSdk()
+	//sdk_release.RunChildSdk()
 
 	// 将mongo数据 plat_console/sdkversions 迁移到mysql中的 admin_console/child_sdk_release_record表
-	// mongo_to_mysql.RunChildSdkReleaseRecord()
+	//sdk_release.RunChildSdkReleaseRecord()
 
 	// 从admin_console/child_sdk.id 同步到 admin_console/jenkins_jobs.child_sdk_id 字段
-	// mongo_to_mysql.RunJenkinsJobsChildSdk()
+	//sdk_release.RunJenkinsJobsChildSdk()
 
 	// 二、gm-system 数据迁移到 ARK application_console
 
