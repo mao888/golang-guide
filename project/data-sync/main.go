@@ -75,4 +75,7 @@ func main() {
 
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
 	//art_need.RunArtNeedMaterialSizeRelation()
+
+	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
+	//art_need.RunArtNeedLanguageRelation()
 }

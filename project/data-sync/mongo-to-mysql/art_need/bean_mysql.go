@@ -99,6 +99,14 @@ type ArtNeedLanguageRelation struct {
 	LanguageID int32 `gorm:"column:language_id;not null" json:"language_id"` // 语言id
 }
 
+// ArtLanguage mapped from table cruiser_console <art_languages>
+type ArtLanguage struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	Name      string `gorm:"column:name;not null" json:"name"`             // 语言名称
+	Code      string `gorm:"column:code;not null" json:"code"`             // 语言编号
+	ShortName string `gorm:"column:short_name;not null" json:"short_name"` // 语言编号
+}
+
 // ArtNeedKeywordRelation 美术需求关键词多对多关联表 mapped from table cruiser_console <art_need_keyword_relations>
 type ArtNeedKeywordRelation struct {
 	ID        int32 `gorm:"column:id;primaryKey" json:"id"`
