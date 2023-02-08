@@ -53,7 +53,7 @@ type MArtNeeds struct {
 	Keywords     []string      `json:"keywords,omitempty" bson:"keywords" mapstructure:"keywords"`                   // 关键词
 	Priority     int32         `json:"priority,omitempty" mapstructure:"priority"`                                   // 需求优先级 1: 最高。2: 较高. 3: 普通，4：较低
 	Complexity   string        `json:"complexity,omitempty" mapstructure:"complexity"`                               // 复杂度 S、A、B、C
-	RelatedList  *[]int        `json:"relatedList,omitempty" mapstructure:"relatedList"`
+	RelatedList  []int         `json:"relatedList,omitempty" mapstructure:"relatedList"`
 	IsArtDone    int           `json:"is_art_done" bson:"is_art_done" mapstructure:"is_art_done"`               // 是否完成美术需求  0  没完成， 1 完成
 	DoneTime     *time.Time    `json:"done_time,omitempty" bson:"done_time,omitempty" mapstructure:"done_time"` // 完成时间
 	PbStatus     int           `json:"pb_status,omitempty" bson:"-" mapstructure:"pb_status"`                   //
