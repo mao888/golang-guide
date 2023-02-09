@@ -78,4 +78,6 @@ func main() {
 
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
 	//art_need.RunArtNeedLanguageRelation()
+
+	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_need_language_relations
 }

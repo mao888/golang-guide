@@ -131,8 +131,8 @@ type ArtNeedTags struct {
 	Name      string             `json:"name" bson:"name"`             //名称
 }
 
-type ArtNeedTasks struct {
-	ID           int        `json:"_id" bson:"_id"`
+type MArtNeedTasks struct {
+	ID           int32      `json:"_id" bson:"_id"`
 	CompanyId    int        `json:"company_id" bson:"company_id"`           //公司id
 	GameId       int        `json:"game_id" bson:"game_id"`                 //游戏id
 	ArtneedId    int        `json:"artneed_id" bson:"artneed_id"`           //主需求id
