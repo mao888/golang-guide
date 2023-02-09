@@ -31,7 +31,7 @@ func RunArtTask() {
 		if len(need.DesignUser) == constants.NumberZero {
 			continue
 		}
-		for _, s := range need.DesignUser {
+		for i, s := range need.DesignUser {
 
 			//PersonID
 			// 根据简称查询员工id
@@ -51,7 +51,7 @@ func RunArtTask() {
 
 			artTask := &ArtTask{
 				//ID:        0,
-				TaskType: constants.NumberOne,
+				TaskType: int32(i + 1),
 				NeedID:   need.ID,
 				PersonID: personId,
 				Desc:     "",
