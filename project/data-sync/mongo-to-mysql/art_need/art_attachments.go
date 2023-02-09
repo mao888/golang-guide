@@ -26,6 +26,8 @@ func RunArtAttachment() {
 	//artAttachments := make([]*ArtAttachment, 0)
 	for _, attachment := range mArtAttachments {
 
+		//fmt.Println(attachment.AssetLanguage)
+		
 		// TaskID
 		// 根据 需求id查询子任务id
 		artTask := make([]*ArtTask, 0)
@@ -38,44 +40,41 @@ func RunArtAttachment() {
 		if len(artTask) == constants.NumberZero {
 			continue
 		}
-		for _, task := range artTask {
-			// FileType
-			var fileType int32
-			if attachment.AssetType == "file" {
-				fileType = 1
-			} else if attachment.AssetType == "image" {
-				fileType = 2
-			} else if attachment.AssetType == "video" {
-				fileType = 3
-			}
-			// IsDeleted
-			isDeleted := false
-			if attachment.DeleteTime != nil {
-				isDeleted = true
-			}
-			artAttachment := &ArtAttachment{
-				ID:     attachment.ID,
-				NeedID: attachment.ArtneedId,
-				TaskID: task.ID,
-				//LogID:     0,
-				Type:      attachment.Type + 1,
-				Name:      attachment.AssetName,
-				URL:       attachment.AssetUrlInfo,
-				SizeRatio: attachment.AssetSize,
-				Size:      attachment.FileSize,
-				Md5:       attachment.AssetMd5,
-				Height:    attachment.AssetHeight,
-				Width:     attachment.AssetWidth,
-				FileType:  fileType,
-				IsDeleted: isDeleted,
-			}
-			// 入库 art_attachments
-			err = db2.MySQLClientCruiser.Table("art_attachments").Create(artAttachment).Error
-			if err != nil {
-				fmt.Println("入库 art_attachments 错误", err)
-				return
-			}
+		// FileType
+		var fileType int32
+		if attachment.AssetType == "file" {
+			fileType = 1
+		} else if attachment.AssetType == "image" {
+			fileType = 2
+		} else if attachment.AssetType == "video" {
+			fileType = 3
+		}
+		// IsDeleted
+		isDeleted := false
+		if attachment.DeleteTime != nil {
+			isDeleted = true
+		}
+		artAttachment := &ArtAttachment{
+			ID:     attachment.ID,
+			NeedID: attachment.ArtneedId,
+			TaskID: artTask[len(artTask)-1].ID,
+			//LogID:     0,
+			Type:      attachment.Type + 1,
+			Name:      attachment.AssetName,
+			URL:       attachment.AssetUrlInfo,
+			SizeRatio: attachment.AssetSize,
+			Size:      attachment.FileSize,
+			Md5:       attachment.AssetMd5,
+			Height:    attachment.AssetHeight,
+			Width:     attachment.AssetWidth,
+			FileType:  fileType,
+			IsDeleted: isDeleted,
+		}
+		// 入库 art_attachments
+		err = db2.MySQLClientCruiser.Table("art_attachments").Create(artAttachment).Error
+		if err != nil {
+			fmt.Println("入库 art_attachments 错误", err)
+			return
 		}
 	}
-
 }
