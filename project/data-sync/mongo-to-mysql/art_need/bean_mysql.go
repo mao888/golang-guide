@@ -146,3 +146,21 @@ type ArtTaskSchedule struct {
 	EndDateAt   int64 `gorm:"column:end_date_at;not null" json:"end_date_at"`     //  结束日期
 	WorkHour    int32 `gorm:"column:work_hour;not null" json:"work_hour"`         // 实际工时
 }
+
+// ArtAttachment 美术需求附件-终稿 mapped from table cruiser_console <art_attachments>
+type ArtAttachment struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	NeedID    int32  `gorm:"column:need_id;not null" json:"need_id"`               // 需求id
+	TaskID    int32  `gorm:"column:task_id" json:"task_id"`                        // 子任务
+	LogID     int32  `gorm:"column:log_id" json:"log_id"`                          // 日志id
+	Type      int32  `gorm:"column:type;not null" json:"type"`                     // 附件类型 1： 普通附件， 2： 终稿
+	Name      string `gorm:"column:name;not null" json:"name"`                     // 附件名称
+	URL       string `gorm:"column:url;not null" json:"url"`                       // 附件地址
+	SizeRatio string `gorm:"column:size_ratio;not null" json:"size_ratio"`         // 附件尺寸比例
+	Size      int32  `gorm:"column:size;not null" json:"size"`                     // 附件大小
+	Md5       string `gorm:"column:md5;not null" json:"md5"`                       // 附件md5
+	Height    int32  `gorm:"column:height;not null" json:"height"`                 // 附件高度
+	Width     int32  `gorm:"column:width;not null" json:"width"`                   // 附件宽度
+	FileType  int32  `gorm:"column:file_type;not null;default:1" json:"file_type"` // 附件文件类型， 1: file,  2: image,3: video
+	IsDeleted bool   `gorm:"column:is_deleted;not null" json:"is_deleted"`
+}

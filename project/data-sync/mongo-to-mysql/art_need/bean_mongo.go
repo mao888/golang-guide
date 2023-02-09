@@ -5,24 +5,24 @@ import (
 	"time"
 )
 
-type ArtAttachments struct {
-	ID                int        `json:"_id" bson:"_id"`
+type MArtAttachments struct {
+	ID                int32      `json:"_id" bson:"_id"`
 	CompanyId         int        `json:"company_id" bson:"company_id"`                                       //公司id
 	GameId            int        `json:"game_id" bson:"game_id"`                                             //游戏id
-	ArtneedId         int        `json:"artneed_id" bson:"artneed_id"`                                       //主需求id
+	ArtneedId         int32      `json:"artneed_id" bson:"artneed_id"`                                       //主需求id
 	AssetLongName     string     `json:"asset_long_name,omitempty" bson:"asset_long_name,omitempty"`         //素材全名
 	AssetName         string     `json:"asset_name,omitempty" bson:"asset_name,omitempty"`                   //素材内容标题
 	AssetMd5          string     `json:"asset_md5" bson:"asset_md5"`                                         // 素材md5
 	AssetUrlInfo      string     `json:"asset_url_info,omitempty" bson:"asset_url_info,omitempty"`           //素材地址
 	AssetThumbnailUrl string     `json:"asset_thumbnail_url,omitempty" bson:"asset_thumbnail_url,omitempty"` // 素材缩略图
-	Type              int        `json:"type" bson:"type"`                                                   //0: 普通附件， 1， 终稿附件
+	Type              int32      `json:"type" bson:"type"`                                                   //0: 普通附件， 1， 终稿附件
 	AssetType         string     `json:"asset_type" bson:"asset_type"`                                       // 素材类型。 video/ image/
 	AssetSize         string     `json:"asset_size" bson:"asset_size"`                                       //素材尺寸 如 1:1
 	AssetLanguage     string     `json:"asset_language,omitempty" bson:"asset_language,omitempty"`           // 语种
 	AssetDuration     string     `json:"asset_duration,omitempty" bson:"asset_duration,omitempty"`           // 视频时长
-	AssetWidth        int        `json:"asset_width,omitempty" bson:"asset_width,omitempty"`                 // 素材宽度
-	AssetHeight       int        `json:"asset_height,omitempty" bson:"asset_height,omitempty"`               // 素材高度
-	FileSize          int64      `json:"file_size,omitempty" bson:"file_size,omitempty"`                     // 1024 * 1024 * 1000 = 1M
+	AssetWidth        int32      `json:"asset_width,omitempty" bson:"asset_width,omitempty"`                 // 素材宽度
+	AssetHeight       int32      `json:"asset_height,omitempty" bson:"asset_height,omitempty"`               // 素材高度
+	FileSize          int32      `json:"file_size,omitempty" bson:"file_size,omitempty"`                     // 1024 * 1024 * 1000 = 1M
 	CreateTime        *time.Time `json:"create_time" bson:"create_time"`
 	UpdateTime        *time.Time `json:"update_time" bson:"update_time"`
 	DeleteTime        *time.Time `json:"delete_time,omitempty" bson:"delete_time,omitempty"`
