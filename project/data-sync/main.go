@@ -70,7 +70,7 @@ func main() {
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
 	// art_need.RunArtNeedPersonRelation()
 
-	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
+	// Mongo/plat_console/artneeds.relatedList 数据迁移到 ARK cruiser_console/art_need_relations
 	//art_need.RunArtNeedRelation()
 
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
@@ -79,7 +79,7 @@ func main() {
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
 	//art_need.RunArtNeedLanguageRelation()
 
-	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_need_language_relations
+	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_tasks
 	//art_need.RunArtTask()
 
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
