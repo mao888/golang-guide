@@ -92,6 +92,8 @@
 * [常用组件库](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6%E5%BA%93) 持续更新中～
 * [规范](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E8%A7%84%E8%8C%83)
 
+### [golang-project](https://github.com/mao888/golang-guide/tree/main/project)
+
 ### [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnpCD6PNRwtk3DFXrOXiNnrh?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
 内包含：
 #### 面经
