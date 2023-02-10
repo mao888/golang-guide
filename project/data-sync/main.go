@@ -61,27 +61,35 @@ func main() {
 	// bi_data.RunBiData()
 
 	// 六、美术需求数据迁移
+	// 美术需求主表
 	// Mongo/plat_console/artneeds 数据迁移到 ARK cruiser_console/art_needs
-	//art_need.RunArtNeeds()
+	// art_need.RunArtNeeds()
 
+	// 美术需求标签多对多关联表
 	// Mongo/plat_console/artneeds.tag 数据迁移到 ARK cruiser_console/art_need_tag_relations
-	//art_need.RunArtNeedTagRelation()
+	// art_need.RunArtNeedTagRelation()
 
+	// 美术需求创意负责人多对多关联表
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
 	// art_need.RunArtNeedPersonRelation()
 
+	// 美术需求关联需求多对多关联表
 	// Mongo/plat_console/artneeds.relatedList 数据迁移到 ARK cruiser_console/art_need_relations
 	//art_need.RunArtNeedRelation()
 
+	// 美术需求素材尺寸多对多关联表
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
 	//art_need.RunArtNeedMaterialSizeRelation()
 
+	// 美术需求语种多对多关联表
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
 	//art_need.RunArtNeedLanguageRelation()
 
+	// 美术需求子任务表
 	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_tasks
 	//art_need.RunArtTask()
 
+	// 美术需求附件-终稿
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
 	//art_need.RunArtAttachment()
 }
