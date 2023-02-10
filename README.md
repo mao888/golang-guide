@@ -460,6 +460,7 @@
 * [对象存储 OSS](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20OSS.md)
 * [登录方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
 * [第三方登陆](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95.md)
+* [基于RBAC的用户权限管理系统](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9F%BA%E4%BA%8ERBAC%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F.md)
 ### 业务
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
 * [go-excel](github.com/mao888/go-excel)
