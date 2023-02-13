@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HOrderDao">
+
+    <resultMap type="com.camp.promotion.entity.HOrder" id="HOrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+        <result property="skuId" column="sku_id" jdbcType="INTEGER"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+        <result property="payment" column="payment" jdbcType="INTEGER"/>
+        <result property="paymentType" column="payment_type" jdbcType="INTEGER"/>
+        <result property="postage" column="postage" jdbcType="INTEGER"/>
+        <result property="quantity" column="quantity" jdbcType="INTEGER"/>
+        <result property="addressId" column="address_id" jdbcType="INTEGER"/>
+        <result property="shippingAddress" column="shipping_address" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="paymentTime" column="payment_time" jdbcType="TIMESTAMP"/>
+        <result property="sendTime" column="send_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="closeTime" column="close_time" jdbcType="TIMESTAMP"/>
+        <result property="activityId" column="activity_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HOrderMap">
+        select
+          id, user_id, spu_id, sku_id, shop_id, payment, payment_type, postage, quantity, address_id, shipping_address, status, payment_time, send_time, end_time, close_time, activity_id, create_time, update_time
+        from h_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HOrderMap">
+        select
+          id, user_id, spu_id, sku_id, shop_id, payment, payment_type, postage, quantity, address_id, shipping_address, status, payment_time, send_time, end_time, close_time, activity_id, create_time, update_time
+        from h_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="payment != null">
+                and payment = #{payment}
+            </if>
+            <if test="paymentType != null">
+                and payment_type = #{paymentType}
+            </if>
+            <if test="postage != null">
+                and postage = #{postage}
+            </if>
+            <if test="quantity != null">
+                and quantity = #{quantity}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="shippingAddress != null and shippingAddress != ''">
+                and shipping_address = #{shippingAddress}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="paymentTime != null">
+                and payment_time = #{paymentTime}
+            </if>
+            <if test="sendTime != null">
+                and send_time = #{sendTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="closeTime != null">
+                and close_time = #{closeTime}
+            </if>
+            <if test="activityId != null">
+                and activity_id = #{activityId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="payment != null">
+                and payment = #{payment}
+            </if>
+            <if test="paymentType != null">
+                and payment_type = #{paymentType}
+            </if>
+            <if test="postage != null">
+                and postage = #{postage}
+            </if>
+            <if test="quantity != null">
+                and quantity = #{quantity}
+            </if>
+            <if test="addressId != null">
+                and address_id = #{addressId}
+            </if>
+            <if test="shippingAddress != null and shippingAddress != ''">
+                and shipping_address = #{shippingAddress}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="paymentTime != null">
+                and payment_time = #{paymentTime}
+            </if>
+            <if test="sendTime != null">
+                and send_time = #{sendTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="closeTime != null">
+                and close_time = #{closeTime}
+            </if>
+            <if test="activityId != null">
+                and activity_id = #{activityId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert">
+        insert into h_order(id, user_id, spu_id, sku_id, shop_id, payment, payment_type, postage, quantity, address_id, shipping_address, status, payment_time, send_time, end_time, close_time, activity_id, create_time, update_time)
+        values (#{id}, #{userId}, #{spuId}, #{skuId}, #{shopId}, #{payment}, #{paymentType}, #{postage}, #{quantity}, #{addressId}, #{shippingAddress}, #{status}, #{paymentTime}, #{sendTime}, #{endTime}, #{closeTime}, #{activityId}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch">
+        insert into h_order(id, user_id, spu_id, sku_id, shop_id, payment, payment_type, postage, quantity, address_id, shipping_address, status, payment_time, send_time, end_time, close_time, activity_id, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.id}, #{entity.userId}, #{entity.spuId}, #{entity.skuId}, #{entity.shopId}, #{entity.payment}, #{entity.paymentType}, #{entity.postage}, #{entity.quantity}, #{entity.addressId}, #{entity.shippingAddress}, #{entity.status}, #{entity.paymentTime}, #{entity.sendTime}, #{entity.endTime}, #{entity.closeTime}, #{entity.activityId}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_order(user_id, spu_id, sku_id, shop_id, payment, payment_type, postage, quantity, address_id, shipping_address, status, payment_time, send_time, end_time, close_time, activity_id, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.userId}, #{entity.spuId}, #{entity.skuId}, #{entity.shopId}, #{entity.payment}, #{entity.paymentType}, #{entity.postage}, #{entity.quantity}, #{entity.addressId}, #{entity.shippingAddress}, #{entity.status}, #{entity.paymentTime}, #{entity.sendTime}, #{entity.endTime}, #{entity.closeTime}, #{entity.activityId}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        user_id = values(user_id),
+        spu_id = values(spu_id),
+        sku_id = values(sku_id),
+        shop_id = values(shop_id),
+        payment = values(payment),
+        payment_type = values(payment_type),
+        postage = values(postage),
+        quantity = values(quantity),
+        address_id = values(address_id),
+        shipping_address = values(shipping_address),
+        status = values(status),
+        payment_time = values(payment_time),
+        send_time = values(send_time),
+        end_time = values(end_time),
+        close_time = values(close_time),
+        activity_id = values(activity_id),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_order
+        <set>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId},
+            </if>
+            <if test="payment != null">
+                payment = #{payment},
+            </if>
+            <if test="paymentType != null">
+                payment_type = #{paymentType},
+            </if>
+            <if test="postage != null">
+                postage = #{postage},
+            </if>
+            <if test="quantity != null">
+                quantity = #{quantity},
+            </if>
+            <if test="addressId != null">
+                address_id = #{addressId},
+            </if>
+            <if test="shippingAddress != null and shippingAddress != ''">
+                shipping_address = #{shippingAddress},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="paymentTime != null">
+                payment_time = #{paymentTime},
+            </if>
+            <if test="sendTime != null">
+                send_time = #{sendTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="closeTime != null">
+                close_time = #{closeTime},
+            </if>
+            <if test="activityId != null">
+                activity_id = #{activityId},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from h_order where id = #{id}
+    </delete>
+
+</mapper>
+

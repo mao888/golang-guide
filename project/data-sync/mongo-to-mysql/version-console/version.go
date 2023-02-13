@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	gj "github.com/mao888/go-utils/json"
+	gutil "github.com/mao888/go-utils/strings"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
 	"gorm.io/gorm"
@@ -76,130 +78,130 @@ func RunVersion() {
 	}
 	fmt.Println(mVersion)
 
-	// 3、将mongo数据装入切片
-	//versions := make([]*Version, 0)
-	//for _, version := range mVersion {
-	//	// type 版本类型 1市场版本 2热更版本
-	//	t := 0
-	//	if version.UpdateType == 1 || version.UpdateType == 2 {
-	//		t = 1
-	//	}
-	//	if version.UpdateType == 3 {
-	//		t = 2
-	//	}
-	//
-	//	// Status 版本状态 1未发布 2已发布 3已废弃
-	//	if version.Status == 2 {
-	//		continue
-	//	}
-	//	status := 0
-	//	if version.Status == 0 {
-	//		status = 1
-	//	} else if version.Status == 1 {
-	//		status = 2
-	//	} else if version.Status == 3 {
-	//		status = 3
-	//	}
-	//
-	//	// IsGray 是否灰度 0未发布无灰度 1是 2否
-	//	isGray := 0
-	//	if version.GrayFlag == true {
-	//		isGray = 1
-	//	} else if version.GrayFlag == false {
-	//		isGray = 2
-	//	}
-	//
-	//	// IsDeleted 是否删除(0否1是)
-	//	isDeleted := 0
-	//	if version.DeleteTime != nil {
-	//		isDeleted = 1
-	//	}
-	//
-	//	// PublishTime 发布时间
-	//	var publishTime int64
-	//	if version.PublishTime != nil {
-	//		publishTime = version.PublishTime.Unix()
-	//	} else if version.PublishTime == nil {
-	//		publishTime = 0
-	//	}
-	//
-	//	// Config 版本配置，包括更新提示、全局配置、语言配置
-	//	var config VersionConfig
-	//	// 更新提示
-	//	var versionConfigUpdate VersionConfigUpdate
-	//	versionConfigUpdate.EnableClose = version.CloseFlag
-	//	versionConfigUpdate.IsNotice = version.NoticeFlag
-	//	versionConfigUpdate.IsRestart = version.RestartFlag
-	//	if version.MultiLngFlag == true {
-	//		versionConfigUpdate.LangType = 2
-	//	} else if version.MultiLngFlag == false {
-	//		versionConfigUpdate.LangType = 1
-	//	}
-	//
-	//	for _, text := range version.NoticeLngText {
-	//		df := false
-	//		if version.DefaultLanguage == text.Lng {
-	//			df = true
-	//		}
-	//		t := &VersionConfigUpdateText{
-	//			Lang:      "",
-	//			LangShort: text.Lng,
-	//			IsDefault: df,
-	//			Text:      text.Text,
-	//		}
-	//		versionConfigUpdate.Text = append(versionConfigUpdate.Text, t)
-	//	}
-	//	config.Update = &versionConfigUpdate
-	//
-	//	// 全局配置
-	//	for _, kv := range version.GlobalConf {
-	//		versionConfigGlobal := &VersionConfigGlobal{
-	//			Key:   kv.Key,
-	//			Value: kv.Value,
-	//		}
-	//		config.Global = append(config.Global, versionConfigGlobal)
-	//	}
-	//
-	//	// 语言配置
-	//	for _, conf := range version.LanguageConf {
-	//		var lang VersionConfigLang
-	//
-	//		lang.LangShort = conf.Language
-	//		lang.IsDefault = conf.DefaultLng
-	//		for _, kv := range conf.ConfList {
-	//			k := &VersionConfigLangArg{
-	//				Key:   kv.Key,
-	//				Value: kv.Value,
-	//			}
-	//			lang.Args = append(lang.Args, k)
-	//		}
-	//	}
-	//
-	//	configJson, err := gj.Object2JSONE(&config)
-	//	if err != nil {
-	//		fmt.Println(err)
-	//		return
-	//	}
-	//
-	//	ver := &Version{
-	//		//ID:          0,
-	//		ParentID:    0,
-	//		EnvID:       version.EnvID,
-	//		Version:     version.VersionName,
-	//		VersionNum:  gutil.VersionOrdinal(version.VersionName),
-	//		Type:        int32(t),
-	//		UpdateType:  version.UpdateType,
-	//		IsGray:      int32(isGray),
-	//		GrayScale:   version.GrayScale,
-	//		Status:      int32(status),
-	//		PublishTime: publishTime,
-	//		Config:      configJson,
-	//		UpdatedAt:   version.UpdateTime.Unix(),
-	//		CreatedAt:   version.CreateTime.Unix(),
-	//		IsDeleted:   int32(isDeleted),
-	//	}
-	//	versions = append(versions, ver)
-	//}
+	//3、将mongo数据装入切片
+	versions := make([]*Version, 0)
+	for _, version := range mVersion {
+		// type 版本类型 1市场版本 2热更版本
+		t := 0
+		if version.UpdateType == 1 || version.UpdateType == 2 {
+			t = 1
+		}
+		if version.UpdateType == 3 {
+			t = 2
+		}
+
+		// Status 版本状态 1未发布 2已发布 3已废弃
+		status := 0
+		if version.Status == 2 {
+			status = 1
+		}
+		if version.Status == 0 {
+			status = 1
+		} else if version.Status == 1 {
+			status = 2
+		} else if version.Status == 3 {
+			status = 3
+		}
+
+		// IsGray 是否灰度 0未发布无灰度 1是 2否
+		isGray := 0
+		if version.GrayFlag == true {
+			isGray = 1
+		} else if version.GrayFlag == false {
+			isGray = 2
+		}
+
+		// IsDeleted 是否删除(0否1是)
+		isDeleted := 0
+		if version.DeleteTime != nil {
+			isDeleted = 1
+		}
+
+		// PublishTime 发布时间
+		var publishTime int64
+		if version.PublishTime != nil {
+			publishTime = version.PublishTime.Unix()
+		} else if version.PublishTime == nil {
+			publishTime = 0
+		}
+
+		// Config 版本配置，包括更新提示、全局配置、语言配置
+		var config VersionConfig
+		// 更新提示
+		var versionConfigUpdate VersionConfigUpdate
+		versionConfigUpdate.EnableClose = version.CloseFlag
+		versionConfigUpdate.IsNotice = version.NoticeFlag
+		versionConfigUpdate.IsRestart = version.RestartFlag
+		if version.MultiLngFlag == true {
+			versionConfigUpdate.LangType = 2
+		} else if version.MultiLngFlag == false {
+			versionConfigUpdate.LangType = 1
+		}
+
+		for _, text := range version.NoticeLngText {
+			df := false
+			if version.DefaultLanguage == text.Lng {
+				df = true
+			}
+			t := &VersionConfigUpdateText{
+				Lang:      "",
+				LangShort: text.Lng,
+				IsDefault: df,
+				Text:      text.Text,
+			}
+			versionConfigUpdate.Text = append(versionConfigUpdate.Text, t)
+		}
+		config.Update = &versionConfigUpdate
+
+		// 全局配置
+		for _, kv := range version.GlobalConf {
+			versionConfigGlobal := &VersionConfigGlobal{
+				Key:   kv.Key,
+				Value: kv.Value,
+			}
+			config.Global = append(config.Global, versionConfigGlobal)
+		}
+
+		// 语言配置
+		for _, conf := range version.LanguageConf {
+			var lang VersionConfigLang
+
+			lang.LangShort = conf.Language
+			lang.IsDefault = conf.DefaultLng
+			for _, kv := range conf.ConfList {
+				k := &VersionConfigLangArg{
+					Key:   kv.Key,
+					Value: kv.Value,
+				}
+				lang.Args = append(lang.Args, k)
+			}
+		}
+
+		configJson, err := gj.Object2JSONE(&config)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
+		ver := &Version{
+			//ID:          0,
+			ParentID:    0,
+			EnvID:       version.EnvID,
+			Version:     version.VersionName,
+			VersionNum:  gutil.VersionOrdinal(version.VersionName),
+			Type:        int32(t),
+			UpdateType:  version.UpdateType,
+			IsGray:      int32(isGray),
+			GrayScale:   version.GrayScale,
+			Status:      int32(status),
+			PublishTime: publishTime,
+			Config:      configJson,
+			UpdatedAt:   version.UpdateTime.Unix(),
+			CreatedAt:   version.CreateTime.Unix(),
+			IsDeleted:   int32(isDeleted),
+		}
+		versions = append(versions, ver)
+	}
 
 	// 4、将装有mongo数据的切片入库
 	//err = db2.MySQLClientVersion.Table("version").CreateInBatches(versions, len(versions)).Error
@@ -236,7 +238,7 @@ func RunVersion() {
 			continue
 		}
 
-		// 根据ParentID从mongo查询version信息
+		// 根据ParentID从mongo查询父version信息
 		parent := make([]*MVersion, 0)
 		err = coll.Find(context.TODO(), bson.M{"_id": parentID[0].ParentID}).All(&parent)
 		if err != nil {
@@ -245,7 +247,7 @@ func RunVersion() {
 		}
 		fmt.Println("parent:", len(parent))
 
-		// 根据 version中的 app_id 和 env_id 更新mysql对应的 parent_id
+		// 根据 mongo父version中的 app_id 和 env_id 查出mysql父version
 		var v Version
 		err = db2.MySQLClientVersion.Table("version").
 			Joins("inner join env on version.env_id = env.id").
@@ -254,11 +256,12 @@ func RunVersion() {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			v.ParentID = 0
 		} else if err != nil {
-			fmt.Println("mysql查询version_id错误：", err)
+			fmt.Println("根据 mongo父version中的 app_id 和 env_id 查出mysql父version 错误：", err)
 			return
 		}
+		// 更新mysql对应的 parent_id
 		err = db2.MySQLClientVersion.Table("version").Where("id = ?", version.ID).
-			UpdateColumn("parent_id", v.ParentID).Error
+			UpdateColumn("parent_id", v.ID).Error
 		if err != nil {
 			fmt.Println("更新 ParentID 错误", err)
 			return

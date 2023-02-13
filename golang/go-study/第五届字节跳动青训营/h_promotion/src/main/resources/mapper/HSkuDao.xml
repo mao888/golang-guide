@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.camp.promotion.dao.HSkuDao">
+
+    <resultMap type="com.camp.promotion.entity.HSku" id="HSkuMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="spuId" column="spu_id" jdbcType="INTEGER"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+        <result property="specDetailIds" column="spec_detail_ids" jdbcType="VARCHAR"/>
+        <result property="stock" column="stock" jdbcType="INTEGER"/>
+        <result property="price" column="price" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="HSkuMap">
+        select id,
+               spu_id,
+               shop_id,
+               spec_detail_ids,
+               stock,
+               price,
+               status,
+               create_time,
+               update_time
+        from h_sku
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="HSkuMap">
+        select
+        id, spu_id, shop_id, spec_detail_ids, stock, price, status, create_time, update_time
+        from h_sku
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="specDetailIds != null and specDetailIds != ''">
+                and spec_detail_ids = #{specDetailIds}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from h_sku
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="spuId != null">
+                and spu_id = #{spuId}
+            </if>
+            <if test="shopId != null">
+                and shop_id = #{shopId}
+            </if>
+            <if test="specDetailIds != null and specDetailIds != ''">
+                and spec_detail_ids = #{specDetailIds}
+            </if>
+            <if test="stock != null">
+                and stock = #{stock}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into h_sku(spu_id, shop_id, spec_detail_ids, stock, price, status, create_time, update_time)
+        values (#{spuId}, #{shopId}, #{specDetailIds}, #{stock}, #{price}, #{status}, #{createTime}, #{updateTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_sku(spu_id, shop_id, spec_detail_ids, stock, price, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.spuId}, #{entity.shopId}, #{entity.specDetailIds}, #{entity.stock}, #{entity.price},
+            #{entity.status}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into h_sku(spu_id, shop_id, spec_detail_ids, stock, price, status, create_time, update_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.spuId}, #{entity.shopId}, #{entity.specDetailIds}, #{entity.stock}, #{entity.price},
+            #{entity.status}, #{entity.createTime}, #{entity.updateTime})
+        </foreach>
+        on duplicate key update
+        spu_id = values(spu_id),
+        shop_id = values(shop_id),
+        spec_detail_ids = values(spec_detail_ids),
+        stock = values(stock),
+        price = values(price),
+        status = values(status),
+        create_time = values(create_time),
+        update_time = values(update_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update h_sku
+        <set>
+            <if test="spuId != null">
+                spu_id = #{spuId},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId},
+            </if>
+            <if test="specDetailIds != null and specDetailIds != ''">
+                spec_detail_ids = #{specDetailIds},
+            </if>
+            <if test="stock != null">
+                stock = #{stock},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <update id="decreaseStock">
+        update h_sku
+        set stock = stock - #{stock}
+        where id = #{id}
+          and stock > #{stock}
+    </update>
+
+    <update id="batchUpdate">
+        <foreach collection="entities" item="entity" separator=";">
+            update h_sku
+            set stock = stock - #{entity.stock}
+            where id = #{entity.id}
+            and stock > #{entity.stock}
+        </foreach>
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from h_sku
+        where id = #{id}
+    </delete>
+
+</mapper>
+

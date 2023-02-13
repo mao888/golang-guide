@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration monitorInterval="5">
+
+    <Properties>
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}[%thread] %style{%logger{36}}{cyan} : %msg%n" />
+
+        <property name="FILE_PATH" value="./logs" />
+        <property name="FILE_NAME" value="h_promotion" />
+    </Properties>
+
+    <appenders>
+        <console name="Console" target="SYSTEM_OUT">
+            <!--输出日志的格式-->
+            <PatternLayout pattern="${LOG_PATTERN}" disableAnsi="false" noConsoleNoAnsi="false"/>
+            <!--控制台只输出level及其以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+        </console>
+
+
+        <RollingFile name="RollingFileInfo" fileName="${FILE_PATH}/info.log" filePattern="${FILE_PATH}/${FILE_NAME}-INFO-%d{yyyy-MM-dd}_%i.log.gz">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖 -->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileWarn" fileName="${FILE_PATH}/warn.log" filePattern="${FILE_PATH}/${FILE_NAME}-WARN-%d{yyyy-MM-dd}_%i.log.gz">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError" fileName="${FILE_PATH}/error.log" filePattern="${FILE_PATH}/${FILE_NAME}-ERROR-%d{yyyy-MM-dd}_%i.log.gz">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <!--interval属性用来指定多久滚动一次，默认是1 hour-->
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="20MB"/>
+            </Policies>
+            <!-- DefaultRolloverStrategy属性如不设置，则默认为最多同一文件夹下7个文件开始覆盖-->
+            <DefaultRolloverStrategy max="15"/>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
+        <logger name="org.mybatis" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
+        <!--监控系统信息-->
+        <!--若是additivity设为false，则 子Logger 只会在自己的appender里输出，而不会在 父Logger 的appender里输出。-->
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <root level="info">
+            <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFileInfo"/>
+            <appender-ref ref="RollingFileWarn"/>
+            <appender-ref ref="RollingFileError"/>
+        </root>
+    </loggers>
+</configuration>
