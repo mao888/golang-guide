@@ -43,6 +43,11 @@ func RunArtNeeds() {
 	artNeeds := make([]*ArtNeed, 0)
 	for _, need := range mArtNeeds {
 
+		// 需求id >= 8000000 的都不要
+		if need.ID >= 8000000 {
+			continue
+		}
+
 		// Status
 		var status int32
 		if need.Status == 0 { // 0:待分配
@@ -97,11 +102,20 @@ func RunArtNeeds() {
 			AssetRemark:  "",
 		}
 		artNeeds = append(artNeeds, artNeed)
+
+		// 4、将装有mongo数据的切片入库（单条入库）
+		err = db2.MySQLClientCruiser.Table("art_needs").Create(artNeed).Error
+		if err != nil {
+			fmt.Println("入mysql错误：", err)
+			return
+		}
 	}
 	// 4、将装有mongo数据的切片入库
-	err = db2.MySQLClientCruiser.Table("art_needs").CreateInBatches(artNeeds, len(artNeeds)).Error
-	if err != nil {
-		fmt.Println("入mysql错误：", err)
-		return
-	}
+	// 注：数据量较大时无法批量入库，报错：Prepared statement contains too many placeholders（占位符过多~）
+	// 18（字段数）* 11645（条数） = 209610 > 65535（mysql对占位符的最高限制）
+	//err = db2.MySQLClientCruiser.Table("art_needs").CreateInBatches(artNeeds, len(artNeeds)).Error
+	//if err != nil {
+	//	fmt.Println("入mysql错误：", err)
+	//	return
+	//}
 }

@@ -63,11 +63,11 @@ func main() {
 	// 六、美术需求数据迁移
 	// 美术需求主表
 	// Mongo/plat_console/artneeds 数据迁移到 ARK cruiser_console/art_needs
-	// art_need.RunArtNeeds()
+	//art_need.RunArtNeeds()
 
 	// 美术需求标签多对多关联表
 	// Mongo/plat_console/artneeds.tag 数据迁移到 ARK cruiser_console/art_need_tag_relations
-	// art_need.RunArtNeedTagRelation()
+	//art_need.RunArtNeedTagRelation()
 
 	// 美术需求创意负责人多对多关联表
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
