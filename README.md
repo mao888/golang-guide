@@ -248,8 +248,8 @@
 * 等等...
 
 <img align="right" src="https://i.postimg.cc/sxYbJM5n/mysql-2.png"/>
+<img align="right" src="https://i.postimg.cc/brMjXqhH/Mysql.png"/>
 
-[//]: # (https://i.postimg.cc/brMjXqhH/Mysql.png)
 ## 💻 MySQL
 ### 面经
 * [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)(必看👍 )
