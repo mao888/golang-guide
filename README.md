@@ -173,7 +173,7 @@
 * MySQL55题及答案
 * Redis面试专题及答案
 
-<img align="right" src="https://i.postimg.cc/zfXVr5VP/image.jpg" width="100"/>
+<img align="right" src="https://i.postimg.cc/zfXVr5VP/image.jpg" style="80%"/>
 
 ## 💻 计算机网络
 * [导读 程序员如何打好计算机领域的基础？](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AF%BC%E8%AF%BB%20%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%89%93%E5%A5%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A2%86%E5%9F%9F%E7%9A%84%E5%9F%BA%E7%A1%80%EF%BC%9F.md)
@@ -198,7 +198,7 @@
 * 计算机网络课本
 * 计算机网络PPT
 
-<img align="right" src="https://i.postimg.cc/d394dBW7/image.png"/>
+<img align="right" src="https://i.postimg.cc/d394dBW7/image.png" style="80%"/>
 
 ## 💻 操作系统
 ### 面经
