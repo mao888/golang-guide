@@ -336,7 +336,7 @@
 
 注：加粗为宝藏
 
-<img align="right" src="https://i.postimg.cc/W3tBB829/linux.png" height="" width="280"/>
+<img align="centre" src="https://i.postimg.cc/W3tBB829/linux.png" height="" width="280"/>
 
 ## 💻 Linux
 ### Linux-Study
