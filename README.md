@@ -73,9 +73,7 @@
 ## 🚀 目录结构（不断更新中）
 
 
-<img align="right" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" /> 
-
-<div></div>
+<img align="right" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" />
 
 <img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
 
