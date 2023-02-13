@@ -73,13 +73,12 @@
 
 ## 🚀 目录结构（不断更新中）
 
-<div>
-<img align="right" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" />
-</div>
-<br />
+<img align="centre" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" />
 
 ## 💻 Golang
 工作量较大, 急需pr
+<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
+
 ### golang-Interview
 * [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md) (必看👍 )
 * [数据结构与算法Guide【Golang实现】](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Guide%E3%80%90Golang%E5%AE%9E%E7%8E%B0%E3%80%91.md) (必看👍)
@@ -88,8 +87,6 @@
 * 配套哔站讲解：[算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28) (必看👍 )
 * [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) 
 * 更多资料见📚飞书书库
-<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
-
 ### golang-study
 * [golang学习路线](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md) (必看👍 )
