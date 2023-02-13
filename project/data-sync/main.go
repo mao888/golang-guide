@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -71,15 +73,15 @@ func main() {
 
 	// 美术需求创意负责人多对多关联表
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
-	// art_need.RunArtNeedPersonRelation()
+	//art_need.RunArtNeedPersonRelation()
 
 	// 美术需求关联需求多对多关联表
 	// Mongo/plat_console/artneeds.relatedList 数据迁移到 ARK cruiser_console/art_need_relations
-	// art_need.RunArtNeedRelation()
+	art_need.RunArtNeedRelation()
 
 	// 美术需求素材尺寸多对多关联表
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
-	// art_need.RunArtNeedMaterialSizeRelation()
+	art_need.RunArtNeedMaterialSizeRelation()
 
 	// 美术需求语种多对多关联表
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations

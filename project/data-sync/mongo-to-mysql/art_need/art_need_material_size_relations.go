@@ -25,6 +25,12 @@ func RunArtNeedMaterialSizeRelation() {
 
 	// 3、将mongo数据装入切片
 	for _, need := range mArtNeeds {
+
+		// 需求id >= 8000000 的都不要
+		if need.ID >= 8000000 {
+			continue
+		}
+
 		if len(need.Size) == constants.NumberZero {
 			continue
 		}
