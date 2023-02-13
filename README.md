@@ -247,7 +247,7 @@
 * 蓝桥杯-往届真题
 * 等等...
 
-<img align="right" src="https://i.postimg.cc/sxYbJM5n/mysql-2.png" style="60%"/>
+<img align="right" src="https://i.postimg.cc/sxYbJM5n/mysql-2.png"/>
 
 ## 💻 MySQL
 ### 面经
