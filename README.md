@@ -73,7 +73,7 @@
 
 ## 🚀 目录结构（不断更新中）
 
-<img align="centre" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" />
+<img align="centre" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="600" />
 
 ## 💻 Golang
 工作量较大, 急需pr
