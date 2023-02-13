@@ -297,18 +297,14 @@
 内包含：
 * 大话设计模式(带目录完整版)
 
-## 💻 Git
 
 [![Git](https://git-scm.com/images/logo@2x.png)](https://git-scm.com/)
 
-
-
+## 💻 Git
 * [Git入门](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Git%E5%85%A5%E9%97%A8.md)
 * [Github小技巧](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Github%E5%B0%8F%E6%8A%80%E5%B7%A7.md)
 * [Git详解](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Git%E8%AF%A6%E8%A7%A3.md)
-
 ### 资料
-
 - [**Git Book**](https://git-scm.com/book/zh/v2)(必看👍 )
 - [**Git Cheat Sheet**](http://git-cheatsheet.com/)(必看👍 )
 - [Git Cheat Sheet中文版](https://www.w3cschool.cn/tspiu3/)
@@ -318,7 +314,7 @@
 - [GIT | GIT常见面试题](https://blog.csdn.net/nobody_1/article/details/88956315?ops_request_misc=%7B%22request%5Fid%22%3A%22164726602216780271960516%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726602216780271960516&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-88956315.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git面试题&spm=1018.2226.3001.4187)
 - [2022 最新 Git 面试题](https://libin9ioak.blog.csdn.net/article/details/123318369?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&utm_relevant_index=1)
 
-- **Git Pro 2 **  (必看👍 )
+- Git Pro 2  (必看👍 )
   - [Git Pro2英文Github仓库在新窗口打开](https://github.com/progit/progit2)
   - [Git Pro2中文Gitbook在新窗口打开](https://bingohuang.gitbooks.io/progit2/content/01-introduction/sections/about-version-control.html)
   - [Git Pro2对应的中文Markdown版本的仓库地址在新窗口打开](https://github.com/bingohuang/progit2-gitbook)
@@ -361,10 +357,9 @@
 
 注:加粗的为宝藏
 
-## 💻 Docker
-
 ![extensions](https://docs.docker.com/assets/images/hardened-desktop.PNG)
 
+## 💻 Docker
 ### Use
 * [docker从入门到上手干事](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E4%B8%8A%E6%89%8B%E5%B9%B2%E4%BA%8B.md)
 * [docker基本概念解读](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Docker/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E8%A7%A3%E8%AF%BB.md)
