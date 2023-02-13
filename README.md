@@ -277,10 +277,9 @@
   * 高性能mysql第三版
   * 数据库系统概论 萨师煊 王珊 第三版
 
-  
-## 💻 Redis
 <img align="right" src="https://i.postimg.cc/852j60bR/redis.png"/>
 
+## 💻 Redis
 ### 面经
 * [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)(必看👍 )
 ### 📚 [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
