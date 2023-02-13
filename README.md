@@ -206,9 +206,9 @@
 * 现代操作系统原书第四版pdf免费版
 * 图解系统@小林coding
 
-<img align="right" src="https://i.postimg.cc/wj3ZG1Vf/c.png"/>
-
 ## 💻 数据结构与算法
+<img align="right" src="https://i.postimg.cc/wj3ZG1Vf/c.png" height="420"/>
+
 ### 算法基础
 * [算法基础-复杂度](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
 * [算法基础-用空间复杂度换时间复杂度](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E7%94%A8%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%8D%A2%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
