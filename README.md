@@ -198,6 +198,8 @@
 * 计算机网络课本
 * 计算机网络PPT
 
+<img align="right" src="https://i.postimg.cc/d394dBW7/image.png"/>
+
 ## 💻 操作系统
 ### 面经
 * [操作系统](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E9%9D%A2%E7%BB%8F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)(必看👍 )
@@ -205,7 +207,6 @@
 * [王道计算机考研-操作系统-学习重点指导](https://github.com/mao888/golang-guide/blob/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%8B%E9%81%93%E8%80%83%E7%A0%94-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F.md)
 * [现代操作系统-第四版](https://github.com/mao888/golang-guide/tree/main/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/study/%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
 ### 📚 [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnK5irYNB0FS9IlqMssL6aAb) [关注公众号回复：飞书书库 获取密码]
-[![image.png](https://i.postimg.cc/d394dBW7/image.png)](https://postimg.cc/XBpf6w63)
 * 计算机操作系统（第4版）—汤小丹
 * 现代操作系统原书第四版pdf免费版
 * 图解系统@小林coding
