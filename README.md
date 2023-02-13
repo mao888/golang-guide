@@ -247,6 +247,8 @@
 * 蓝桥杯-往届真题
 * 等等...
 
+<img align="right" src="https://i.postimg.cc/sxYbJM5n/mysql-2.png" style="60%"/>
+
 ## 💻 MySQL
 ### 面经
 * [MYSQL知识点整理](https://github.com/mao888/golang-guide/blob/main/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86.md)(必看👍 )
