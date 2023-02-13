@@ -77,12 +77,6 @@
 </div>
 <br />
 
-[//]: # (<div>)
-
-[//]: # (<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />)
-
-[//]: # (</div>)
-
 ## 💻 Golang
 工作量较大, 急需pr
 ### golang-Interview
