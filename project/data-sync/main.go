@@ -83,13 +83,13 @@ func main() {
 
 	// 美术需求语种多对多关联表
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
-	// art_need.RunArtNeedLanguageRelation()
+	//art_need.RunArtNeedLanguageRelation()
 
 	// 美术需求子任务表
 	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_tasks
-	// art_need.RunArtTask()
+	//art_need.RunArtTask()
 
 	// 美术需求附件-终稿
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
-	// art_need.RunArtAttachment()
+	//art_need.RunArtAttachment()
 }
