@@ -284,7 +284,8 @@
 ### 面经
 * [Redis](https://github.com/mao888/golang-guide/blob/main/Redis/%E9%9D%A2%E7%BB%8F/Redis.md)(必看👍 )
 ### 📚 [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnv9k52eTXm5SCJGJVtz9Mue?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
-[![redis.png](https://i.postimg.cc/50DMTx15/redis.png)](https://postimg.cc/1n0TN184)
+<img align="right" src="https://i.postimg.cc/50DMTx15/redis.png"/>
+
 **内包含：**
 * Redis设计与实现
 * redis设计与实现(第二版)【TALKDATA推荐】
