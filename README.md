@@ -336,6 +336,8 @@
 
 注：加粗为宝藏
 
+<img align="right" src="https://i.postimg.cc/sXskpBzT/linux.jpg" />
+
 ## 💻 Linux
 ### Linux-Study
 * [**awesome-cheatsheets**](https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh)
