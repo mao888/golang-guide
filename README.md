@@ -87,6 +87,7 @@
 * 配套哔站讲解：[算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28) (必看👍 )
 * [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) 
 * 更多资料见📚飞书书库
+<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
 
 ### golang-study
 * [golang学习路线](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
