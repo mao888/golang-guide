@@ -248,7 +248,6 @@
 * 等等...
 
 <img align="right" src="https://i.postimg.cc/sxYbJM5n/mysql-2.png"/>
-<img align="right" src="https://i.postimg.cc/brMjXqhH/Mysql.png"/>
 
 ## 💻 MySQL
 ### 面经
@@ -256,6 +255,7 @@
 * [MySQL基础、锁、事务、分库分表、优化](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E5%9F%BA%E7%A1%80%E3%80%81%E9%94%81%E3%80%81%E4%BA%8B%E5%8A%A1%E3%80%81%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E3%80%81%E4%BC%98%E5%8C%96.md)
 * [MySQL索引及优化全总结](https://github.com/mao888/golang-guide/blob/main/mysql/MySQL%E7%B4%A2%E5%BC%95%E5%8F%8A%E4%BC%98%E5%8C%96%E5%85%A8%E6%80%BB%E7%BB%93.md)(必看👍 )
 ### 📚 [飞书书库](https://stpnxkbsbf.feishu.cn/drive/folder/fldcnuC1TujPLcN6OLiSBSKK4Ye?from=from_copylink) [关注公众号回复：飞书书库 获取密码]
+<img align="right" src="https://i.postimg.cc/brMjXqhH/Mysql.png"/>
 * 笔记
   * 狂神说MySQL系列
   * MySQL进一步理解
