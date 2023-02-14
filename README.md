@@ -19,6 +19,7 @@
 - [算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 - 校招不止,offer不停,更新不断
 
+
 ![访问个人主页数量](https://komarev.com/ghpvc/?username=duktig666&color=green)
 [![个人博客](https://img.shields.io/badge/-个人博客（huchao.vip）-c14438?style=flat-square&logo=B&logoColor=white)](http://www.huchao.vip/blogs)
 [![Github](https://img.shields.io/github/followers/mao888?label=Github&style=social)](https://github.com/mao888)
@@ -72,13 +73,12 @@
 
 ## 🚀 目录结构（不断更新中）
 
-<div>
-<img align="right" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="400" />
-</div>
-<br />
+<img align="centre" src="https://i.postimg.cc/jSb7BHsv/golang-logo.png" width="600" />
 
 ## 💻 Golang
 工作量较大, 急需pr
+<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
+
 ### golang-Interview
 * [**Golang面经**](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/GOALNG_INTERVIEW_COLLECTION.md) (必看👍 )
 * [数据结构与算法Guide【Golang实现】](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E9%9D%A2%E7%BB%8F/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95Guide%E3%80%90Golang%E5%AE%9E%E7%8E%B0%E3%80%91.md) (必看👍)
@@ -87,8 +87,6 @@
 * 配套哔站讲解：[算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28) (必看👍 )
 * [Gin源码阅读与分析](https://github.com/mao888/golang-guide/blob/main/golang/go-Interview/%E6%A1%86%E6%9E%B6/Gin%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB.md) 
 * 更多资料见📚飞书书库
-<img align="right" src="https://i.postimg.cc/MH9rg45y/Go.jpg" />
-
 ### golang-study
 * [golang学习路线](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md) (必看👍 )
@@ -139,10 +137,12 @@
 [//]: # ([![Go.jpg]&#40;https://i.postimg.cc/MH9rg45y/Go.jpg&#41;]&#40;https://postimg.cc/K3gNM0dz&#41;)
 
 
-<img align="right" src=https://i.postimg.cc/PqnXKHkR/R-C.jpg width="400" />
+<img align="center" src=https://i.postimg.cc/PqnXKHkR/R-C.jpg width="400" />
 
 ## 💻 Java全栈
 ### 面经
+<img align="right" src=https://i.postimg.cc/FHNQS8Km/Java.jpg />
+
 * [Java全栈(超详细)](https://github.com/mao888/golang-guide/blob/main/Java/Java.md) (必看👍 )
 ### 资料库
 * [高质量网站](https://github.com/mao888/golang-guide/blob/main/Java/%E8%B5%84%E6%96%99%E5%BA%93/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%BD%91%E7%AB%99.md)(必看👍 )
@@ -168,11 +168,11 @@
 * MySQL55题及答案
 * Redis面试专题及答案
 
-<img align="right" src="https://i.postimg.cc/zfXVr5VP/image.jpg" style="80%"/>
-
 ## 💻 计算机网络
 * [导读 程序员如何打好计算机领域的基础？](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%AF%BC%E8%AF%BB%20%20%E7%A8%8B%E5%BA%8F%E5%91%98%E5%A6%82%E4%BD%95%E6%89%93%E5%A5%BD%E8%AE%A1%E7%AE%97%E6%9C%BA%E9%A2%86%E5%9F%9F%E7%9A%84%E5%9F%BA%E7%A1%80%EF%BC%9F.md)
 * [一次搞定计算机网络，高效修炼程序员内功](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%80%E6%AC%A1%E6%90%9E%E5%AE%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%8C%E9%AB%98%E6%95%88%E4%BF%AE%E7%82%BC%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%85%E5%8A%9F.md)
+<img align="right" src="https://i.postimg.cc/zfXVr5VP/image.jpg" height="400" width="280"/>
+
 ### 计网面经
 * [计算机网络上](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8A.md) 
 * [计算机网络下](https://github.com/mao888/golang-guide/blob/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%BD%91%E9%9D%A2%E7%BB%8F/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8B.md)
@@ -193,7 +193,11 @@
 * 计算机网络课本
 * 计算机网络PPT
 
+<<<<<<< HEAD
 <img align="right" src="https://i.postimg.cc/d394dBW7/image.png" style=""/>
+=======
+<img align="right" src="https://i.postimg.cc/d394dBW7/image.png" height="400" width="280"/>
+>>>>>>> 4a17fba6955d9a61495c4ee0b33332baa4849ec7
 
 ## 💻 操作系统
 ### 面经
@@ -207,6 +211,8 @@
 * 图解系统@小林coding
 
 ## 💻 数据结构与算法
+<img align="right" src="https://i.postimg.cc/65p3yLb0/c.png" height="420"/>
+
 ### 算法基础
 * [算法基础-复杂度](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
 * [算法基础-用空间复杂度换时间复杂度](https://github.com/mao888/golang-guide/blob/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80-%E7%94%A8%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%8D%A2%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6.md)
@@ -295,18 +301,14 @@
 内包含：
 * 大话设计模式(带目录完整版)
 
-## 💻 Git
 
 [![Git](https://git-scm.com/images/logo@2x.png)](https://git-scm.com/)
 
-
-
+## 💻 Git
 * [Git入门](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Git%E5%85%A5%E9%97%A8.md)
 * [Github小技巧](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Github%E5%B0%8F%E6%8A%80%E5%B7%A7.md)
 * [Git详解](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Git/Git%E8%AF%A6%E8%A7%A3.md)
-
 ### 资料
-
 - [**Git Book**](https://git-scm.com/book/zh/v2)(必看👍 )
 - [**Git Cheat Sheet**](http://git-cheatsheet.com/)(必看👍 )
 - [Git Cheat Sheet中文版](https://www.w3cschool.cn/tspiu3/)
@@ -316,7 +318,7 @@
 - [GIT | GIT常见面试题](https://blog.csdn.net/nobody_1/article/details/88956315?ops_request_misc=%7B%22request%5Fid%22%3A%22164726602216780271960516%22%2C%22scm%22%3A%2220140713.130102334..%22%7D&request_id=164726602216780271960516&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-88956315.142^v2^pc_search_result_control_group,143^v4^control&utm_term=git面试题&spm=1018.2226.3001.4187)
 - [2022 最新 Git 面试题](https://libin9ioak.blog.csdn.net/article/details/123318369?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-123318369-blog-88956315.pc_relevant_recovery_v2&utm_relevant_index=1)
 
-- **Git Pro 2 **  (必看👍 )
+- Git Pro 2  (必看👍 )
   - [Git Pro2英文Github仓库在新窗口打开](https://github.com/progit/progit2)
   - [Git Pro2中文Gitbook在新窗口打开](https://bingohuang.gitbooks.io/progit2/content/01-introduction/sections/about-version-control.html)
   - [Git Pro2对应的中文Markdown版本的仓库地址在新窗口打开](https://github.com/bingohuang/progit2-gitbook)
@@ -337,6 +339,8 @@
   - ![img](https://www.pdai.tech/images/tool-git-learn-1.png)
 
 注：加粗为宝藏
+
+<img align="centre" src="https://i.postimg.cc/W3tBB829/linux.png" height="" width="280"/>
 
 ## 💻 Linux
 ### Linux-Study
@@ -359,10 +363,9 @@
 
 注:加粗的为宝藏
 
-## 💻 Docker
-
 ![extensions](https://docs.docker.com/assets/images/hardened-desktop.PNG)
 
+## 💻 Docker
 ### Use
 * [docker从入门到上手干事](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Docker/docker%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E4%B8%8A%E6%89%8B%E5%B9%B2%E4%BA%8B.md)
 * [docker基本概念解读](https://github.com/mao888/golang-guide/blob/main/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/Docker/docker%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E8%A7%A3%E8%AF%BB.md)
@@ -389,6 +392,8 @@
 ## 搜索引擎
 用于提高搜索效率，功能和浏览器搜索引擎类似。比较常见的搜索引擎是 Elasticsearch（推荐） 和 Solr。
 ## 💻 ES
+<img align="centre" src="https://i.postimg.cc/gkfpF3kc/elasticsearch.jpg" height="" width="280"/>
+
 * [ES-RESTFUL](https://github.com/mao888/golang-guide/blob/main/elasticsearch/ES_RESTFUL_README.md)
 * [search-Demo](https://github.com/mao888/golang-guide/blob/main/elasticsearch/search/search.go)
 ### ♥ElasticSearch知识体系详解♥ (必看👍 )
