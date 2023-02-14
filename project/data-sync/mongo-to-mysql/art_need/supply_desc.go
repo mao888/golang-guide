@@ -16,12 +16,12 @@ func RunSupplyDesc() {
 
 	// 2、从mysql查询数据
 	artNeeds := make([]*ArtNeed, 0)
-	err := db2.MySQLClientCruiser.Table("art_needs").Find(artNeeds).Error
+	err := db2.MySQLClientCruiser.Table("art_needs").Find(&artNeeds).Error
 	if err != nil {
 		fmt.Println("从mysql查询数据 错误：", err)
 		return
 	}
-	fmt.Println(artNeeds)
+	//fmt.Println(artNeeds)
 
 	// 3、将mongo数据装入切片
 	for _, need := range artNeeds {
@@ -40,7 +40,7 @@ func RunSupplyDesc() {
 		sort.Slice(mArtNeedLogs, func(i, j int) bool {
 			return mArtNeedLogs[i].UpdateTime.Unix() > mArtNeedLogs[j].UpdateTime.Unix() // 降序
 		})
-		//
+
 		for _, log := range mArtNeedLogs {
 			// SupplyDesc 补充说明 为空跳过
 			if log.SupplyDesc == constants.EmptyString {
