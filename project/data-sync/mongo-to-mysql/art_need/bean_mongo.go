@@ -101,7 +101,7 @@ type ArtNeedDrafts struct {
 	UpdateTime     *time.Time `json:"update_time" bson:"update_time"`
 }
 
-type ArtNeedLogs struct {
+type MArtNeedLogs struct {
 	ID              int        `json:"_id" bson:"_id"`
 	CompanyId       int        `json:"company_id" bson:"company_id"`             //公司id
 	GameId          int        `json:"game_id" bson:"game_id"`                   //游戏id

@@ -7,6 +7,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
+// 1000361
+
 func RunBaseDescTemplate() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("plat_console")

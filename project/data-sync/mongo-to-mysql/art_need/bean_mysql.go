@@ -1,6 +1,6 @@
 package art_need
 
-// ArtNeed 美术需求主表 mapped from table cruiser_console <art_need>
+// ArtNeed 美术需求主表 mapped from table cruiser_console <art_needs>
 type ArtNeed struct {
 	ID           int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`    // 需求id
 	GameID       string `gorm:"column:game_id;not null" json:"game_id"`               // 游戏ID
