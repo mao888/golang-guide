@@ -164,3 +164,13 @@ type ArtAttachment struct {
 	FileType  int32  `gorm:"column:file_type;not null;default:1" json:"file_type"` // 附件文件类型， 1: file,  2: image,3: video
 	IsDeleted bool   `gorm:"column:is_deleted;not null" json:"is_deleted"`
 }
+
+// BaseDescTemplate 美术需求默认描述表 mapped from table cruiser_console <base_desc_template>
+type BaseDescTemplate struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	NeedID    int32  `gorm:"column:need_id;not null" json:"need_id"`             // 需求id
+	LogID     int32  `gorm:"column:log_id;not null" json:"log_id"`               // 日志id
+	MainDesc  string `gorm:"column:main_desc;not null" json:"main_desc"`         // 主描述
+	CreatedAt int64  `gorm:"column:created_at;autoCreateTime" json:"created_at"` // 创建时间
+	UpdatedAt int64  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"` // 更新时间
+}

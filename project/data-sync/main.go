@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -92,4 +94,8 @@ func main() {
 	// 美术需求附件-终稿
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
 	//art_need.RunArtAttachment()
+
+	// 美术需求默认描述表
+	// Mongo/plat_console/artneeds.main_desc 数据迁移到 ARK cruiser_console/base_desc_template
+	art_need.RunBaseDescTemplate()
 }
