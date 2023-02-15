@@ -100,4 +100,5 @@ func main() {
 	// 美术需求主表-更新补充说明
 	// Mongo/plat_console/artneedlogs 数据迁移到 ARK cruiser_console/art_needs.extra_desc
 	//art_need.RunSupplyDesc()
+
 }
