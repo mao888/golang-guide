@@ -1,6 +1,6 @@
 package bean
 
-// AdConfAudience 广告配置中心-受众组 mapped from table <ad_conf_audience>
+// AdConfAudience 广告配置中心-受众组 mapped from table cruiser_console <ad_conf_audience>
 type AdConfAudience struct {
 	ID             int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name           string `gorm:"column:name;not null" json:"name"`                                 // 受众组名称
@@ -12,7 +12,7 @@ type AdConfAudience struct {
 	Remark         string `gorm:"column:remark" json:"remark"`
 }
 
-// AdConfAudienceIncludeRelation 广告配置中心-受众组 排除包含受众关联表 mapped from table <ad_conf_audience_include_relations>
+// AdConfAudienceIncludeRelation 广告配置中心-受众组 排除包含受众关联表 mapped from table cruiser_console <ad_conf_audience_include_relations>
 type AdConfAudienceIncludeRelation struct {
 	ID         int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AudienceID int32  `gorm:"column:audience_id;not null" json:"audience_id"` // 受众 ID 归属
@@ -24,7 +24,7 @@ type AdConfAudienceIncludeRelation struct {
 	UpdatedAt  int64  `gorm:"column:updated_at;not null" json:"updated_at"`   // 更新日期
 }
 
-// AdConfAudienceIsegmentationRelation 广告配置中心-受众组细分定位关联表 mapped from table <ad_conf_audience_isegmentation_relations>
+// AdConfAudienceIsegmentationRelation 广告配置中心-受众组细分定位关联表 mapped from table cruiser_console <ad_conf_audience_isegmentation_relations>
 type AdConfAudienceIsegmentationRelation struct {
 	ID         int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AudienceID int32  `gorm:"column:audience_id;not null" json:"audience_id"` // 受众 ID 归属
@@ -37,7 +37,7 @@ type AdConfAudienceIsegmentationRelation struct {
 	Label      string `gorm:"column:label;not null" json:"label"`             // 该细分label 名字
 }
 
-// AdConfCopywriting (广告投放-配置中心-文案表) mapped from table <ad_conf_copywriting>
+// AdConfCopywriting (广告投放-配置中心-文案表) mapped from table cruiser_console <ad_conf_copywriting>
 type AdConfCopywriting struct {
 	ID                     int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	GameID                 string `gorm:"column:game_id;not null" json:"game_id"`                          // 所属游戏ID
@@ -65,7 +65,7 @@ type AdConfCopywriting struct {
 	DefaultLanguageContent string `gorm:"column:default_language_content" json:"default_language_content"` // 默认语言文案 内容
 }
 
-// AdConfCountry (广告投放-配置中心-国家组表) mapped from table <ad_conf_country>
+// AdConfCountry (广告投放-配置中心-国家组表) mapped from table cruiser_console <ad_conf_country>
 type AdConfCountry struct {
 	ID                  int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name                string `gorm:"column:name;not null" json:"name"`                          // 国家组名称
@@ -76,7 +76,7 @@ type AdConfCountry struct {
 	UpdatedAt           int64  `gorm:"column:updated_at;not null" json:"updated_at"`              // 更新日期
 }
 
-// AdConfPosition (广告投放-配置中心-版位组表) mapped from table <ad_conf_position>
+// AdConfPosition (广告投放-配置中心-版位组表) mapped from table cruiser_console <ad_conf_position>
 type AdConfPosition struct {
 	ID              int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name            string `gorm:"column:name;not null" json:"name"`                             // 版位组名称
@@ -89,7 +89,7 @@ type AdConfPosition struct {
 	UpdatedAt       int64  `gorm:"column:updated_at;not null" json:"updated_at"`                 // 更新日期
 }
 
-// AdConfScheme (广告投放-配置中心-结构方案表) mapped from table <ad_conf_scheme>
+// AdConfScheme (广告投放-配置中心-结构方案表) mapped from table cruiser_console <ad_conf_scheme>
 type AdConfScheme struct {
 	ID                 int32   `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name               string  `gorm:"column:name;not null" json:"name"`                                           // 方案名称
