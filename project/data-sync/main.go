@@ -109,4 +109,8 @@ func main() {
 	// 广告配置中心-受众组 排除包含受众关联表
 	// Mongo/cruiser_console_v2/cfgaudiences.custom_audiences/cfgaudiences.excluded_custom_audiences -> ARK cruiser_console/ad_conf_audience_include_relations
 	//ad_conf_centre.RunAdConfAudienceIncludeRelation()
+
+	// 广告配置中心-受众组细分定位关联表
+	// Mongo/cruiser_console_v2/cfgaudiences.flexible_spec/cfgaudiences.exclusions -> ARK cruiser_console/ad_conf_audience_isegmentation_relations
+	//ad_conf_centre.RunAdConfAudienceIncludeRelation()
 }
