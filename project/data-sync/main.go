@@ -101,4 +101,8 @@ func main() {
 	// Mongo/plat_console/artneedlogs 数据迁移到 ARK cruiser_console/art_needs.extra_desc
 	//art_need.RunSupplyDesc()
 
+	// 七、广告投放-配置中心数据迁移
+	// 广告配置中心-受众组
+	// Mongo/cruiser_console_v2/cfgaudiences -> ARK cruiser_console/ad_conf_audience
+	//ad_conf_centre.RunAdConfAudience()
 }

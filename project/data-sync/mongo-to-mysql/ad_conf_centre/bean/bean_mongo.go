@@ -4,7 +4,7 @@ import "time"
 
 // MCfgAudienceModel 受众组 数据模型
 type MCfgAudienceModel struct {
-	ID                      int                       `json:"_id" bson:"_id"`
+	ID                      int32                     `json:"_id" bson:"_id"`
 	CompanyId               int                       `json:"company_id" bson:"company_id"`                               //公司id
 	Name                    string                    `json:"name" bson:"name"`                                           // 受众组名称
 	AccountId               string                    `json:"account_id" bson:"account_id"`                               // 账户id
