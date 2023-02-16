@@ -9,7 +9,7 @@ type MCfgAudienceModel struct {
 	Name                    string                    `json:"name" bson:"name"`                                           // 受众组名称
 	AccountId               string                    `json:"account_id" bson:"account_id"`                               // 账户id
 	CustomAudiences         []CustomAudiences         `json:"custom_audiences" bson:"custom_audiences"`                   // 包含受众
-	ExcludedCustomAudiences []ExcludedCustomAudiences `json:"excluded_custom_audiences" bson:"excluded_custom_audiences"` //排除受众
+	ExcludedCustomAudiences []ExcludedCustomAudiences `json:"excluded_custom_audiences" bson:"excluded_custom_audiences"` // 排除受众
 	FlexibleSpec            []FlexibleSpec            `json:"flexible_spec" bson:"flexible_spec"`                         // 包含细分定位、缩小细分定位
 	Exclusions              Exclusions                `json:"exclusions" bson:"exclusions"`                               // 排除细分定位
 	TargetingOptimization   string                    `json:"targeting_optimization" bson:"targeting_optimization"`       // 细分定位扩展优化
@@ -32,15 +32,45 @@ type ExcludedCustomAudiences struct {
 }
 
 type Exclusions struct {
-	Interests []struct {
+	EducationStatuses []int `json:"education_statuses"`
+	Interests         []struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"interests"`
-}
-
-type FlexibleSpec struct {
+	CollegeYears         []int `json:"college_years"`
+	RelationshipStatuses []int `json:"relationship_statuses"`
+	Income               []struct {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"income"`
 	FamilyStatuses []struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"family_statuses"`
+	Behaviors []struct {
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"behaviors"`
+}
+
+type FlexibleSpec struct {
+	EducationStatuses []int      `json:"education_statuses"` // 教育程度
+	Interests         []struct { // 兴趣
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"interests"`
+	CollegeYears         []int      `json:"college_years"`         // 大学毕业时间
+	RelationshipStatuses []int      `json:"relationship_statuses"` // 感情状况
+	Income               []struct { // 收入
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"income"`
+	FamilyStatuses []struct { // 家庭状态
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"family_statuses"`
+	Behaviors []struct { // 行为
+		Id   string `json:"id"`
+		Name string `json:"name"`
+	} `json:"behaviors"`
 }
