@@ -1,6 +1,6 @@
 package bean
 
-// ArtAsset mapped from table <art_asset>
+// ArtAsset 美术资产库表，该表保护（美术资产，动作资产，音乐资产等) mapped from table cruiser_console <art_asset>
 type ArtAsset struct {
 	ID          int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Type        int32  `gorm:"column:type;not null;default:1" json:"type"`         // 美术资产类型（1：美术资产、2：动作资产、3：音乐资产）
@@ -20,13 +20,13 @@ type ArtAsset struct {
 	IsDeleted   bool   `gorm:"column:is_deleted;not null" json:"is_deleted"`       // 1: deleted, 0: normal
 }
 
-// ArtAssetAction mapped from table <art_asset_action>
+// ArtAssetAction mapped from table cruiser_console <art_asset_action>
 type ArtAssetAction struct {
 	ID   int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name string `gorm:"column:name;not null" json:"name"`
 }
 
-// ArtAssetActionCategory mapped from table <art_asset_action_category>
+// ArtAssetActionCategory 资产动作分类表 mapped from table cruiser_console <art_asset_action_category>
 type ArtAssetActionCategory struct {
 	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	ParentID  int32  `gorm:"column:parent_id;not null" json:"parent_id"`         // 上级分类
@@ -36,21 +36,21 @@ type ArtAssetActionCategory struct {
 	Order     int32  `gorm:"column:order;not null" json:"order"`                 // 位置
 }
 
-// ArtAssetActionCategoryRelation mapped from table <art_asset_action_category_relations>
+// ArtAssetActionCategoryRelation mapped from table cruiser_console <art_asset_action_category_relations>
 type ArtAssetActionCategoryRelation struct {
 	ID         int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AssetID    int32 `gorm:"column:asset_id" json:"asset_id"`
 	CategoryID int32 `gorm:"column:category_id" json:"category_id"`
 }
 
-// ArtAssetActionRelation mapped from table <art_asset_action_relations>
+// ArtAssetActionRelation mapped from table cruiser_console <art_asset_action_relations>
 type ArtAssetActionRelation struct {
 	ID       int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AssetID  int32 `gorm:"column:asset_id;not null" json:"asset_id"`
 	ActionID int32 `gorm:"column:action_id;not null" json:"action_id"`
 }
 
-// ArtAssetCategory mapped from table <art_asset_category>
+// ArtAssetCategory 资产分类表 mapped from table cruiser_console <art_asset_category>
 type ArtAssetCategory struct {
 	ID        int32  `gorm:"column:id;primaryKey" json:"id"`
 	ParentID  int32  `gorm:"column:parent_id;not null" json:"parent_id"`         // 上级分类
@@ -60,34 +60,34 @@ type ArtAssetCategory struct {
 	Order     int32  `gorm:"column:order;not null" json:"order"`                 // 位置
 }
 
-// ArtAssetCategoryRelation mapped from table <art_asset_category_relations>
+// ArtAssetCategoryRelation mapped from table cruiser_console <art_asset_category_relations>
 type ArtAssetCategoryRelation struct {
 	ID         int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AssetID    int32 `gorm:"column:asset_id" json:"asset_id"`
 	CategoryID int32 `gorm:"column:category_id;not null" json:"category_id"`
 }
 
-// ArtAssetStyle mapped from table <art_asset_style>
+// ArtAssetStyle 美术素材风格 mapped from table cruiser_console <art_asset_style>
 type ArtAssetStyle struct {
 	ID   int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name string `gorm:"column:name;not null" json:"name"`
 }
 
-// ArtAssetStyleRelation mapped from table <art_asset_style_relations>
+// ArtAssetStyleRelation mapped from table cruiser_console <art_asset_style_relations>
 type ArtAssetStyleRelation struct {
 	ID      int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AssetID int32 `gorm:"column:asset_id;not null" json:"asset_id"`
 	StyleID int32 `gorm:"column:style_id;not null" json:"style_id"`
 }
 
-// ArtAssetTagRelation mapped from table <art_asset_tag_relations>
+// ArtAssetTagRelation 美术资产-标签表多对多关联表 mapped from table cruiser_console <art_asset_tag_relations>
 type ArtAssetTagRelation struct {
 	ID      int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	AssetID int32 `gorm:"column:asset_id;not null" json:"asset_id"` // 资产id
 	TagID   int32 `gorm:"column:tag_id;not null" json:"tag_id"`     //  标签id
 }
 
-// ArtAssetTag mapped from table <art_asset_tags>
+// ArtAssetTag 资产标签表 mapped from table cruiser_console <art_asset_tags>
 type ArtAssetTag struct {
 	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Label     string `gorm:"column:label;not null" json:"label"`           // 标签名称
