@@ -148,6 +148,7 @@ func RunEnvAndVersion() {
 				versionConfigUpdate.LangType = 1
 			}
 
+			versionConfigUpdate.Text = make([]*VersionConfigUpdateText, 0)
 			for _, text := range version.NoticeLngText {
 				df := false
 				if version.DefaultLanguage == text.Lng {
@@ -164,6 +165,7 @@ func RunEnvAndVersion() {
 			config.Update = &versionConfigUpdate
 
 			// 全局配置
+			config.Global = make([]*VersionConfigGlobal, 0)
 			for _, kv := range version.GlobalConf {
 				versionConfigGlobal := &VersionConfigGlobal{
 					Key:   kv.Key,
@@ -173,11 +175,14 @@ func RunEnvAndVersion() {
 			}
 
 			// 语言配置
+			config.Lang = make([]*VersionConfigLang, 0)
 			for _, conf := range version.LanguageConf {
 				var lang VersionConfigLang
 
 				lang.LangShort = conf.Language
 				lang.IsDefault = conf.DefaultLng
+
+				lang.Args = make([]*VersionConfigLangArg, 0)
 				for _, kv := range conf.ConfList {
 					k := &VersionConfigLangArg{
 						Key:   kv.Key,
@@ -185,6 +190,7 @@ func RunEnvAndVersion() {
 					}
 					lang.Args = append(lang.Args, k)
 				}
+				config.Lang = append(config.Lang, &lang)
 			}
 
 			configJson, err := gj.Object2JSONE(&config)
@@ -286,6 +292,7 @@ func RunEnvAndVersion() {
 				versionConfigUpdate.LangType = 1
 			}
 
+			versionConfigUpdate.Text = make([]*VersionConfigUpdateText, 0)
 			for _, text := range version.NoticeLngText {
 				df := false
 				if version.DefaultLanguage == text.Lng {
@@ -302,6 +309,7 @@ func RunEnvAndVersion() {
 			config.Update = &versionConfigUpdate
 
 			// 全局配置
+			config.Global = make([]*VersionConfigGlobal, 0)
 			for _, kv := range version.GlobalConf {
 				versionConfigGlobal := &VersionConfigGlobal{
 					Key:   kv.Key,
@@ -311,11 +319,14 @@ func RunEnvAndVersion() {
 			}
 
 			// 语言配置
+			config.Lang = make([]*VersionConfigLang, 0)
 			for _, conf := range version.LanguageConf {
 				var lang VersionConfigLang
 
 				lang.LangShort = conf.Language
 				lang.IsDefault = conf.DefaultLng
+
+				lang.Args = make([]*VersionConfigLangArg, 0)
 				for _, kv := range conf.ConfList {
 					k := &VersionConfigLangArg{
 						Key:   kv.Key,
@@ -323,6 +334,7 @@ func RunEnvAndVersion() {
 					}
 					lang.Args = append(lang.Args, k)
 				}
+				config.Lang = append(config.Lang, &lang)
 			}
 
 			configJson, err := gj.Object2JSONE(&config)
