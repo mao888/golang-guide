@@ -193,11 +193,7 @@
 * 计算机网络课本
 * 计算机网络PPT
 
-<<<<<<< HEAD
-<img align="right" src="https://i.postimg.cc/d394dBW7/image.png" style=""/>
-=======
 <img align="right" src="https://i.postimg.cc/d394dBW7/image.png" height="400" width="280"/>
->>>>>>> 4a17fba6955d9a61495c4ee0b33332baa4849ec7
 
 ## 💻 操作系统
 ### 面经
