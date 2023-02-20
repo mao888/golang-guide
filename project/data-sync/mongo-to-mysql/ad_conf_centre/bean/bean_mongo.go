@@ -54,13 +54,13 @@ type Exclusions struct {
 }
 
 type FlexibleSpec struct {
-	EducationStatuses []int      `json:"education_statuses"` // 教育程度
+	EducationStatuses []int `json:"education_statuses"` // 教育程度
 	Interests         []struct { // 兴趣
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"interests"`
-	CollegeYears         []int      `json:"college_years"`         // 大学毕业时间
-	RelationshipStatuses []int      `json:"relationship_statuses"` // 感情状况
+	CollegeYears         []int `json:"college_years"`         // 大学毕业时间
+	RelationshipStatuses []int `json:"relationship_statuses"` // 感情状况
 	Income               []struct { // 收入
 		Id   string `json:"id"`
 		Name string `json:"name"`
@@ -73,4 +73,32 @@ type FlexibleSpec struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"behaviors"`
+}
+
+// MCfgFrame 结构方案数据模型
+type MCfgFrame struct {
+	Id               int32    `json:"_id" bson:"_id"`                             // 结构方案id
+	CompanyId        int32    `json:"company_id" bson:"company_id"`               // 公司id
+	Name             string   `json:"name"`                                       // 结构方案名称
+	CampaignDims     []string `json:"campaign_dims"`                              // campaign划分维度 ['countries', 'audiences', 'positions', 'age', 'sex', 'language', 'materials', 'tag', 'adtype']
+	AdsetDims        []string `json:"adset_dims" bson:"adset_dims"`               // adset划分维度
+	CampaignLimit    int      `json:"campaign_limit" bson:"campaign_limit"`       // campaign数量上限
+	AdsetLimit       int      `json:"adset_limit" bson:"adset_limit"`             // adset数量上限
+	IsCbo            bool     `json:"is_cbo" bson:"is_cbo"`                       // 是否开启cbo
+	OptimizationGoal string   `json:"optimization_goal" bson:"optimization_goal"` // 优化目标
+	BidStrategy      string   `json:"bid_strategy" bson:"bid_strategy"`           // 竞价策略
+	AttributionSpec  struct {
+		EventType  string `json:"event_type" bson:"event_type"`
+		WindowDays int    `json:"window_days" bson:"window_days"`
+	} `json:"attribution_spec" bson:"attribution_spec"`                            // 转化窗口
+	CustomEventType string     `json:"custom_event_type" bson:"custom_event_type"` // AEO的14个应用事件
+	BillingEvent    string     `json:"billing_event" bson:"billing_event"`         // 计费方式
+	PacingType      []string   `json:"pacing_type"`
+	BudgetLimit     int        `json:"budget_limit" bson:"budget_limit"` // 单日预算上限
+	VerifyStr       string     `json:"verify_str" bson:"verify_str"`     // 结构方案信息校验参数
+	CreateUser      string     `json:"create_user" bson:"create_user"`   // 创建人
+	UserId          int32      `json:"user_id" bson:"user_id"`           // 创建人
+	SourceSys       string     `json:"source_sys" bson:"source_sys""`
+	CreateTime      *time.Time `json:"create_time" bson:"create_time"`
+	UpdateTime      *time.Time `json:"update_time" bson:"update_time"`
 }
