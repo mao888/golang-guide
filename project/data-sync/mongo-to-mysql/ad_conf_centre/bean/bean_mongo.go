@@ -54,13 +54,13 @@ type Exclusions struct {
 }
 
 type FlexibleSpec struct {
-	EducationStatuses []int `json:"education_statuses"` // 教育程度
+	EducationStatuses []int      `json:"education_statuses"` // 教育程度
 	Interests         []struct { // 兴趣
 		Id   string `json:"id"`
 		Name string `json:"name"`
 	} `json:"interests"`
-	CollegeYears         []int `json:"college_years"`         // 大学毕业时间
-	RelationshipStatuses []int `json:"relationship_statuses"` // 感情状况
+	CollegeYears         []int      `json:"college_years"`         // 大学毕业时间
+	RelationshipStatuses []int      `json:"relationship_statuses"` // 感情状况
 	Income               []struct { // 收入
 		Id   string `json:"id"`
 		Name string `json:"name"`
@@ -90,7 +90,7 @@ type MCfgFrame struct {
 	AttributionSpec  struct {
 		EventType  string `json:"event_type" bson:"event_type"`
 		WindowDays int    `json:"window_days" bson:"window_days"`
-	} `json:"attribution_spec" bson:"attribution_spec"`                            // 转化窗口
+	} `json:"attribution_spec" bson:"attribution_spec"` // 转化窗口
 	CustomEventType string     `json:"custom_event_type" bson:"custom_event_type"` // AEO的14个应用事件
 	BillingEvent    string     `json:"billing_event" bson:"billing_event"`         // 计费方式
 	PacingType      []string   `json:"pacing_type"`
