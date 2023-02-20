@@ -120,10 +120,14 @@ func main() {
 	//art_asset.RunArtAsset1() // 美术资产
 
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
-	// Mongo/artsources -> ARK cruiser_console/art_asset
+	// Mongo/activelibraries -> ARK cruiser_console/art_asset
 	//art_asset.RunArtAsset2() // 动作资产
 
 	// 资产标签表
 	// Mongo/tags -> ARK cruiser_console/art_asset_tags
 	//art_asset.RunArtAssetTag()
+
+	// 美术资产-标签表多对多关联表
+	// Mongo/artsources/activelibraries -> ARK cruiser_console/art_asset_tag_relations
+	//art_asset.RunArtAssetTagRelation()
 }

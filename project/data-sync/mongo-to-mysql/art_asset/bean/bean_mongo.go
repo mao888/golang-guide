@@ -2,7 +2,7 @@ package bean
 
 import "time"
 
-// MActiveLibrary 动作库
+// MActiveLibrary 动作库 From Mongo/activelibraries
 type MActiveLibrary struct {
 	ID               int32      `json:"_id" bson:"_id"`
 	CompanyId        int32      `json:"company_id" bson:"company_id"`
@@ -10,7 +10,7 @@ type MActiveLibrary struct {
 	Desc             string     `json:"desc" bson:"desc"`
 	Size             string     `json:"size" bson:"size"`
 	CategoryId       int32      `json:"category_id" bson:"category_id"`
-	TagArr           []int32    `json:"tag_arr" bson:"tagArr"`                       //标签，上限10
+	TagArr           []int32    `json:"tag_arr" bson:"tag_arr"`                      //标签，上限10
 	ThumbUrl         string     `json:"thumb_url" bson:"thumb_url"`                  //预览图
 	Url              string     `json:"url" bson:"url"`                              // 视频URL
 	CreatorId        int32      `json:"creator_id" bson:"creator_id"`                //上传用户id
@@ -25,14 +25,14 @@ type MActiveLibrary struct {
 	UpdateTime       *time.Time `json:"update_time" bson:"update_time"`
 }
 
-// MArtSource 资产库
+// MArtSource 资产库 From Mongo/artsources
 type MArtSource struct {
 	ID               int32      `json:"_id" bson:"_id"`
 	CompanyId        int32      `json:"company_id" bson:"company_id"`
 	Name             string     `json:"name" bson:"name"`
 	Desc             string     `json:"desc" bson:"desc"`
 	CategoryId       int32      `json:"category_id" bson:"category_id"`
-	TagArr           []int32    `json:"tag_arr" bson:"tagArr"`                       //标签，上限10
+	TagArr           []int32    `json:"tag_arr" bson:"tag_arr"`                      //标签，上限10
 	ThumbArr         []int32    `json:"thumb_arr" bson:"thumb_arr"`                  //预览图，上限20
 	DownloadCount    int32      `json:"download_count" bson:"download_count"`        // 下载次数
 	CreatorId        int32      `json:"creator_id" bson:"creator_id"`                //上传用户id
