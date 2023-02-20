@@ -19,7 +19,6 @@
 - [算法和数据结构 ——【Golang实现】](https://www.bilibili.com/video/BV1FG4y1n7oK/?spm_id_from=333.999.0.0&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 - 校招不止,offer不停,更新不断
 
-
 ![访问个人主页数量](https://komarev.com/ghpvc/?username=duktig666&color=green)
 [![个人博客](https://img.shields.io/badge/-个人博客（huchao.vip）-c14438?style=flat-square&logo=B&logoColor=white)](http://www.huchao.vip/blogs)
 [![Github](https://img.shields.io/github/followers/mao888?label=Github&style=social)](https://github.com/mao888)
@@ -193,11 +192,7 @@
 * 计算机网络课本
 * 计算机网络PPT
 
-<<<<<<< HEAD
-<img align="right" src="https://i.postimg.cc/d394dBW7/image.png" style=""/>
-=======
 <img align="right" src="https://i.postimg.cc/d394dBW7/image.png" height="400" width="280"/>
->>>>>>> 4a17fba6955d9a61495c4ee0b33332baa4849ec7
 
 ## 💻 操作系统
 ### 面经
