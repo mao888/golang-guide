@@ -113,4 +113,9 @@ func main() {
 	// 广告配置中心-受众组细分定位关联表
 	// Mongo/cruiser_console_v2/cfgaudiences.flexible_spec/cfgaudiences.exclusions -> ARK cruiser_console/ad_conf_audience_isegmentation_relations
 	//ad_conf_centre.RunAdConfAudienceIsegmentationRelation()
+
+	// 八、资产库（内部）、动作库（内部）
+	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
+	// Mongo/artsources -> ARK cruiser_console/art_asset
+	//art_asset.RunArtAsset1()
 }

@@ -5,8 +5,8 @@ type ArtAsset struct {
 	ID          int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Type        int32  `gorm:"column:type;not null;default:1" json:"type"`         // 美术资产类型（1：美术资产、2：动作资产、3：音乐资产）
 	AuthorID    int32  `gorm:"column:author_id" json:"author_id"`                  // 人员ID，作者
-	Desc        string `gorm:"column:desc" json:"desc"`                            // 资源描述
-	Name        string `gorm:"column:name;not null" json:"name"`                   // 资源名称
+	Desc        string `gorm:"column:desc" json:"desc"`                            // 资源描述 空
+	Name        string `gorm:"column:name;not null" json:"name"`                   // 资源名称 name + " " + desc
 	MainURL     string `gorm:"column:main_url" json:"main_url"`                    // 主图URL地址
 	UeURL       string `gorm:"column:ue_url;not null" json:"ue_url"`               // UE下载地址
 	MayaURL     string `gorm:"column:maya_url;not null" json:"maya_url"`           // Maya下载地址
@@ -18,6 +18,20 @@ type ArtAsset struct {
 	UpdatedAt   int64  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"` // 更新日期
 	DoneAt      int64  `gorm:"column:done_at" json:"done_at"`                      // 完成时间
 	IsDeleted   bool   `gorm:"column:is_deleted;not null" json:"is_deleted"`       // 1: deleted, 0: normal
+}
+
+// AssetImg 资源库-主图表 mapped from table cruiser_console <asset_imgs>
+type AssetImg struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	AssetID   int32  `gorm:"column:asset_id;not null" json:"asset_id"`     // 附属资产id
+	Name      string `gorm:"column:name;not null" json:"name"`             // 资产图片名称
+	URL       string `gorm:"column:url;not null" json:"url"`               // 资产图片地址
+	SizeRatio string `gorm:"column:size_ratio;not null" json:"size_ratio"` // 资产图片尺寸比例
+	Size      int32  `gorm:"column:size;not null" json:"size"`             // 图片大小
+	Md5       string `gorm:"column:md5;not null" json:"md5"`               // 图片md5
+	Height    int32  `gorm:"column:height;not null" json:"height"`         // 图片高度
+	Width     int32  `gorm:"column:width;not null" json:"width"`           // 图片宽度
+	IsDeleted bool   `gorm:"column:is_deleted;not null" json:"is_deleted"`
 }
 
 // ArtAssetAction mapped from table cruiser_console <art_asset_action>

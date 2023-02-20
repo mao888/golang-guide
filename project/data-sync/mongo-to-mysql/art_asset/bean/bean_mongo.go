@@ -45,3 +45,36 @@ type MArtSource struct {
 	CreateTime       *time.Time `json:"create_time" bson:"create_time"`
 	UpdateTime       *time.Time `json:"update_time" bson:"update_time"`
 }
+
+type MCloudUrls struct {
+	ID           int32      `bson:"_id" json:"_id"`
+	CompanyId    int32      `json:"company_id" bson:"company_id"`
+	AssetId      int32      `json:"asset_id" bson:"asset_id"`           //关联到第三方资源类型id，如美术资源库id
+	CloudType    string     `json:"cloud_type" bson:"cloud_type"`       // 资源存储的CDN类型，默认Akamai
+	UseType      string     `json:"use_type" bson:"use_type"`           // 资源用途：art_store_source美术资源库源文件；art_store_thumb美术资源库预览图
+	SourceType   string     `json:"source_type" bson:"source_type"`     // 资源类型video、image、zip、file
+	Name         string     `json:"name" bson:"name"`                   // 资源名称
+	CloudDir     string     `json:"cloud_dir" bson:"cloud_dir"`         // 云地址路径
+	Url          string     `json:"url" bson:"url"`                     // 资源地址
+	ThumbnailUrl string     `json:"thumbnail_url" bson:"thumbnail_url"` // 资源缩略图地址
+	Size         int32      `json:"size" bson:"size"`                   // 资源大小
+	Suffix       string     `json:"suffix" bson:"suffix"`               // 资源后缀名
+	CreateTime   *time.Time `json:"create_time" bson:"create_time"`     // 创建时间
+}
+
+// MGame From Mongo
+type MGame struct {
+	ID         int32      `bson:"_id" json:"_id"`
+	GameName   string     `bson:"game_name" json:"game_name"`
+	CompanyID  int32      `bson:"company_id" json:"company_id"`
+	GameID     string     `bson:"game_id" json:"game_id"`
+	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+
+	Enable     bool `bson:"enable" json:"enable"`
+	IsArchived bool `bson:"is_archived"`
+
+	SdkToken    string `json:"sdk_token" bson:"sdk_token"`
+	ServerToken string `json:"server_token" bson:"server_token"`
+}
