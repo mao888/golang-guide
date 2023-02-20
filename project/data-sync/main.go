@@ -117,5 +117,9 @@ func main() {
 	// 八、资产库（内部）、动作库（内部）
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
 	// Mongo/artsources -> ARK cruiser_console/art_asset
-	//art_asset.RunArtAsset1()
+	//art_asset.RunArtAsset1() // 美术资产
+
+	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
+	// Mongo/artsources -> ARK cruiser_console/art_asset
+	//art_asset.RunArtAsset2() // 动作资产
 }
