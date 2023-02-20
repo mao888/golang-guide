@@ -46,6 +46,7 @@ type MArtSource struct {
 	UpdateTime       *time.Time `json:"update_time" bson:"update_time"`
 }
 
+// MCloudUrls From Mongo/cloudurls
 type MCloudUrls struct {
 	ID           int32      `bson:"_id" json:"_id"`
 	CompanyId    int32      `json:"company_id" bson:"company_id"`
@@ -62,7 +63,7 @@ type MCloudUrls struct {
 	CreateTime   *time.Time `json:"create_time" bson:"create_time"`     // 创建时间
 }
 
-// MGame From Mongo
+// MGame From Mongo/games
 type MGame struct {
 	ID         int32      `bson:"_id" json:"_id"`
 	GameName   string     `bson:"game_name" json:"game_name"`
@@ -77,4 +78,31 @@ type MGame struct {
 
 	SdkToken    string `json:"sdk_token" bson:"sdk_token"`
 	ServerToken string `json:"server_token" bson:"server_token"`
+}
+
+// MCategory From Mongo/categories
+type MCategory struct {
+	ID         int32      `bson:"_id" json:"_id"`
+	CompanyID  int32      `bson:"company_id" json:"company_id"` // 绑定公司id，若为0则为通用型
+	ParentId   int32      `json:"parent_id" bson:"parent_id"`   // 父节点id，若为0则为一级节点
+	Ctype      string     `json:"ctype" bson:"ctype"`           // art_store美术库；art_tag美术库标签
+	Level      int32      `json:"level" bson:"level"`
+	Name       string     `json:"name" bson:"name"`
+	Enable     bool       `json:"enable" bson:"enable"` // 是否被禁用
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+}
+
+// MTags From Mongo/tags
+type MTags struct {
+	Id      string `json:"_id" bson:"id"`
+	TagList []struct {
+		CategoryId int32      `json:"category_id" bson:"category_id"`
+		Id         int32      `json:"_id" bson:"_id"`
+		Name       string     `json:"name" bson:"name"`
+		CompanyId  int32      `json:"company_id" bson:"company_id"`
+		Ttype      string     `json:"ttype" bson:"ttype"`
+		CreateTime *time.Time `bson:"create_time" json:"create_time"`
+		UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+	} `json:"tag_list" bson:"tag_list"`
 }
