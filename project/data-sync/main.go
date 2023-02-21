@@ -130,4 +130,8 @@ func main() {
 	// 美术资产-标签表多对多关联表
 	// Mongo/artsources/activelibraries -> ARK cruiser_console/art_asset_tag_relations
 	//art_asset.RunArtAssetTagRelation()
+
+	// 美术需求-资产多对多关联表
+	// Mongo/artsources/activelibraries -> ARK cruiser_console/art_need_asset_relations
+	//art_asset.RunArtNeedAssetRelation()
 }

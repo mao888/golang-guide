@@ -74,17 +74,19 @@ func RunArtAsset2() {
 		if len(mPlatUser) != constants.NumberZero {
 			// 根据用户邮箱和昵称查询mysql/user，拿到user_id
 			user := make([]*bean.User, 0)
-			if len(mPlatUser) != constants.NumberZero {
-				err = db2.MySQLClientUser.Table("user").
-					Where("name = ? or email = ？", mPlatUser[0].Name, mPlatUser[0].Email).Find(user).Error
-				if err != nil {
-					fmt.Println("mysql/user 查询错误：", err)
-				}
+
+			err = db2.MySQLClientUser.Table("user").
+				Where("name = ?", mPlatUser[0].Name).Or("email = ?", mPlatUser[0].Email).
+				Find(&user).Error
+			if err != nil {
+				fmt.Println("mysql/user 查询错误：", err)
 			}
+
 			if len(user) == constants.NumberZero {
 				authorID = 0
+			} else {
+				authorID = user[0].ID
 			}
-			authorID = user[0].ID
 		} else {
 			authorID = 0
 		}

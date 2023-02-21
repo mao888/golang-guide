@@ -126,3 +126,10 @@ type User struct {
 	CreatedAt    int32  `gorm:"column:created_at;not null" json:"created_at"`                // 创建时间
 	IsDeleted    int32  `gorm:"column:is_deleted;not null;default:0" json:"is_deleted"`      // 是否删除（0:否，1:是）
 }
+
+// ArtNeedAssetRelation 美术需求-资产多对多关联表 mapped from table cruiser_console <art_need_asset_relations>
+type ArtNeedAssetRelation struct {
+	ID      int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	NeedID  int32 `gorm:"column:need_id;not null" json:"need_id"`   // 美术需求id
+	AssetID int32 `gorm:"column:asset_id;not null" json:"asset_id"` // 资产id
+}
