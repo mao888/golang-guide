@@ -48,4 +48,17 @@ var (
 		//默认值：ALL（如果指定 Null 或不提供值）。
 		//限制：不能使用 0。
 	}
+
+	DimensionMap = map[string]string{
+		"countries": "1",  // 国家/国家组
+		"audiences": "2",  // 受众组
+		"positions": "3",  // 版位组
+		"age":       "4",  // 年龄
+		"sex":       "5",  // 性别
+		"language":  "6",  // 语言
+		"strategys": "7",  // 优化方式
+		"materials": "8",  // 素材
+		"tag":       "9",  // 标签
+		"adtype":    "10", // 广告类型
+	}
 )
