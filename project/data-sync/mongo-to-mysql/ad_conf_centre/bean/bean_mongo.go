@@ -126,3 +126,21 @@ type MCfgFrame struct {
 	CreateTime      *time.Time `json:"create_time" bson:"create_time"`
 	UpdateTime      *time.Time `json:"update_time" bson:"update_time"`
 }
+
+// MfgPosition 版位组 数据模型
+type MfgPosition struct {
+	Id                       int32      `json:"_id" bson:"_id""`                                              // 版位组id
+	CompanyId                int32      `json:"company_id" bson:"company_id"`                                 //公司id
+	Name                     string     `json:"name" bson:"name"`                                             // 版位组名称
+	PositionType             string     `json:"positionType" bson:"positionType"`                             // 版位类型  editPosition、autoPosition
+	PublisherPlatforms       []string   `json:"publisher_platforms" bson:"publisher_platforms"`               // 版位平台
+	FacebookPositions        []string   `json:"facebook_positions" bson:"facebook_positions"`                 // fb版位数组
+	InstagramPositions       []string   `json:"instagram_positions" bson:"instagram_positions"`               // nstagram 版位数组
+	MessengerPositions       []string   `json:"messenger_positions" bson:"messenger_positions"`               // messenger 版位数组
+	AudienceNetworkPositions []string   `json:"audience_network_positions" bson:"audience_network_positions"` // audience_network 版位数组
+	ContainPosition          []string   `json:"containPosition" bson:"contain_position"`                      // 所有版位的 对照数组信息
+	CreateUser               string     `json:"create_user" bson:"create_user"`
+	UserId                   int32      `json:"user_id" bson:"user_id"`
+	CreateTime               *time.Time `json:"create_time" bson:"create_time"`
+	UpdateTime               *time.Time `json:"update_time" bson:"update_time"`
+}
