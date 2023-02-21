@@ -95,8 +95,8 @@ type AdConfScheme struct {
 	Name               string  `gorm:"column:name;not null" json:"name"`                                           // 方案名称
 	CampaignDimension  string  `gorm:"column:campaign_dimension;not null" json:"campaign_dimension"`               // 广告系列维度为固定维度ID拼接如1,2（1：国家/国家组,2：受众组,3:版位组,4:年龄,5:性别,6:语言,7:优化方式,8:素材,9:标签,10:广告类型）
 	AdsetDimension     string  `gorm:"column:adset_dimension;not null" json:"adset_dimension"`                     // 广告组维度为固定维度ID拼接如1,2（1：国家/国家组,2：受众组,3:版位组,4:年龄,5:性别,6:语言,7:优化方式,8:素材,9:标签,10:广告类型）
-	CampaignLimitAdset int32   `gorm:"column:campaign_limit_adset;not null;default:1" json:"campaign_limit_adset"` // 每个campaign最多有X 个ad set：必填，数值格式，范围为1-999
-	AdsetLimitAd       int32   `gorm:"column:adset_limit_ad;not null;default:1" json:"adset_limit_ad"`             // 每个ad set 最多有X 个ad：必填，数值格式，范围为1-999
+	CampaignLimitAdset int32   `gorm:"column:campaign_limit_adset;not null;default:1" json:"campaign_limit_adset"` // 每个campaign最多有X 个ad set：必填，数值格式，范围为1-999  CampaignLimit
+	AdsetLimitAd       int32   `gorm:"column:adset_limit_ad;not null;default:1" json:"adset_limit_ad"`             // 每个ad set 最多有X 个ad：必填，数值格式，范围为1-999		AdsetLimit
 	BudgetLevel        int32   `gorm:"column:budget_level;not null;default:1" json:"budget_level"`                 // 必选，单选，默认为CBO广告系列预算 1:CBO广告系列预算 2:ABO广告组预算
 	BudgetLimit        float32 `gorm:"column:budget_limit" json:"budget_limit"`                                    // 预算上限 ：非必填可为空，数值格式，正整数
 	AuthorID           int32   `gorm:"column:author_id" json:"author_id"`                                          // 人员ID，作者

@@ -14,6 +14,7 @@ func RunArtAsset2() {
 	db := db2.MongoClient.Database("plat_console")
 	coll := db.Collection("activelibraries")
 	collGames := db.Collection("games")
+	collUsers := db.Collection("platusers")
 
 	// 2、从mongo查询数据
 	mActiveLibrary := make([]*bean.MActiveLibrary, 0)
@@ -55,10 +56,43 @@ func RunArtAsset2() {
 		if source.CreateTime != nil {
 			createdAt = source.CreateTime.Unix()
 		}
+		// AuthorID
+		var authorID int32
+
+		mPlatUser := make([]*bean.MPlatUser, 0)
+		if source.Author != constants.NumberZero {
+			// 根据 source.Author 去mongo查询用户信息
+			err := collUsers.Find(context.TODO(), bson.M{"_id": source.Author}).All(&mPlatUser)
+			if err != nil {
+				fmt.Println("Mongo/platusers查询错误：", err)
+				return
+			}
+		} else {
+			authorID = 0
+		}
+
+		if len(mPlatUser) != constants.NumberZero {
+			// 根据用户邮箱和昵称查询mysql/user，拿到user_id
+			user := make([]*bean.User, 0)
+			if len(mPlatUser) != constants.NumberZero {
+				err = db2.MySQLClientUser.Table("user").
+					Where("name = ? or email = ？", mPlatUser[0].Name, mPlatUser[0].Email).Find(user).Error
+				if err != nil {
+					fmt.Println("mysql/user 查询错误：", err)
+				}
+			}
+			if len(user) == constants.NumberZero {
+				authorID = 0
+			}
+			authorID = user[0].ID
+		} else {
+			authorID = 0
+		}
+
 		artAsset := &bean.ArtAsset{
 			ID:       source.ID,
 			Type:     constants.NumberTwo,
-			AuthorID: source.Author,
+			AuthorID: authorID,
 			//Desc:       "",
 			Name:    fmt.Sprintf("%s"+" "+"%s", source.Name, source.Desc),
 			MainURL: source.Url,
