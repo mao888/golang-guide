@@ -12,7 +12,9 @@ import (
 func RunAdConfCountry() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
+	dbg := db2.MongoClient.Database("plat_console")
 	coll := db.Collection("cfgcountries")
+	collGames := dbg.Collection("games")
 
 	// 2、从mongo查询数据
 	mCfgCountry := make([]*bean.MCfgCountry, 0)
@@ -22,6 +24,18 @@ func RunAdConfCountry() {
 		return
 	}
 	fmt.Println(mCfgCountry)
+
+	var mGame []bean.MGame
+	err = collGames.Find(context.TODO(), bson.M{}).All(&mGame)
+	if err != nil {
+		fmt.Println("Mongo查询MGame错误：", err)
+	}
+
+	// 3、将从mongo中查出的games.id(int)作为key, games.game_id(string)作为value,存入map
+	idMap := map[int32]string{}
+	for _, game := range mGame {
+		idMap[game.ID] = game.GameID
+	}
 
 	// 3、将mongo数据装入切片
 	//adConfAudience := make([]*bean.AdConfAudience, 0)
@@ -64,13 +78,22 @@ func RunAdConfCountry() {
 				}
 			}
 		}
-
+		// GameID
+		var gameID string
+		if position.GameId == constants.EmptyString {
+			gameID = ""
+		} else {
+			p, ok := position.GameId.(int32)
+			if ok {
+				gameID = idMap[p]
+			}
+		}
 		adConfCountry := &bean.AdConfCountry{
 			ID:                  position.Id,
 			Name:                position.Name,
 			IncludeCountryCodes: includeCountryCodes,
 			ExcludeCountryCodes: excludeCountryCodes,
-			GameID:              position.GameId,
+			GameID:              gameID,
 			CreatedAt:           position.CreateTime.Unix(),
 			UpdatedAt:           position.UpdateTime.Unix(),
 		}

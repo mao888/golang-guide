@@ -165,11 +165,11 @@ type MAdTexts struct {
 
 // MCfgCountry 国家组 数据模型
 type MCfgCountry struct {
-	Id           int32  `json:"_id" bson:"_id"`               //国家组id
-	CompanyId    int32  `json:"company_id" bson:"company_id"` //公司id
-	Name         string `json:"name" bson:"name"`             //国家组名称
-	Fbid         string `json:"fbid" bson:"fbid"`             //fbId gia迁移后废弃
-	GameId       string `json:"game_id" bson:"game_id"`       // 游戏id
+	Id           int32       `json:"_id" bson:"_id"`               //国家组id
+	CompanyId    int32       `json:"company_id" bson:"company_id"` //公司id
+	Name         string      `json:"name" bson:"name"`             //国家组名称
+	Fbid         string      `json:"fbid" bson:"fbid"`             //fbId gia迁移后废弃
+	GameId       interface{} `json:"game_id" bson:"game_id"`       // 游戏id
 	GeoLocations struct {
 		Countries     []string `json:"countries" bson:"countries"`
 		CountryGroups []string `json:"country_groups"`
@@ -188,4 +188,21 @@ type ExcludedGeoLocations struct {
 	Countries     []string `json:"countries" bson:"countries"`
 	CountryGroups []string `json:"country_groups" bson:"country_groups"`
 	LocationTypes []string `json:"location_types" bson:"location_types"`
+}
+
+// MGame From Mongo/games
+type MGame struct {
+	ID         int32      `bson:"_id" json:"_id"`
+	GameName   string     `bson:"game_name" json:"game_name"`
+	CompanyID  int32      `bson:"company_id" json:"company_id"`
+	GameID     string     `bson:"game_id" json:"game_id"`
+	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+
+	Enable     bool `bson:"enable" json:"enable"`
+	IsArchived bool `bson:"is_archived"`
+
+	SdkToken    string `json:"sdk_token" bson:"sdk_token"`
+	ServerToken string `json:"server_token" bson:"server_token"`
 }
