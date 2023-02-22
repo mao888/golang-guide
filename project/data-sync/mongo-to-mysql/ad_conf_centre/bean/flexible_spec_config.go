@@ -61,4 +61,25 @@ var (
 		"tag":       "9",  // 标签
 		"adtype":    "10", // 广告类型
 	}
+
+	LanguagesMapCodeToShortName = map[int32]string{
+		1001: "en",
+		5:    "de",
+		1003: "fr",
+		11:   "ja",
+		12:   "ko",
+		1002: "es",
+		10:   "it",
+		1004: "zh-tw",
+		28:   "ar",
+		35:   "th",
+		17:   "ru",
+		1005: "pt",
+		14:   "nl",
+		19:   "tr",
+		27:   "vi",
+		41:   "ms",
+		25:   "id",
+		26:   "tl",
+	}
 )

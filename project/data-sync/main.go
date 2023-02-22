@@ -126,6 +126,10 @@ func main() {
 	// Mongo/cruiser_console_v2/cfgcountries -> ARK cruiser_console/ad_conf_country
 	//ad_conf_centre.RunAdConfCountry()
 
+	// 广告投放-配置中心-文案表
+	// Mongo/cruiser_console_v2/adtexts -> ARK cruiser_console/ad_conf_copywriting
+	//ad_conf_centre.RunAdConfCopywriting()
+
 	// 八、资产库（内部）、动作库（内部）
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
 	// Mongo/artsources -> ARK cruiser_console/art_asset

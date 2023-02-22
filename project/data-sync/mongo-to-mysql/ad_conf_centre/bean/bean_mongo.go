@@ -145,22 +145,22 @@ type MfgPosition struct {
 	UpdateTime               *time.Time `json:"update_time" bson:"update_time"`
 }
 
-// MAdTexts adtexts
+// MAdTexts adtexts 素材 文案库
 type MAdTexts struct {
 	Id          string `json:"_id" bson:"_id"`
 	Fbid        string `json:"fbid"  bson:"fbid"`
 	EnText      string `json:"en_text" bson:"en_text"`
 	Translation []struct {
 		Id   string `json:"_id" bson:"id"`
-		Lang int    `json:"lang" bson:"lang"`
+		Lang int32  `json:"lang" bson:"lang"`
 		Text string `json:"text" bson:"text"`
 	} `json:"translation" bson:"translation"`
-	CreateTime  *time.Time `json:"create_time" bson:"create_time"`
-	UpdateTime  *time.Time `json:"update_time" bson:"update_time"`
-	CompanyId   int        `json:"company_id" bson:"company_id"`
-	GameId      string     `json:"game_id" bson:"game_id"`
-	DefaultLang int        `json:"default_lang" bson:"default_lang"`
-	DefaultText string     `json:"default_text" bson:"default_text"`
+	CreateTime  *time.Time  `json:"create_time" bson:"create_time"`
+	UpdateTime  *time.Time  `json:"update_time" bson:"update_time"`
+	CompanyId   int32       `json:"company_id" bson:"company_id"`
+	GameId      interface{} `json:"game_id" bson:"game_id"`
+	DefaultLang int32       `json:"default_lang" bson:"default_lang"`
+	DefaultText string      `json:"default_text" bson:"default_text"`
 }
 
 // MCfgCountry 国家组 数据模型
