@@ -144,3 +144,48 @@ type MfgPosition struct {
 	CreateTime               *time.Time `json:"create_time" bson:"create_time"`
 	UpdateTime               *time.Time `json:"update_time" bson:"update_time"`
 }
+
+// MAdTexts adtexts
+type MAdTexts struct {
+	Id          string `json:"_id" bson:"_id"`
+	Fbid        string `json:"fbid"  bson:"fbid"`
+	EnText      string `json:"en_text" bson:"en_text"`
+	Translation []struct {
+		Id   string `json:"_id" bson:"id"`
+		Lang int    `json:"lang" bson:"lang"`
+		Text string `json:"text" bson:"text"`
+	} `json:"translation" bson:"translation"`
+	CreateTime  *time.Time `json:"create_time" bson:"create_time"`
+	UpdateTime  *time.Time `json:"update_time" bson:"update_time"`
+	CompanyId   int        `json:"company_id" bson:"company_id"`
+	GameId      string     `json:"game_id" bson:"game_id"`
+	DefaultLang int        `json:"default_lang" bson:"default_lang"`
+	DefaultText string     `json:"default_text" bson:"default_text"`
+}
+
+// MCfgCountry 国家组 数据模型
+type MCfgCountry struct {
+	Id           int32  `json:"_id" bson:"_id"`               //国家组id
+	CompanyId    int32  `json:"company_id" bson:"company_id"` //公司id
+	Name         string `json:"name" bson:"name"`             //国家组名称
+	Fbid         string `json:"fbid" bson:"fbid"`             //fbId gia迁移后废弃
+	GameId       string `json:"game_id" bson:"game_id"`       // 游戏id
+	GeoLocations struct {
+		Countries     []string `json:"countries" bson:"countries"`
+		CountryGroups []string `json:"country_groups"`
+		LocationTypes []string `json:"location_types"`
+	} `json:"geo_locations" bson:"geo_locations"` // 包含国家
+	ExcludedGeoLocations ExcludedGeoLocations `json:"excluded_geo_locations" bson:"excluded_geo_locations"` //排除国家
+	ContainCountries     []string             `json:"contain_countries" bson:"contain_countries"`           // 包含国家 的中文名称数组
+	ExcludedCountries    []string             `json:"excluded_countries" bson:"excluded_countries"`         // 排除国家的中文名称数据
+	CreateUser           string               `json:"create_user" bson:"create_user"`
+	UserId               int32                `json:"user_id" bson:"user_id"`
+	CreateTime           *time.Time           `json:"create_time" bson:"create_time"`
+	UpdateTime           *time.Time           `json:"update_time" bson:"update_time"`
+}
+
+type ExcludedGeoLocations struct {
+	Countries     []string `json:"countries" bson:"countries"`
+	CountryGroups []string `json:"country_groups" bson:"country_groups"`
+	LocationTypes []string `json:"location_types" bson:"location_types"`
+}

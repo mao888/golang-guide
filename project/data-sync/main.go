@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_conf_centre"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -121,6 +123,10 @@ func main() {
 	// 广告投放-配置中心-版位组
 	// Mongo/cruiser_console_v2/cfgpositions -> ARK cruiser_console/ad_conf_position
 	//ad_conf_centre.RunAdConfPosition()
+
+	// 广告投放-配置中心-国家组表
+	// Mongo/cruiser_console_v2/cfgcountries -> ARK cruiser_console/ad_conf_country
+	ad_conf_centre.RunAdConfCountry()
 
 	// 八、资产库（内部）、动作库（内部）
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)

@@ -69,7 +69,7 @@ type AdConfCopywriting struct {
 type AdConfCountry struct {
 	ID                  int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name                string `gorm:"column:name;not null" json:"name"`                          // 国家组名称
-	IncludeCountryCodes string `gorm:"column:include_country_codes" json:"include_country_codes"` // 包含的国家编码 ,分隔
+	IncludeCountryCodes string `gorm:"column:include_country_codes" json:"include_country_codes"` // 包含的国家编码 ,分隔  GeoLocations
 	ExcludeCountryCodes string `gorm:"column:exclude_country_codes" json:"exclude_country_codes"` // 排除的国家编码 ,分隔
 	GameID              string `gorm:"column:game_id;not null" json:"game_id"`                    // 所属游戏ID
 	CreatedAt           int64  `gorm:"column:created_at;not null" json:"created_at"`              // 创建日期
