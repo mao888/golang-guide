@@ -52,6 +52,9 @@ func RunAdConfCountry() {
 			}
 		}
 		if len(position.GeoLocations.CountryGroups) != constants.NumberZero {
+			if len(position.GeoLocations.Countries) != constants.NumberZero {
+				includeCountryCodes += ","
+			}
 			for i, group := range position.GeoLocations.CountryGroups {
 				includeCountryCodes += group
 				if i < len(position.GeoLocations.CountryGroups)-1 {
@@ -71,6 +74,9 @@ func RunAdConfCountry() {
 			}
 		}
 		if len(position.ExcludedGeoLocations.CountryGroups) != constants.NumberZero {
+			if len(position.ExcludedGeoLocations.Countries) != constants.NumberZero {
+				excludeCountryCodes += ","
+			}
 			for i, group := range position.ExcludedGeoLocations.CountryGroups {
 				excludeCountryCodes += group
 				if i < len(position.ExcludedGeoLocations.CountryGroups)-1 {

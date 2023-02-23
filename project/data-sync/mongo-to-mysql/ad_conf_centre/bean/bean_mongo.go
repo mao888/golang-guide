@@ -172,8 +172,8 @@ type MCfgCountry struct {
 	GameId       interface{} `json:"game_id" bson:"game_id"`       // 游戏id
 	GeoLocations struct {
 		Countries     []string `json:"countries" bson:"countries"`
-		CountryGroups []string `json:"country_groups"`
-		LocationTypes []string `json:"location_types"`
+		CountryGroups []string `json:"country_groups" bson:"country_groups"`
+		LocationTypes []string `json:"location_types" bson:"location_types"`
 	} `json:"geo_locations" bson:"geo_locations"` // 包含国家
 	ExcludedGeoLocations ExcludedGeoLocations `json:"excluded_geo_locations" bson:"excluded_geo_locations"` //排除国家
 	ContainCountries     []string             `json:"contain_countries" bson:"contain_countries"`           // 包含国家 的中文名称数组
