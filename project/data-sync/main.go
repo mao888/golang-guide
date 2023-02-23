@@ -1,7 +1,5 @@
 package main
 
-import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_conf_centre"
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -114,7 +112,7 @@ func main() {
 
 	// 广告配置中心-受众组细分定位关联表
 	// Mongo/cruiser_console_v2/cfgaudiences.flexible_spec/cfgaudiences.exclusions -> ARK cruiser_console/ad_conf_audience_isegmentation_relations
-	ad_conf_centre.RunAdConfAudienceIsegmentationRelation()
+	//ad_conf_centre.RunAdConfAudienceIsegmentationRelation()
 
 	// 广告投放-配置中心-结构方案表
 	// Mongo/cruiser_console_v2/cfgframes -> ARK cruiser_console/ad_conf_scheme

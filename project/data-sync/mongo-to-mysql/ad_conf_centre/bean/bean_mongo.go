@@ -32,47 +32,47 @@ type ExcludedCustomAudiences struct {
 }
 
 type Exclusions struct {
-	EducationStatuses []int `json:"education_statuses"`
+	EducationStatuses []int `json:"education_statuses" bson:"education_statuses"`
 	Interests         []struct {
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"interests"`
-	CollegeYears         []int `json:"college_years"`
-	RelationshipStatuses []int `json:"relationship_statuses"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"interests" bson:"interests"`
+	CollegeYears         []int `json:"college_years" bson:"college_years"`
+	RelationshipStatuses []int `json:"relationship_statuses" bson:"relationship_statuses"`
 	Income               []struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
-	} `json:"income"`
+	} `json:"income" bson:"income"`
 	FamilyStatuses []struct {
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"family_statuses"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"family_statuses" bson:"family_statuses"`
 	Behaviors []struct {
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"behaviors"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"behaviors" bson:"behaviors"`
 }
 
 type FlexibleSpec struct {
-	EducationStatuses []int      `json:"education_statuses"` // 教育程度
+	EducationStatuses []int      `json:"education_statuses" bson:"education_statuses"` // 教育程度
 	Interests         []struct { // 兴趣
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"interests"`
-	CollegeYears         []int      `json:"college_years"`         // 大学毕业时间
-	RelationshipStatuses []int      `json:"relationship_statuses"` // 感情状况
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"interests" bson:"interests"`
+	CollegeYears         []int      `json:"college_years" bson:"college_years"`                 // 大学毕业时间
+	RelationshipStatuses []int      `json:"relationship_statuses" bson:"relationship_statuses"` // 感情状况
 	Income               []struct { // 收入
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"income"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"income" bson:"income"`
 	FamilyStatuses []struct { // 家庭状态
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"family_statuses"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"family_statuses" bson:"family_statuses"`
 	Behaviors []struct { // 行为
-		Id   string `json:"id"`
-		Name string `json:"name"`
-	} `json:"behaviors"`
+		Id   string `json:"id" bson:"id"`
+		Name string `json:"name" bson:"name"`
+	} `json:"behaviors" bson:"behaviors"`
 }
 
 // MPlatUser From Mongo/platusers
