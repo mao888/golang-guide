@@ -12,6 +12,7 @@ import (
 func RunAdConfAudience() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
+	collUsers := db.Collection("platusers")
 	coll := db.Collection("cfgaudiences")
 
 	// 2、从mongo查询数据
@@ -26,6 +27,40 @@ func RunAdConfAudience() {
 	// 3、将mongo数据装入切片
 	adConfAudience := make([]*bean.AdConfAudience, 0)
 	for _, audience := range mCfgAudienceModel {
+		// AuthorID
+		var authorID int32
+
+		mPlatUser := make([]*bean.MPlatUser, 0)
+		if audience.UserId != constants.NumberZero {
+			// 根据 source.Author 去mongo查询用户信息
+			err := collUsers.Find(context.TODO(), bson.M{"_id": audience.UserId}).All(&mPlatUser)
+			if err != nil {
+				fmt.Println("Mongo/platusers查询错误：", err)
+				return
+			}
+		} else {
+			authorID = 0
+		}
+
+		if len(mPlatUser) != constants.NumberZero {
+			// 根据用户邮箱和昵称查询mysql/user，拿到user_id
+			user := make([]*bean.User, 0)
+
+			err = db2.MySQLClientUser.Table("user").
+				Where("name = ?", mPlatUser[0].Name).Or("email = ?", mPlatUser[0].Email).
+				Find(&user).Error
+			if err != nil {
+				fmt.Println("mysql/user 查询错误：", err)
+			}
+
+			if len(user) == constants.NumberZero {
+				authorID = 0
+			} else {
+				authorID = user[0].ID
+			}
+		} else {
+			authorID = 0
+		}
 		cfgAudience := &bean.AdConfAudience{
 			ID:             audience.ID,
 			Name:           audience.Name,
@@ -33,7 +68,7 @@ func RunAdConfAudience() {
 			AccountID:      audience.AccountId,
 			CreatedAt:      audience.CreateTime.Unix(),
 			UpdatedAt:      audience.UpdateTime.Unix(),
-			Creator:        audience.UserId,
+			Creator:        authorID,
 			Remark:         "",
 		}
 		adConfAudience = append(adConfAudience, cfgAudience)
