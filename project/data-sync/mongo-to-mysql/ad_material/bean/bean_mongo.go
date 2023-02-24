@@ -1,0 +1,55 @@
+package bean
+
+import "time"
+
+type MAssetCenter struct {
+	Id             int32       `json:"_id" bson:"_id"`
+	AssetType      string      `json:"asset_type" bson:"asset_type"`           // 素材类型 ['image', 'video']
+	AssetMd5       string      `json:"asset_md5" bson:"asset_md_5"`            // md5
+	AssetName      string      `json:"asset_name" bson:"asset_name"`           // 素材名
+	AssetUrl       string      `json:"asset_url" bson:"asset_url"`             // 素材下载地址
+	AssetThumbnail string      `json:"asset_thumbnail" bson:"asset_thumbnail"` // 素材缩略图
+	AssetWidth     int32       `json:"asset_width" bson:"asset_width"`         // 素材宽
+	AssetHeight    int32       `json:"asset_height" bson:"asset_height"`       // 素材高
+	AssetDuration  interface{} `json:"asset_duration" bson:"asset_duration"`   // 素材时长
+	AssetLanguage  int32       `json:"asset_language" bson:"asset_language"`
+	Tag            string      `json:"tag" bson:"tag"`               // 标签
+	AssetSize      string      `json:"asset_size" bson:"asset_size"` // 尺寸
+	Fbid           string      `json:"fbid" bson:"fbid"`
+	MediaList      []struct {
+		AccountId  string `json:"account_id" bson:"account_id"`
+		MediaId    string `json:"media_id" bson:"media_id"`
+		CreativeId string `json:"creative_id" bson:"creative_id"`
+	} `json:"media_list" bson:"media_list"` //该素材在每个账户中的对应ID [{account_id:"123", media_id:"678",creative_id:""}]
+	CreateUser        string     `json:"create_user" bson:"create_user"`
+	CreativeUser      string     `json:"creative_user" bson:"creative_user"`             // 创意人员id
+	DesignUser        string     `json:"design_user" bson:"design_user"`                 // 设计人员id
+	AssetUrlInfo      string     `json:"asset_url_info" bson:"asset_url_info"`           // 包含完整域名的url
+	AssetThumbnailUrl string     `json:"asset_thumbnail_url" bson:"asset_thumbnail_url"` // 包含完整域名的url
+	CreateTime        *time.Time `json:"create_time" bson:"create_time"`
+	UpdateTime        *time.Time `json:"update_time" bson:"update_time"`
+	DeleteTime        *time.Time `json:"delete_time" bson:"delete_time"`         //假删除对应字段
+	ThirdPartyUrl     string     `json:"third_party_url" bson:"third_party_url"` // youtube素材地址
+	//V                 int    `json:"__v"`
+	CompanyId     int32  `json:"company_id" bson:"company_id"`
+	GameId        int32  `json:"game_id" bson:"game_id"`
+	ArtneedId     string `json:"artneed_id" bson:"artneed_id"`
+	AssetLongName string `json:"asset_long_name" bson:"asset_long_name"`
+}
+
+// MGame From Mongo/games
+type MGame struct {
+	ID         int32      `bson:"_id" json:"_id"`
+	GameName   string     `bson:"game_name" json:"game_name"`
+	CompanyID  int32      `bson:"company_id" json:"company_id"`
+	GameID     string     `bson:"game_id" json:"game_id"`
+	CreatorID  int32      `bson:"creator_id" json:"creator_id"`
+	CreateTime *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime *time.Time `bson:"update_time" json:"update_time"`
+
+	Enable     bool `bson:"enable" json:"enable"`
+	IsArchived bool `bson:"is_archived"`
+
+	SdkToken    string `json:"sdk_token" bson:"sdk_token"`
+	ServerToken string `json:"server_token" bson:"server_token"`
+}

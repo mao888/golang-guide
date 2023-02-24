@@ -1,5 +1,9 @@
 package main
 
+import (
+	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material"
+)
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -150,4 +154,9 @@ func main() {
 	// 美术需求-资产多对多关联表
 	// Mongo/artsources/activelibraries -> ARK cruiser_console/art_need_asset_relations
 	//art_asset.RunArtNeedAssetRelation()
+
+	// 九、广告投放-素材中心
+	// 广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)
+	// Mongo/assetcenters -> ARK cruiser_console/ad_material
+	ad_material.RunAdMaterial()
 }
