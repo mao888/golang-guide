@@ -77,6 +77,9 @@ func RunAdMaterial() {
 			}
 			// 将插入后获取到的 dictionary.id 赋值 给 sizeRationID
 			sizeRationID = dic.ID
+		} else {
+			// 若有，则拿到id,赋值 给 sizeRationID
+			sizeRationID = dictionary[0].ID
 		}
 		// Src
 		var src int32
@@ -93,7 +96,11 @@ func RunAdMaterial() {
 			src = constants.NumberTwo
 		}
 		// ExtraName
-		extraName := strings.Split(center.AssetUrl, ".")
+		var extraName string
+		extraNames := strings.Split(center.AssetUrl, ".")
+		if len(extraNames) == constants.NumberTwo {
+			extraName = extraNames[1]
+		}
 
 		// TagID
 		var tagID int32
@@ -121,6 +128,9 @@ func RunAdMaterial() {
 			}
 			// 将插入后获取到的 dictionary.id 赋值 给 sizeRationID
 			tagID = dic.ID
+		} else {
+			// 若有，则拿到id,赋值 给 sizeRationID
+			tagID = dictionary2[0].ID
 		}
 		// IsDeleted
 		isDeleted := false
@@ -144,7 +154,7 @@ func RunAdMaterial() {
 			UpdatedAt: center.UpdateTime.Unix(),
 			IsDeleted: isDeleted,
 			Src:       src,
-			ExtraName: extraName[1],
+			ExtraName: extraName,
 			GameID:    idMap[center.GameId],
 			TagID:     tagID,
 		}

@@ -102,3 +102,11 @@ type ArtNeed struct {
 	GameName     string `gorm:"column:game_name" json:"game_name"`                    // 需求所属游戏名字（冗余字段）
 	AssetRemark  string `gorm:"column:asset_remark" json:"asset_remark"`              // 关联资产备注
 }
+
+// ArtLanguage mapped from table cruiser_console <art_languages>
+type ArtLanguage struct {
+	ID        int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	Name      string `gorm:"column:name;not null" json:"name"`             // 语言名称
+	Code      string `gorm:"column:code;not null" json:"code"`             // 语言编号
+	ShortName string `gorm:"column:short_name;not null" json:"short_name"` // 语言编号
+}
