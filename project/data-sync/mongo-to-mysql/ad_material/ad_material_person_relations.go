@@ -33,11 +33,25 @@ func RunAdMaterialPersonRelation() {
 		creativeUser := strings.Split(center.CreativeUser, "+")
 		for _, s := range creativeUser {
 			// PersonID
-			fmt.Println(s)
+			// 根据简称查询员工id
+			user := make([]*bean.User, 0)
+			err = db2.MySQLClientUser.Table("user").
+				Where("abbreviation = ?", s).Find(&user).Error
+			if err != nil {
+				fmt.Println("根据简称查询员工id 错误：", err)
+				return
+			}
+			var personId int32
+			if len(user) == 0 {
+				personId = 0
+			} else {
+				personId = user[0].ID
+			}
+
 			adMaterialPersonRelation := &bean.AdMaterialPersonRelation{
 				//ID:         0,
 				MaterialID: center.Id,
-				PersonID:   0,
+				PersonID:   personId,
 				Type:       constants.NumberOne,
 			}
 			// 4、将装有mongo数据的切片入库
@@ -48,10 +62,35 @@ func RunAdMaterialPersonRelation() {
 		}
 
 		// DesignUser
+		designUser := strings.Split(center.DesignUser, "+")
+		for _, s := range designUser {
+			// PersonID
+			// 根据简称查询员工id
+			user := make([]*bean.User, 0)
+			err = db2.MySQLClientUser.Table("user").
+				Where("abbreviation = ?", s).Find(&user).Error
+			if err != nil {
+				fmt.Println("根据简称查询员工id 错误：", err)
+				return
+			}
+			var personId int32
+			if len(user) == 0 {
+				personId = 0
+			} else {
+				personId = user[0].ID
+			}
 
-		// PersonID
-
-		// Type 2
-
+			adMaterialPersonRelation := &bean.AdMaterialPersonRelation{
+				//ID:         0,
+				MaterialID: center.Id,
+				PersonID:   personId,
+				Type:       constants.NumberOne,
+			}
+			// 4、将装有mongo数据的切片入库
+			err = db2.MySQLClientCruiser.Table("ad_material").Create(adMaterialPersonRelation).Error
+			if err != nil {
+				fmt.Println("入mysql/ad_material_person_relations 错误：", err)
+			}
+		}
 	}
 }
