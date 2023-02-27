@@ -55,9 +55,10 @@ func RunAdMaterialPersonRelation() {
 				Type:       constants.NumberOne,
 			}
 			// 4、将装有mongo数据的切片入库
-			err = db2.MySQLClientCruiser.Table("ad_material").Create(adMaterialPersonRelation).Error
+			err = db2.MySQLClientCruiser.Table("ad_material_person_relations").Create(adMaterialPersonRelation).Error
 			if err != nil {
 				fmt.Println("入mysql/ad_material_person_relations 错误：", err)
+				return
 			}
 		}
 
@@ -87,9 +88,10 @@ func RunAdMaterialPersonRelation() {
 				Type:       constants.NumberOne,
 			}
 			// 4、将装有mongo数据的切片入库
-			err = db2.MySQLClientCruiser.Table("ad_material").Create(adMaterialPersonRelation).Error
+			err = db2.MySQLClientCruiser.Table("ad_material_person_relations").Create(adMaterialPersonRelation).Error
 			if err != nil {
 				fmt.Println("入mysql/ad_material_person_relations 错误：", err)
+				return
 			}
 		}
 	}
