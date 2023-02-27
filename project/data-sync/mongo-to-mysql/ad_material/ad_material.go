@@ -142,7 +142,7 @@ func RunAdMaterial() {
 		}
 		// Duration
 		var duration int32
-		if center.AssetDuration != nil {
+		if center.AssetDuration != constants.EmptyString {
 			start := reflect.TypeOf(center.AssetDuration).String()
 			if start == "string" {
 				durationStr, err := strconv.Atoi(center.AssetDuration.(string))
