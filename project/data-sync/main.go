@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -162,7 +164,7 @@ func main() {
 
 	// 广告素材人员关联表-人员表多对多关联表
 	// Mongo/assetcenters.creative_user/design_user -> ARK cruiser_console/ad_material_person_relations
-	//ad_material.RunAdMaterialPersonRelation()
+	ad_material.RunAdMaterialPersonRelation()
 
 	// 广告素材 上传同步 返回对照表
 	// Mongo/assetcenters.media_list -> ARK cruiser_console/ad_material_sync_success

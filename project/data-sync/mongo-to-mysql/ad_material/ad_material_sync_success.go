@@ -50,7 +50,7 @@ func RunAdMaterialSyncSuccess() {
 				return
 			}
 		} else {
-			authorID = 0
+			authorID = 1000
 		}
 
 		if len(mPlatUser) != constants.NumberZero {
@@ -65,12 +65,12 @@ func RunAdMaterialSyncSuccess() {
 			}
 
 			if len(user) == constants.NumberZero {
-				authorID = 0
+				authorID = 1000
 			} else {
 				authorID = user[0].ID
 			}
 		} else {
-			authorID = 0
+			authorID = 1000
 		}
 
 		// Type

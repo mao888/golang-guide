@@ -43,7 +43,7 @@ func RunAdMaterialPersonRelation() {
 			}
 			var personId int32
 			if len(user) == 0 {
-				personId = 0
+				personId = 1000
 			} else {
 				personId = user[0].ID
 			}
@@ -76,7 +76,7 @@ func RunAdMaterialPersonRelation() {
 			}
 			var personId int32
 			if len(user) == 0 {
-				personId = 0
+				personId = 1000
 			} else {
 				personId = user[0].ID
 			}
@@ -85,7 +85,7 @@ func RunAdMaterialPersonRelation() {
 				//ID:         0,
 				MaterialID: center.Id,
 				PersonID:   personId,
-				Type:       constants.NumberOne,
+				Type:       constants.NumberTwo,
 			}
 			// 4、将装有mongo数据的切片入库
 			err = db2.MySQLClientCruiser.Table("ad_material_person_relations").Create(adMaterialPersonRelation).Error
