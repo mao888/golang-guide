@@ -75,7 +75,7 @@ func RunAdMaterialPersonRelation() {
 				return
 			}
 			var personId int32
-			if len(user) == 0 {
+			if len(user) == 0 || s == constants.EmptyString {
 				personId = 1000
 			} else {
 				personId = user[0].ID
