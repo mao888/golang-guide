@@ -22,6 +22,7 @@ type MAssetCenter struct {
 		CreativeId string `json:"creative_id" bson:"creative_id"`
 	} `json:"media_list" bson:"media_list"` //该素材在每个账户中的对应ID [{account_id:"123", media_id:"678",creative_id:""}]
 	CreateUser        string     `json:"create_user" bson:"create_user"`
+	UserId            int32      `json:"user_id" bson:"user_id"`
 	CreativeUser      string     `json:"creative_user" bson:"creative_user"`             // 创意人员id
 	DesignUser        string     `json:"design_user" bson:"design_user"`                 // 设计人员id
 	AssetUrlInfo      string     `json:"asset_url_info" bson:"asset_url_info"`           // 包含完整域名的url
@@ -52,4 +53,28 @@ type MGame struct {
 
 	SdkToken    string `json:"sdk_token" bson:"sdk_token"`
 	ServerToken string `json:"server_token" bson:"server_token"`
+}
+
+// MPlatUser From Mongo/platusers
+type MPlatUser struct {
+	ID              int32         `bson:"_id" json:"_id"`
+	Name            string        `json:"name" bson:"name"`         //昵称
+	Username        string        `json:"username" bson:"username"` //用户姓名
+	Password        string        `json:"password" bson:"password"`
+	Email           string        `json:"email" bson:"email"`
+	Phone           string        `json:"phone" bson:"phone"`
+	Avatar          string        `json:"avatar" bson:"avatar"`
+	Role            []interface{} `json:"role" bson:"role"`        // 放账号级别角色
+	Enable          bool          `json:"enable" bson:"enable"`    // 该用户是否被激活
+	UserTag         int           `json:"user_tag"bson:"user_tag"` // 账户类型 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], //0无 1管理员大权限
+	Token           string        `json:"token" bson:"token"`
+	TokenExpireTime *time.Time    `json:"token_expire_time" bson:"token_expire_time"`
+	Comments        string        `json:"comments" bson:"comments"` //备注
+	CreateTime      *time.Time    `bson:"create_time" json:"create_time"`
+	UpdateTime      *time.Time    `bson:"update_time" json:"update_time"`
+	LoginTime       *time.Time    `json:"login_time"`                             // 最后登录时间
+	MaintainStatus  bool          `json:"maintain_status" bson:"maintain_status"` // 维护状态
+	GuiderStep      int           `json:"guider_step" bson:"guider_step"`         // 新手引导
+	AccessSystem    []string      `json:"access_system" bson:"access_system"`     // 可访问的系统
+	DefaultCompany  int           `json:"default_company" bson:"default_company"` // 当前选中公司
 }

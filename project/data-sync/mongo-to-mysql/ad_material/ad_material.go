@@ -7,10 +7,13 @@ import (
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material/bean"
 	"go.mongodb.org/mongo-driver/bson"
+	"reflect"
+	"strconv"
 	"strings"
 	"time"
 )
 
+// RunAdMaterial 广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)
 func RunAdMaterial() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
@@ -140,7 +143,18 @@ func RunAdMaterial() {
 		// Duration
 		var duration int32
 		if center.AssetDuration != nil {
-			duration = center.AssetDuration.(int32)
+			start := reflect.TypeOf(center.AssetDuration).String()
+			if start == "string" {
+				durationStr, err := strconv.Atoi(center.AssetDuration.(string))
+				if err != nil {
+					fmt.Println("字符串转int错误：", err)
+					return
+				}
+				duration = int32(durationStr)
+			}
+			if start == "int32" {
+				duration = center.AssetDuration.(int32)
+			}
 		}
 		adMaterial := &bean.AdMaterial{
 			ID:           center.Id,
