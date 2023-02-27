@@ -137,6 +137,11 @@ func RunAdMaterial() {
 		if center.DeleteTime != nil {
 			isDeleted = true
 		}
+		// Duration
+		var duration int32
+		if center.AssetDuration != nil {
+			duration = center.AssetDuration.(int32)
+		}
 		adMaterial := &bean.AdMaterial{
 			ID:           center.Id,
 			Type:         assetType,
@@ -148,7 +153,7 @@ func RunAdMaterial() {
 			SizeRationID: sizeRationID,
 			//Size:         0,
 			Md5:      center.AssetMd5,
-			Duration: center.AssetDuration.(int32),
+			Duration: duration,
 			//Remark:       "",
 			CreatedAt: center.CreateTime.Unix(),
 			UpdatedAt: center.UpdateTime.Unix(),

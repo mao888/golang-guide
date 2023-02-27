@@ -159,4 +159,5 @@ func main() {
 	// 广告素材语言关联表-语言表多对多关联表
 	// Mongo/assetcenters.asset_language -> ARK cruiser_console/ad_material_language_relations
 	//ad_material.RunAdMaterialLanguageRelation()
+
 }

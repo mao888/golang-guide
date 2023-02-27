@@ -3,9 +3,11 @@ package ad_material
 import (
 	"context"
 	"fmt"
+	"github.com/mao888/go-utils/constants"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material/bean"
 	"go.mongodb.org/mongo-driver/bson"
+	"strings"
 )
 
 // RunAdMaterialPersonRelation 广告素材人员关联表-人员表多对多关联表
@@ -27,20 +29,29 @@ func RunAdMaterialPersonRelation() {
 	//artAsset := make([]*bean.ArtAsset, 0)
 	for _, center := range mAssetCenter {
 
+		// CreativeUser
+		creativeUser := strings.Split(center.CreativeUser, "+")
+		for _, s := range creativeUser {
+			// PersonID
+			fmt.Println(s)
+			adMaterialPersonRelation := &bean.AdMaterialPersonRelation{
+				//ID:         0,
+				MaterialID: center.Id,
+				PersonID:   0,
+				Type:       constants.NumberOne,
+			}
+			// 4、将装有mongo数据的切片入库
+			err = db2.MySQLClientCruiser.Table("ad_material").Create(adMaterialPersonRelation).Error
+			if err != nil {
+				fmt.Println("入mysql/ad_material_person_relations 错误：", err)
+			}
+		}
+
+		// DesignUser
+
 		// PersonID
 
-		// Type
+		// Type 2
 
-		adMaterialPersonRelation := &bean.AdMaterialPersonRelation{
-			//ID:         0,
-			MaterialID: center.Id,
-			PersonID:   0,
-			Type:       0,
-		}
-		// 4、将装有mongo数据的切片入库
-		err = db2.MySQLClientCruiser.Table("ad_material").Create(adMaterialPersonRelation).Error
-		if err != nil {
-			fmt.Println("入mysql/ad_material_person_relations 错误：", err)
-		}
 	}
 }

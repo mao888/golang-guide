@@ -5,7 +5,7 @@ import "time"
 type MAssetCenter struct {
 	Id             int32       `json:"_id" bson:"_id"`
 	AssetType      string      `json:"asset_type" bson:"asset_type"`           // 素材类型 ['image', 'video']
-	AssetMd5       string      `json:"asset_md5" bson:"asset_md_5"`            // md5
+	AssetMd5       string      `json:"asset_md5" bson:"asset_md5"`             // md5
 	AssetName      string      `json:"asset_name" bson:"asset_name"`           // 素材名
 	AssetUrl       string      `json:"asset_url" bson:"asset_url"`             // 素材下载地址
 	AssetThumbnail string      `json:"asset_thumbnail" bson:"asset_thumbnail"` // 素材缩略图
