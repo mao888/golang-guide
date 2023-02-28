@@ -1,7 +1,5 @@
 package main
 
-import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material"
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -154,19 +152,19 @@ func main() {
 	//art_asset.RunArtNeedAssetRelation()
 
 	// 九、广告投放-素材中心
-	// 广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)
+	// 1、广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)	（4.3万 73min）
 	// Mongo/assetcenters -> ARK cruiser_console/ad_material
-	ad_material.RunAdMaterial()
+	//ad_material.RunAdMaterial()
 
-	// 广告素材语言关联表-语言表多对多关联表
+	// 2、广告素材语言关联表-语言表多对多关联表	（4.3万 61min）
 	// Mongo/assetcenters.asset_language -> ARK cruiser_console/ad_material_language_relations
-	ad_material.RunAdMaterialLanguageRelation()
+	//ad_material.RunAdMaterialLanguageRelation()
 
-	// 广告素材人员关联表-人员表多对多关联表
+	// 3、广告素材人员关联表-人员表多对多关联表	（11万 134min）
 	// Mongo/assetcenters.creative_user/design_user -> ARK cruiser_console/ad_material_person_relations
-	ad_material.RunAdMaterialPersonRelation()
+	//ad_material.RunAdMaterialPersonRelation()
 
-	// 广告素材 上传同步 返回对照表
+	// 4、广告素材 上传同步 返回对照表	         (17万 185 min)
 	// Mongo/assetcenters.media_list -> ARK cruiser_console/ad_material_sync_success
-	ad_material.RunAdMaterialSyncSuccess()
+	//ad_material.RunAdMaterialSyncSuccess()
 }
