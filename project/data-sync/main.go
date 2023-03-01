@@ -1,10 +1,5 @@
 package main
 
-import (
-	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material"
-	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
-)
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -107,7 +102,7 @@ func main() {
 	//art_need.RunSupplyDesc()
 
 	// 11、更新 artattachments.url 域名
-	art_need.RunUrlReplace()
+	//art_need.RunUrlReplace()
 
 	// 七、广告投放-配置中心数据迁移
 	// 广告配置中心-受众组
@@ -192,5 +187,5 @@ func main() {
 	//wg.Wait()
 
 	// 5、更新 广告素材主表 url域名
-	ad_material.RunUrlReplace()
+	//ad_material.RunUrlReplace()
 }
