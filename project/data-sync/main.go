@@ -1,7 +1,5 @@
 package main
 
-import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -63,45 +61,45 @@ func main() {
 	// bi_data.RunBiData()
 
 	// 六、美术需求数据迁移
-	// 美术需求主表
+	// 1、美术需求主表
 	// Mongo/plat_console/artneeds 数据迁移到 ARK cruiser_console/art_needs
-	art_need.RunArtNeeds()
+	//art_need.RunArtNeeds()
 
-	// 美术需求标签多对多关联表
+	// 2、美术需求标签多对多关联表
 	// Mongo/plat_console/artneeds.tag 数据迁移到 ARK cruiser_console/art_need_tag_relations
-	art_need.RunArtNeedTagRelation()
+	//art_need.RunArtNeedTagRelation()
 
-	// 美术需求创意负责人多对多关联表
+	// 3、美术需求创意负责人多对多关联表
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
-	art_need.RunArtNeedPersonRelation()
+	//art_need.RunArtNeedPersonRelation()
 
-	// 美术需求关联需求多对多关联表
+	// 4、美术需求关联需求多对多关联表
 	// Mongo/plat_console/artneeds.relatedList 数据迁移到 ARK cruiser_console/art_need_relations
-	art_need.RunArtNeedRelation()
+	//art_need.RunArtNeedRelation()
 
-	// 美术需求素材尺寸多对多关联表
+	// 5、美术需求素材尺寸多对多关联表
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
-	art_need.RunArtNeedMaterialSizeRelation()
+	//art_need.RunArtNeedMaterialSizeRelation()
 
-	// 美术需求语种多对多关联表
+	// 6、美术需求语种多对多关联表
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
-	art_need.RunArtNeedLanguageRelation()
+	//art_need.RunArtNeedLanguageRelation()
 
-	// 美术需求子任务表
+	// 7、美术需求子任务表
 	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_tasks
-	art_need.RunArtTask()
+	//art_need.RunArtTask()
 
-	// 美术需求附件-终稿
+	// 8、美术需求附件-终稿
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
-	art_need.RunArtAttachment()
+	//art_need.RunArtAttachment()
 
-	// 美术需求默认描述表
+	// 9、美术需求默认描述表
 	// Mongo/plat_console/artneeds.main_desc 数据迁移到 ARK cruiser_console/base_desc_template
-	art_need.RunBaseDescTemplate()
+	//art_need.RunBaseDescTemplate()
 
-	// 美术需求主表-更新补充说明
+	// 10、美术需求主表-更新补充说明
 	// Mongo/plat_console/artneedlogs 数据迁移到 ARK cruiser_console/art_needs.extra_desc
-	art_need.RunSupplyDesc()
+	//art_need.RunSupplyDesc()
 
 	// 七、广告投放-配置中心数据迁移
 	// 广告配置中心-受众组
@@ -156,17 +154,19 @@ func main() {
 	// 九、广告投放-素材中心
 	// 1、广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)	（4.3万 73min）
 	// Mongo/assetcenters -> ARK cruiser_console/ad_material
-	//ad_material.RunAdMaterial()
-
+	//var wg sync.WaitGroup
+	//wg.Add(4)
+	//go ad_material.RunAdMaterial(wg)
 	// 2、广告素材语言关联表-语言表多对多关联表	（4.3万 61min）
 	// Mongo/assetcenters.asset_language -> ARK cruiser_console/ad_material_language_relations
-	//ad_material.RunAdMaterialLanguageRelation()
+	//go ad_material.RunAdMaterialLanguageRelation(wg)
 
 	// 3、广告素材人员关联表-人员表多对多关联表	（11万 134min）
 	// Mongo/assetcenters.creative_user/design_user -> ARK cruiser_console/ad_material_person_relations
-	//ad_material.RunAdMaterialPersonRelation()
+	//go ad_material.RunAdMaterialPersonRelation(wg)
 
 	// 4、广告素材 上传同步 返回对照表	         (17万 185 min)
 	// Mongo/assetcenters.media_list -> ARK cruiser_console/ad_material_sync_success
-	//ad_material.RunAdMaterialSyncSuccess()
+	//go ad_material.RunAdMaterialSyncSuccess(wg)
+	//wg.Wait()
 }

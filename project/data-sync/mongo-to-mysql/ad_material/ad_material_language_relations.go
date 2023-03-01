@@ -6,10 +6,12 @@ import (
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material/bean"
 	"go.mongodb.org/mongo-driver/bson"
+	"sync"
 )
 
 // RunAdMaterialLanguageRelation 广告素材语言关联表-语言表多对多关联表
-func RunAdMaterialLanguageRelation() {
+func RunAdMaterialLanguageRelation(wg sync.WaitGroup) {
+	defer wg.Done()
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
 	coll := db.Collection("assetcenters")

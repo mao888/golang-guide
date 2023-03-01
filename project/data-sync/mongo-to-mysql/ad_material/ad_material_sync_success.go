@@ -7,10 +7,12 @@ import (
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material/bean"
 	"go.mongodb.org/mongo-driver/bson"
+	"sync"
 )
 
 // RunAdMaterialSyncSuccess 广告素材 上传同步 返回对照表
-func RunAdMaterialSyncSuccess() {
+func RunAdMaterialSyncSuccess(wg sync.WaitGroup) {
+	defer wg.Done()
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
 	dbu := db2.MongoClient.Database("plat_console")

@@ -10,11 +10,14 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
 // RunAdMaterial 广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)
-func RunAdMaterial() {
+func RunAdMaterial(wg sync.WaitGroup) {
+	defer wg.Done()
+
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
 	dbg := db2.MongoClient.Database("plat_console")
