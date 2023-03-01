@@ -152,21 +152,34 @@ func main() {
 	//art_asset.RunArtNeedAssetRelation()
 
 	// 九、广告投放-素材中心
-	// 1、广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表)	（4.3万 73min）
+	// 1、广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表) （4.3万 73min）
 	// Mongo/assetcenters -> ARK cruiser_console/ad_material
 	//var wg sync.WaitGroup
 	//wg.Add(4)
-	//go ad_material.RunAdMaterial(wg)
-	// 2、广告素材语言关联表-语言表多对多关联表	（4.3万 61min）
+	//go func() {
+	// defer wg.Done()
+	// ad_material.RunAdMaterial()
+	//}()
+
+	// 2、广告素材语言关联表-语言表多对多关联表 （4.3万 61min）
 	// Mongo/assetcenters.asset_language -> ARK cruiser_console/ad_material_language_relations
-	//go ad_material.RunAdMaterialLanguageRelation(wg)
+	//go func() {
+	// defer wg.Done()
+	// ad_material.RunAdMaterialLanguageRelation()
+	//}()
 
-	// 3、广告素材人员关联表-人员表多对多关联表	（11万 134min）
+	// 3、广告素材人员关联表-人员表多对多关联表 （11万 134min）
 	// Mongo/assetcenters.creative_user/design_user -> ARK cruiser_console/ad_material_person_relations
-	//go ad_material.RunAdMaterialPersonRelation(wg)
+	//go func() {
+	// defer wg.Done()
+	// ad_material.RunAdMaterialPersonRelation()
+	//}()
 
-	// 4、广告素材 上传同步 返回对照表	         (17万 185 min)
+	// 4、广告素材 上传同步 返回对照表          (17万 185 min)
 	// Mongo/assetcenters.media_list -> ARK cruiser_console/ad_material_sync_success
-	//go ad_material.RunAdMaterialSyncSuccess(wg)
+	//go func() {
+	// defer wg.Done()
+	// ad_material.RunAdMaterialSyncSuccess()
+	//}()
 	//wg.Wait()
 }
