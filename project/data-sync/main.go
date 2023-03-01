@@ -1,5 +1,10 @@
 package main
 
+import (
+	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/ad_material"
+	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
+)
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -101,6 +106,9 @@ func main() {
 	// Mongo/plat_console/artneedlogs 数据迁移到 ARK cruiser_console/art_needs.extra_desc
 	//art_need.RunSupplyDesc()
 
+	// 11、更新 artattachments.url 域名
+	art_need.RunUrlReplace()
+
 	// 七、广告投放-配置中心数据迁移
 	// 广告配置中心-受众组
 	// Mongo/cruiser_console_v2/cfgaudiences -> ARK cruiser_console/ad_conf_audience
@@ -182,4 +190,7 @@ func main() {
 	// ad_material.RunAdMaterialSyncSuccess()
 	//}()
 	//wg.Wait()
+
+	// 5、更新 广告素材主表 url域名
+	ad_material.RunUrlReplace()
 }
