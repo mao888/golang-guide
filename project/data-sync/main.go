@@ -41,7 +41,7 @@ func main() {
 
 	// 三、远程配置数据迁移
 	// Mongo/app_console/remote_config 数据迁移到 ARK application_console/remote_config
-	// remote_config.RunRemoteConfig()
+	//remote_config.RunRemoteConfig()
 
 	// 四、版本检查数据迁移
 	// Mongo/plat_console/environments 数据迁移到 ARK version_console/env

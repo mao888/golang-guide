@@ -12,7 +12,8 @@ import (
 func RunAdConfAudience() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("cruiser_console_v2")
-	collUsers := db.Collection("platusers")
+	dbu := db2.MongoClient.Database("plat_console")
+	collUsers := dbu.Collection("platusers")
 	coll := db.Collection("cfgaudiences")
 
 	// 2、从mongo查询数据

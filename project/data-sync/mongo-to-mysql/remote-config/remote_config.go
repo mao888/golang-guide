@@ -3,9 +3,11 @@ package remote_config
 import (
 	"context"
 	"fmt"
+	"github.com/mao888/go-utils/constants"
 	gutil "github.com/mao888/go-utils/json"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"go.mongodb.org/mongo-driver/bson"
+	"time"
 )
 
 // RemoteConfig mapped from table application_console <remote_config>
@@ -47,10 +49,53 @@ type MRemoteConfig struct {
 	Env        int32 `bson:"env" json:"env"`                 // 环境: 1:master 2:test
 }
 
+// MPlatUser From Mongo/platusers
+type MPlatUser struct {
+	ID              int32         `bson:"_id" json:"_id"`
+	Name            string        `json:"name" bson:"name"`         //昵称
+	Username        string        `json:"username" bson:"username"` //用户姓名
+	Password        string        `json:"password" bson:"password"`
+	Email           string        `json:"email" bson:"email"`
+	Phone           string        `json:"phone" bson:"phone"`
+	Avatar          string        `json:"avatar" bson:"avatar"`
+	Role            []interface{} `json:"role" bson:"role"`        // 放账号级别角色
+	Enable          bool          `json:"enable" bson:"enable"`    // 该用户是否被激活
+	UserTag         int           `json:"user_tag"bson:"user_tag"` // 账户类型 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], //0无 1管理员大权限
+	Token           string        `json:"token" bson:"token"`
+	TokenExpireTime *time.Time    `json:"token_expire_time" bson:"token_expire_time"`
+	Comments        string        `json:"comments" bson:"comments"` //备注
+	CreateTime      *time.Time    `bson:"create_time" json:"create_time"`
+	UpdateTime      *time.Time    `bson:"update_time" json:"update_time"`
+	LoginTime       *time.Time    `json:"login_time"`                             // 最后登录时间
+	MaintainStatus  bool          `json:"maintain_status" bson:"maintain_status"` // 维护状态
+	GuiderStep      int           `json:"guider_step" bson:"guider_step"`         // 新手引导
+	AccessSystem    []string      `json:"access_system" bson:"access_system"`     // 可访问的系统
+	DefaultCompany  int           `json:"default_company" bson:"default_company"` // 当前选中公司
+}
+
+// User 员工表 mapped from table user_console <user>
+type User struct {
+	ID           int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`           // 主键id
+	DingID       string `gorm:"column:ding_id;not null" json:"ding_id"`                      // 钉钉id
+	Name         string `gorm:"column:name;not null" json:"name"`                            // 员工名称
+	Email        string `gorm:"column:email;not null;default:''" json:"email"`               // 员工邮箱
+	Tel          string `gorm:"column:tel;not null" json:"tel"`                              // 员工手机
+	Avatar       string `gorm:"column:avatar;not null;default:''" json:"avatar"`             // 员工头像url
+	Password     string `gorm:"column:password;not null" json:"password"`                    // 密码
+	Region       int32  `gorm:"column:region;not null;default:0" json:"region"`              // 地域  0：其他，1：北京，2：成都，3：海外
+	Abbreviation string `gorm:"column:abbreviation;not null;default:''" json:"abbreviation"` // 名字简称
+	Status       int32  `gorm:"column:status;not null;default:0" json:"status"`              // 状态 0在职 1离职
+	UpdatedAt    int32  `gorm:"column:updated_at;not null" json:"updated_at"`                // 更新时间
+	CreatedAt    int32  `gorm:"column:created_at;not null" json:"created_at"`                // 创建时间
+	IsDeleted    int32  `gorm:"column:is_deleted;not null;default:0" json:"is_deleted"`      // 是否删除（0:否，1:是）
+}
+
 func RunRemoteConfig() {
 	// 1、建立连接
 	db := db2.MongoClient.Database("app_console")
 	coll := db.Collection("remote_config")
+	dbu := db2.MongoClient.Database("plat_console")
+	collUsers := dbu.Collection("platusers")
 
 	// 2、从mongo查询数据
 	mRemoteConfig := make([]*MRemoteConfig, 0)
@@ -71,6 +116,40 @@ func RunRemoteConfig() {
 		if err != nil {
 			return
 		}
+		// AuthorID
+		var authorID int32
+
+		mPlatUser := make([]*MPlatUser, 0)
+		if config.OperatorID != constants.NumberZero {
+			// 根据 source.Author 去mongo查询用户信息
+			err := collUsers.Find(context.TODO(), bson.M{"_id": config.OperatorID}).All(&mPlatUser)
+			if err != nil {
+				fmt.Println("Mongo/platusers查询错误：", err)
+				return
+			}
+		} else {
+			authorID = 10000
+		}
+
+		if len(mPlatUser) != constants.NumberZero {
+			// 根据用户邮箱和昵称查询mysql/user，拿到user_id
+			user := make([]*User, 0)
+
+			err = db2.MySQLClientUser.Table("user").
+				Where("name = ?", mPlatUser[0].Name).Or("email = ?", mPlatUser[0].Email).
+				Find(&user).Error
+			if err != nil {
+				fmt.Println("mysql/user 查询错误：", err)
+			}
+
+			if len(user) == constants.NumberZero {
+				authorID = 1000
+			} else {
+				authorID = user[0].ID
+			}
+		} else {
+			authorID = 1000
+		}
 		remote := &RemoteConfig{
 			//ID:         0,
 			GameID:     config.GameIdCustom,
@@ -83,7 +162,7 @@ func RunRemoteConfig() {
 			IsHidden:   config.IsHidden,
 			OriginID:   0,
 			Order:      config.Order,
-			CreatorID:  config.OperatorID,
+			CreatorID:  authorID,
 			CreatedAt:  config.CreatedAt,
 			UpdatedAt:  config.UpdatedAt,
 			IsDeleted:  config.IsDeleted,
