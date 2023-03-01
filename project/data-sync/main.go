@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/art_need"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -63,43 +65,43 @@ func main() {
 	// 六、美术需求数据迁移
 	// 美术需求主表
 	// Mongo/plat_console/artneeds 数据迁移到 ARK cruiser_console/art_needs
-	//art_need.RunArtNeeds()
+	art_need.RunArtNeeds()
 
 	// 美术需求标签多对多关联表
 	// Mongo/plat_console/artneeds.tag 数据迁移到 ARK cruiser_console/art_need_tag_relations
-	//art_need.RunArtNeedTagRelation()
+	art_need.RunArtNeedTagRelation()
 
 	// 美术需求创意负责人多对多关联表
 	// Mongo/plat_console/artneeds.creative_user 数据迁移到 ARK cruiser_console/art_need_person_relations
-	//art_need.RunArtNeedPersonRelation()
+	art_need.RunArtNeedPersonRelation()
 
 	// 美术需求关联需求多对多关联表
 	// Mongo/plat_console/artneeds.relatedList 数据迁移到 ARK cruiser_console/art_need_relations
-	//art_need.RunArtNeedRelation()
+	art_need.RunArtNeedRelation()
 
 	// 美术需求素材尺寸多对多关联表
 	// Mongo/plat_console/artneeds.size 数据迁移到 ARK cruiser_console/art_need_material_size_relations
-	//art_need.RunArtNeedMaterialSizeRelation()
+	art_need.RunArtNeedMaterialSizeRelation()
 
 	// 美术需求语种多对多关联表
 	// Mongo/plat_console/artneeds.language 数据迁移到 ARK cruiser_console/art_need_language_relations
-	//art_need.RunArtNeedLanguageRelation()
+	art_need.RunArtNeedLanguageRelation()
 
 	// 美术需求子任务表
 	// Mongo/plat_console/artneeds.design_user 数据迁移到 ARK cruiser_console/art_tasks
-	//art_need.RunArtTask()
+	art_need.RunArtTask()
 
 	// 美术需求附件-终稿
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
-	//art_need.RunArtAttachment()
+	art_need.RunArtAttachment()
 
 	// 美术需求默认描述表
 	// Mongo/plat_console/artneeds.main_desc 数据迁移到 ARK cruiser_console/base_desc_template
-	//art_need.RunBaseDescTemplate()
+	art_need.RunBaseDescTemplate()
 
 	// 美术需求主表-更新补充说明
 	// Mongo/plat_console/artneedlogs 数据迁移到 ARK cruiser_console/art_needs.extra_desc
-	//art_need.RunSupplyDesc()
+	art_need.RunSupplyDesc()
 
 	// 七、广告投放-配置中心数据迁移
 	// 广告配置中心-受众组

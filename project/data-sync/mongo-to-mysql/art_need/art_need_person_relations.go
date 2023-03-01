@@ -45,7 +45,7 @@ func RunArtNeedPersonRelation() {
 			// PersonID
 			var personId int32
 			if len(user) == 0 {
-				personId = 0
+				personId = 1000
 			} else {
 				personId = user[0].ID
 			}
