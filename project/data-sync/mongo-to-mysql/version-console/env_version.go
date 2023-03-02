@@ -113,12 +113,10 @@ func RunEnvAndVersion() {
 				status = 3
 			}
 
-			// IsGray 是否灰度 0未发布无灰度 1是 2否
+			// IsGray 是否灰度  1是 0否
 			isGray := 0
 			if version.GrayFlag == true {
 				isGray = 1
-			} else if version.GrayFlag == false {
-				isGray = 2
 			}
 
 			// IsDeleted 是否删除(0否1是)
@@ -257,12 +255,10 @@ func RunEnvAndVersion() {
 				status = 3
 			}
 
-			// IsGray 是否灰度 0未发布无灰度 1是 2否
+			// IsGray 是否灰度 1是 0否
 			isGray := 0
 			if version.GrayFlag == true {
 				isGray = 1
-			} else if version.GrayFlag == false {
-				isGray = 2
 			}
 
 			// IsDeleted 是否删除(0否1是)

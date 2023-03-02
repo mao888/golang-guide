@@ -18,7 +18,7 @@ type Version struct {
 	VersionNum  string `gorm:"column:version_num;not null" json:"version_num"`     // 字节序版本号
 	Type        int32  `gorm:"column:type;not null" json:"type"`                   // 版本类型 1市场版本 2热更版本
 	UpdateType  int32  `gorm:"column:update_type;not null" json:"update_type"`     // 更新类型 1强更 2非强更 3热更
-	IsGray      int32  `gorm:"column:is_gray;not null" json:"is_gray"`             // 是否灰度 0未发布无灰度 1是 2否
+	IsGray      int32  `gorm:"column:is_gray;not null" json:"is_gray"`             // 是否灰度 1是 0否
 	GrayScale   int32  `gorm:"column:gray_scale;not null" json:"gray_scale"`       // 灰度范围 1 - 99
 	Status      int32  `gorm:"column:status;not null" json:"status"`               // 版本状态 1未发布 2已发布 3已废弃
 	PublishTime int64  `gorm:"column:publish_time;not null" json:"publish_time"`   // 发布时间
@@ -101,12 +101,10 @@ func RunVersion() {
 			status = 3
 		}
 
-		// IsGray 是否灰度 0未发布无灰度 1是 2否
+		// IsGray 是否灰度 1是 0否
 		isGray := 0
 		if version.GrayFlag == true {
 			isGray = 1
-		} else if version.GrayFlag == false {
-			isGray = 2
 		}
 
 		// IsDeleted 是否删除(0否1是)
