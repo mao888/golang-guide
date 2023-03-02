@@ -459,6 +459,7 @@
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
 ### 👍 设计方案及调研
 * [golang迁移1亿条mysql数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E8%BF%81%E7%A7%BB1%E4%BA%BF%E6%9D%A1mysql%E6%95%B0%E6%8D%AE.md)
+* [高并发系统设计](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 * [content-type](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/content-type.md)
 * [对象存储 OSS](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20OSS.md)
 * [登录方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
@@ -494,6 +495,9 @@
 * [ZooKeeper 相关概念总结(进阶)](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5%E6%80%BB%E7%BB%93(%E8%BF%9B%E9%98%B6).md)
 * [ZooKeeper 实战](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/ZooKeeper%E8%AF%A6%E8%A7%A3/ZooKeeper%20%E5%AE%9E%E6%88%98.md)
 
+## 💻 高并发
+* [高并发系统设计](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E5%B9%B6%E5%8F%91/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
+
 ## 💻 高性能
 * [读写分离和分库分表详解](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E6%80%A7%E8%83%BD/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%92%8C%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E8%AF%A6%E8%A7%A3.md)
 * [负载均衡详解（更新中）]()
@@ -514,8 +518,6 @@
 * [降级&熔断详解（更新中）](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E5%8F%AF%E7%94%A8/%E9%99%8D%E7%BA%A7%26%E7%86%94%E6%96%AD%E8%AF%A6%E8%A7%A3%EF%BC%88%E6%9B%B4%E6%96%B0%E4%B8%AD%EF%BC%89.md)
 * [超时&重试详解](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E5%8F%AF%E7%94%A8/%E8%B6%85%E6%97%B6%26%E9%87%8D%E8%AF%95%E8%AF%A6%E8%A7%A3.md)
 * [性能测试入门](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E5%8F%AF%E7%94%A8/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95%E5%85%A5%E9%97%A8.md)
-
-## 💻 高并发
 
 ## 💻 提问的智慧
 * [提问的智慧](https://github.com/mao888/golang-guide/blob/main/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7/%E6%8F%90%E9%97%AE%E7%9A%84%E6%99%BA%E6%85%A7.md)

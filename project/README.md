@@ -4,6 +4,7 @@
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
 ### 设计方案及调研
 * [golang迁移1亿条mysql数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E8%BF%81%E7%A7%BB1%E4%BA%BF%E6%9D%A1mysql%E6%95%B0%E6%8D%AE.md)
+* [高并发系统设计](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
 * [content-type](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/content-type.md)
 * [对象存储 OSS](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20OSS.md)
 * [登录方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
