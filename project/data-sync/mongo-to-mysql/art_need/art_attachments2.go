@@ -78,8 +78,8 @@ func RunArtAttachment2() {
 		// 入库 art_attachments
 		err = db2.MySQLClientCruiser.Table("art_attachments").Create(artAttachment).Error
 		if err != nil {
-			fmt.Println("入库 art_attachments 错误", err)
-			return
+			fmt.Println(attachment.ID, "---", attachment.ArtneedId, "入库 art_attachments 错误", err)
+			continue
 		}
 	}
 }
