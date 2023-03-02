@@ -155,6 +155,9 @@ func main() {
 	//art_asset.RunArtNeedAssetRelation()
 
 	// 九、广告投放-素材中心
+	// 原始时间统计：73 + 61 + 134 + 185 = 453min = 7.55h
+	// 时间统计开：4个协程，共 2.5h
+
 	// 1、广告素材主表（它的ID会社交关联到广告素材tag，尺寸，语言，负责人等关联表) （4.3万 73min）
 	// Mongo/assetcenters -> ARK cruiser_console/ad_material
 	//var wg sync.WaitGroup
