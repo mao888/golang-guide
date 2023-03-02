@@ -96,6 +96,9 @@ func main() {
 	// Mongo/plat_console/artattachments 数据迁移到 ARK cruiser_console/art_attachments
 	//art_need.RunArtAttachment()
 
+	// 美术需求附件-终稿 迁移未完成需求 的附件-终稿件
+	//art_need.RunArtAttachment2()
+
 	// 9、美术需求默认描述表
 	// Mongo/plat_console/artneeds.main_desc 数据迁移到 ARK cruiser_console/base_desc_template
 	//art_need.RunBaseDescTemplate()
