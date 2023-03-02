@@ -1,4 +1,4 @@
-## 高性能
+## 💻 高性能
 * [读写分离和分库分表详解](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E6%80%A7%E8%83%BD/%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB%E5%92%8C%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8%E8%AF%A6%E8%A7%A3.md)
 * [负载均衡详解（更新中）]()
 * [CDN（内容分发网络）详解](https://github.com/mao888/golang-guide/blob/main/%E9%AB%98%E6%80%A7%E8%83%BD/CDN%EF%BC%88%E5%86%85%E5%AE%B9%E5%88%86%E5%8F%91%E7%BD%91%E7%BB%9C%EF%BC%89%E8%AF%A6%E8%A7%A3.md)
