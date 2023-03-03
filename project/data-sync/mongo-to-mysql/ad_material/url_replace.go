@@ -8,17 +8,19 @@ import (
 )
 
 func RunUrlReplace() {
+	var oldUrl2 string = "https://gia-artneeds.nuclearport.com"
+
 	var adMaterial []*bean.AdMaterial
-	db2.MySQLClientCruiser.Table("ad_material").Find(&adMaterial)
+	db2.MySQLClientCruiser.Table("ad_material").Where("url like ?", oldUrl2+"%").Find(&adMaterial)
 	fmt.Println("len(adMaterial):", len(adMaterial))
 
 	var newUrl string = "https://ark-oss.bettagames.com"
-	var oldUrl string = "https://adsres.ftstats.com"
+	//var oldUrl string = "https://adsres.ftstats.com"
 
 	for i, material := range adMaterial {
 		fmt.Println("ad_material:", i)
 
-		materialUrl := strings.Replace(material.URL, oldUrl, newUrl, -1)
+		materialUrl := strings.Replace(material.URL, oldUrl2, newUrl, -1)
 
 		err := db2.MySQLClientCruiser.Table("ad_material").Where("id = ?", material.ID).
 			UpdateColumn("url", materialUrl).Error
