@@ -10,12 +10,6 @@ import (
 )
 
 func RunUserPermPoliceResource() {
-	const (
-		bi             string = "bi"
-		resourceIdApp  int32  = 10002
-		resourceIdGame int32  = 10000
-		permID         int32  = 10060 // 办公数据系统默认权限
-	)
 
 	// 1、建立连接
 	db := db2.MongoClient.Database("rambler")
@@ -25,7 +19,7 @@ func RunUserPermPoliceResource() {
 
 	// 2、从mongo查询数据
 	mDimPermission := make([]*bean.MDimPermission, 0)
-	err := collDimpermissions.Find(context.TODO(), bson.M{"child_system": bi}).All(&mDimPermission)
+	err := collDimpermissions.Find(context.TODO(), bson.M{"child_system": bean.Bi}).All(&mDimPermission)
 	if err != nil {
 		fmt.Println("Mongo查询错误：", err)
 		return
@@ -59,7 +53,7 @@ func RunUserPermPoliceResource() {
 			policyResource := &bean.PolicyResource{
 				//ID:         0,
 				PolicyID:   policyID,
-				ResourceID: resourceIdApp,
+				ResourceID: bean.ResourceIdApp,
 				EntityID:   string(id),
 				UpdatedAt:  int32(permission.UpdateTime.Unix()),
 				CreatedAt:  int32(permission.CreateTime.Unix()),
@@ -112,7 +106,7 @@ func RunUserPermPoliceResource() {
 			userPerm := &bean.UserPerm{
 				//ID:        0,
 				UserID:    authorID,
-				PermID:    permID,
+				PermID:    bean.PermID,
 				PolicyID:  0,
 				ScopeID:   policyID,
 				UpdatedAt: int32(permission.UpdateTime.Unix()),
