@@ -4,16 +4,15 @@ import "time"
 
 // MDimPermission From Mongo/rambler/dimpermissions
 type MDimPermission struct {
-	Id          string   `json:"_id"`
-	ChildSystem string   `json:"child_system"` // cruiser_v2、pandora、bi、developer、arlington、art_needs
-	UserId      int      `json:"user_id"`
-	CompanyId   int      `json:"company_id"` // 公司id
-	AppIds      []int    `json:"app_ids"`    // 用户id
-	AccountIds  []string `json:"account_ids"`
-	Platforms   []string `json:"platforms"`
-	CreateTime  string   `json:"create_time"`
-	UpdateTime  string   `json:"update_time"`
-	V           int      `json:"__v"`
+	Id          string     `json:"_id" bson:"_id"`
+	ChildSystem string     `json:"child_system" bson:"child_system"` // cruiser_v2、pandora、bi、developer、arlington、art_needs
+	UserId      int        `json:"user_id" bson:"user_id"`
+	CompanyId   int        `json:"company_id" bson:"company_id"` // 公司id
+	AppIds      []int      `json:"app_ids" bson:"app_ids"`       // 用户id
+	AccountIds  []string   `json:"account_ids" bson:"account_ids"`
+	Platforms   []string   `json:"platforms" bson:"platforms""`
+	CreateTime  *time.Time `bson:"create_time" json:"create_time"`
+	UpdateTime  *time.Time `bson:"update_time" json:"update_time"`
 }
 
 // MPlatUser From Mongo/plat_console/platusers

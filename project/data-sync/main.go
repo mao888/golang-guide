@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/user_console"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -199,5 +201,5 @@ func main() {
 	//ad_material.RunUrlReplace()
 
 	// 十、BI数据权限
-
+	user_console.RunUserPermPoliceResource()
 }
