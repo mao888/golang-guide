@@ -197,4 +197,7 @@ func main() {
 
 	// 5、更新 广告素材主表 url域名
 	//ad_material.RunUrlReplace()
+
+	// 十、BI数据权限
+
 }
