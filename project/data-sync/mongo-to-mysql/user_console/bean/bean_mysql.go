@@ -31,7 +31,7 @@ type Policy struct {
 	CreatedAt int32 `gorm:"column:created_at;not null" json:"created_at"`      // 创建时间
 }
 
-// PolicyResource 策略表 mapped from table user_console <policy_resource>
+// PolicyResource 策略资源关联表 mapped from table user_console <policy_resource>
 type PolicyResource struct {
 	ID         int32  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"` // 主键id
 	PolicyID   int32  `gorm:"column:policy_id;not null" json:"policy_id"`        // 策略id
