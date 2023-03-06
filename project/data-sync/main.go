@@ -199,6 +199,7 @@ func main() {
 	//ad_material.RunUrlReplace()
 
 	// 十、BI数据权限
+	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
 	//user_console.RunUserPermPoliceResource()
 	//user_console.RunUserPermPoliceResource2()
 }
