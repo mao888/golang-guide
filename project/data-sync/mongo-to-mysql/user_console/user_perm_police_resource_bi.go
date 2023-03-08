@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-func RunUserPermPoliceResource() {
+func RunUserPermPoliceResourceBi() {
 
 	// 1、建立连接
 	db := db2.MongoClient.Database("rambler")

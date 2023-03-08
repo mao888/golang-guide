@@ -198,8 +198,13 @@ func main() {
 	// 5、更新 广告素材主表 url域名
 	//ad_material.RunUrlReplace()
 
-	// 十、BI数据权限
+	// 十、数据权限
+	// BI数据权限
 	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
-	//user_console.RunUserPermPoliceResource()
-	//user_console.RunUserPermPoliceResource2()
+	//user_console.RunUserPermPoliceResourceBi()
+	//user_console.RunUserPermPoliceResourceBi2()
+
+	// 广告投放数据权限
+	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
+	//user_console.RunUserPermPoliceResourceAd()
 }
