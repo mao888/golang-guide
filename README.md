@@ -470,6 +470,7 @@
 * [图片-文字-动图敏感过滤](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BE%E7%89%87-%E6%96%87%E5%AD%97-%E5%8A%A8%E5%9B%BE%E6%95%8F%E6%84%9F%E8%BF%87%E6%BB%A4.md)
 * [PG VS Mysql](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/PG%20VS%20Mysql.md)
 * [Tidb](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Tidb.md)
+* [钉钉发送工作消息通知](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%92%89%E9%92%89%E5%8F%91%E9%80%81%E5%B7%A5%E4%BD%9C%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.md)
 ### 业务
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
 * [go-excel](github.com/mao888/go-excel)
