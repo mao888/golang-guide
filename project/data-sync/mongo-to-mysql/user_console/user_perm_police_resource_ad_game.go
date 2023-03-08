@@ -9,9 +9,10 @@ import (
 	"time"
 )
 
-func RunUserPermPoliceResourceAd() {
+// RunUserPermPoliceResourceAdGame 广告投放应用数据权限
+func RunUserPermPoliceResourceAdGame() {
 	// 处理字符串, 以 "\n" 分隔为 ark_id:[app_id,app_id]
-	arkIDAndAppIdStrsArr := strings.Split(bean.ArkIDAndAppIdStrs, "\n")
+	arkIDAndAppIdStrsArr := strings.Split(bean.ArkIDAndAppIdStrsAd, "\n")
 	//arkIDAndAppIdMap := make([]map[string]string, len(arkIDAndAppIdStrsArr))
 	for _, s := range arkIDAndAppIdStrsArr {
 		arkIDAndAppID := strings.Split(s, ":")
@@ -62,7 +63,7 @@ func RunUserPermPoliceResourceAd() {
 		userPerm2 := &bean.UserPerm{
 			//ID:        0,
 			UserID:    int32(arkIDInt),
-			PermID:    bean.PermID,
+			PermID:    bean.PermIDAd, // 10056 广告投放系统默认权限
 			PolicyID:  0,
 			ScopeID:   policyID,
 			UpdatedAt: int32(time.Now().Unix()),
@@ -75,13 +76,35 @@ func RunUserPermPoliceResourceAd() {
 		}
 		fmt.Printf("arkID:%d, 成功插入\n", arkIDInt)
 
+		// 2、policy_resource 策略资源关联表 —— Game
 		for _, s2 := range appIDStrArr {
-			// 2、policy_resource 策略资源关联表
+			policyResource := &bean.PolicyResource{
+				//ID:         0,
+				PolicyID:   policyID,
+				ResourceID: bean.ResourceIdGame,
+				EntityID:   s2,
+				UpdatedAt:  int32(time.Now().Unix()),
+				CreatedAt:  int32(time.Now().Unix()),
+			}
+			err = db2.MySQLClientUser.Table("policy_resource").Create(policyResource).Error
+			if err != nil {
+				fmt.Println("入mysql/policyResource 错误：", err)
+				return
+			}
+		}
+
+		// 2、policy_resource 策略资源关联表 —— App
+		game := make([]*bean.App, 0)
+		err = db2.MySQLClient.Table("app").Where("game_id in ?", appIDStrArr).Distinct("app_id").Find(&game).Error
+		if err != nil {
+			fmt.Println("根据app_id查询game 错误：", err)
+		}
+		for _, s2 := range game {
 			policyResource := &bean.PolicyResource{
 				//ID:         0,
 				PolicyID:   policyID,
 				ResourceID: bean.ResourceIdApp,
-				EntityID:   s2,
+				EntityID:   string(s2.ID),
 				UpdatedAt:  int32(time.Now().Unix()),
 				CreatedAt:  int32(time.Now().Unix()),
 			}

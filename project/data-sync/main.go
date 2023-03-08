@@ -200,11 +200,12 @@ func main() {
 
 	// 十、数据权限
 	// BI数据权限
-	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
+	// Mongo/rambler/dimpermissions.child_system:"bi" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
 	//user_console.RunUserPermPoliceResourceBi()
 	//user_console.RunUserPermPoliceResourceBi2()
 
 	// 广告投放数据权限
-	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
-	//user_console.RunUserPermPoliceResourceAd()
+	// Mongo/rambler/dimpermissions.child_system:"cruiser_v2,pandora,art_needs" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
+	//user_console.RunUserPermPoliceResourceAdApp()
+	//user_console.RunUserPermPoliceResourceAdGame()
 }

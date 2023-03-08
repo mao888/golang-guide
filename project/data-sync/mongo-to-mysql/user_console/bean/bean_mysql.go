@@ -69,3 +69,20 @@ type User struct {
 	CreatedAt    int32  `gorm:"column:created_at;not null" json:"created_at"`                // 创建时间
 	IsDeleted    int32  `gorm:"column:is_deleted;not null;default:0" json:"is_deleted"`      // 是否删除（0:否，1:是）
 }
+
+// App mapped from table application_console <app>
+type App struct {
+	ID         int32  `gorm:"column:id;not null" json:"id"`                               // 应用ID
+	GameID     string `gorm:"column:game_id;not null" json:"game_id"`                     // 游戏ID
+	Platform   int32  `gorm:"column:platform;not null;default:1" json:"platform"`         // 平台 1 IOS 2 Android 3 Web
+	AppAlias   string `gorm:"column:app_alias;not null" json:"app_alias"`                 // 应用别名
+	Package    string `gorm:"column:package;not null" json:"package"`                     // 包
+	AppStoreID string `gorm:"column:app_store_id;not null;default:0" json:"app_store_id"` // 苹果商店ID
+	Icon       string `gorm:"column:icon" json:"icon"`
+	Market     string `gorm:"column:market" json:"market"`                        // 应用市场渠道
+	MarketURL  string `gorm:"column:market_url" json:"market_url"`                // 应用市场链接
+	CreatorID  int32  `gorm:"column:creator_id" json:"creator_id"`                // 创建人ID
+	CreatedAt  int64  `gorm:"column:created_at;autoCreateTime" json:"created_at"` // 创建时间戳（秒）
+	UpdatedAt  int64  `gorm:"column:updated_at;autoUpdateTime" json:"updated_at"` // 更新时间戳（秒）
+	IsDeleted  bool   `gorm:"column:is_deleted" json:"is_deleted"`                // 是否删除（0：未删除，1：已删除）
+}
