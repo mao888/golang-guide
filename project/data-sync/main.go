@@ -1,5 +1,7 @@
 package main
 
+import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/user_console"
+
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -206,5 +208,5 @@ func main() {
 
 	// 广告投放数据权限
 	// Mongo/rambler/dimpermissions.child_system:"cruiser_v2,pandora,art_needs" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
-	//user_console.RunUserPermPoliceResourceAdAppAndGame()
+	user_console.RunUserPermPoliceResourceAdAppAndGame()
 }
