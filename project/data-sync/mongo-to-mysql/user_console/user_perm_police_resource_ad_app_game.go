@@ -95,7 +95,7 @@ func RunUserPermPoliceResourceAdAppAndGame() {
 			fmt.Println("arkID:", arkIDInt, "入mysql/user_perm 错误：", err)
 			return
 		}
-		fmt.Printf("arkID:%d, 成功插入\n", arkIDInt)
+		fmt.Printf("arkID:%d, 成功插入user_perm\n", arkIDInt)
 
 		// 2、policy_resource 策略资源关联表 —— App
 		// 根据 game_id 查询 app_id
@@ -125,6 +125,7 @@ func RunUserPermPoliceResourceAdAppAndGame() {
 				fmt.Println("入mysql/policyResource 错误：", err)
 				return
 			}
+			fmt.Printf("arkID:%d, app_id:%s 成功插入policy_resource\n", arkIDInt, s2)
 		}
 
 		// 2、policy_resource 策略资源关联表 —— Game
@@ -156,6 +157,7 @@ func RunUserPermPoliceResourceAdAppAndGame() {
 				fmt.Println("入mysql/policyResource 错误：", err)
 				return
 			}
+			fmt.Printf("arkID:%d, game_id:%s 成功插入policy_resource\n", arkIDInt, s2)
 		}
 
 	}
