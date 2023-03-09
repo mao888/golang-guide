@@ -141,7 +141,7 @@ func RunUserPermPoliceResourceAdAppAndGame() {
 		// 2、policy_resource 策略资源关联表 —— Game
 		// 根据 app_id 查询 game_id
 		game2 := make([]*bean.App, 0)
-		err = db2.MySQLClient.Table("app").Where("id in ?", appIDStrArr).Distinct("game_id").Find(&game).Error
+		err = db2.MySQLClient.Table("app").Where("id in ?", appIDStrArr).Distinct("game_id").Find(&game2).Error
 		if err != nil {
 			fmt.Println("根据app_id查询game 错误：", err)
 		}
