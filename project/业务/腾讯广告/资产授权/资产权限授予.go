@@ -32,13 +32,15 @@ func (e *AssetPermissionsAddExample) Init() {
 		AccessToken: e.AccessToken,
 		IsDebug:     true,
 	})
+	var accountId int64 = 0
+	var assetId int64 = 0
 	e.Data = model.AssetPermissionsAddRequest{
 		LicensingAccountIdList: &[]int64{int64(0)},
-		AccountId:              int64(0),
+		AccountId:              &accountId,
 		AssetType:              model.AssetType_CANVAS_WECHAT,
 		AssetPermissionSpec: &[]model.AssetPermissionSpecStruct{{
 			AssetPermissionGrantType: model.AssetPermissionGrantType_ASSET,
-			AssetId:                  int64(0),
+			AssetId:                  &assetId,
 		}},
 	}
 }
