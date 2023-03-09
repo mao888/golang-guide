@@ -1,6 +1,8 @@
 package main
 
-import "github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/user_console"
+import (
+	"github.com/mao888/golang-guide/project/data-sync/mongo-to-mysql/user_console"
+)
 
 func main() {
 	// mongo_to_mysql.RunGame()
