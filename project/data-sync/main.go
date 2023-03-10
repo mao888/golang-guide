@@ -208,4 +208,7 @@ func main() {
 	// 广告投放数据权限
 	// Mongo/rambler/dimpermissions.child_system:"cruiser_v2,pandora,art_needs" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
 	//user_console.RunUserPermPoliceResourceAdAppAndGame()
+
+	// 十一、创建广告
+
 }
