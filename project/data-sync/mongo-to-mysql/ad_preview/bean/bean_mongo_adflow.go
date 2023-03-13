@@ -7,7 +7,7 @@ type MAdFlowCfg struct {
 	Id             string `json:"_id" bson:"_id"`
 	OId            string `json:"o_id" bson:"o_id"`
 	Fbid           string `json:"fbid" bson:"fbid"`
-	CampaignId     string `json:"campaign_id" bson:"campaign_id"`           //  广告系列id
+	CampaignId     string `json:"campaign_id" bson:"campaign_id"`           // 广告系列id
 	AdsetId        string `json:"adset_id" bson:"adset_id"`                 // 广告组id
 	CfgFrameId     string `json:"cfg_frame_id" bson:"cfg_frame_id"`         // 结构方案id
 	CfgCountryIds  []int  `json:"cfg_country_ids" bson:"cfg_country_ids"`   // 国家组id
