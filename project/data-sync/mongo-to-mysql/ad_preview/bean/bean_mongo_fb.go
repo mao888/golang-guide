@@ -2,7 +2,7 @@ package bean
 
 import "time"
 
-// MFBCampaignModel From Mongo/cruiser_console_v2/fbcampaigns
+// MFBCampaignModel 广告系列列表 From Mongo/cruiser_console_v2/fbcampaigns
 type MFBCampaignModel struct {
 	Id               string     `json:"_id" bson:"_id"`
 	CampaignId       string     `json:"campaign_id" bson:"campaign_id"`

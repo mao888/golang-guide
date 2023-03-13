@@ -2,7 +2,7 @@ package bean
 
 import "time"
 
-// MAdFlowCfg From Mongo/cruiser_console_v2/adflowcfg
+// MAdFlowCfg 广告组信息 From Mongo/cruiser_console_v2/adflowcfg
 type MAdFlowCfg struct {
 	Id             string `json:"_id" bson:"_id"`
 	OId            string `json:"o_id" bson:"o_id"`
