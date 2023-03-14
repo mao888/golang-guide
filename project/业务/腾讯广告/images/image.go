@@ -31,12 +31,12 @@ func main() {
 
 		accountId   string = fmt.Sprintf("%d", 30492333)
 		upload_type string = "UPLOAD_TYPE_BYTES"
-		signature   string = "2772ccbf2d653d59444eae2659110539"
+		signature   string = "d2ac5aa7833f3daf90d4b558c8e1e052"
 		bytes       string
 		description string = "超哥"
 
 		basePath string = "https://api.e.qq.com/v1.1/images/add"
-		imageUrl string = "https://ark-oss.bettagames.com/2023-03/2772ccbf2d653d59444eae2659110539.jpg"
+		imageUrl string = "https://ark-oss.bettagames.com/2023-03/d2ac5aa7833f3daf90d4b558c8e1e052.jpg"
 
 		ylhImageResp imageResp
 	)
