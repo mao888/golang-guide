@@ -14,6 +14,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/antihax/optional"
+	"gopkg.in/resty.v1"
+	"io/ioutil"
 	"net/http"
 	"os"
 
@@ -34,18 +37,35 @@ type VideosAddExample struct {
 }
 
 func (e *VideosAddExample) Init() {
-	e.AccessToken = "YOUR ACCESS TOKEN"
+	e.AccessToken = "77ae53631c5aa47bbf97f709fe920aa1"
 	e.TAds = ads.Init(&config.SDKConfig{
 		AccessToken: e.AccessToken,
 		IsDebug:     true,
 	})
-	e.AccountId = int64(0)
-	file, err := os.Open("YOUR FILE PATH")
+	e.AccountId = 30492333
+	videoUrl := "https://ark-oss.bettagames.com/2023-03/6211dece8c857d797b571c0012eb77c0.mp4"
+	fileBytes, err := getFileBytes(videoUrl)
 	if err != nil {
-		e.VideoFile = file
+		fmt.Println("getFileBytes videoUrl err:", err)
 	}
-	e.Signature = "signature_example"
-	e.VideosAddOpts = &api.VideosAddOpts{}
+
+	//reader := bytes.NewReader(fileBytes)
+	file, err := bytesToFile(fileBytes)
+	if err != nil {
+		fmt.Println("bytesToFile err", err)
+		return
+	}
+
+	//file, err := os.Open("YOUR FILE PATH")
+	//if err != nil {
+	e.VideoFile = file
+	//}
+
+	e.Signature = "6211dece8c857d797b571c0012eb77c0"
+	e.VideosAddOpts = &api.VideosAddOpts{
+		Description:          optional.NewString("ddd"),
+		AdcreativeTemplateId: optional.Int64{},
+	}
 }
 
 func (e *VideosAddExample) RunExample() (model.VideosAddResponseData, http.Header, error) {
@@ -69,4 +89,34 @@ func main() {
 	}
 	fmt.Println("Response data:", response)
 	fmt.Println("Headers:", headers)
+}
+
+func getFileBytes(netUrl string) ([]byte, error) {
+	resp, err := resty.New().R().Get(netUrl)
+	if err != nil {
+		return nil, err
+	}
+	return resp.Body(), nil
+}
+
+func bytesToFile(b []byte) (*os.File, error) {
+	// 创建临时文件
+	tmpfile, err := ioutil.TempFile("", "example")
+	if err != nil {
+		return nil, err
+	}
+
+	// 将 []byte 内容写入到临时文件中
+	_, err = tmpfile.Write(b)
+	if err != nil {
+		return nil, err
+	}
+
+	// 将文件指针重置到文件开始处
+	_, err = tmpfile.Seek(0, 0)
+	if err != nil {
+		return nil, err
+	}
+
+	return tmpfile, nil
 }
