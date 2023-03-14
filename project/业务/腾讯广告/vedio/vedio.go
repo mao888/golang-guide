@@ -22,12 +22,12 @@ func main() {
 	var (
 		accessToken  string = "77ae53631c5aa47bbf97f709fe920aa1"
 		basePath     string = "https://api.e.qq.com/v1.1/videos/add"
-		videoUrl     string = "https://ark-oss.bettagames.com/2023-03/6211dece8c857d797b571c0012eb77c0.mp4"
+		videoUrl     string = "https://ark-oss.bettagames.com/2023-03/34d9c6d4c91c0a501dcb8a85924639d5.mp4"
 		accountId    int64  = 30492333
 		ylhVideoResp videoResp
-		signature    string = "6211dece8c857d797b571c0012eb77c0"
-		description  string = "描述"
-		nonce        string = "qwertyuiopwwsdddd"
+		signature    string = "34d9c6d4c91c0a501dcb8a85924639d5"
+		description  string = "超哥哥"
+		nonce        string = "qwertyuiopwwsdddds"
 	)
 	now := time.Now().Unix()
 	fileBytes, err := getFileBytes2(videoUrl)

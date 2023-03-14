@@ -27,16 +27,16 @@ func main() {
 	var (
 		accessToken string = "77ae53631c5aa47bbf97f709fe920aa1"
 		timestamp   int64  = time.Now().Unix()
-		nonce       string = "qwe"
+		nonce       string = "qwers"
 
 		accountId   string = fmt.Sprintf("%d", 30492333)
 		upload_type string = "UPLOAD_TYPE_BYTES"
-		signature   string = "1faaf9020e0df18fdf0429e0db211f37"
+		signature   string = "2772ccbf2d653d59444eae2659110539"
 		bytes       string
-		description string = "图片文件描述"
+		description string = "超哥"
 
 		basePath string = "https://api.e.qq.com/v1.1/images/add"
-		imageUrl string = "https://ark-oss.bettagames.com/2023-03/1faaf9020e0df18fdf0429e0db211f37.png"
+		imageUrl string = "https://ark-oss.bettagames.com/2023-03/2772ccbf2d653d59444eae2659110539.jpg"
 
 		ylhImageResp imageResp
 	)
