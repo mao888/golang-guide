@@ -12,6 +12,7 @@ require (
 require (
 	github.com/antihax/optional v1.0.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/sashabaranov/go-openai v1.5.2 // indirect
 	github.com/tencentad/marketing-api-go-sdk v1.7.33 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
