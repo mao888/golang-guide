@@ -170,7 +170,7 @@ func main() {
 	//wg.Add(4)
 	//go func() {
 	// defer wg.Done()
-	// ad_material.RunAdMaterial()
+	//ad_material.RunAdMaterial()
 	//}()
 
 	// 2、广告素材语言关联表-语言表多对多关联表 （4.3万 61min）
@@ -197,6 +197,9 @@ func main() {
 
 	// 5、更新 广告素材主表 url域名
 	//ad_material.RunUrlReplace()
+
+	// ad_material mysql to mysql
+	//ad_material.RunAdMaterialMysqlToMysql()
 
 	// 十、数据权限
 	// BI数据权限
