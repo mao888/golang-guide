@@ -28,21 +28,74 @@ type AdMaterial struct {
 	TagID        int32  `gorm:"column:tag_id;not null" json:"tag_id"`                 //  标签id 美术需求的dictionaries.id
 }
 
+// AdMaterialPersonRelation mapped from table <ad_material_person_relations>
+type AdMaterialPersonRelation struct {
+	ID         int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	MaterialID int32 `gorm:"column:material_id;not null" json:"material_id"` // 素材id
+	PersonID   int32 `gorm:"column:person_id;not null" json:"person_id"`     // 人员id
+	Type       int32 `gorm:"column:type;not null" json:"type"`               // 人员类型，1：创意负责人，2：设计负责人
+}
+
+// AdMaterialLanguageRelation mapped from table <ad_material_language_relations>
+type AdMaterialLanguageRelation struct {
+	ID         int32 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	MaterialID int32 `gorm:"column:material_id;not null" json:"material_id"` // 素材id
+	LanguageID int32 `gorm:"column:language_id;not null" json:"language_id"` // 语言id
+}
+
 func RunAdMaterialMysqlToMysql() {
 
 	var material = make([]*AdMaterial, 0)
-	err := db2.MySQLClientCruiser.Table("ad_material").Order("updated_at asc").Find(&material)
+	err := db2.MySQLClientCruiser.Table("ad_material").Order("updated_at asc").Find(&material).Error
 	if err != nil {
 		fmt.Println("查询错误：", err)
 		return
 	}
 	for i, adMaterial := range material {
 		fmt.Println("id: ", i)
-		err := db2.MySQLClientCruiserTest.Table("ad_material").Create(&adMaterial).Error
+		// ad_material
+		//err := db2.MySQLClientCruiserTest.Table("ad_material").Create(&adMaterial).Error
+		//if err != nil {
+		//	fmt.Println("入mysql错误：", err)
+		//	return
+		//}
+
+		// ad_material_person_relations 创意负责人
+		adMaterialPersonRelation := AdMaterialPersonRelation{
+			//ID:         0,
+			MaterialID: adMaterial.ID,
+			PersonID:   10087,
+			Type:       1,
+		}
+		err := db2.MySQLClientCruiserTest.Table("ad_material_person_relations").Create(&adMaterialPersonRelation).Error
 		if err != nil {
-			fmt.Println("入mysql错误：", err)
+			fmt.Println("入mysql ad_material_person_relations错误：", err)
 			return
 		}
+		// ad_material_person_relations 设计负责人
+		adMaterialPersonRelation2 := AdMaterialPersonRelation{
+			//ID:         0,
+			MaterialID: adMaterial.ID,
+			PersonID:   10087,
+			Type:       2,
+		}
+		err = db2.MySQLClientCruiserTest.Table("ad_material_person_relations").Create(&adMaterialPersonRelation2).Error
+		if err != nil {
+			fmt.Println("入mysql ad_material_person_relations错误：", err)
+			return
+		}
+		// ad_material_language_relations
+		adMaterialLanguageRelation := AdMaterialLanguageRelation{
+			//ID:         0,
+			MaterialID: adMaterial.ID,
+			LanguageID: 4,
+		}
+		err = db2.MySQLClientCruiserTest.Table("ad_material_language_relations").Create(&adMaterialLanguageRelation).Error
+		if err != nil {
+			fmt.Println("入mysql ad_material_language_relations错误：", err)
+			return
+		}
+
 		if i == 199 {
 			break
 		}
