@@ -19,6 +19,7 @@
 ### 业务
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
 * [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
+* [golang递归实现类别树(CategoryTree)](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/golang%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%88%AB%E6%A0%91(CategoryTree).md)
 ### 推荐项目
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/project/%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md)
 
