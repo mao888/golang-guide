@@ -125,19 +125,19 @@ func main() {
 
 	// 广告投放-配置中心-结构方案表
 	// Mongo/cruiser_console_v2/cfgframes -> ARK cruiser_console/ad_conf_scheme
-	//ad_conf_centre.RunAdConfScheme()
+	//ad_conf_centre.RunAdConfScheme() // 210
 
 	// 广告投放-配置中心-版位组
 	// Mongo/cruiser_console_v2/cfgpositions -> ARK cruiser_console/ad_conf_position
-	//ad_conf_centre.RunAdConfPosition()
+	//ad_conf_centre.RunAdConfPosition() // 20
 
 	// 广告投放-配置中心-国家组表
 	// Mongo/cruiser_console_v2/cfgcountries -> ARK cruiser_console/ad_conf_country
-	//ad_conf_centre.RunAdConfCountry()
+	//ad_conf_centre.RunAdConfCountry() // 214
 
 	// 广告投放-配置中心-文案表
 	// Mongo/cruiser_console_v2/adtexts -> ARK cruiser_console/ad_conf_copywriting
-	//ad_conf_centre.RunAdConfCopywriting()
+	//ad_conf_centre.RunAdConfCopywriting() // 336
 
 	// 八、资产库（内部）、动作库（内部）
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
