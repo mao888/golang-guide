@@ -13,9 +13,9 @@ type MCfgAudienceModel struct {
 	FlexibleSpec            []FlexibleSpec            `json:"flexible_spec" bson:"flexible_spec"`                         // 包含细分定位、缩小细分定位
 	Exclusions              *Exclusions               `json:"exclusions" bson:"exclusions"`                               // 排除细分定位
 	TargetingOptimization   string                    `json:"targeting_optimization" bson:"targeting_optimization"`       // 细分定位扩展优化
-	VerifyStr               string                    `json:"verify_str"`                                                 // 受众信息校验参数
-	CreateUser              string                    `json:"create_user"`                                                // 创建人
-	UserId                  int32                     `json:"user_id"`                                                    // 创建人id
+	VerifyStr               string                    `json:"verify_str" bson:"verify_str"`                               // 受众信息校验参数
+	CreateUser              string                    `json:"create_user" bson:"create_user"`                             // 创建人
+	UserId                  int32                     `json:"user_id" bson:"user_id"`                                     // 创建人id
 	SourceSys               string                    `json:"source_sys" bson:"source_sys"`
 	CreateTime              *time.Time                `json:"create_time" bson:"create_time"`
 	UpdateTime              *time.Time                `json:"update_time" bson:"update_time"`
