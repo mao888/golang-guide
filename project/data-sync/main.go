@@ -61,7 +61,7 @@ func main() {
 
 	// 五、bi数据工具数据迁移
 	// Mongo/rambler/thirdadvconfigs 数据迁移到 ARK admin_console/bi_data
-	// bi_data.RunBiData()
+	//bi_data.RunBiData()
 
 	// 六、美术需求数据迁移
 	// 1、美术需求主表
@@ -125,19 +125,19 @@ func main() {
 
 	// 广告投放-配置中心-结构方案表
 	// Mongo/cruiser_console_v2/cfgframes -> ARK cruiser_console/ad_conf_scheme
-	//ad_conf_centre.RunAdConfScheme()
+	//ad_conf_centre.RunAdConfScheme() // 210
 
 	// 广告投放-配置中心-版位组
 	// Mongo/cruiser_console_v2/cfgpositions -> ARK cruiser_console/ad_conf_position
-	//ad_conf_centre.RunAdConfPosition()
+	//ad_conf_centre.RunAdConfPosition() // 20
 
 	// 广告投放-配置中心-国家组表
 	// Mongo/cruiser_console_v2/cfgcountries -> ARK cruiser_console/ad_conf_country
-	//ad_conf_centre.RunAdConfCountry()
+	//ad_conf_centre.RunAdConfCountry() // 214
 
 	// 广告投放-配置中心-文案表
 	// Mongo/cruiser_console_v2/adtexts -> ARK cruiser_console/ad_conf_copywriting
-	//ad_conf_centre.RunAdConfCopywriting()
+	//ad_conf_centre.RunAdConfCopywriting() // 336
 
 	// 八、资产库（内部）、动作库（内部）
 	// 美术资产库表，该表保护（美术资产，动作资产，音乐资产等)
@@ -170,7 +170,7 @@ func main() {
 	//wg.Add(4)
 	//go func() {
 	// defer wg.Done()
-	// ad_material.RunAdMaterial()
+	//ad_material.RunAdMaterial()
 	//}()
 
 	// 2、广告素材语言关联表-语言表多对多关联表 （4.3万 61min）
@@ -198,8 +198,20 @@ func main() {
 	// 5、更新 广告素材主表 url域名
 	//ad_material.RunUrlReplace()
 
-	// 十、BI数据权限
-	// Mongo/rambler/dimpermissions -> ARK user_console/policy user_console/policy_resource user_console/user_perm
-	//user_console.RunUserPermPoliceResource()
-	//user_console.RunUserPermPoliceResource2()
+	// ad_material mysql to mysql
+	//ad_material.RunAdMaterialMysqlToMysql()
+
+	// 十、数据权限
+	// BI数据权限
+	// Mongo/rambler/dimpermissions.child_system:"bi" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
+	//user_console.RunUserPermPoliceResourceBi()
+	//user_console.RunUserPermPoliceResourceBiApp()
+	//user_console.RunUserPermPoliceResourceBiGame()
+
+	// 广告投放数据权限
+	// Mongo/rambler/dimpermissions.child_system:"cruiser_v2,pandora,art_needs" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
+	//user_console.RunUserPermPoliceResourceAdAppAndGame()
+
+	// 十一、创建广告
+
 }

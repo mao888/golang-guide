@@ -10,10 +10,19 @@ require (
 )
 
 require (
+	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
+	github.com/antihax/optional v1.0.0 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/sashabaranov/go-openai v1.5.2 // indirect
+	github.com/tencentad/marketing-api-go-sdk v1.7.33 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
 	go.uber.org/multierr v1.6.0 // indirect
+	go.uber.org/ratelimit v0.2.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
+	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d // indirect
+	google.golang.org/appengine v1.4.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
+	gopkg.in/resty.v1 v1.12.0 // indirect
 )
 
 require (

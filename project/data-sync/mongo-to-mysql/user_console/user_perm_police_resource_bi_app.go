@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func RunUserPermPoliceResource2() {
+func RunUserPermPoliceResourceBiApp() {
 	// 处理字符串, 以 "\n" 分隔为 ark_id:[app_id,app_id]
 	arkIDAndAppIdStrsArr := strings.Split(bean.ArkIDAndAppIdStrs, "\n")
 	//arkIDAndAppIdMap := make([]map[string]string, len(arkIDAndAppIdStrsArr))

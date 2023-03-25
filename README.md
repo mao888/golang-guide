@@ -37,7 +37,7 @@
 <div>
  <br> <strong>👍推荐 📚<a href="https://stpnxkbsbf.feishu.cn/drive/folder/fldcn26h3JQ5sZUWyE77PiKNNBa" >飞书书库</a> 关注公众号: <strong>Gopher毛</strong> 回复 <strong>【飞书书库】</strong> 获取链接与密码</strong> <br>
 </div>
-     
+
 ## 更多
 
 <a name="download"></a>
@@ -134,7 +134,7 @@
 * [HTTP-Hertz](https://www.cloudwego.io/zh/docs/hertz/overview/)
 * [RPC-Kitex](https://www.cloudwego.io/zh/docs/kitex/overview/)
 
-[//]: # ([![Go.jpg]&#40;https://i.postimg.cc/MH9rg45y/Go.jpg&#41;]&#40;https://postimg.cc/K3gNM0dz&#41;)
+[//]: # "[![Go.jpg]&#40;https://i.postimg.cc/MH9rg45y/Go.jpg&#41;]&#40;https://postimg.cc/K3gNM0dz&#41;"
 
 
 <img align="center" src=https://i.postimg.cc/PqnXKHkR/R-C.jpg width="400" />
@@ -377,11 +377,15 @@
 - [如何使用Docker部署Go Web应用](https://www.liwenzhou.com/posts/Go/how_to_deploy_go_app_using_docker/)
 - [Docker 10分钟快速入门](https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.788.recommend_more_video.-1&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 
-## MQ
-* [Kafka](https://github.com/mao888/golang-guide/blob/main/MQ/Kafka%E9%9D%A2%E7%BB%8F.md)
-* [MQ面经](https://github.com/mao888/golang-guide/blob/main/MQ/MQ%E9%9D%A2%E7%BB%8F.md)
-* [RabbitMq](https://github.com/mao888/golang-guide/blob/main/MQ/RabbitMq.md)
+## 💻 消息队列
+<img align="centre" src="https://i.postimg.cc/sXZmVV2V/image.jpg" height="150" width="300"/>
 
+[MQ面经](https://github.com/mao888/golang-guide/blob/main/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/MQ%E9%9D%A2%E7%BB%8F.md)
+### kafaka
+- [Kafka知识体系](https://github.com/mao888/golang-guide/blob/main/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/Kafka%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB.md)
+- [Kafka面经](https://github.com/mao888/golang-guide/blob/main/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/Kafka%E9%9D%A2%E7%BB%8F.md)
+### RabbitMq
+- [RabbitMq](https://github.com/mao888/golang-guide/blob/main/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMq.md)
 ## zookpper
 * [zookpper面经](https://github.com/mao888/golang-guide/blob/main/zookpper/README.md)
 
@@ -471,9 +475,12 @@
 * [图片-文字-动图敏感过滤](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BE%E7%89%87-%E6%96%87%E5%AD%97-%E5%8A%A8%E5%9B%BE%E6%95%8F%E6%84%9F%E8%BF%87%E6%BB%A4.md)
 * [PG VS Mysql](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/PG%20VS%20Mysql.md)
 * [Tidb](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Tidb.md)
+* [钉钉发送工作消息通知](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%92%89%E9%92%89%E5%8F%91%E9%80%81%E5%B7%A5%E4%BD%9C%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.md)
+* [golang实现根据图片url转成*os.File](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E5%AE%9E%E7%8E%B0%E6%A0%B9%E6%8D%AE%E5%9B%BE%E7%89%87url%E8%BD%AC%E6%88%90*os.File.md)
 ### 业务
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
-* [go-excel](github.com/mao888/go-excel)
+* [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
+* [golang递归实现类别树(CategoryTree)](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/golang%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%88%AB%E6%A0%91(CategoryTree).md)
 ### 推荐项目
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/project/%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md)
 
