@@ -12,33 +12,39 @@ import (
 )
 
 func main() {
-	type videoResp struct {
-		Code      int    `json:"code"`
-		Message   string `json:"message"`
-		MessageCn string `json:"message_cn"`
-		Data      struct {
-			VideoId string `json:"video_id"`
+	type imageResp struct {
+		Message string `json:"message"`
+		Code    int    `json:"code"`
+		Data    struct {
+			Size       int    `json:"size"`
+			Width      int    `json:"width"`
+			MaterialId int    `json:"material_id"`
+			Format     string `json:"format"`
+			Url        string `json:"url"`
+			Signature  string `json:"signature"`
+			Id         string `json:"id"`
+			Height     int    `json:"height"`
 		} `json:"data"`
 	}
 
 	var (
-		openApiUrlPrefix string = "https://ad.oceanengine.com/open_api/2/"
-		uri              string = "file/video/ad/"
+		openApiUrlPrefix = "https://ad.oceanengine.com/open_api/2/"
+		uri              = "file/image/ad/"
 		// 请求Header
-		contentType string = "multipart/form-data"
-		accessToken string = "e88f206ab28a97ef494b853982d81739b81a1e37"
+		contentType = "multipart/form-data"
+		accessToken = "e88f206ab28a97ef494b853982d81739b81a1e37"
 		//XDebugMode  int = 1
 		// 请求参数
-		advertiserId   int64  = 1760312309087432 // 广告主ID
-		uploadType     string = "UPLOAD_BY_FILE" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
-		videoSignature string = "6b12a8bbbe8e69a2ef5929028b0b50c3"
-		filename       string = "auto4_15151.aaaaaaa_test环境slicess__V_ZJR_ZJR_en+de_1X1_31s"                  // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
-		videoUrl       string = "https://ark-oss.bettagames.com/2023-03/6b12a8bbbe8e69a2ef5929028b0b50c3.mp4" // 视频url地址
+		advertiserId   int64 = 1760312309087432 // 广告主ID
+		uploadType           = "UPLOAD_BY_FILE" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
+		imageSignature       = "1faaf9020e0df18fdf0429e0db211f37"
+		filename             = "auto4_15151.aaaaaaa_test环境slicess__V_ZJR_ZJR_en+de_1X1_31s"                  // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
+		imageUrl             = "https://ark-oss.bettagames.com/2023-03/1faaf9020e0df18fdf0429e0db211f37.png" // 图片url地址
 		//
-		ttVideoResp videoResp
+		ttImageResp imageResp
 	)
 	url := fmt.Sprintf("%s%s", openApiUrlPrefix, uri)
-	fileBytes, err := getFileBytes2(videoUrl)
+	fileBytes, err := getFileBytes2(imageUrl)
 	if err != nil {
 		fmt.Println("getFileBytes err", err)
 		return
@@ -48,11 +54,11 @@ func main() {
 		map[string]string{
 			"advertiser_id":   fmt.Sprintf("%d", advertiserId),
 			"upload_type":     uploadType,
-			"video_signature": videoSignature,
+			"image_signature": imageSignature,
 			"filename":        filename,
 		},
 		map[string][]byte{
-			"video_file": fileBytes,
+			"image_file": fileBytes,
 		},
 		map[string]string{
 			"Content-Type": contentType,
@@ -64,7 +70,7 @@ func main() {
 	}
 	fmt.Println("code:", httpStatus)
 
-	err = json.Unmarshal(resp, &ttVideoResp)
+	err = json.Unmarshal(resp, &ttImageResp)
 	if err != nil {
 		fmt.Println("Unmarshal err:", err)
 		return
@@ -73,7 +79,7 @@ func main() {
 		fmt.Println("resp.StatusCode() != http.StatusOK")
 		return
 	}
-	fmt.Println("ttVideoResp: ", ttVideoResp)
+	fmt.Println("ttImageResp: ", ttImageResp)
 }
 
 //HttpPostMultipart 通过multipart/form-data请求数据
