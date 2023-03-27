@@ -24,10 +24,10 @@ func main() {
 		accessToken string
 		//XDebugMode  int = 1
 		// 请求参数
-		advertiserId int64  = 1               // 广告主ID
-		uploadType   string = "UPLOAD_BY_URL" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
-		filename     string = ""              // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
-		videoUrl     string = ""              // 视频url地址
+		advertiserId int64  = 1760312309087432 // 广告主ID
+		uploadType   string = "UPLOAD_BY_URL"  // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
+		filename     string = ""               // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
+		videoUrl     string = ""               // 视频url地址
 		//
 		ttVideoResp videoResp
 	)
