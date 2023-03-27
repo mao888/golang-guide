@@ -1,3 +1,5 @@
+http://doc.golang.ltd/
+
 mime/multipart是Go语言标准库中的一个包，用于处理HTTP multipart/form-data格式的数据，这种格式通常用于上传文件和表单数据。multipart/form-data数据格式通常由浏览器使用HTTP POST方法发送，包含一个或多个二进制文件和文本字段。
 
 使用mime/multipart包，可以将multipart/form-data数据解析为一组文件和表单字段，或者使用multipart.Writer将文件和表单字段写入HTTP请求体中。
