@@ -116,11 +116,12 @@ func RunSdkReleaseRecord() {
 		fmt.Println("Mongo查询错误：", err)
 		return
 	}
-	fmt.Println(mProjectversions)
+	//fmt.Println(mProjectversions)
 
 	// 3、将mongo数据装入切片
 	sdkReleaseRecord := make([]*SdkReleaseRecord, 0)
-	for _, projectversion := range mProjectversions {
+	for i, projectversion := range mProjectversions {
+		fmt.Println("sdk_release_record: ", i)
 		// status
 		if projectversion.Status == -1 {
 			projectversion.Status = 4

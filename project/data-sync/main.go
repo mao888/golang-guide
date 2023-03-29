@@ -3,6 +3,7 @@ package main
 func main() {
 	// mongo_to_mysql.RunGame()
 
+	//
 	// 将mongo数据 plat_console/projects 迁移到mysql中的 admin_console/sdk_project表
 	//sdk_release.RunSdkProject()
 
@@ -10,7 +11,7 @@ func main() {
 	//sdk_release.RunSdkReleaseRecord()
 
 	// 更新 sdk_release_record表中 version_number 字段为 可排序字段 version_ordinal
-	// mongo_to_mysql.VersionNumberToOrdinal()
+	//sdk_release.VersionNumberToOrdinal()
 
 	// 将mongo数据 plat_console/sdks 迁移到mysql中的 admin_console/child_sdk表
 	//sdk_release.RunChildSdk()

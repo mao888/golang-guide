@@ -50,11 +50,12 @@ func RunChildSdkReleaseRecord() {
 		fmt.Println("Mongo查询错误：", err)
 		return
 	}
-	fmt.Println(mSdkversions)
+	//fmt.Println(mSdkversions)
 
 	// 3、将mongo数据装入切片
 	childSdkReleaseRecord := make([]*ChildSdkReleaseRecord, 0)
-	for _, record := range mSdkversions {
+	for i, record := range mSdkversions {
+		fmt.Println("child_sdk_release_record: ", i)
 		childSdk := &ChildSdkReleaseRecord{
 			ChildSdkID:    record.SdkId,
 			Jenkins:       record.JenkinsName,

@@ -15,7 +15,8 @@ func VersionNumberToOrdinal() {
 	}
 
 	// 2、根据Id更新
-	for _, record := range sdkReleaseRecord {
+	for i, record := range sdkReleaseRecord {
+		fmt.Println("更新sdk_release_record:", i)
 		record.VersionOrdinal = version.VersionOrdinal(record.VersionNumber)
 		fmt.Println(record.VersionOrdinal)
 		err := db2.MySQLClientAdmin.Table("sdk_release_record").Where("id = ?", record.ID).

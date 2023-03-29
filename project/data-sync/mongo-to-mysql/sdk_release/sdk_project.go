@@ -41,11 +41,12 @@ func RunSdkProject() {
 		fmt.Println("Mongo查询错误：", err)
 		return
 	}
-	fmt.Println(mProjects)
+	//fmt.Println(mProjects)
 
 	// 3、将mongo数据装入切片
 	sdkProject := make([]*SdkProject, 0)
-	for _, project := range mProjects {
+	for i, project := range mProjects {
+		fmt.Println("sdk_project: ", i)
 		sdk := &SdkProject{
 			ID:          project.ID,
 			Sdk:         project.Name,

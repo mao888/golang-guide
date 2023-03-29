@@ -45,11 +45,12 @@ func RunChildSdk() {
 		fmt.Println("Mongo查询错误：", err)
 		return
 	}
-	fmt.Println(mSdks)
+	//fmt.Println(mSdks)
 
 	// 3、将mongo数据装入切片
 	childSdk := make([]*ChildSdk, 0)
-	for _, sdk := range mSdks {
+	for i, sdk := range mSdks {
+		fmt.Println("child_sdk: ", i)
 		// share
 		shared := 0
 		if sdk.Shared == true {
