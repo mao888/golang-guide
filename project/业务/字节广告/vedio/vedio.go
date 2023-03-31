@@ -26,14 +26,14 @@ func main() {
 		uri              string = "file/video/ad/"
 		// 请求Header
 		contentType string = "multipart/form-data"
-		accessToken string = "e88f206ab28a97ef494b853982d81739b81a1e37"
+		accessToken string = "b6d470f1a2190665f6bb0d77e395911bb7384abf"
 		//XDebugMode  int = 1
 		// 请求参数
-		advertiserId   int64  = 1760312309087432 // 广告主ID
-		uploadType     string = "UPLOAD_BY_FILE" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
-		videoSignature string = "6b12a8bbbe8e69a2ef5929028b0b50c3"
-		filename       string = "auto4_15151.aaaaaaa_test环境slicess__V_ZJR_ZJR_en+de_1X1_31s"                  // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
-		videoUrl       string = "https://ark-oss.bettagames.com/2023-03/6b12a8bbbe8e69a2ef5929028b0b50c3.mp4" // 视频url地址
+		advertiserId   int64 = 1760312309087432 // 广告主ID
+		uploadType           = "UPLOAD_BY_FILE" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
+		videoSignature       = "9744ac8f667b20048590f0051b15e90d"
+		filename             = "auto4_1111111111.11111111_游戏35和36__V_ZJR_ZJR_en_16X9_33s"                    // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
+		videoUrl             = "https://ark-oss.bettagames.com/2023-03/9744ac8f667b20048590f0051b15e90d.mp4" // 视频url地址
 		//
 		ttVideoResp videoResp
 	)
@@ -114,7 +114,11 @@ func HttpPostMultipart(url string, formData map[string]string, fileData map[stri
 	if err != nil {
 		return 0, nil, err
 	}
+	defer response.Body.Close()
 	resp, err = ioutil.ReadAll(response.Body)
+	if err != nil {
+		return 0, nil, err
+	}
 	return response.StatusCode, resp, err
 }
 
