@@ -44,7 +44,7 @@ func main() {
 		ttImageResp imageResp
 	)
 	url := fmt.Sprintf("%s%s", openApiUrlPrefix, uri)
-	fileBytes, err := getFileBytes2(imageUrl)
+	fileBytes, err := getFileBytes(imageUrl)
 	if err != nil {
 		fmt.Println("getFileBytes err", err)
 		return
@@ -57,8 +57,11 @@ func main() {
 			"image_signature": imageSignature,
 			"filename":        filename,
 		},
-		map[string][]byte{
-			"image_file": fileBytes,
+		map[string]FileObject{
+			"image_file": {
+				Name:    filename,
+				Content: fileBytes,
+			},
 		},
 		map[string]string{
 			"Content-Type": contentType,
@@ -83,7 +86,7 @@ func main() {
 }
 
 //HttpPostMultipart 通过multipart/form-data请求数据
-func HttpPostMultipart(url string, formData map[string]string, fileData map[string][]byte,
+func HttpPostMultipart(url string, formData map[string]string, fileData map[string]FileObject,
 	header map[string]string) (httpStatus int, resp []byte, err error) {
 
 	payload := &bytes.Buffer{}
@@ -92,11 +95,11 @@ func HttpPostMultipart(url string, formData map[string]string, fileData map[stri
 		_ = writer.WriteField(k, v)
 	}
 	for k, v := range fileData {
-		fileWriter, err := writer.CreateFormField(k)
+		fileWriter, err := writer.CreateFormFile(k, v.Name)
 		if err != nil {
 			return 0, nil, err
 		}
-		_, err = io.Copy(fileWriter, bytes.NewReader(v))
+		_, err = io.Copy(fileWriter, bytes.NewReader(v.Content))
 		if err != nil {
 			return 0, nil, err
 		}
@@ -120,11 +123,19 @@ func HttpPostMultipart(url string, formData map[string]string, fileData map[stri
 	if err != nil {
 		return 0, nil, err
 	}
+	defer func() {
+		_ = response.Body.Close()
+	}()
 	resp, err = ioutil.ReadAll(response.Body)
 	return response.StatusCode, resp, err
 }
 
-func getFileBytes2(netUrl string) ([]byte, error) {
+type FileObject struct {
+	Name    string
+	Content []byte
+}
+
+func getFileBytes(netUrl string) ([]byte, error) {
 	resp, err := resty.New().R().Get(netUrl)
 	if err != nil {
 		return nil, err
