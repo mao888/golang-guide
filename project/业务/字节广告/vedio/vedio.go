@@ -12,6 +12,7 @@ import (
 )
 
 func main() {
+
 	type videoResp struct {
 		Code      int    `json:"code"`
 		Message   string `json:"message"`
@@ -32,7 +33,7 @@ func main() {
 		advertiserId   int64 = 1760312309087432 // 广告主ID
 		uploadType           = "UPLOAD_BY_FILE" // 视频上传方式，可选值:UPLOAD_BY_FILE: 文件上传（默认值），UPLOAD_BY_URL: 网址上传
 		videoSignature       = "9744ac8f667b20048590f0051b15e90d"
-		filename             = "auto4_1111111111.11111111_游戏35和36__V_ZJR_ZJR_en_16X9_33s"                    // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
+		filename             = "auto4_1111111111.11111111_游戏35和36__V_ZJR_ZJR_en_16X9_33s"                 // 素材的文件名，可自定义素材名，不传择默认取文件名，最长255个字符。UPLOAD_BY_URL必填  注：若同一素材已进行上传，重新上传不会改名。
 		videoUrl             = "https://ark-oss.bettagames.com/2023-03/9744ac8f667b20048590f0051b15e90d.mp4" // 视频url地址
 		//
 		ttVideoResp videoResp
