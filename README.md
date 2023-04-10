@@ -457,6 +457,10 @@
 ## 💻 项目
 ### 规范
 * [git规范](https://github.com/mao888/golang-guide/tree/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83)
+* [CodeReview规则](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/CodeReview%E8%A7%84%E5%88%99.md)
+* [数据库的设计规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
+* [阿里官方 Redis 开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%98%BF%E9%87%8C%E5%AE%98%E6%96%B9%20Redis%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
+* [项目开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
 * [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
 * [Go风格指南](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
 ### 👍 设计方案及调研
