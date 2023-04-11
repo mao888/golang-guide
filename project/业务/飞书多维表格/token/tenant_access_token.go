@@ -13,6 +13,7 @@ func main() {
 		TenantAccessToken string `json:"tenant_access_token"`
 		Expire            int    `json:"expire"`
 	}
+
 	var (
 		// 请求头
 		contentType = "application/json; charset=utf-8"
