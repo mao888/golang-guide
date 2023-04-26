@@ -902,8 +902,6 @@ bmap 即 bucket map 的缩写。
 - pad 对齐内存使用的，不是每个bmap都有会这个字段，需要满足一定条件
 - overflow 指针指向的是下一个bucket，据此将所有冲突的键连接起来。
 
-注意：上述中data和overflow并不是在结构体中显示定义的，而是直接通过指针运算进行访问的。
-
 下图展示bucket存放8个key-value对：
 
 ![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789834784-c60b0cb4-96be-4c4c-8978-2bfc9ca716b9.png)
