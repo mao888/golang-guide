@@ -866,20 +866,41 @@ bucket很多时候被翻译为桶，所谓的哈希桶实际上就是bucket。
 bucket数据结构由runtime/map.go:bmap定义：
 
 ```go
+// A bucket for a Go map.
 type bmap struct {
-    tophash [8]uint8 //存储哈希值的高8位
-    data    byte[1]  //key value数据:key/key/key/.../value/value/value...
-    overflow *bmap   //溢出bucket的地址
+    // tophash generally contains the top byte of the hash value
+    // for each key in this bucket. If tophash[0] < minTopHash,
+    // tophash[0] is a bucket evacuation state instead.
+    tophash [bucketCnt]uint8
+    // Followed by bucketCnt keys and then bucketCnt elems.
+    // NOTE: packing all the keys together and then all the elems together makes the
+    // code a bit more complicated than alternating key/elem/key/elem/... but it allows
+    // us to eliminate padding which would be needed for, e.g., map[int64]int8.
+    // Followed by an overflow pointer.
 }
 ```
 
+这里只有一个 tophash 字段，而实际上在使用中值的类型是不固定的，甚至可以是一个自定义结构体的指针类型。这个结构体看起来可能有点让人费解，其实编译器在编译期间会动态创建一个新的同名数据结构，如下所示
+
+```go
+type bmap struct {
+    topbits  [8]uint8
+    keys     [8]keytype
+    values   [8]valuetype
+    pad      uintptr
+    overflow uintptr
+}
+```
+
+bmap 即 bucket map 的缩写。
+
 每个bucket可以存储8个键值对。
 
-- tophash是个长度为8的数组，哈希值相同的键（准确的说是哈希值低位相同的键）存入当前bucket时会将哈希值的高位存储在该数组中，以方便后续匹配。
-- data区存放的是key-value数据，存放顺序是key/key/key/…value/value/value，如此存放是为了节省字节对齐带来的空间浪费。
+- topbits 是个长度为8的数组，哈希值相同的键（准确的说是哈希值低位相同的键）存入当前bucket时会将哈希值的高位存储在该数组中，以方便后续匹配。
+- keys 长度为8的数组，[]keytype，元素为：具体的key值。
+- values 长度为8的数组，[]valuetype，元素为：键值对的key对应的值。
+- pad 对齐内存使用的，不是每个bmap都有会这个字段，需要满足一定条件
 - overflow 指针指向的是下一个bucket，据此将所有冲突的键连接起来。
-
-注意：上述中data和overflow并不是在结构体中显示定义的，而是直接通过指针运算进行访问的。
 
 下图展示bucket存放8个key-value对：
 
