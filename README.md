@@ -461,6 +461,7 @@
 ### 规范
 * [git规范](https://github.com/mao888/golang-guide/tree/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83)
 * [CodeReview规则](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/CodeReview%E8%A7%84%E5%88%99.md)
+* [ssh远程登录报错：WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%8A%A5%E9%94%99%EF%BC%9AWARNING%3A%20REMOTE%20HOST%20IDENTIFICATION%20HAS%20CHANGED!%20.md)
 * [数据库的设计规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
 * [阿里官方 Redis 开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%98%BF%E9%87%8C%E5%AE%98%E6%96%B9%20Redis%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
 * [项目开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
