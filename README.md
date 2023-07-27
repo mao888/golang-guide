@@ -549,6 +549,9 @@
 * [如何巧妙推迟面试时间](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%A6%82%E4%BD%95%E5%B7%A7%E5%A6%99%E6%8E%A8%E8%BF%9F%E9%9D%A2%E8%AF%95%E6%97%B6%E9%97%B4.md)
 * [面试官问：为什么离开上家公司？](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%BB%E5%BC%80%E4%B8%8A%E5%AE%B6%E5%85%AC%E5%8F%B8%EF%BC%9F.md)
 
+## 💻 其他
+* [天津落户](https://github.com/mao888/golang-guide/blob/main/%E5%85%B6%E4%BB%96/%E5%A4%A9%E6%B4%A5%E8%90%BD%E6%88%B7.md)
+
 ## 💻 关于我
 * [Github](https://github.com/mao888)(必看👍 )
 * [哔哩哔哩](https://space.bilibili.com/289144374?spm_id_from=333.1007.0.0)
