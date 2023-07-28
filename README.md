@@ -40,15 +40,18 @@
 
 ## 更多
 <a name="download"></a>
-<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛； QQ交流群2：579480724；QQ交流群1(满) :1007576722</summary></b>
+<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛；QQ交流群3：805360166；QQ交流群2(满)：579480724；QQ交流群1(满) :1007576722</summary></b>
 请扫描或搜索下方二维码、公众号，获取想要的资料、八股或进群交流。
 
 <a name="公众号"></a>
 <div align="center"><img src="https://i.postimg.cc/zXkfPv6P/image.png" style="zoom:20%;" />
     <p>官方公众号：Gopher毛</p>
 </div>
+<div align="center"><img src="https://i.postimg.cc/VLNfrGxs/Gophers3.png" style="zoom:45%;" />
+   <p>QQ交流群3：805360166</p>
+</div>
 <div align="center"><img src="https://i.postimg.cc/VkLNy1cs/Gophers2.png" style="zoom:45%;" />
-   <p>QQ交流群2：579480724</p>
+   <p>QQ交流群2(满)：579480724</p>
 </div>
 <div align="center"><img src="https://i.postimg.cc/C5QQDnnv/Gophers-1.png" style="zoom:45%;" />
    <p>QQ交流群1(满)：1007576722</p>
@@ -458,6 +461,7 @@
 ### 规范
 * [git规范](https://github.com/mao888/golang-guide/tree/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83)
 * [CodeReview规则](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/CodeReview%E8%A7%84%E5%88%99.md)
+* [ssh远程登录报错：WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83/ssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95%E6%8A%A5%E9%94%99%EF%BC%9AWARNING%3A%20REMOTE%20HOST%20IDENTIFICATION%20HAS%20CHANGED!%20.md)
 * [数据库的设计规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
 * [阿里官方 Redis 开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%98%BF%E9%87%8C%E5%AE%98%E6%96%B9%20Redis%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
 * [项目开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
@@ -544,6 +548,9 @@
 * [北京有哪些好公司推荐？这些神仙公司能落京户、955、高薪还不内卷！](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%8C%97%E4%BA%AC%E6%9C%89%E5%93%AA%E4%BA%9B%E5%A5%BD%E5%85%AC%E5%8F%B8%E6%8E%A8%E8%8D%90%EF%BC%9F%E8%BF%99%E4%BA%9B%E7%A5%9E%E4%BB%99%E5%85%AC%E5%8F%B8%E8%83%BD%E8%90%BD%E4%BA%AC%E6%88%B7%E3%80%81955%E3%80%81%E9%AB%98%E8%96%AA%E8%BF%98%E4%B8%8D%E5%86%85%E5%8D%B7%EF%BC%81.md)
 * [如何巧妙推迟面试时间](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E5%A6%82%E4%BD%95%E5%B7%A7%E5%A6%99%E6%8E%A8%E8%BF%9F%E9%9D%A2%E8%AF%95%E6%97%B6%E9%97%B4.md)
 * [面试官问：为什么离开上家公司？](https://github.com/mao888/golang-guide/blob/main/%E6%B1%82%E8%81%8C%E5%AE%9D%E5%85%B8/%E9%9D%A2%E8%AF%95%E5%AE%98%E9%97%AE%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E7%A6%BB%E5%BC%80%E4%B8%8A%E5%AE%B6%E5%85%AC%E5%8F%B8%EF%BC%9F.md)
+
+## 💻 其他
+* [天津落户](https://github.com/mao888/golang-guide/blob/main/%E5%85%B6%E4%BB%96/%E5%A4%A9%E6%B4%A5%E8%90%BD%E6%88%B7.md)
 
 ## 💻 关于我
 * [Github](https://github.com/mao888)(必看👍 )
