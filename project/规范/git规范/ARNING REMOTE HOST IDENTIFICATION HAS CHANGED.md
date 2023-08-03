@@ -1,12 +1,10 @@
-## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!  
+## WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 
 ![img](https://cdn.nlark.com/yuque/0/2023/png/22219483/1690253807510-269163b9-bb2e-43a1-aa78-3d046ae5876e.png)
 
