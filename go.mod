@@ -13,6 +13,8 @@ require (
 	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
 	github.com/antihax/optional v1.0.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/mattn/go-runewidth v0.0.9 // indirect
+	github.com/nsf/termbox-go v1.1.1 // indirect
 	github.com/sashabaranov/go-openai v1.5.2 // indirect
 	github.com/tencentad/marketing-api-go-sdk v1.7.33 // indirect
 	go.uber.org/atomic v1.7.0 // indirect
