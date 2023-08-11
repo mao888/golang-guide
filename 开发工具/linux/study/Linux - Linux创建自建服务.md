@@ -170,7 +170,7 @@ exit 0
 ├── functions
 ├── netconsole
 ├── network
-├── README
+├── 练习14.8.md
 └── tech-doc
 ```
 
@@ -179,13 +179,13 @@ tech-doc内容如下:
 ```bash
 [root@docker opt]# cd /etc/init.d
 [root@docker init.d]# ls
-functions  netconsole  network  README  tech-doc
+functions  netconsole  network  练习14.8.md  tech-doc
 [root@docker init.d]# tree -a
 .
 ├── functions
 ├── netconsole
 ├── network
-├── README
+├── 练习14.8.md
 └── tech-doc
 
 0 directories, 5 files
