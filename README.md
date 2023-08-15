@@ -483,6 +483,7 @@
 * [钉钉发送工作消息通知](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%92%89%E9%92%89%E5%8F%91%E9%80%81%E5%B7%A5%E4%BD%9C%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.md)
 * [golang实现根据图片url转成*os.File](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E5%AE%9E%E7%8E%B0%E6%A0%B9%E6%8D%AE%E5%9B%BE%E7%89%87url%E8%BD%AC%E6%88%90File.md)
 * [redis分布式锁及双重校验](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%8F%8A%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C.md)
+* [go实现当两个参数确定时,第三个参数必须是唯一的](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/go%E5%AE%9E%E7%8E%B0%E5%BD%93%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%E7%A1%AE%E5%AE%9A%E6%97%B6%2C%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E5%BF%85%E9%A1%BB%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84.md)
 ### 业务
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
 * [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
