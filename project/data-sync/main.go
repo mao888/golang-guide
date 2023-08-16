@@ -170,7 +170,7 @@ func main() {
 	//var wg sync.WaitGroup
 	//wg.Add(4)
 	//go func() {
-	// defer wg.Done()
+	//defer wg.Done()
 	//ad_material.RunAdMaterial()
 	//}()
 
@@ -215,4 +215,6 @@ func main() {
 
 	// 十一、创建广告
 
+	// 十二、BI-配置管理-自定义参数配置
+	// PostgreSQL/data_cfg.cfg_event_params_value -> MySQL/bi_console.cfg_event_params_value
 }
