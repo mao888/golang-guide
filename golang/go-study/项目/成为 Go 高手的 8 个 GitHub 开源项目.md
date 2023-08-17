@@ -81,5 +81,3 @@ Golang 的出色 ORM 库，对开发人员很友好。
 精选的 Go 框架、库和软件的列表。
 
 [https://github.com/avelino/awesome-go](https://link.zhihu.com/?target=https%3A//github.com/avelino/awesome-go)。
-
-原文链接：[https://medium.com/@Beck_Moulto](https://link.zhihu.com/?target=https%3A//medium.com/%40Beck_Moulton/8-github-repositories-to-become-a-golang-master-b8491b5a57e4)
