@@ -88,6 +88,7 @@
 ### golang-study
 * [golang学习路线](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/golang%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF.md)
 * [golang项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md) (必看👍 )
+  * [7 个 yyds 的 Go 项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/7%20%E4%B8%AA%20yyds%20%E7%9A%84%20Go%20%E9%A1%B9%E7%9B%AE.md)
   * [成为 Go 高手的 8 个 GitHub 开源项目](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E9%A1%B9%E7%9B%AE/%E6%88%90%E4%B8%BA%20Go%20%E9%AB%98%E6%89%8B%E7%9A%84%208%20%E4%B8%AA%20GitHub%20%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE.md)
 * [Go语言学习之路--李文周](https://github.com/mao888/golang-guide/blob/main/golang/go-study/%E8%B5%84%E6%96%99%E5%BA%93/Go%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF_Liwenzhou.md)
 * [第五届字节跳动青训营](https://github.com/mao888/golang-guide/tree/main/golang/go-study/%E7%AC%AC%E4%BA%94%E5%B1%8A%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E9%9D%92%E8%AE%AD%E8%90%A5)
