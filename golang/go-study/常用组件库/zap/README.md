@@ -64,9 +64,9 @@ func main() {
 默认情况下，`Example`输出的日志为 JSON 格式：
 
 ```golang
-{"level":"info","msg":"failed to fetch URL","url":"http://example.org/api","attempt":3,"backoff":"1s"}
-{"level":"info","msg":"failed to fetch URL","url":"http://example.org/api","attempt":3,"backoff":"1s"}
-{"level":"info","msg":"Failed to fetch URL: http://example.org/api"}
+{"level":"info","msg":"failed to fetch URL","url":"http://examples.org/api","attempt":3,"backoff":"1s"}
+{"level":"info","msg":"failed to fetch URL","url":"http://examples.org/api","attempt":3,"backoff":"1s"}
+{"level":"info","msg":"Failed to fetch URL: http://examples.org/api"}
 ```
 
 ## 记录层级关系

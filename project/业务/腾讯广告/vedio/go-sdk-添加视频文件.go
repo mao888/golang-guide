@@ -101,7 +101,7 @@ func getFileBytes(netUrl string) ([]byte, error) {
 
 func bytesToFile(b []byte) (*os.File, error) {
 	// 创建临时文件
-	tmpfile, err := ioutil.TempFile("", "example")
+	tmpfile, err := ioutil.TempFile("", "examples")
 	if err != nil {
 		return nil, err
 	}

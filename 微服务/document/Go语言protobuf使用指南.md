@@ -81,8 +81,8 @@ option go_package = "example.com/project/protos/fizz";
 
 ```bash
 protoc --proto_path=src \
-  --go_opt=Mprotos/buzz.proto=example.com/project/protos/fizz \
-  --go_opt=Mprotos/bar.proto=example.com/project/protos/foo \
+  --go_opt=Mprotos/buzz.proto=examples.com/project/protos/fizz \
+  --go_opt=Mprotos/bar.proto=examples.com/project/protos/foo \
   protos/buzz.proto protos/bar.proto
 ```
 

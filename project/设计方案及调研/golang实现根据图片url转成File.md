@@ -23,7 +23,7 @@ func urlToFile(url string) (*os.File, error) {
     defer resp.Body.Close()
 
     // 创建临时文件
-    tmpfile, err := os.CreateTemp("", "example*.jpg")
+    tmpfile, err := os.CreateTemp("", "examples*.jpg")
     if err != nil {
         return nil, err
     }
