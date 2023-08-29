@@ -5,9 +5,11 @@ import (
 	"fmt"
 	"github.com/golang/glog"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
-	"gopkg.in/resty.v1"
+	"io/ioutil"
+	"net/http"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 // AdMaterialSyncSuccess mapped from table <ad_material_sync_success>
@@ -176,22 +178,48 @@ func RunAdMaterialSyncSuccess() {
 
 // GetVideoMaterial 获取视频素材
 func GetVideoMaterial(advertiserId string) error {
+	//url := "https://ad.oceanengine.com/open_api/2/file/video/get/"
+	//resp, err := resty.New().SetRetryCount(3).R().
+	//	SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
+	//	SetBody(map[string]interface{}{
+	//		"advertiser_id": advertiserId,
+	//		"page":          1,
+	//		"page_size":     100,
+	//	}).Get(url)
+	//if err != nil {
+	//	glog.Errorf("请求错误：%s", err)
+	//	return err
+	//}
+	//fmt.Println("resp: ", string(resp.Body()))
 	url := "https://ad.oceanengine.com/open_api/2/file/video/get/"
-	resp, err := resty.New().SetRetryCount(3).R().
-		SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
-		SetBody(map[string]interface{}{
-			"advertiser_id": advertiserId,
-			"page":          1,
-			"page_size":     100,
-		}).Get(url)
+	method := "GET"
+	payload := strings.NewReader(fmt.Sprintf(`{
+    			"advertiser_id": %s,
+   				 "page":1,
+   				 "page_size":100}`, advertiserId))
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		glog.Errorf("请求错误：%s", err)
 		return err
 	}
-	fmt.Println("resp: ", string(resp.Body()))
+	req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+	req.Header.Add("Content-Type", "application/json")
+	res, err := client.Do(req)
+	if err != nil {
+		glog.Errorf("请求错误 视频素材：%s", err)
+		return err
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		glog.Errorf("请求错误 视频素材：%s", err)
+		return err
+	}
+	glog.Infof("resp: %s", string(body))
 	// 解析返回值
 	var getVideoMaterialResp GetVideoMaterialResp
-	err = json.Unmarshal(resp.Body(), &getVideoMaterialResp)
+	err = json.Unmarshal(body, &getVideoMaterialResp)
 	if err != nil {
 		glog.Errorf("解析错误：%s", err)
 		return err
@@ -209,19 +237,33 @@ func GetVideoMaterial(advertiserId string) error {
 	if getVideoMaterialResp.Data.PageInfo.TotalPage > 1 {
 		// 从第二页开始请求
 		for i := 2; i <= getVideoMaterialResp.Data.PageInfo.TotalPage; i++ {
-			resp, err := resty.New().SetRetryCount(3).R().
-				SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
-				SetBody(map[string]interface{}{
-					"advertiser_id": advertiserId,
-					"page":          i,
-					"page_size":     100,
-				}).Get(url)
+			payload := strings.NewReader(fmt.Sprintf(`{
+    			"advertiser_id": %s,
+   				 "page":%d,
+   				 "page_size":100}`, advertiserId, i))
+			client := &http.Client{}
+			req, err := http.NewRequest(method, url, payload)
 			if err != nil {
 				glog.Errorf("请求错误：%s", err)
 				return err
 			}
+			req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+			req.Header.Add("Content-Type", "application/json")
+			res, err := client.Do(req)
+			if err != nil {
+				glog.Errorf("请求错误 视频素材：%s", err)
+				return err
+			}
+			defer res.Body.Close()
+			body, err := ioutil.ReadAll(res.Body)
+			if err != nil {
+				glog.Errorf("请求错误 视频素材：%s", err)
+				return err
+			}
+			glog.Infof("resp: %s", string(body))
+
 			var getVideoMaterialResp GetVideoMaterialResp
-			err = json.Unmarshal(resp.Body(), &getVideoMaterialResp)
+			err = json.Unmarshal(body, &getVideoMaterialResp)
 			if err != nil {
 				glog.Errorf("解析错误：%s", err)
 				return err
@@ -241,21 +283,34 @@ func GetVideoMaterial(advertiserId string) error {
 // GetImageMaterial 获取图片素材
 func GetImageMaterial(advertiserId string) error {
 	url := "https://api.oceanengine.com/open_api/2/file/image/get/"
-	resp, err := resty.New().SetRetryCount(3).R().
-		SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
-		SetBody(map[string]interface{}{
-			"advertiser_id": advertiserId,
-			"page":          1,
-			"page_size":     100,
-		}).Get(url)
+	method := "GET"
+	payload := strings.NewReader(fmt.Sprintf(`{
+    			"advertiser_id": %s,
+   				 "page":1,
+   				 "page_size":100}`, advertiserId))
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		glog.Errorf("请求错误：%s", err)
 		return err
 	}
-	glog.Infof("resp: %s", string(resp.Body()))
+	req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+	req.Header.Add("Content-Type", "application/json")
+	res, err := client.Do(req)
+	if err != nil {
+		glog.Errorf("请求错误 图片素材：%s", err)
+		return err
+	}
+	defer res.Body.Close()
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		glog.Errorf("请求错误 图片素材：%s", err)
+		return err
+	}
+	fmt.Println(string(body))
 	// 解析返回值
 	var getImageMaterialResp GetImageMaterialResp
-	err = json.Unmarshal(resp.Body(), &getImageMaterialResp)
+	err = json.Unmarshal(body, &getImageMaterialResp)
 	if err != nil {
 		fmt.Println("解析错误：", err)
 		glog.Errorf("解析错误：%s", err)
@@ -273,19 +328,35 @@ func GetImageMaterial(advertiserId string) error {
 	if getImageMaterialResp.Data.PageInfo.TotalPage > 1 {
 		// 从第二页开始请求
 		for i := 2; i <= getImageMaterialResp.Data.PageInfo.TotalPage; i++ {
-			resp, err := resty.New().SetRetryCount(3).R().
-				SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
-				SetBody(map[string]interface{}{
-					"advertiser_id": advertiserId,
-					"page":          i,
-					"page_size":     100,
-				}).Get(url)
+			url := "https://api.oceanengine.com/open_api/2/file/image/get/"
+			method := "GET"
+			payload := strings.NewReader(fmt.Sprintf(`{
+    			"advertiser_id": %s,
+   				 "page":%d,
+   				 "page_size":100}`, advertiserId, i))
+			client := &http.Client{}
+			req, err := http.NewRequest(method, url, payload)
 			if err != nil {
 				glog.Errorf("请求错误：%s", err)
 				return err
 			}
+			req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+			req.Header.Add("Content-Type", "application/json")
+			res, err := client.Do(req)
+			if err != nil {
+				glog.Errorf("请求错误 图片素材：%s", err)
+				return err
+			}
+			//defer res.Body.Close()
+			body, err := ioutil.ReadAll(res.Body)
+			if err != nil {
+				glog.Errorf("请求错误 图片素材：%s", err)
+				return err
+			}
+			fmt.Println(string(body))
+			// 解析返回值
 			var getImageMaterialResp GetImageMaterialResp
-			err = json.Unmarshal(resp.Body(), &getImageMaterialResp)
+			err = json.Unmarshal(body, &getImageMaterialResp)
 			if err != nil {
 				glog.Errorf("解析错误：%s", err)
 				return err
