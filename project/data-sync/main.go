@@ -202,6 +202,9 @@ func main() {
 	// ad_material mysql to mysql
 	//ad_material.RunAdMaterialMysqlToMysql()
 
+	// ad_material_sync_success 洗数据 success_id
+	//ad_material.RunAdMaterialSyncSuccess()
+
 	// 十、数据权限
 	// BI数据权限
 	// Mongo/rambler/dimpermissions.child_system:"bi" -> ARK user_console/policy user_console/policy_resource user_console/user_perm
