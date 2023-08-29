@@ -12,6 +12,7 @@ require (
 require (
 	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
 	github.com/antihax/optional v1.0.0 // indirect
+	github.com/golang/glog v1.1.2 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/jackc/pgpassfile v1.0.0 // indirect
 	github.com/jackc/pgservicefile v0.0.0-20221227161230-091c0ba34f0a // indirect

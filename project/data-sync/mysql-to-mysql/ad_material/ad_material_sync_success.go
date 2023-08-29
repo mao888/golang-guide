@@ -3,6 +3,7 @@ package ad_material
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/golang/glog"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"gopkg.in/resty.v1"
 	"os"
@@ -94,23 +95,23 @@ func RunAdMaterialSyncSuccess() {
 	err := db2.MySQLClientCruiser.Table("ad_material_sync_success").Distinct("account_id").
 		Where("type = ?", 4).Where("id <= ?", 729610).Group("account_id").Find(&accountID).Error
 	if err != nil {
-		fmt.Println("查询错误：", err)
+		glog.Errorf("查询错误：%s", err)
 		return
 	}
 	// 2、获取 每个accountID下的 视频素材,图片素材
 	//	并保存视频id、图片id与素材id的映射关系
 	for _, v := range accountID {
-		fmt.Println("account_id: ", v)
+		glog.Infof("accountID: %s", v)
 		// 获取视频素材 保存视频id 与 素材id 映射关系
 		err := GetVideoMaterial(v)
 		if err != nil {
-			fmt.Println("获取视频素材错误：", err)
+			glog.Errorf("获取视频素材错误：%s", err)
 			return
 		}
 		// 获取图片素材 保存图片id 与 素材id 映射关系
 		err = GetImageMaterial(v)
 		if err != nil {
-			fmt.Println("获取图片素材错误：", err)
+			glog.Errorf("获取图片素材错误：%s", err)
 			return
 		}
 	}
@@ -124,7 +125,7 @@ func RunAdMaterialSyncSuccess() {
 		Where("account_id IN ?", accountID).Where("id <= ?", 729610).
 		Find(&adMaterialSyncSuccess).Error
 	if err != nil {
-		fmt.Println("查询错误：", err)
+		glog.Errorf("查询错误：%s", err)
 		return
 	}
 
@@ -158,17 +159,17 @@ func RunAdMaterialSyncSuccess() {
 		//}
 
 		// 写出所有条目的更新sql语句, 并导出到本地文件中
-		fmt.Println("id: ", adMaterialSyncSuccess.ID)
+		glog.Infof("success_id: %s", adMaterialSyncSuccess.SuccessID)
 		sql := fmt.Sprintf("UPDATE ad_material_sync_success SET success_id = %d WHERE id = %d;",
 			videoImageIdMaterialIdMap[adMaterialSyncSuccess.SuccessID], adMaterialSyncSuccess.ID)
 		sqlList = append(sqlList, sql)
-		fmt.Println("sql: ", sql)
+		glog.Infof("sql: %s", sql)
 	}
 
 	// 写出到本地文件
 	err = WriteToFile(sqlList)
 	if err != nil {
-		fmt.Println("写出到本地文件错误：", err)
+		glog.Errorf("写出到本地文件错误：%s", err)
 		return
 	}
 }
@@ -184,7 +185,7 @@ func GetVideoMaterial(advertiserId string) error {
 			"page_size":     100,
 		}).Get(url)
 	if err != nil {
-		fmt.Println("请求错误：", err)
+		glog.Errorf("请求错误：%s", err)
 		return err
 	}
 	fmt.Println("resp: ", string(resp.Body()))
@@ -192,11 +193,11 @@ func GetVideoMaterial(advertiserId string) error {
 	var getVideoMaterialResp GetVideoMaterialResp
 	err = json.Unmarshal(resp.Body(), &getVideoMaterialResp)
 	if err != nil {
-		fmt.Println("解析错误：", err)
+		glog.Errorf("解析错误：%s", err)
 		return err
 	}
 	if getVideoMaterialResp.Code != 0 {
-		fmt.Println("请求错误：", getVideoMaterialResp.Message)
+		glog.Errorf("请求错误：%s", getVideoMaterialResp.Message)
 		return err
 	}
 	// 保存 视频id 与 素材id 映射关系
@@ -216,17 +217,17 @@ func GetVideoMaterial(advertiserId string) error {
 					"page_size":     100,
 				}).Get(url)
 			if err != nil {
-				fmt.Println("请求错误：", err)
+				glog.Errorf("请求错误：%s", err)
 				return err
 			}
 			var getVideoMaterialResp GetVideoMaterialResp
 			err = json.Unmarshal(resp.Body(), &getVideoMaterialResp)
 			if err != nil {
-				fmt.Println("解析错误：", err)
+				glog.Errorf("解析错误：%s", err)
 				return err
 			}
 			if getVideoMaterialResp.Code != 0 {
-				fmt.Println("请求错误：", getVideoMaterialResp.Message)
+				glog.Errorf("请求错误：%s", getVideoMaterialResp.Message)
 				return err
 			}
 			for _, s := range getVideoMaterialResp.Data.List {
@@ -248,19 +249,19 @@ func GetImageMaterial(advertiserId string) error {
 			"page_size":     100,
 		}).Get(url)
 	if err != nil {
-		fmt.Println("请求错误：", err)
+		glog.Errorf("请求错误：%s", err)
 		return err
 	}
-	fmt.Println("resp: ", string(resp.Body()))
+	glog.Infof("resp: %s", string(resp.Body()))
 	// 解析返回值
 	var getImageMaterialResp GetImageMaterialResp
 	err = json.Unmarshal(resp.Body(), &getImageMaterialResp)
 	if err != nil {
 		fmt.Println("解析错误：", err)
-		return err
+		glog.Errorf("解析错误：%s", err)
 	}
 	if getImageMaterialResp.Code != 0 {
-		fmt.Println("请求错误：", getImageMaterialResp.Message)
+		glog.Errorf("请求错误：%s", getImageMaterialResp.Message)
 		return err
 	}
 	// 保存 视频id 与 素材id 映射关系
@@ -280,17 +281,17 @@ func GetImageMaterial(advertiserId string) error {
 					"page_size":     100,
 				}).Get(url)
 			if err != nil {
-				fmt.Println("请求错误：", err)
+				glog.Errorf("请求错误：%s", err)
 				return err
 			}
 			var getImageMaterialResp GetImageMaterialResp
 			err = json.Unmarshal(resp.Body(), &getImageMaterialResp)
 			if err != nil {
-				fmt.Println("解析错误：", err)
+				glog.Errorf("解析错误：%s", err)
 				return err
 			}
 			if getImageMaterialResp.Code != 0 {
-				fmt.Println("请求错误：", getImageMaterialResp.Message)
+				glog.Errorf("请求错误：%s", getImageMaterialResp.Message)
 				return err
 			}
 			for _, s := range getImageMaterialResp.Data.List {
@@ -306,7 +307,7 @@ func WriteToFile(sqlList []string) error {
 	// 获取当前可执行文件的路径
 	exePath, err := os.Executable()
 	if err != nil {
-		fmt.Println("无法获取可执行文件路径:", err)
+		glog.Errorf("无法获取当前可执行文件的路径: %s", err)
 		return err
 	}
 
@@ -318,7 +319,7 @@ func WriteToFile(sqlList []string) error {
 
 	// 确保文件夹路径存在
 	if err := os.MkdirAll(outputFolderPath, 0755); err != nil {
-		fmt.Println("无法创建文件夹:", err)
+		glog.Errorf("无法创建文件夹: %s", err)
 		return err
 	}
 
@@ -328,7 +329,7 @@ func WriteToFile(sqlList []string) error {
 	// 创建文件
 	file, err := os.Create(filePath)
 	if err != nil {
-		fmt.Println("无法创建文件:", err)
+		glog.Errorf("无法创建文件: %s", err)
 		return err
 	}
 	defer file.Close()
@@ -337,10 +338,10 @@ func WriteToFile(sqlList []string) error {
 	for _, sql := range sqlList {
 		_, err := file.WriteString(sql + "\n")
 		if err != nil {
-			fmt.Println("无法写入文件:", err)
+			glog.Errorf("写出到本地文件错误: %s", err)
 			return err
 		}
 	}
-	fmt.Println("成功将内容导出到文件:", filePath)
+	glog.Infof("写出到本地文件成功: %s", filePath)
 	return nil
 }
