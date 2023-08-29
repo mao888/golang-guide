@@ -89,6 +89,7 @@ var videoImageIdMaterialIdMap = map[string]int64{}
 
 func RunAdMaterialSyncSuccess() {
 
+	// 1、获取 accountID
 	var accountID []string
 	err := db2.MySQLClientCruiser.Table("ad_material_sync_success").Distinct("account_id").
 		Where("type = ?", 4).Where("id <= ?", 729610).Group("account_id").Find(&accountID).Error
@@ -96,7 +97,8 @@ func RunAdMaterialSyncSuccess() {
 		fmt.Println("查询错误：", err)
 		return
 	}
-	// 获取 每个accountID下的 视频素材,图片素材 保存视频id、图片id与素材id的映射关系
+	// 2、获取 每个accountID下的 视频素材,图片素材
+	//	并保存视频id、图片id与素材id的映射关系
 	for _, v := range accountID {
 		fmt.Println("account_id: ", v)
 		// 获取视频素材 保存视频id 与 素材id 映射关系
@@ -112,7 +114,7 @@ func RunAdMaterialSyncSuccess() {
 			return
 		}
 	}
-	// 根据 accountID 获取 ad_material_sync_success
+	// 3、根据 accountID 获取 ad_material_sync_success
 	var adMaterialSyncSuccess = make([]*AdMaterialSyncSuccess, 0)
 	//var accountIDStr string
 	//for _, a := range accountID {
@@ -126,7 +128,7 @@ func RunAdMaterialSyncSuccess() {
 		return
 	}
 
-	// 更新 ad_material_sync_success
+	// 3、更新 ad_material_sync_success
 	var sqlList []string
 	for _, adMaterialSyncSuccess := range adMaterialSyncSuccess {
 
@@ -160,10 +162,15 @@ func RunAdMaterialSyncSuccess() {
 		sql := fmt.Sprintf("UPDATE ad_material_sync_success SET success_id = %d WHERE id = %d;",
 			videoImageIdMaterialIdMap[adMaterialSyncSuccess.SuccessID], adMaterialSyncSuccess.ID)
 		sqlList = append(sqlList, sql)
+		fmt.Println("sql: ", sql)
 	}
 
 	// 写出到本地文件
-	WriteToFile(sqlList)
+	err = WriteToFile(sqlList)
+	if err != nil {
+		fmt.Println("写出到本地文件错误：", err)
+		return
+	}
 }
 
 // GetVideoMaterial 获取视频素材
@@ -295,12 +302,12 @@ func GetImageMaterial(advertiserId string) error {
 }
 
 // WriteToFile 写出到本地文件 封装一个函数
-func WriteToFile(sqlList []string) {
+func WriteToFile(sqlList []string) error {
 	// 获取当前可执行文件的路径
 	exePath, err := os.Executable()
 	if err != nil {
 		fmt.Println("无法获取可执行文件路径:", err)
-		return
+		return err
 	}
 
 	// 解析出项目根路径
@@ -312,7 +319,7 @@ func WriteToFile(sqlList []string) {
 	// 确保文件夹路径存在
 	if err := os.MkdirAll(outputFolderPath, 0755); err != nil {
 		fmt.Println("无法创建文件夹:", err)
-		return
+		return err
 	}
 
 	// 拼接文件路径
@@ -322,7 +329,7 @@ func WriteToFile(sqlList []string) {
 	file, err := os.Create(filePath)
 	if err != nil {
 		fmt.Println("无法创建文件:", err)
-		return
+		return err
 	}
 	defer file.Close()
 
@@ -331,8 +338,9 @@ func WriteToFile(sqlList []string) {
 		_, err := file.WriteString(sql + "\n")
 		if err != nil {
 			fmt.Println("无法写入文件:", err)
-			return
+			return err
 		}
 	}
 	fmt.Println("成功将内容导出到文件:", filePath)
+	return nil
 }
