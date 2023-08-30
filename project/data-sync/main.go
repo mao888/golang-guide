@@ -1,7 +1,5 @@
 package main
 
-import "github.com/mao888/golang-guide/project/data-sync/mysql-to-mysql/ad_material"
-
 func main() {
 	// mongo_to_mysql.RunGame()
 
@@ -205,7 +203,7 @@ func main() {
 	//ad_material.RunAdMaterialMysqlToMysql()
 
 	// ad_material_sync_success 洗数据 success_id
-	ad_material.RunAdMaterialSyncSuccess()
+	//ad_material.RunAdMaterialSyncSuccess()
 
 	// 十、数据权限
 	// BI数据权限

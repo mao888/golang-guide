@@ -107,16 +107,19 @@ func RunAdMaterialSyncSuccess() {
 		// 获取视频素材 保存视频id 与 素材id 映射关系
 		err := GetVideoMaterial(v)
 		if err != nil {
-			glog.Errorf("获取视频素材错误：%s", err)
+			glog.Errorf("GetVideoMaterial 获取视频素材错误：%s", err)
 			return
 		}
+		fmt.Println("videoImageIdMaterialIdMap1: ", videoImageIdMaterialIdMap)
 		// 获取图片素材 保存图片id 与 素材id 映射关系
 		err = GetImageMaterial(v)
 		if err != nil {
-			glog.Errorf("获取图片素材错误：%s", err)
+			glog.Errorf("GetImageMaterial 获取图片素材错误：%s", err)
 			return
 		}
+		fmt.Println("videoImageIdMaterialIdMap2: ", videoImageIdMaterialIdMap)
 	}
+	fmt.Println("videoImageIdMaterialIdMap总: ", videoImageIdMaterialIdMap)
 	// 3、根据 accountID 获取 ad_material_sync_success
 	var adMaterialSyncSuccess = make([]*AdMaterialSyncSuccess, 0)
 	//var accountIDStr string
@@ -132,89 +135,83 @@ func RunAdMaterialSyncSuccess() {
 	}
 
 	// 3、更新 ad_material_sync_success
-	var sqlList []string
+	var sqlListUpdate []string
+	var sqlListUpdateRecover []string
 	for _, adMaterialSyncSuccess := range adMaterialSyncSuccess {
-
-		// 更新 ad_material_sync_success 中的 success_id
-		//fmt.Println("id: ", adMaterialSyncSuccess.ID)
-		//// 更新 ad_material_sync_success
-		//if adMaterialSyncSuccess.MaterilaType == 1 {
-		//	// 更新 ad_material_sync_success
-		//	adMaterialSyncSuccess.MaterialID = videoImageIdMaterialIdMap[adMaterialSyncSuccess.SuccessID]
-		//	err := db2.MySQLClientCruiserTest.Table("ad_material_sync_success").
-		//		Where("id = ?", adMaterialSyncSuccess.ID).
-		//		Updates(adMaterialSyncSuccess).Error
-		//	if err != nil {
-		//		fmt.Println("更新 ad_material_sync_success 错误：", err)
-		//		return
-		//	}
-		//} else if adMaterialSyncSuccess.MaterilaType == 2 {
-		//	// 更新 ad_material_sync_success
-		//	adMaterialSyncSuccess.MaterialID = videoImageIdMaterialIdMap[adMaterialSyncSuccess.SuccessID]
-		//	err := db2.MySQLClientCruiserTest.Table("ad_material_sync_success").
-		//		Where("id = ?", adMaterialSyncSuccess.ID).
-		//		Updates(adMaterialSyncSuccess).Error
-		//	if err != nil {
-		//		fmt.Println("更新 ad_material_sync_success 错误：", err)
-		//		return
-		//	}
-		//}
-
 		// 写出所有条目的更新sql语句, 并导出到本地文件中
 		glog.Infof("success_id: %s", adMaterialSyncSuccess.SuccessID)
-		sql := fmt.Sprintf("UPDATE ad_material_sync_success SET success_id = %d WHERE id = %d;",
+		sqlUpdate := fmt.Sprintf("UPDATE ad_material_sync_success SET success_id = %d WHERE id = %d;",
 			videoImageIdMaterialIdMap[adMaterialSyncSuccess.SuccessID], adMaterialSyncSuccess.ID)
-		sqlList = append(sqlList, sql)
-		glog.Infof("sql: %s", sql)
+		sqlListUpdate = append(sqlListUpdate, sqlUpdate)
+		glog.Infof("update_sql: %s", sqlUpdate)
+
+		sqlUpdateRecover := fmt.Sprintf("UPDATE ad_material_sync_success SET success_id = %s WHERE id = %d;",
+			adMaterialSyncSuccess.SuccessID, adMaterialSyncSuccess.ID)
+		sqlListUpdateRecover = append(sqlListUpdateRecover, sqlUpdateRecover)
+		glog.Infof("update_sql_recover: %s", sqlUpdateRecover)
 	}
 
-	// 写出到本地文件
-	err = WriteToFile(sqlList)
+	// 更新sql 写出到本地文件
+	err = WriteToFile(sqlListUpdate, "update_success_id.sql")
 	if err != nil {
-		glog.Errorf("写出到本地文件错误：%s", err)
+		glog.Errorf("更新sql 写出到本地文件错误：%s", err)
+		return
+	}
+	// 恢复sql 写出到本地文件
+	err = WriteToFile(sqlListUpdateRecover, "update_success_id_recover.sql")
+	if err != nil {
+		glog.Errorf("恢复sql 写出到本地文件错误：%s", err)
 		return
 	}
 }
 
 // GetVideoMaterial 获取视频素材
 func GetVideoMaterial(advertiserId string) error {
-	//url := "https://ad.oceanengine.com/open_api/2/file/video/get/"
-	//resp, err := resty.New().SetRetryCount(3).R().
-	//	SetHeader("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07").
-	//	SetBody(map[string]interface{}{
-	//		"advertiser_id": advertiserId,
-	//		"page":          1,
-	//		"page_size":     100,
-	//	}).Get(url)
-	//if err != nil {
-	//	glog.Errorf("请求错误：%s", err)
-	//	return err
-	//}
-	//fmt.Println("resp: ", string(resp.Body()))
+	// 当total_page > 1 时，需要循环请求
+	totalPage, err := getVideo(advertiserId, 1)
+	if err != nil {
+		glog.Errorf("getVideo 请求错误：%s", err)
+		return err
+	}
+	if totalPage > 1 {
+		// 从第二页开始请求
+		for i := 2; i <= totalPage; i++ {
+			_, err := getVideo(advertiserId, i)
+			if err != nil {
+				glog.Errorf("getVideo 请求错误：%s", err)
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+// getVideo 请求视频素材
+func getVideo(advertiserId string, page int) (int, error) {
 	url := "https://ad.oceanengine.com/open_api/2/file/video/get/"
 	method := "GET"
 	payload := strings.NewReader(fmt.Sprintf(`{
     			"advertiser_id": %s,
-   				 "page":1,
-   				 "page_size":100}`, advertiserId))
+   				 "page":%d,
+   				 "page_size":100}`, advertiserId, page))
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		glog.Errorf("请求错误：%s", err)
-		return err
+		return 0, err
 	}
-	req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+	req.Header.Add("Access-Token", "c0bfed085c0dbc19bb2e41920ecd6d2a6d398b32")
 	req.Header.Add("Content-Type", "application/json")
 	res, err := client.Do(req)
 	if err != nil {
 		glog.Errorf("请求错误 视频素材：%s", err)
-		return err
+		return 0, err
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		glog.Errorf("请求错误 视频素材：%s", err)
-		return err
+		return 0, err
 	}
 	glog.Infof("resp: %s", string(body))
 	// 解析返回值
@@ -222,197 +219,110 @@ func GetVideoMaterial(advertiserId string) error {
 	err = json.Unmarshal(body, &getVideoMaterialResp)
 	if err != nil {
 		glog.Errorf("解析错误：%s", err)
-		return err
+		return 0, err
 	}
 	if getVideoMaterialResp.Code != 0 {
 		glog.Errorf("请求错误：%s", getVideoMaterialResp.Message)
-		return err
+		return 0, err
 	}
 	// 保存 视频id 与 素材id 映射关系
 	for _, s := range getVideoMaterialResp.Data.List {
 		videoImageIdMaterialIdMap[s.Id] = s.MaterialId
 	}
+	return getVideoMaterialResp.Data.PageInfo.TotalPage, nil
+}
 
+// GetImageMaterial 获取图片素材
+func GetImageMaterial(advertiserId string) error {
+	totalPage, err := getImage(advertiserId, 1)
+	if err != nil {
+		glog.Errorf("getImage 请求错误：%s", err)
+		return err
+	}
 	// 当total_page > 1 时，需要循环请求
-	if getVideoMaterialResp.Data.PageInfo.TotalPage > 1 {
+	if totalPage > 1 {
 		// 从第二页开始请求
-		for i := 2; i <= getVideoMaterialResp.Data.PageInfo.TotalPage; i++ {
-			payload := strings.NewReader(fmt.Sprintf(`{
-    			"advertiser_id": %s,
-   				 "page":%d,
-   				 "page_size":100}`, advertiserId, i))
-			client := &http.Client{}
-			req, err := http.NewRequest(method, url, payload)
+		for i := 2; i <= totalPage; i++ {
+			_, err := getImage(advertiserId, i)
 			if err != nil {
-				glog.Errorf("请求错误：%s", err)
+				glog.Errorf("getImage 请求错误：%s", err)
 				return err
-			}
-			req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
-			req.Header.Add("Content-Type", "application/json")
-			res, err := client.Do(req)
-			if err != nil {
-				glog.Errorf("请求错误 视频素材：%s", err)
-				return err
-			}
-			defer res.Body.Close()
-			body, err := ioutil.ReadAll(res.Body)
-			if err != nil {
-				glog.Errorf("请求错误 视频素材：%s", err)
-				return err
-			}
-			glog.Infof("resp: %s", string(body))
-
-			var getVideoMaterialResp GetVideoMaterialResp
-			err = json.Unmarshal(body, &getVideoMaterialResp)
-			if err != nil {
-				glog.Errorf("解析错误：%s", err)
-				return err
-			}
-			if getVideoMaterialResp.Code != 0 {
-				glog.Errorf("请求错误：%s", getVideoMaterialResp.Message)
-				return err
-			}
-			for _, s := range getVideoMaterialResp.Data.List {
-				videoImageIdMaterialIdMap[s.Id] = s.MaterialId
 			}
 		}
 	}
 	return nil
 }
 
-// GetImageMaterial 获取图片素材
-func GetImageMaterial(advertiserId string) error {
+// getImage 请求图片素材
+func getImage(advertiserId string, page int) (int, error) {
 	url := "https://api.oceanengine.com/open_api/2/file/image/get/"
 	method := "GET"
 	payload := strings.NewReader(fmt.Sprintf(`{
     			"advertiser_id": %s,
-   				 "page":1,
-   				 "page_size":100}`, advertiserId))
+   				 "page":%d,
+   				 "page_size":100}`, advertiserId, page))
 	client := &http.Client{}
 	req, err := http.NewRequest(method, url, payload)
 	if err != nil {
 		glog.Errorf("请求错误：%s", err)
-		return err
+		return 0, err
 	}
-	req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
+	req.Header.Add("Access-Token", "c0bfed085c0dbc19bb2e41920ecd6d2a6d398b32")
 	req.Header.Add("Content-Type", "application/json")
 	res, err := client.Do(req)
 	if err != nil {
 		glog.Errorf("请求错误 图片素材：%s", err)
-		return err
+		return 0, err
 	}
 	defer res.Body.Close()
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		glog.Errorf("请求错误 图片素材：%s", err)
-		return err
+		return 0, err
 	}
 	fmt.Println(string(body))
 	// 解析返回值
 	var getImageMaterialResp GetImageMaterialResp
 	err = json.Unmarshal(body, &getImageMaterialResp)
 	if err != nil {
-		fmt.Println("解析错误：", err)
 		glog.Errorf("解析错误：%s", err)
+		return 0, err
 	}
 	if getImageMaterialResp.Code != 0 {
 		glog.Errorf("请求错误：%s", getImageMaterialResp.Message)
-		return err
+		return 0, err
 	}
 	// 保存 视频id 与 素材id 映射关系
 	for _, s := range getImageMaterialResp.Data.List {
 		videoImageIdMaterialIdMap[s.Id] = s.MaterialId
 	}
-
-	// 当total_page > 1 时，需要循环请求
-	if getImageMaterialResp.Data.PageInfo.TotalPage > 1 {
-		// 从第二页开始请求
-		for i := 2; i <= getImageMaterialResp.Data.PageInfo.TotalPage; i++ {
-			url := "https://api.oceanengine.com/open_api/2/file/image/get/"
-			method := "GET"
-			payload := strings.NewReader(fmt.Sprintf(`{
-    			"advertiser_id": %s,
-   				 "page":%d,
-   				 "page_size":100}`, advertiserId, i))
-			client := &http.Client{}
-			req, err := http.NewRequest(method, url, payload)
-			if err != nil {
-				glog.Errorf("请求错误：%s", err)
-				return err
-			}
-			req.Header.Add("Access-Token", "7975e1f425b3adb547484362d97d9551fea69e07")
-			req.Header.Add("Content-Type", "application/json")
-			res, err := client.Do(req)
-			if err != nil {
-				glog.Errorf("请求错误 图片素材：%s", err)
-				return err
-			}
-			//defer res.Body.Close()
-			body, err := ioutil.ReadAll(res.Body)
-			if err != nil {
-				glog.Errorf("请求错误 图片素材：%s", err)
-				return err
-			}
-			fmt.Println(string(body))
-			// 解析返回值
-			var getImageMaterialResp GetImageMaterialResp
-			err = json.Unmarshal(body, &getImageMaterialResp)
-			if err != nil {
-				glog.Errorf("解析错误：%s", err)
-				return err
-			}
-			if getImageMaterialResp.Code != 0 {
-				glog.Errorf("请求错误：%s", getImageMaterialResp.Message)
-				return err
-			}
-			for _, s := range getImageMaterialResp.Data.List {
-				videoImageIdMaterialIdMap[s.Id] = s.MaterialId
-			}
-		}
-	}
-	return nil
+	return getImageMaterialResp.Data.PageInfo.TotalPage, nil
 }
 
 // WriteToFile 写出到本地文件 封装一个函数
-func WriteToFile(sqlList []string) error {
-	// 获取当前可执行文件的路径
-	exePath, err := os.Executable()
-	if err != nil {
-		glog.Errorf("无法获取当前可执行文件的路径: %s", err)
-		return err
-	}
-
-	// 解析出项目根路径
-	projectRoot := filepath.Dir(filepath.Dir(exePath))
-
-	// 拼接文件夹路径
-	outputFolderPath := filepath.Join(projectRoot, "project/data-sync/mysql-to-mysql/ad_material")
-
-	// 确保文件夹路径存在
-	if err := os.MkdirAll(outputFolderPath, 0755); err != nil {
-		glog.Errorf("无法创建文件夹: %s", err)
-		return err
-	}
-
-	// 拼接文件路径
-	filePath := filepath.Join(outputFolderPath, "update_success_id.sql")
-
-	// 创建文件
-	file, err := os.Create(filePath)
-	if err != nil {
-		glog.Errorf("无法创建文件: %s", err)
-		return err
-	}
-	defer file.Close()
-
-	// 逐行写入 SQL 语句
-	for _, sql := range sqlList {
-		_, err := file.WriteString(sql + "\n")
+func WriteToFile(sqlList []string, fileName string) error {
+	// 创建目录，如果不存在
+	directory := "/Users/betta/GolandProjects/my-project/golang-guide/project/data-sync/mysql-to-mysql/ad_material"
+	if _, err := os.Stat(directory); os.IsNotExist(err) {
+		err := os.MkdirAll(directory, 0755)
 		if err != nil {
-			glog.Errorf("写出到本地文件错误: %s", err)
+			glog.Errorf("创建目录错误：%s", err)
 			return err
 		}
 	}
-	glog.Infof("写出到本地文件成功: %s", filePath)
+
+	// 将SQL语句连接起来，每条SQL占一行
+	content := ""
+	for _, sql := range sqlList {
+		content += sql + "\n"
+	}
+
+	// 写入文件
+	fullPath := filepath.Join(directory, fileName)
+	err := ioutil.WriteFile(fullPath, []byte(content), 0644)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("SQL statements written to: %s\n", fullPath)
 	return nil
 }
