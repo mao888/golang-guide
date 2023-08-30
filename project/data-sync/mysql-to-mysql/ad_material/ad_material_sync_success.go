@@ -122,10 +122,6 @@ func RunAdMaterialSyncSuccess() {
 	fmt.Println("videoImageIdMaterialIdMap总: ", videoImageIdMaterialIdMap)
 	// 3、根据 accountID 获取 ad_material_sync_success
 	var adMaterialSyncSuccess = make([]*AdMaterialSyncSuccess, 0)
-	//var accountIDStr string
-	//for _, a := range accountID {
-	//	accountIDStr += fmt.Sprintf("'%s',", a)
-	//}
 	err = db2.MySQLClientCruiser.Table("ad_material_sync_success").
 		Where("account_id IN ?", accountID).Where("id <= ?", 729610).
 		Find(&adMaterialSyncSuccess).Error
