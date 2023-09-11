@@ -1,6 +1,6 @@
 ## 需求:实现如下图所示标签树
 
-![img](https://cdn.nlark.com/yuque/0/2023/png/22219483/1694416805636-a9a7ba66-54b8-4b37-86d3-623ff0762b78.png)
+[![911.png](https://i.postimg.cc/VkrwLQ5p/911.png)](https://postimg.cc/Bj0kMzTB)
 
 ## 数据库
 
