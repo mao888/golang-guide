@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"unsafe"
 )
 
 // CfgEventParamsValuePG3 From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
@@ -55,6 +56,21 @@ func FunCfgEventParamsValue3() {
 		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find err:", err)
 		return
 	}
+	// 切片总长度
+	fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find len(cfgEventParamsValuePG):", len(cfgEventParamsValuePG))
+
+	// 获取切片的底层数组大小
+	//// 使用反射获取切片的底层数组的大小
+	//sliceHeader := reflect.SliceHeader{
+	//	Data: uintptr(unsafe.Pointer(&cfgEventParamsValuePG[0])),
+	//	Len:  len(cfgEventParamsValuePG),
+	//	Cap:  cap(cfgEventParamsValuePG),
+	//}
+	// 计算底层数组的大小
+	arraySize := int(unsafe.Sizeof(cfgEventParamsValuePG[0])) * cap(cfgEventParamsValuePG)
+	arraySizeGB := bytesToGigabytes(arraySize) // 将字节转换为千兆字节（GB）
+	fmt.Printf("切片的内存大小: %d 字节\n", arraySize)
+	fmt.Printf("切片的内存大小: %f GB\n", arraySizeGB)
 
 	if len(cfgEventParamsValuePG) == 0 {
 		fmt.Println("No more data to migrate.")
@@ -77,6 +93,11 @@ func FunCfgEventParamsValue3() {
 		}
 		fmt.Println("第 ", i, " 条数据迁移完成")
 	}
+}
+
+func bytesToGigabytes(bytes int) float64 {
+	gigabytes := float64(bytes) / (1024 * 1024 * 1024)
+	return gigabytes
 }
 
 func main() {
