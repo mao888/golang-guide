@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"gorm.io/gorm"
 	"log"
 	"sync"
 	"time"
@@ -51,7 +52,7 @@ type CfgEventParamsValue struct {
 var wg sync.WaitGroup
 
 const batchSize = 5000
-const maxGoroutines = 30                     // 手动设置最大并发协程数量
+const maxGoroutines = 5                      // 手动设置最大并发协程数量
 var sem = make(chan struct{}, maxGoroutines) // 有限容量的通道，用于控制并发的协程数量
 
 var mu sync.Mutex
@@ -60,16 +61,13 @@ func FunCfgEventParamsValue(offset int) {
 	defer wg.Done()
 	defer func() { <-sem }() // 释放一个协程位
 
-	// 使用互斥锁保护迁移数据的部分
-	//mu.Lock()
-	//defer mu.Unlock()
-
 	// 1、pg查数据
 	cfgEventParamsValuePG := make([]*CfgEventParamsValuePG, 0)
 	err := db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").
 		Limit(batchSize).Offset(offset).Find(&cfgEventParamsValuePG).Error
 	if err != nil {
 		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find err:", err)
+		return
 	}
 	if len(cfgEventParamsValuePG) == 0 {
 		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find len(cfgEventParamsValuePG) == 0")
@@ -91,12 +89,19 @@ func FunCfgEventParamsValue(offset int) {
 	log.Printf("Migrating records from offset %d to %d", offset, offset+batchSize-1) // 记录每批次迁移数据的起止
 
 	// 3、mysql存数据
-	err = db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(cfgEventParamsValue, batchSize).Error
+	err = db2.MySQLClientBI.Table("cfg_event_params_value").Transaction(func(tx *gorm.DB) error {
+		return tx.CreateInBatches(cfgEventParamsValue, batchSize).Error
+	})
 	if err != nil {
 		log.Printf("Error inserting batch into MySQL from offset %d to %d: %v", offset, offset+batchSize-1, err)
 		return
 	}
-	offset += batchSize
+	//err = db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(cfgEventParamsValue, batchSize).Error
+	//if err != nil {
+	//	log.Printf("Error inserting batch into MySQL from offset %d to %d: %v", offset, offset+batchSize-1, err)
+	//	return
+	//}
+
 	log.Printf("Successfully migrated records from offset %d to %d", offset, offset+batchSize-1)
 
 	// 添加睡眠，控制迁移速度
@@ -109,11 +114,26 @@ func main() {
 	var totalRecords int64
 	db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").Count(&totalRecords)
 
-	for offset := 0; offset < int(totalRecords); offset += batchSize {
+	// 方法一
+	//for offset := 0; offset < int(totalRecords); offset += batchSize {	// 存在问题：多个协程中同时访问共享的offset变量，这可能导致竞态条件
+	//	sem <- struct{}{} // 获取一个协程位
+	//	wg.Add(1)
+	//	go FunCfgEventParamsValue(offset) // 使用协程执行数据迁移
+	//}
+
+	// 方法二
+	offset := 0 // 初始化offset，无需锁保护
+
+	for offset < int(totalRecords) {
 		sem <- struct{}{} // 获取一个协程位
 		wg.Add(1)
 		go FunCfgEventParamsValue(offset) // 使用协程执行数据迁移
+
+		mu.Lock()
+		offset += batchSize
+		mu.Unlock()
 	}
+
 	wg.Wait() // 等待所有协程完成
 	fmt.Println("Migration complete!")
 }
