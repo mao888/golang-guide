@@ -6,11 +6,10 @@ import (
 	"gorm.io/gorm"
 	"log"
 	"sync"
-	"time"
 )
 
-// CfgEventParamsValuePG From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
-type CfgEventParamsValuePG struct {
+// CfgEventParamsValuePG4 From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
+type CfgEventParamsValuePG4 struct {
 	//   "app_id" varchar(2000),
 	//  "params" varchar(2000),
 	//  "params_value" varchar(2000),
@@ -29,8 +28,8 @@ type CfgEventParamsValuePG struct {
 	UpdateTime  string `gorm:"column:update_time;NOT NULL;" json:"update_time"`
 }
 
-// CfgEventParamsValue From MySQL bi_console cfg_event_params_value
-type CfgEventParamsValue struct {
+// CfgEventParamsValue4 From MySQL bi_console cfg_event_params_value
+type CfgEventParamsValue4 struct {
 	//  `id` int NOT NULL AUTO_INCREMENT COMMENT '主键',
 	//  `app_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '应用id',
 	//  `params` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '参数名称',
@@ -49,35 +48,38 @@ type CfgEventParamsValue struct {
 	UpdatedAt   int32  `gorm:"column:updated_at;NOT NULL;" json:"updated_at"`
 }
 
-var wg sync.WaitGroup
+var wg2 sync.WaitGroup
 
-const batchSize = 5000
-const maxGoroutines = 30                     // 手动设置最大并发协程数量
-var sem = make(chan struct{}, maxGoroutines) // 有限容量的通道，用于控制并发的协程数量
+const batchSize2 = 500
+const maxGoroutines2 = 2 // 手动设置最大并发协程数量
 
-var mu sync.Mutex
+type Result struct {
+	Offset  int
+	Success bool
+}
 
-func FunCfgEventParamsValue(offset int) {
-	defer wg.Done()
-	defer func() { <-sem }() // 释放一个协程位
+func FunCfgEventParamsValue4(offset int, resultChan chan<- Result) {
+	defer wg2.Done()
 
 	// 1、pg查数据
-	cfgEventParamsValuePG := make([]*CfgEventParamsValuePG, 0)
+	cfgEventParamsValuePG := make([]*CfgEventParamsValuePG4, 0)
 	err := db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").
-		Limit(batchSize).Offset(offset).Find(&cfgEventParamsValuePG).Error
+		Limit(batchSize2).Offset(offset).Find(&cfgEventParamsValuePG).Error
 	if err != nil {
-		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find err:", err)
+		log.Printf("RunCfgEventParamsValue PostgreSQLClient Find err at offset %d: %v", offset, err)
+		resultChan <- Result{Offset: offset, Success: false}
 		return
 	}
 	if len(cfgEventParamsValuePG) == 0 {
-		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find len(cfgEventParamsValuePG) == 0")
+		log.Printf("RunCfgEventParamsValue PostgreSQLClient Find len(cfgEventParamsValuePG) == 0 at offset %d", offset)
+		resultChan <- Result{Offset: offset, Success: true}
 		return
 	}
 
 	// 2、转换数据
-	cfgEventParamsValue := make([]*CfgEventParamsValue, 0)
+	cfgEventParamsValue := make([]*CfgEventParamsValue4, 0)
 	for _, v := range cfgEventParamsValuePG {
-		cfgEventParamsValue = append(cfgEventParamsValue, &CfgEventParamsValue{
+		cfgEventParamsValue = append(cfgEventParamsValue, &CfgEventParamsValue4{
 			AppID:       v.AppID,
 			Params:      v.Params,
 			ParamsValue: v.ParamsValue,
@@ -86,57 +88,51 @@ func FunCfgEventParamsValue(offset int) {
 		})
 	}
 
-	log.Printf("Migrating records from offset %d to %d", offset, offset+batchSize-1) // 记录每批次迁移数据的起止
+	log.Printf("Migrating records from offset %d to %d", offset, offset+batchSize2-1) // 记录每批次迁移数据的起止
 
 	// 3、mysql存数据
 	err = db2.MySQLClientBI.Table("cfg_event_params_value").Transaction(func(tx *gorm.DB) error {
-		return tx.CreateInBatches(cfgEventParamsValue, batchSize).Error
+		return tx.CreateInBatches(cfgEventParamsValue, batchSize2).Error
 	})
 	if err != nil {
-		log.Printf("Error inserting batch into MySQL from offset %d to %d: %v", offset, offset+batchSize-1, err)
+		log.Printf("Error inserting batch into MySQL from offset %d to %d: %v", offset, offset+batchSize2-1, err)
+		resultChan <- Result{Offset: offset, Success: false}
 		return
 	}
-	//err = db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(cfgEventParamsValue, batchSize).Error
-	//if err != nil {
-	//	log.Printf("Error inserting batch into MySQL from offset %d to %d: %v", offset, offset+batchSize-1, err)
-	//	return
-	//}
-
-	log.Printf("Successfully migrated records from offset %d to %d", offset, offset+batchSize-1)
-
-	// 添加睡眠，控制迁移速度
-	time.Sleep(time.Second * 5) // 休眠5秒
+	log.Printf("Successfully migrated records from offset %d to %d", offset, offset+batchSize2-1)
+	resultChan <- Result{Offset: offset, Success: true}
 }
 
 func main() {
-
 	// 获取总记录数
 	var totalRecords int64
 	db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").Count(&totalRecords)
 
-	// 方法一
-	//for offset := 0; offset < int(totalRecords); offset += batchSize {	// 存在问题：多个协程中同时访问共享的offset变量，这可能导致竞态条件
-	//	sem <- struct{}{} // 获取一个协程位
-	//	wg.Add(1)
-	//	go FunCfgEventParamsValue(offset) // 使用协程执行数据迁移
-	//}
+	resultChan := make(chan Result, maxGoroutines2)
 
-	// 方法二
-	offset := 0 // 初始化offset，无需锁保护
-
+	offset := 0
 	for offset < int(totalRecords) {
-		sem <- struct{}{} // 获取一个协程位
-		wg.Add(1)
-		go FunCfgEventParamsValue(offset) // 使用协程执行数据迁移
-
-		mu.Lock()
-		offset += batchSize
-		mu.Unlock()
+		wg2.Add(1)
+		go FunCfgEventParamsValue4(offset, resultChan) // 使用协程执行数据迁移
+		offset += batchSize2
 	}
 
-	wg.Wait() // 等待所有协程完成
-	fmt.Println("Migration complete!")
-}
+	// 等待所有协程完成
+	go func() {
+		wg2.Wait()
+		close(resultChan)
+	}()
 
-// 30个携程 5000条数据  1小时迁移了  450万条数据
-// 30个携程 5000条数据  39万条 1分钟
+	// 处理结果
+	successCount := 0
+	failureCount := 0
+	for result := range resultChan {
+		if result.Success {
+			successCount++
+		} else {
+			failureCount++
+		}
+	}
+
+	fmt.Printf("Migration complete! Successful: %d, Failed: %d\n", successCount, failureCount)
+}
