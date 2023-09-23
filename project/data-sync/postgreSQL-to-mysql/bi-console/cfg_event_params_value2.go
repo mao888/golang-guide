@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"log"
+	"time"
 )
 
 // CfgEventParamsValuePG2 From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
@@ -45,28 +47,33 @@ type CfgEventParamsValue2 struct {
 	UpdatedAt   int32  `gorm:"column:updated_at;NOT NULL;" json:"updated_at"`
 }
 
-func FunCfgEventParamsValue2() {
-	batchSize := 5000 // 每批次处理的数据量
+const batchSize3 = 200
+
+func MigrateData() error {
+	// 开启事务
+	tx := db2.MySQLClientBI.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback() // 发生错误时回滚事务
+		}
+	}()
+
+	// 获取总记录数
+	var totalRecords int64
+	if err := db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").Count(&totalRecords).Error; err != nil {
+		return err
+	}
 
 	offset := 0
-	for {
-		// 1、pg查数据
+	for offset < int(totalRecords) {
+		// 查询数据
 		cfgEventParamsValuePG := make([]*CfgEventParamsValuePG2, 0)
-		err := db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").
-			Offset(offset).
-			Limit(batchSize).
-			Find(&cfgEventParamsValuePG).Error
-		if err != nil {
-			fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find err:", err)
-			return
+		if err := db2.PostgreSQLClient.Table("data_cfg.cfg_event_params_value").
+			Limit(batchSize3).Offset(offset).Find(&cfgEventParamsValuePG).Error; err != nil {
+			return err
 		}
 
-		if len(cfgEventParamsValuePG) == 0 {
-			fmt.Println("No more data to migrate.")
-			return
-		}
-
-		// 2、转换数据并存入MySQL
+		// 转换数据
 		cfgEventParamsValue := make([]*CfgEventParamsValue2, 0)
 		for _, v := range cfgEventParamsValuePG {
 			cfgEventParamsValue = append(cfgEventParamsValue, &CfgEventParamsValue2{
@@ -78,26 +85,31 @@ func FunCfgEventParamsValue2() {
 			})
 		}
 
-		// 3、mysql存数据
-		err = db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(cfgEventParamsValue, batchSize).Error
-		if err != nil {
-			fmt.Println("RunCfgEventParamsValue MySQLClientBI CreateInBatches err:", err)
-			return
+		log.Printf("Migrating records from offset %d to %d", offset, offset+batchSize3-1) // 记录每批次迁移数据的起止
+
+		// 插入数据
+		if err := tx.Table("cfg_event_params_value").
+			CreateInBatches(cfgEventParamsValue, batchSize3).Error; err != nil {
+			return err
 		}
 
-		offset += batchSize
-		fmt.Printf("Successfully migrated records from offset %d to %d\n", offset-batchSize, offset-1)
+		offset += batchSize3
+		log.Printf("Successfully migrated records from offset %d to %d", offset-batchSize3, offset-1)
 	}
+
+	// 提交事务
+	tx.Commit()
+	return nil
 }
 
 func main() {
-	//for {
-	FunCfgEventParamsValue2() // 使用协程执行数据迁移
-	fmt.Println("Batch migration complete!")
+	startTime := time.Now()
 
-	// 可以在这里加入一些延时，以防止过于频繁的查询
-	//time.Sleep(time.Second * 5) // 5秒延时
-	//}
+	if err := MigrateData(); err != nil {
+		log.Printf("Data migration failed: %v", err)
+		return
+	}
 
-	fmt.Println("Migration complete!")
+	elapsedTime := time.Since(startTime)
+	fmt.Printf("Migration complete! Time elapsed: %s\n", elapsedTime)
 }
