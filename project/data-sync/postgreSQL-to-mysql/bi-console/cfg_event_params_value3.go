@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"time"
 	"unsafe"
 )
 
@@ -78,20 +79,55 @@ func FunCfgEventParamsValue3() {
 	}
 
 	// 2、转换数据并存入MySQL
-	for i, v := range cfgEventParamsValuePG {
-		cfgEventParamsValue := &CfgEventParamsValue3{
-			AppID:       v.AppID,
-			Params:      v.Params,
-			ParamsValue: v.ParamsValue,
-			ParamsLabel: v.ParamsLabel,
+	//for i, v := range cfgEventParamsValuePG {
+	//	cfgEventParamsValue := &CfgEventParamsValue3{
+	//		AppID:       v.AppID,
+	//		Params:      v.Params,
+	//		ParamsValue: v.ParamsValue,
+	//		ParamsLabel: v.ParamsLabel,
+	//	}
+	//	// 3、mysql存数据
+	//	err = db2.MySQLClientBI.Table("cfg_event_params_value").Create(cfgEventParamsValue).Error
+	//	if err != nil {
+	//		fmt.Println("RunCfgEventParamsValue MySQLClientBI CreateInBatches err:", err)
+	//		return
+	//	}
+	//	fmt.Println("第 ", i, " 条数据迁移完成")
+	//}
+	// 每次迁移的批次大小
+	batchSize := 500
+	totalRecords := len(cfgEventParamsValuePG)
+
+	// 迭代批次
+	for startIdx := 0; startIdx < totalRecords; startIdx += batchSize {
+		endIdx := startIdx + batchSize
+		if endIdx > totalRecords {
+			endIdx = totalRecords
 		}
-		// 3、mysql存数据
-		err = db2.MySQLClientBI.Table("cfg_event_params_value").Create(cfgEventParamsValue).Error
+
+		// 批次数据
+		batchData := cfgEventParamsValuePG[startIdx:endIdx]
+
+		// 转换数据并存入MySQL
+		batchRecords := make([]*CfgEventParamsValue3, 0)
+		for _, v := range batchData {
+			cfgEventParamsValue := &CfgEventParamsValue3{
+				AppID:       v.AppID,
+				Params:      v.Params,
+				ParamsValue: v.ParamsValue,
+				ParamsLabel: v.ParamsLabel,
+			}
+			batchRecords = append(batchRecords, cfgEventParamsValue)
+		}
+
+		// 批量插入数据
+		err := db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(batchRecords, len(batchRecords)).Error
 		if err != nil {
 			fmt.Println("RunCfgEventParamsValue MySQLClientBI CreateInBatches err:", err)
 			return
 		}
-		fmt.Println("第 ", i, " 条数据迁移完成")
+		// 打印批次信息
+		fmt.Printf("Migrating records from offset %d to %d\n", startIdx, endIdx-1)
 	}
 }
 
@@ -101,6 +137,11 @@ func bytesToGigabytes(bytes int) float64 {
 }
 
 func main() {
+	startTime := time.Now()
+
 	FunCfgEventParamsValue3()
+
+	elapsedTime := time.Since(startTime)
+	fmt.Printf("Migration complete! Time elapsed: %s\n", elapsedTime)
 	fmt.Println("Migration complete!")
 }
