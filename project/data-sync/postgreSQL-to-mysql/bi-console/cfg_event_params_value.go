@@ -5,7 +5,6 @@ import (
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
 	"log"
 	"sync"
-	"time"
 )
 
 // CfgEventParamsValuePG From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
@@ -100,7 +99,7 @@ func FunCfgEventParamsValue(offset int) {
 	log.Printf("Successfully migrated records from offset %d to %d", offset, offset+batchSize-1)
 
 	// 添加睡眠，控制迁移速度
-	time.Sleep(time.Second * 5) // 休眠5秒
+	//time.Sleep(time.Second * 5) // 休眠5秒
 }
 
 func main() {
