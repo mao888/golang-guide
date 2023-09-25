@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"time"
+	"unsafe"
 )
 
 // CfgEventParamsValuePG3 From PostgreSQL fotoabledb data_cfg.cfg_event_params_value
@@ -55,6 +57,21 @@ func FunCfgEventParamsValue3() {
 		fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find err:", err)
 		return
 	}
+	// 切片总长度
+	fmt.Println("RunCfgEventParamsValue PostgreSQLClient Find len(cfgEventParamsValuePG):", len(cfgEventParamsValuePG))
+
+	// 获取切片的底层数组大小
+	//// 使用反射获取切片的底层数组的大小
+	//sliceHeader := reflect.SliceHeader{
+	//	Data: uintptr(unsafe.Pointer(&cfgEventParamsValuePG[0])),
+	//	Len:  len(cfgEventParamsValuePG),
+	//	Cap:  cap(cfgEventParamsValuePG),
+	//}
+	// 计算底层数组的大小
+	arraySize := int(unsafe.Sizeof(cfgEventParamsValuePG[0])) * cap(cfgEventParamsValuePG)
+	arraySizeGB := bytesToGigabytes(arraySize) // 将字节转换为千兆字节（GB）
+	fmt.Printf("切片的内存大小: %d 字节\n", arraySize)
+	fmt.Printf("切片的内存大小: %f GB\n", arraySizeGB)
 
 	if len(cfgEventParamsValuePG) == 0 {
 		fmt.Println("No more data to migrate.")
@@ -62,24 +79,69 @@ func FunCfgEventParamsValue3() {
 	}
 
 	// 2、转换数据并存入MySQL
-	for i, v := range cfgEventParamsValuePG {
-		cfgEventParamsValue := &CfgEventParamsValue3{
-			AppID:       v.AppID,
-			Params:      v.Params,
-			ParamsValue: v.ParamsValue,
-			ParamsLabel: v.ParamsLabel,
+	//for i, v := range cfgEventParamsValuePG {
+	//	cfgEventParamsValue := &CfgEventParamsValue3{
+	//		AppID:       v.AppID,
+	//		Params:      v.Params,
+	//		ParamsValue: v.ParamsValue,
+	//		ParamsLabel: v.ParamsLabel,
+	//	}
+	//	// 3、mysql存数据
+	//	err = db2.MySQLClientBI.Table("cfg_event_params_value").Create(cfgEventParamsValue).Error
+	//	if err != nil {
+	//		fmt.Println("RunCfgEventParamsValue MySQLClientBI CreateInBatches err:", err)
+	//		return
+	//	}
+	//	fmt.Println("第 ", i, " 条数据迁移完成")
+	//}
+	// 每次迁移的批次大小
+	batchSize := 500
+	totalRecords := len(cfgEventParamsValuePG)
+
+	// 迭代批次
+	for startIdx := 0; startIdx < totalRecords; startIdx += batchSize {
+		endIdx := startIdx + batchSize
+		if endIdx > totalRecords {
+			endIdx = totalRecords
 		}
-		// 3、mysql存数据
-		err = db2.MySQLClientBI.Table("cfg_event_params_value").Create(cfgEventParamsValue).Error
+
+		// 批次数据
+		batchData := cfgEventParamsValuePG[startIdx:endIdx]
+
+		// 转换数据并存入MySQL
+		batchRecords := make([]*CfgEventParamsValue3, 0)
+		for _, v := range batchData {
+			cfgEventParamsValue := &CfgEventParamsValue3{
+				AppID:       v.AppID,
+				Params:      v.Params,
+				ParamsValue: v.ParamsValue,
+				ParamsLabel: v.ParamsLabel,
+			}
+			batchRecords = append(batchRecords, cfgEventParamsValue)
+		}
+
+		// 批量插入数据
+		err := db2.MySQLClientBI.Table("cfg_event_params_value").CreateInBatches(batchRecords, len(batchRecords)).Error
 		if err != nil {
 			fmt.Println("RunCfgEventParamsValue MySQLClientBI CreateInBatches err:", err)
 			return
 		}
-		fmt.Println("第 ", i, " 条数据迁移完成")
+		// 打印批次信息
+		fmt.Printf("Migrating records from offset %d to %d\n", startIdx, endIdx-1)
 	}
 }
 
+func bytesToGigabytes(bytes int) float64 {
+	gigabytes := float64(bytes) / (1024 * 1024 * 1024)
+	return gigabytes
+}
+
 func main() {
+	startTime := time.Now()
+
 	FunCfgEventParamsValue3()
+
+	elapsedTime := time.Since(startTime)
+	fmt.Printf("Migration complete! Time elapsed: %s\n", elapsedTime)
 	fmt.Println("Migration complete!")
 }
