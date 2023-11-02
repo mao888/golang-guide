@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-type User struct {
+type Order struct {
 	RetCode int    `json:"retCode"`
 	RetMsg  string `json:"retMsg"`
 	Data    string `json:"data"`
@@ -24,14 +24,14 @@ func main() {
 	//签名秘钥(小写md5(clientId+接口token+timestamp))
 	signKey := strings.ToLower(fmt.Sprintf("%x", md5.Sum([]byte(clientId+token+fmt.Sprintf("%v", timestamp)))))
 
-	url := "https://routine.wqxsw.com/flames/channel/query/user"
+	url := "https://routine.wqxsw.com/flames/channel/query/order"
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(map[string]interface{}{
 			"clientId":   clientId,     //clientId
 			"sdate":      "1698768001", //开始时间-时间戳(秒)
-			"queryField": "loginTime",  //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
 			"edate":      "1698854399", //结束时间-时间戳(秒)
+			"queryField": "loginTime",  //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
 			"channelCodeList": []string{
 				"29576",
 				"29577",
@@ -48,11 +48,11 @@ func main() {
 		return
 	}
 
-	var user User
-	err = json.Unmarshal(resp.Body(), &user)
+	var order Order
+	err = json.Unmarshal(resp.Body(), &order)
 	if err != nil {
 		fmt.Println("Unmarshal err:", err)
 		return
 	}
-	fmt.Printf("user:%+v\n", user) // user:{RetCode:0 RetMsg:成功 Data:OnNLbXpKRQLcqgN}
+	fmt.Printf("order:%+v\n", order) // order:{RetCode:0 RetMsg:成功 Data:O4jM0nylczk118F}
 }
