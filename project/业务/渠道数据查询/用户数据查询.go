@@ -29,9 +29,9 @@ func main() {
 		SetHeader("Content-Type", "application/json").
 		SetBody(map[string]interface{}{
 			"clientId":   clientId,     //clientId
-			"sdate":      "1698768001", //开始时间-时间戳(秒)
+			"sdate":      "1699200000", //开始时间-时间戳(秒)
 			"queryField": "loginTime",  //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
-			"edate":      "1698854399", //结束时间-时间戳(秒)
+			"edate":      "1699282800", //结束时间-时间戳(秒)
 			"channelCodeList": []string{
 				"29576",
 				"29577",
@@ -54,5 +54,7 @@ func main() {
 		fmt.Println("Unmarshal err:", err)
 		return
 	}
-	fmt.Printf("user:%+v\n", user) // user:{RetCode:0 RetMsg:成功 Data:OnNLbXpKRQLcqgN}
+	fmt.Printf("user:%+v\n", user)
+	// user:{RetCode:0 RetMsg:成功 Data:OnNLbXpKRQLcqgN}
+	// user:{RetCode:0 RetMsg:成功 Data:RoxEM3IolVybj0A}
 }
