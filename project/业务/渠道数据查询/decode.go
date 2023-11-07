@@ -15,7 +15,8 @@ func main() {
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231103%2F10007348_alias_cpsvideo_order_1698977301982.txt%3FtaskId%3DjdM86excIXp8IZ9&dataType=alias_order"
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231103%2F10007348_alias_cpsvideo_order_1698978256361.txt%3FtaskId%3DLiMSF92VqFRAkU9&dataType=alias_order"
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231106%2F10007348_alias_cpsvideo_user_1699255364687.txt%3FtaskId%3DRoxEM3IolVybj0A&dataType=alias_user"
-	urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231106%2F10007348_alias_cpsvideo_user_1699265409934.txt%3FtaskId%3DC3SNHmrrnvVpJNN&dataType=alias_user"
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231106%2F10007348_alias_cpsvideo_user_1699265409934.txt%3FtaskId%3DC3SNHmrrnvVpJNN&dataType=alias_user"
+	urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231107%2F10007348_alias_cpsvideo_order_1699324811239.txt%3FtaskId%3DcTHeJjN5FojmWt3&dataType=alias_order"
 
 	// 对URL进行解码
 	decodedURL, err := url.QueryUnescape(urlStr)
