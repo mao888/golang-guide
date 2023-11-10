@@ -7,9 +7,9 @@ import (
 )
 
 func main() {
-	isHour := false
-	//data := "2023-11-06 18"
-	data := "2023-11-06"
+	isHour := true
+	data := "2023-11-06 18:00:00"
+	//data := "2023-11-06"
 	loa := time.FixedZone("Asia/Shanghai", 8*60*60)
 	var sdate, edate int64
 	if isHour {

@@ -1,10 +1,56 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"gopkg.in/resty.v1"
 	"net/url"
+	"strings"
 )
+
+type SunShineOrderS3Upload struct {
+	Id           int     `json:"id"`
+	Ver          string  `json:"ver"`
+	OutTradeNo   string  `json:"outTradeNo"`
+	Discount     float64 `json:"discount"`
+	Type         int     `json:"type"`
+	StatusNotify int     `json:"statusNotify"`
+	Ctime        int     `json:"ctime"`
+	FinishTime   int     `json:"finishTime"`
+	UserId       int     `json:"userId"`
+	ChannelId    string  `json:"channelId"`
+	Domain       int     `json:"domain"`
+	SourceInfo   string  `json:"sourceInfo"`
+	ChapterId    string  `json:"chapterId"`
+	SourceDesc   string  `json:"sourceDesc"`
+	RegisterDate string  `json:"registerDate"`
+	OpenId       string  `json:"openId"`
+	Os           string  `json:"os"`
+	ReferralId   string  `json:"referralId"`
+	Adid         string  `json:"adid"`
+	FromDrId     string  `json:"fromDrId"`
+	Platform     string  `json:"platform"`
+	Scene        string  `json:"scene"`
+	ThirdCorpId  string  `json:"thirdCorpId"`
+	ThirdWxId    string  `json:"thirdWxId"`
+	KdrId        string  `json:"kdrId"`
+	SelfReturn   string  `json:"selfReturn"`
+	ProjectId    string  `json:"projectId"`
+	PromotionId  string  `json:"promotionId"`
+	SchannelTime int     `json:"schannelTime"`
+
+	DyeTime      string `json:"dyeTime"`
+	XuniPay      string `json:"xuniPay"`
+	MoneyBenefit string `json:"moneyBenefit"`
+
+	ReferralName string `json:"referralName"`
+	AppId        string `json:"appId"`
+
+	Date       string `json:"date"`
+	CreateTime int64  `json:"create_time"`
+	UpdateTime int64  `json:"update_time"`
+	Version    int64  `json:"version"`
+}
 
 func main() {
 	// URL字符串
@@ -40,5 +86,28 @@ func main() {
 		fmt.Println("Get err", err)
 		return
 	}
-	fmt.Println("resp:", resp)
+	fmt.Println("resp:", string(resp.Body()))
+
+	strResp := string(resp.Body())
+
+	// 分割 resp 字符串为每个 JSON 对象
+	jsonObjects := strings.Split(strResp, "\n")
+
+	// 创建一个存储 JSON 对象的切片
+	var jsonArray []SunShineOrderS3Upload
+
+	// 遍历每个 JSON 对象，解析为 map 并添加到切片中
+	for _, jsonObj := range jsonObjects {
+		var data SunShineOrderS3Upload
+		if err := json.Unmarshal([]byte(jsonObj), &data); err == nil {
+			jsonArray = append(jsonArray, data)
+		}
+	}
+
+	// 打印 JSON 数组
+	jsonArrayStr, _ := json.Marshal(jsonArray)
+	fmt.Println(string(jsonArrayStr))
+
+	//fmt.Println("resp:", resp)
+
 }

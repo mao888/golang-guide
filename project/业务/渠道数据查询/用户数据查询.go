@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/json"
 	"fmt"
+	"github.com/mao888/go-utils/constants"
 	"gopkg.in/resty.v1"
 	"strings"
 	"time"
@@ -25,13 +26,40 @@ func main() {
 	signKey := strings.ToLower(fmt.Sprintf("%x", md5.Sum([]byte(clientId+token+fmt.Sprintf("%v", timestamp)))))
 
 	url := "https://routine.wqxsw.com/flames/channel/query/user"
+
+	var (
+		isHour = true
+		data   = "2023-11-09 14:00:00"
+	)
+
+	// 将日期data转换为时间戳(秒)
+	var sdate, edate int64
+	loa := time.FixedZone("Asia/Shanghai", 8*60*60)
+	if isHour {
+		date, err := time.ParseInLocation(constants.TimeYMDHMM, data, loa)
+		if err != nil {
+			fmt.Errorf("SunShinePlayLet doPullUser time.Parse err: %s", err.Error())
+			return
+		}
+		sdate = date.Unix()
+		edate = date.Add(time.Minute * 60).Unix()
+	} else {
+		date, err := time.ParseInLocation(constants.TimeYMDH, data, loa)
+		if err != nil {
+			fmt.Errorf("SunShinePlayLet doPullUser time.Parse err: %s", err.Error())
+			return
+		}
+		sdate = date.Unix()
+		edate = date.Add(time.Hour * 24).Unix()
+	}
+
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(map[string]interface{}{
-			"clientId":   clientId,     //clientId
-			"sdate":      "1699027200", //开始时间-时间戳(秒)
-			"queryField": "loginTime",  //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
-			"edate":      "1699200000", //结束时间-时间戳(秒)
+			"clientId":   clientId,    //clientId
+			"sdate":      sdate,       //开始时间-时间戳(秒)
+			"queryField": "loginTime", //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
+			"edate":      edate,       //结束时间-时间戳(秒)
 			"channelCodeList": []string{
 				"29576",
 				"29577",
