@@ -53,4 +53,5 @@ func main() {
 	}
 	fmt.Printf("channelInfoList:%+v\n", channelInfoList)
 	// channelInfoList:{RetCode:0 RetMsg:成功 Data:{ChannelList:[29576 29577 29578 29579 29580] ChannelInfoList:[{ChannelId:29576 UserName:beitadj1 NickName:无限短剧-头条直投1-贝塔} {ChannelId:29577 UserName:beitadj2 NickName:无限短剧-头lId:29578 UserName:beitadj3 NickName:无限短剧-头条直投3-贝塔} {ChannelId:29579 UserName:beitadj4 NickName:无限短剧-头条直投4-贝塔} {ChannelId:29580 UserName:beitadj5 NickName:无限短剧-头条直投5-贝塔}]}}
+	// channelInfoList:{RetCode:0 RetMsg:成功 Data:{ChannelList:[29576 29577 29578 29579 29580 33343] ChannelInfoList:[{ChannelId:29576 UserName:beitadj1 NickName:无限短剧-头条直投1-贝塔} {ChannelId:29577 UserName:beitadj2 NickName:无限ChannelId:29578 UserName:beitadj3 NickName:无限短剧-头条直投3-贝塔} {ChannelId:29579 UserName:beitadj4 NickName:无限短剧-头条直投4-贝塔} {ChannelId:29580 UserName:beitadj5 NickName:无限短剧-头条直投5-贝塔} {ChannelId:33343 UserNa6-贝塔}]}}
 }

@@ -79,6 +79,13 @@ func main() {
 	// order 解码后的URL: https://xcxoss.dzyds.com/download/channel/20231103/10007348_alias_cpsvideo_order_1698978256361.txt?taskId=LiMSF92VqFRAkU9&dataType=alias_order
 	//
 	// user 解码后的URL: https://xcxoss.dzyds.com/download/channel/20231106/10007348_alias_cpsvideo_user_1699265409934.txt?taskId=C3SNHmrrnvVpJNN&dataType=alias_user
+	// 生产 user
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
+	// 2023-11-01 0:00:00 - 2023-11-13 15:59:59
+	// 生产 order
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
+	// 2023-11-01 0:00:00 - 2023-11-13 15:59:59
+
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
 		Get(decodedURL)
