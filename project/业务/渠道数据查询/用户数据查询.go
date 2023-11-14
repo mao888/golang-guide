@@ -29,15 +29,15 @@ func main() {
 	// 2023-10-07 0:00:00	1696608000
 	// 2023-10-31 23:59:59	1698767999
 	// 2023-11-01 0:00:00	1698768000
-	// 2023-11-13 15:59:59	1699862399
+	// 2023-11-13 16:59:59	1699865999
 
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(map[string]interface{}{
 			"clientId":   clientId,     //clientId
-			"sdate":      "1696608000", //开始时间-时间戳(秒)
+			"sdate":      "1698768000", //开始时间-时间戳(秒)
 			"queryField": "loginTime",  //支持自定义字段查询：此字段不为空使用loginTime，否则使用ctime.loginTime[用户活跃时间]-满足每日新增、每日活跃数据统计;ctime[用户注册时间]
-			"edate":      "1698767999", //结束时间-时间戳(秒)
+			"edate":      "1699865999", //结束时间-时间戳(秒)
 			"channelCodeList": []string{
 				"29576",
 				"29577",
@@ -66,6 +66,6 @@ func main() {
 	// user:{RetCode:0 RetMsg:成功 Data:RoxEM3IolVybj0A}
 	// user:{RetCode:0 RetMsg:成功 Data:C3SNHmrrnvVpJNN}
 	// 生产 user
-	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
-	// 2023-11-01 0:00:00 - 2023-11-13 15:59:59
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59	 user:{RetCode:0 RetMsg:成功 Data:RI6brZ25kMff8aR}
+	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59  user:{RetCode:0 RetMsg:成功 Data:xAz68fhtefUCU8s}
 }

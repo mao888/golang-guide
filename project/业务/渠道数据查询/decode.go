@@ -62,7 +62,18 @@ func main() {
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231103%2F10007348_alias_cpsvideo_order_1698978256361.txt%3FtaskId%3DLiMSF92VqFRAkU9&dataType=alias_order"
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231106%2F10007348_alias_cpsvideo_user_1699255364687.txt%3FtaskId%3DRoxEM3IolVybj0A&dataType=alias_user"
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231106%2F10007348_alias_cpsvideo_user_1699265409934.txt%3FtaskId%3DC3SNHmrrnvVpJNN&dataType=alias_user"
-	urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231107%2F10007348_alias_cpsvideo_order_1699324811239.txt%3FtaskId%3DcTHeJjN5FojmWt3&dataType=alias_order"
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231107%2F10007348_alias_cpsvideo_order_1699324811239.txt%3FtaskId%3DcTHeJjN5FojmWt3&dataType=alias_order"
+
+	// 生产 user
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_user_1699950504382.txt%3FtaskId%3DRI6brZ25kMff8aR&dataType=alias_user"
+	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_user_1699950576068.txt%3FtaskId%3DxAz68fhtefUCU8s&dataType=alias_user"
+	// 生产 order
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950606540.txt%3FtaskId%3DLAie8XsAo1FPQGM&dataType=alias_order"
+	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59
+	urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950654773.txt%3FtaskId%3DpwffF360k4ldDan&dataType=alias_order"
 
 	// 对URL进行解码
 	decodedURL, err := url.QueryUnescape(urlStr)
@@ -80,11 +91,11 @@ func main() {
 	//
 	// user 解码后的URL: https://xcxoss.dzyds.com/download/channel/20231106/10007348_alias_cpsvideo_user_1699265409934.txt?taskId=C3SNHmrrnvVpJNN&dataType=alias_user
 	// 生产 user
-	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
-	// 2023-11-01 0:00:00 - 2023-11-13 15:59:59
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59	 https://xcxoss.dzyds.com/download/channel/20231114/10007348_alias_cpsvideo_user_1699950504382.txt?taskId=RI6brZ25kMff8aR&dataType=alias_user
+	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59	 https://xcxoss.dzyds.com/download/channel/20231114/10007348_alias_cpsvideo_user_1699950576068.txt?taskId=xAz68fhtefUCU8s&dataType=alias_user
 	// 生产 order
-	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
-	// 2023-11-01 0:00:00 - 2023-11-13 15:59:59
+	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59	 https://xcxoss.dzyds.com/download/channel/20231114/10007348_alias_cpsvideo_order_1699950606540.txt?taskId=LAie8XsAo1FPQGM&dataType=alias_order
+	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59	 https://xcxoss.dzyds.com/download/channel/20231114/10007348_alias_cpsvideo_order_1699950654773.txt?taskId=pwffF360k4ldDan&dataType=alias_order
 
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
@@ -115,6 +126,6 @@ func main() {
 	jsonArrayStr, _ := json.Marshal(jsonArray)
 	fmt.Println(string(jsonArrayStr))
 
-	//fmt.Println("resp:", resp)
+	fmt.Println("resp:", resp)
 
 }
