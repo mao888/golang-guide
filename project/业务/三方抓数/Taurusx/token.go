@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func generateHash(apiKey string) string {
+func GenerateHash(apiKey string) string {
 	// 获取当前时间戳
 	timestamp := time.Now().Unix()
 
@@ -25,7 +25,7 @@ func generateHash(apiKey string) string {
 
 func main() {
 	apiKey := "e1a476536eac4e60b727b570c7140be5"
-	result := generateHash(apiKey)
+	result := GenerateHash(apiKey)
 
 	fmt.Println("Generated Hash:", result)
 }

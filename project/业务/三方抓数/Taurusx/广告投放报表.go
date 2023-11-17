@@ -47,7 +47,7 @@ func main() {
 	)
 	token = generateHash2(apiKey)
 
-	url = fmt.Sprintf("%s?timezone%s&start_time=%s&end_time=%s&dimension_option=%s",
+	url = fmt.Sprintf("%s?timezone=%s&start_time=%s&end_time=%s&dimension_option=%s",
 		baseUrl, timezone, startTime, endTime, dimensionOption)
 	fmt.Println("url:", url)
 
