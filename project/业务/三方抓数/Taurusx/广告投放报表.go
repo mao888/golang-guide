@@ -42,7 +42,7 @@ func main() {
 
 		timezone        = "+0"
 		startTime       = "2023-11-01"
-		endTime         = "2023-11-01"
+		endTime         = "2023-11-05"
 		dimensionOption = "Campaign,Adgroup,Creative,AdType,Country"
 	)
 	token = generateHash2(apiKey)
@@ -71,7 +71,8 @@ func main() {
 		fmt.Println("Unmarshal err", err)
 		return
 	}
-	fmt.Printf("taurusXRes:%+v\n", taurusXRes)
+	fmt.Printf("len: %d, taurusXRes:%+v\n", len(taurusXRes.Data.DataList),
+		taurusXRes)
 
 }
 
