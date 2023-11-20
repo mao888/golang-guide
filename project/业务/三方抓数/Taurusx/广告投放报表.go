@@ -41,7 +41,7 @@ func main() {
 		apiKey    = "e1a476536eac4e60b727b570c7140be5"
 
 		timezone        = "+0"
-		startTime       = "2023-10-01"
+		startTime       = "2023-11-01"
 		endTime         = "2023-11-01"
 		dimensionOption = "Campaign,Adgroup,Creative,AdType,Country"
 	)

@@ -53,7 +53,7 @@ func main() {
 		apiKey          = "e1a476536eac4e60b727b570c7140be5"
 
 		page     = 1
-		pageSize = 5
+		pageSize = 50
 	)
 	token := generateHash5(apiKey)
 
