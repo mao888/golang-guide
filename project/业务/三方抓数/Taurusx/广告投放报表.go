@@ -30,9 +30,9 @@ type (
 	}
 )
 
-var (
-	timestamp = time.Now().Unix()
-)
+//var (
+//	//timestamp = time.Now().Unix()
+//)
 
 func main() {
 	var (
@@ -48,7 +48,9 @@ func main() {
 		//startTime       = "2023-11-21"
 		//endTime         = "2023-11-30"
 		dimensionOption = "Campaign,Adgroup,Creative,AdType,Country"
-		datas           = []string{"2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-25", "2023-11-26", "2023-11-27", "2023-11-28", "2023-11-29", "2023-11-30"}
+		datas           = []string{"2023-11-20", "2023-11-21", "2023-11-22", "2023-11-23", "2023-11-24", "2023-11-25", "2023-11-26", "2023-11-27", "2023-11-28", "2023-11-29", "2023-11-30"}
+
+		timestamp = time.Now().Unix()
 	)
 	token = generateHash2(apiKey)
 
@@ -86,7 +88,7 @@ func main() {
 
 func generateHash2(apiKey string) string {
 	// 获取当前时间戳
-	//timestamp := time.Now().Unix()
+	timestamp := time.Now().Unix()
 
 	// 对时间戳进行MD5哈希
 	timestampHashInBytes := md5.Sum([]byte(fmt.Sprintf("%d", timestamp)))
