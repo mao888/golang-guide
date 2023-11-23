@@ -40,14 +40,17 @@ func main() {
 
 	url := fmt.Sprintf("%s%s?timestamp=%d&nonce=%s&signature=%s",
 		WeChatMiniGameForwardUrl, urlToken, timestamp, nonce, s)
-	glog.Infof("weChatMiniActiveEvent url: %s", url)
+	fmt.Printf("weChatMiniActiveEvent url: %s", url)
 
 	resp, err := resty.New().SetRetryCount(3).R().
 		SetHeader("Content-Type", "application/json").
 		SetBody(map[string]interface{}{
 			"clue_token": clickId, // 用户跳转小程序时携带的clue_token参数
 			"open_id":    openId,  // 微信open_id，必须回传
-			"event_type": "0",     // 事件类型，string格式
+			"event_type": "2",     // 事件类型，string格式
+			"props": map[string]interface{}{
+				"pay_amount": 1,
+			},
 		}).
 		Post(url)
 	if err != nil {
@@ -61,7 +64,7 @@ func main() {
 	if err != nil {
 		glog.Errorf("weChatMiniActiveEvent json.Unmarshal err: %v", err)
 	}
-	glog.Infof("weChatMiniActiveEvent weChatResp: %+v", weChatResp)
+	fmt.Printf("weChatMiniActiveEvent weChatResp: %+v", weChatResp)
 }
 
 func signature(token string, timestamp string, nonce string) string {
