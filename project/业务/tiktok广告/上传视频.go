@@ -41,11 +41,12 @@ type (
 func main() {
 	var (
 		uploadVideoBaseUrl = "https://business-api.tiktok.com/open_api/v1.3/file/video/ad/upload/"
-		accessToken        = ""
-		advertiserId       = ""
-		fileName           = ""
-		uploadType         = "UPLOAD_BY_URL"
-		videoUrl           = ""
+		accessToken        = "be819b0981e021fd4b1914a4b769c6b320f54938"
+		advertiserId       = "7306422754532868097"
+		//advertiserId       = "7306422822664994817"
+		fileName   = ""
+		uploadType = "UPLOAD_BY_URL"
+		videoUrl   = ""
 	)
 
 	resp, err := resty.SetRetryCount(3).R().SetHeaders(map[string]string{
