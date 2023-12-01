@@ -8,6 +8,13 @@ import (
 )
 
 type (
+	TikTokUploadVideoRes2 struct {
+		Code      int    `json:"code"`
+		Message   string `json:"message"`
+		RequestId string `json:"request_id"`
+		Data      struct {
+		} `json:"data"`
+	}
 	TikTokUploadVideoRes struct {
 		Message   string                  `json:"message"`    // 返回信息 例如：OK
 		Code      int                     `json:"code"`       // 返回码 例如：0
@@ -70,12 +77,33 @@ func main() {
 	// 第一次:解救室内2 {"code": 0, "message": "OK", "request_id": "20231201093311A37EB94FF67EEC4E4BC1", "data": [{"video_id": "v10033g50000clkqgnvog65gr6a4eo4g"}]}
 	// 第二次:解救室内2 {"code": 40911, "message": "Duplicated material name.", "request_id": "202312010934560D6394BC7792CB4D4538", "data": {}}
 
-	var videoRes TikTokUploadVideoRes
+	var videoRes TikTokUploadVideoRes2
 	err = json.Unmarshal(resp.Body(), &videoRes)
 	if err != nil {
 		fmt.Println("Unmarshal err", err)
 		return
 	}
-	fmt.Printf("videoRes:%+v\n", videoRes)
-	// 第一次:解救室内2 {Message:OK Code:0 Data:[{VideoCoverUrl: Format: PreviewUrl: PreviewUrlExpireTime: FileName: Displayable:false Height:0 Width:0 BitRate:0 CreateTime:0001-01-01 00:00:00 +0000 UTC ModifyTime:0001-01-01 00:00:00 +0000 UTC Signature: Duration:0 VideoId:v10033g50000clkqgnvog65gr6a4eo4g Size:0 MaterialId: AllowedPlacements:[] AllowDownload:false FixTaskId: FlawTypes:[]}] RequestId:20231201093311A37EB94FF67EEC4E4BC1}
+
+	if videoRes.Code == 0 {
+		// 在这里处理成功的响应逻辑
+		var videoResSuccess TikTokUploadVideoRes
+		err = json.Unmarshal(resp.Body(), &videoResSuccess)
+		if err != nil {
+			fmt.Println("Unmarshal err", err)
+			return
+		}
+		fmt.Printf("videoRes:%+v\n", videoResSuccess)
+		//第一次:解救室内2 {Message:OK Code:0 Data:[{VideoCoverUrl: Format: PreviewUrl: PreviewUrlExpireTime: FileName: Displayable:false Height:0 Width:0 BitRate:0 CreateTime:0001-01-01 00:00:00 +0000 UTC ModifyTime:0001-01-01 00:00:00 +0000 UTC Signature: Duration:0 VideoId:v10033g50000clkqgnvog65gr6a4eo4g Size:0 MaterialId: AllowedPlacements:[] AllowDownload:false FixTaskId: FlawTypes:[]}] RequestId:20231201093311A37EB94FF67EEC4E4BC1}
+	} else {
+		fmt.Printf("Error response: %+v\n", videoRes)
+		// 在这里处理错误的响应逻辑
+		var videoResError TikTokUploadVideoRes2
+		err = json.Unmarshal(resp.Body(), &videoResError)
+		if err != nil {
+			fmt.Println("Unmarshal err", err)
+			return
+		}
+		fmt.Printf("videoRes:%+v\n", videoResError)
+		//第二次:解救室内2 {Code:40911 Message:Duplicated material name. RequestId:202312011008208E2A69E0737D57502E86 Data:{}}
+	}
 }
