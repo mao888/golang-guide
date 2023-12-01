@@ -34,9 +34,9 @@ func main() {
 		accessToken        = "be819b0981e021fd4b1914a4b769c6b320f54938"
 		advertiserId       = "7306422754532868097"
 		//advertiserId       = "7306422822664994817"
-		fileName   = "图片3"
+		fileName   = "1130Facebook活动宣传"
 		uploadType = "UPLOAD_BY_URL"
-		imageUrl   = "https://ark-oss.bettagames.com/2023-11/2363e3a3f806b1bde2657fd2024946d7.jpg"
+		imageUrl   = "https://ark-oss.bettagames.com/2023-11/c17b8f2c24c4c35c2083ff82a3f7c5e3.jpg"
 	)
 	resp, err := resty.SetRetryCount(3).R().SetHeaders(map[string]string{
 		"Content-Type": "application/json",
@@ -52,8 +52,8 @@ func main() {
 		return
 	}
 	fmt.Println("resp", resp)
-	// {"code": 0, "message": "OK", "request_id": "202312010902214460BFDB426A924C7F2F", "data": {"signature": "2363e3a3f806b1bde2657fd2024946d7", "modify_time": "2023-12-01T09:00:24Z", "is_carousel_usable": true, "size": 1369062, "height": 2160, "format": "jpeg", "file_name": "\u56fe\u72471", "displayable": false, "image_id": "ad-site-i18n-sg/202312015d0d0400f0d6275d46d9a8cd", "image_url": "https://p21-ad-sg.ibyteimg.com/obj/ad-site-i18n-sg/202312015d0d0400f0d6275d46d9a8cd", "create_time": "2023-12-01T09:00:25Z", "width": 3240, "material_id": "7307518219009622018"}}
-
+	// 第一次:1130Facebook活动宣传 {"code": 0, "message": "OK", "request_id": "202312010949422463FC6B91F5CB4E2B9E", "data": {"displayable": true, "format": "jpeg", "file_name": "1130Facebook\u6d3b\u52a8\u5ba3\u4f20", "image_url": "https://p21-ad-sg.ibyteimg.com/obj/ad-site-i18n-sg/202312015d0dec8c63e491ca49f4ab38", "size": 668216, "create_time": null, "width": 1080, "signature": "c17b8f2c24c4c35c2083ff82a3f7c5e3", "image_id": "ad-site-i18n-sg/202312015d0dec8c63e491ca49f4ab38", "modify_time": null, "height": 1080, "material_id": "7307560569988759553"}}
+	// 第二次:1130Facebook活动宣传 {"code": 40911, "message": "Duplicated material name.", "request_id": "202312010950404C869222D2A8E34EC0A5", "data": {}}
 	var imageRes TikTokUploadImageRes
 	err = json.Unmarshal(resp.Body(), &imageRes)
 	if err != nil {
@@ -61,5 +61,6 @@ func main() {
 		return
 	}
 	fmt.Println("imageRes", imageRes)
-	// {OK 0 {ad-site-i18n-sg/202312015d0d0400f0d6275d46d9a8cd 7307518219009622018 false 3240 jpeg  2160 2363e3a3f806b1bde2657fd2024946d7 1369062 图片1 2023-12-01T09:00:25Z 2023-12-01T09:00:24Z} 202312010902214460BFDB426A924C7F}
+	// 第一次:1130Facebook活动宣传 {OK 0 {ad-site-i18n-sg/202312015d0dec8c63e491ca49f4ab38 7307560569988759553 true 1080 jpeg  1080 c17b8f2c24c4c35c2083ff82a3f7c5e3 668216 1130Facebook活动宣传  } 202312010949422463FC6B91F5CB4E2B9E}
+	// 第二次:1130Facebook活动宣传 {Duplicated material name. 40911 {  false 0   0  0   } 202312010950404C869222D2A8E34EC0A5}
 }

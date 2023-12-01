@@ -44,9 +44,9 @@ func main() {
 		accessToken        = "be819b0981e021fd4b1914a4b769c6b320f54938"
 		advertiserId       = "7306422754532868097"
 		//advertiserId       = "7306422822664994817"
-		fileName   = ""
+		fileName   = "解救室内2"
 		uploadType = "UPLOAD_BY_URL"
-		videoUrl   = ""
+		videoUrl   = "https://ark-oss.bettagames.com/2023-12/f0ade26215b922205ed08004198d0e3b.mp4"
 	)
 
 	resp, err := resty.SetRetryCount(3).R().SetHeaders(map[string]string{
@@ -66,6 +66,9 @@ func main() {
 		fmt.Println("Post err", err)
 		return
 	}
+	fmt.Printf("resp:%+v\n", resp)
+	// 第一次:解救室内2 {"code": 0, "message": "OK", "request_id": "20231201093311A37EB94FF67EEC4E4BC1", "data": [{"video_id": "v10033g50000clkqgnvog65gr6a4eo4g"}]}
+	// 第二次:解救室内2 {"code": 40911, "message": "Duplicated material name.", "request_id": "202312010934560D6394BC7792CB4D4538", "data": {}}
 
 	var videoRes TikTokUploadVideoRes
 	err = json.Unmarshal(resp.Body(), &videoRes)
@@ -74,4 +77,5 @@ func main() {
 		return
 	}
 	fmt.Printf("videoRes:%+v\n", videoRes)
+	// 第一次:解救室内2 {Message:OK Code:0 Data:[{VideoCoverUrl: Format: PreviewUrl: PreviewUrlExpireTime: FileName: Displayable:false Height:0 Width:0 BitRate:0 CreateTime:0001-01-01 00:00:00 +0000 UTC ModifyTime:0001-01-01 00:00:00 +0000 UTC Signature: Duration:0 VideoId:v10033g50000clkqgnvog65gr6a4eo4g Size:0 MaterialId: AllowedPlacements:[] AllowDownload:false FixTaskId: FlawTypes:[]}] RequestId:20231201093311A37EB94FF67EEC4E4BC1}
 }
