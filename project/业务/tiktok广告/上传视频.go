@@ -9,11 +9,10 @@ import (
 
 type (
 	TikTokUploadVideoRes2 struct {
-		Code      int    `json:"code"`
-		Message   string `json:"message"`
-		RequestId string `json:"request_id"`
-		Data      struct {
-		} `json:"data"`
+		Code      int         `json:"code"`
+		Message   string      `json:"message"`
+		RequestId string      `json:"request_id"`
+		Data      interface{} `json:"data"`
 	}
 	TikTokUploadVideoRes struct {
 		Message   string                  `json:"message"`    // 返回信息 例如：OK
