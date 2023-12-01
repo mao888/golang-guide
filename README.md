@@ -493,6 +493,7 @@
 * [三方抓数](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E4%B8%89%E6%96%B9%E6%8A%93%E6%95%B0)
 * [字节广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%AD%97%E8%8A%82%E5%B9%BF%E5%91%8A)
 * [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
+* [tiktok广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/tiktok%E5%B9%BF%E5%91%8A)
 * [小游戏归因](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BD%92%E5%9B%A0/%E5%B7%A8%E9%87%8F/%E5%BE%AE%E4%BF%A1)
 * [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
 * [golang递归实现类别树(CategoryTree)](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/golang%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%88%AB%E6%A0%91(CategoryTree).md)
