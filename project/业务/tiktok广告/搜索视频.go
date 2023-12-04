@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/resty.v1"
+	gutil "github.com/mao888/go-utils/http"
 	"time"
 )
 
@@ -48,33 +48,36 @@ func main() {
 		advertiserId       = "7306422754532868097"
 		//advertiserId       = "7306422822664994817"
 	)
-	//jsonBody := fmt.Sprintf(`{
-	//	"advertiser_id": "%s",
-	//	"filtering": {
-	//		"video_ids": ["%s"]
-	//	}
-	//}`, advertiserId, videoID)
 
-	resp, err := resty.New().SetRetryCount(3).R().
-		SetHeaders(map[string]string{
-			"Content-Type": "application/json",
-			"Access-Token": accessToken,
-		}).
-		SetBody(map[string]interface{}{
-			"advertiser_id": advertiserId,
-			"filtering": map[string]interface{}{
-				"video_ids": []string{"v10033g50000clmpsf7og65tb06e29vg"},
-			},
-		}).
-		Get(searchVideoBaseUrl)
+	data := struct {
+		AdvertiserID string `json:"advertiser_id"`
+		Filtering    struct {
+			VideoIDs []string `json:"video_ids"`
+		} `json:"filtering"`
+	}{
+		AdvertiserID: advertiserId,
+		Filtering: struct {
+			VideoIDs []string `json:"video_ids"`
+		}{
+			VideoIDs: []string{"v10033g50000clmpsf7og65tb06e29vg"},
+		},
+	}
+	body, err := json.Marshal(data)
+	if err != nil {
+		fmt.Println("Marshal err", err)
+	}
+	code, resp, err := gutil.HttpGetJson(searchVideoBaseUrl, body, map[string][]string{
+		"Content-Type": {"application/json"},
+		"Access-Token": {accessToken},
+	})
 	if err != nil {
 		fmt.Println("Get err", err)
 		return
 	}
-	fmt.Printf("resp:%+v\n", resp)
+	fmt.Printf("code:%d\n", code)
 
 	var searchVideo SearchVideo
-	err = json.Unmarshal(resp.Body(), &searchVideo)
+	err = json.Unmarshal(resp, &searchVideo)
 	if err != nil {
 		fmt.Println("Unmarshal err", err)
 		return
