@@ -50,7 +50,7 @@ func main() {
 		accessToken        = "be819b0981e021fd4b1914a4b769c6b320f54938"
 		advertiserId       = "7306422754532868097"
 		//advertiserId       = "7306422822664994817"
-		fileName   = "解救室内2"
+		fileName   = "解救室内2.4"
 		uploadType = "UPLOAD_BY_URL"
 		videoUrl   = "https://ark-oss.bettagames.com/2023-12/f0ade26215b922205ed08004198d0e3b.mp4"
 	)
@@ -84,25 +84,28 @@ func main() {
 	}
 
 	if videoRes.Code == 0 {
-		// 在这里处理成功的响应逻辑
-		var videoResSuccess TikTokUploadVideoRes
-		err = json.Unmarshal(resp.Body(), &videoResSuccess)
-		if err != nil {
-			fmt.Println("Unmarshal err", err)
-			return
+		fmt.Println("videoRes.Data", videoRes.Data)
+
+		var videoItem TikTokUploadVideoItem
+		if videoItems, ok := videoRes.Data.([]interface{}); ok {
+			for _, item := range videoItems {
+				// Convert the map to JSON and then unmarshal it into TikTokUploadVideoItem
+				itemJSON, err := json.Marshal(item)
+				if err != nil {
+					fmt.Println("JSON Marshal error:", err)
+					continue
+				}
+
+				err = json.Unmarshal(itemJSON, &videoItem)
+				if err != nil {
+					fmt.Println("JSON Unmarshal error:", err)
+					continue
+				}
+			}
+			fmt.Printf("videoItem:%+v\n", videoItem)
 		}
-		fmt.Printf("videoRes:%+v\n", videoResSuccess)
-		//第一次:解救室内2 {Message:OK Code:0 Data:[{VideoCoverUrl: Format: PreviewUrl: PreviewUrlExpireTime: FileName: Displayable:false Height:0 Width:0 BitRate:0 CreateTime:0001-01-01 00:00:00 +0000 UTC ModifyTime:0001-01-01 00:00:00 +0000 UTC Signature: Duration:0 VideoId:v10033g50000clkqgnvog65gr6a4eo4g Size:0 MaterialId: AllowedPlacements:[] AllowDownload:false FixTaskId: FlawTypes:[]}] RequestId:20231201093311A37EB94FF67EEC4E4BC1}
 	} else {
-		fmt.Printf("Error response: %+v\n", videoRes)
-		// 在这里处理错误的响应逻辑
-		var videoResError TikTokUploadVideoRes2
-		err = json.Unmarshal(resp.Body(), &videoResError)
-		if err != nil {
-			fmt.Println("Unmarshal err", err)
-			return
-		}
-		fmt.Printf("videoRes:%+v\n", videoResError)
-		//第二次:解救室内2 {Code:40911 Message:Duplicated material name. RequestId:202312011008208E2A69E0737D57502E86 Data:{}}
+		// Handle the case when video upload is not successful
+		fmt.Println("Video upload failed. Error code:", videoRes.Code, "Message:", videoRes.Message)
 	}
 }
