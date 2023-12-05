@@ -44,7 +44,7 @@ var (
 	//endTime         = "2023-11-30"
 	dimensionOption = "Campaign,Adgroup,Creative,AdType,Country"
 	//datas           = []string{"2023-12-01", "2023-12-02", "2023-12-03"}
-	datas = []string{"2023-12-03"}
+	datas = []string{"2023-12-02"}
 	//timestamp = time.Now().Unix()
 )
 
