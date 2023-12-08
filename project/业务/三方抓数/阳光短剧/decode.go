@@ -3,12 +3,13 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/golang/glog"
 	"gopkg.in/resty.v1"
 	"net/url"
 	"strings"
 )
 
-type SunShineOrderS3Upload struct {
+type SunShineOrderCallBack struct {
 	Id           int     `json:"id"`
 	Ver          string  `json:"ver"`
 	OutTradeNo   string  `json:"outTradeNo"`
@@ -37,7 +38,7 @@ type SunShineOrderS3Upload struct {
 	SelfReturn   string  `json:"selfReturn"`
 	ProjectId    string  `json:"projectId"`
 	PromotionId  string  `json:"promotionId"`
-	SchannelTime int     `json:"schannelTime"`
+	SchannelTime string  `json:"schannelTime"`
 
 	DyeTime      string `json:"dyeTime"`
 	XuniPay      string `json:"xuniPay"`
@@ -73,7 +74,8 @@ func main() {
 	// 2023-10-07 0:00:00 - 2023-10-31 23:59:59
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950606540.txt%3FtaskId%3DLAie8XsAo1FPQGM&dataType=alias_order"
 	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59
-	urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950654773.txt%3FtaskId%3DpwffF360k4ldDan&dataType=alias_order"
+	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950654773.txt%3FtaskId%3DpwffF360k4ldDan&dataType=alias_order"
+	urlStr := "https://xcxoss.dzyds.com/download/channel/20231208/10007348_alias_cpsvideo_order_1701997801532.txt"
 
 	// 对URL进行解码
 	decodedURL, err := url.QueryUnescape(urlStr)
@@ -81,7 +83,6 @@ func main() {
 		fmt.Println("解码失败:", err)
 		return
 	}
-
 	// 打印解码后的URL
 	fmt.Println("解码后的URL:", decodedURL)
 	// user 解码后的URL: https://xcxoss.dzyds.com/download/channel/20231102/10007348_alias_cpsvideo_user_1698918329171.txt?taskId=OnNLbXpKRQLcqgN&dataType=alias_user
@@ -110,22 +111,31 @@ func main() {
 
 	// 分割 resp 字符串为每个 JSON 对象
 	jsonObjects := strings.Split(strResp, "\n")
+	glog.Infof("jsonObjects:%+v", jsonObjects)
 
 	// 创建一个存储 JSON 对象的切片
-	var jsonArray []SunShineOrderS3Upload
+	var jsonArray []SunShineOrderCallBack
 
 	// 遍历每个 JSON 对象，解析为 map 并添加到切片中
 	for _, jsonObj := range jsonObjects {
-		var data SunShineOrderS3Upload
-		if err := json.Unmarshal([]byte(jsonObj), &data); err == nil {
-			jsonArray = append(jsonArray, data)
+		var data SunShineOrderCallBack
+		err := json.Unmarshal([]byte(jsonObj), &data)
+		if err != nil {
+			glog.Errorf("json.Unmarshal err:%+v", err)
 		}
+		jsonArray = append(jsonArray, data)
+		//if err := json.Unmarshal([]byte(jsonObj), &data); err == nil {
+		//	jsonArray = append(jsonArray, data)
+		//}
 	}
 
-	// 打印 JSON 数组
-	jsonArrayStr, _ := json.Marshal(jsonArray)
-	fmt.Println(string(jsonArrayStr))
+	fmt.Println("=====================================")
+	glog.Infof("jsonArray:%+v", jsonArray)
 
-	fmt.Println("resp:", resp)
+	// 打印 JSON 数组
+	//jsonArrayStr, _ := json.Marshal(jsonArray)
+	//fmt.Println(string(jsonArrayStr))
+
+	//fmt.Println("resp:", resp)
 
 }
