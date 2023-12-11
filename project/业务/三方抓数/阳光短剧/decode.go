@@ -75,7 +75,7 @@ func main() {
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950606540.txt%3FtaskId%3DLAie8XsAo1FPQGM&dataType=alias_order"
 	// 2023-11-01 0:00:00 - 2023-11-13 16:59:59
 	//urlStr := "https%3A%2F%2Fxcxoss.dzyds.com%2Fdownload%2Fchannel%2F20231114%2F10007348_alias_cpsvideo_order_1699950654773.txt%3FtaskId%3DpwffF360k4ldDan&dataType=alias_order"
-	urlStr := "https://xcxoss.dzyds.com/download/channel/20231208/10007348_alias_cpsvideo_order_1701997801532.txt"
+	urlStr := "https://xcxoss.dzyds.com/download/channel/20231211/10007348_alias_cpsvideo_order_1702260601725.txt"
 
 	// 对URL进行解码
 	decodedURL, err := url.QueryUnescape(urlStr)
@@ -118,6 +118,10 @@ func main() {
 
 	// 遍历每个 JSON 对象，解析为 map 并添加到切片中
 	for _, jsonObj := range jsonObjects {
+		if jsonObj == "" {
+			continue
+		}
+
 		var data SunShineOrderCallBack
 		err := json.Unmarshal([]byte(jsonObj), &data)
 		if err != nil {
