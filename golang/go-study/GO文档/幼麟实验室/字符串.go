@@ -21,7 +21,7 @@ func main() {
 	fmt.Printf("%s\n", s1[2])  // %!s(uint8=103)
 	fmt.Printf("%s\n", s1[:2]) // e
 
-	// 修改字符串
+	// 修改字符串 []byte 会开辟新的内存空间
 	//s1[2] = 'a' // cannot assign to s1[2]
 	fmt.Println(s1)
 
@@ -30,6 +30,7 @@ func main() {
 	fmt.Println(bs) // [32 101 97 103 111 228 184 150 231 149 140]
 	fmt.Printf("%c\n", bs[2])
 
+	// 修改字符串 []rune 会开辟新的内存空间
 	runes := []rune(s1)
 	fmt.Println(runes) // [32 101 103 103 111 19990 30028]
 	runes[5] = 'a'
@@ -38,7 +39,7 @@ func main() {
 	runes[5] = 32
 	fmt.Println(string(runes)) //  eggo 界
 
-	// unsafe
+	// unsafe 包 让slice依然使用原来字符串指向的这段内存
 	// 将字符串转换为[]byte，获取底层字节数组的指针
 	// 将字符串的头部信息转换为 reflect.StringHeader 结构
 	strHeader := (*reflect.StringHeader)(unsafe.Pointer(&s1))
