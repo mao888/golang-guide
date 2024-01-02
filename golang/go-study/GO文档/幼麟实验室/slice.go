@@ -39,4 +39,41 @@ func main() {
 	// string 扩容
 	a := []string{"a", "b", "c"}
 	a = append(a, "eggo")
+
+	// 测试扩容
+	testGrowSlice()
 }
+
+func testGrowSlice() {
+	s := make([]int, 0)
+
+	oldCap := cap(s)
+
+	for i := 0; i < 2048; i++ {
+		s = append(s, i)
+
+		newCap := cap(s)
+
+		if newCap != oldCap {
+			fmt.Printf("[%d -> %4d] cap = %-4d  |  after append %-4d  cap = %-4d\n", 0, i-1, oldCap, i, newCap)
+			oldCap = newCap
+		}
+	}
+}
+
+/*
+[0 ->   -1] cap = 0     |  after append 0     cap = 1		// 0 * 2
+[0 ->    0] cap = 1     |  after append 1     cap = 2		// 1 * 2
+[0 ->    1] cap = 2     |  after append 2     cap = 4		// 2 * 2
+[0 ->    3] cap = 4     |  after append 4     cap = 8		// 4 * 2
+[0 ->    7] cap = 8     |  after append 8     cap = 16		// 8 * 2
+[0 ->   15] cap = 16    |  after append 16    cap = 32		// 16 * 2
+[0 ->   31] cap = 32    |  after append 32    cap = 64		// 32 * 2
+[0 ->   63] cap = 64    |  after append 64    cap = 128		// 64 * 2
+[0 ->  127] cap = 128   |  after append 128   cap = 256		// 128 * 2
+[0 ->  255] cap = 256   |  after append 256   cap = 512		// 256 * 2
+[0 ->  511] cap = 512   |  after append 512   cap = 848		// 512 * 1.66
+[0 ->  847] cap = 848   |  after append 848   cap = 1280	// 848 * 1.5
+[0 -> 1279] cap = 1280  |  after append 1280  cap = 1792	// 1280 * 1.4
+[0 -> 1791] cap = 1792  |  after append 1792  cap = 2560	// 1792 * 1.42
+*/
