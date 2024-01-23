@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	gutil "github.com/mao888/go-utils/interfaces"
+	gutil "github.com/mao888/mao-gutils/interfaces"
 )
 
 func main() {

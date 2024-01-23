@@ -3,9 +3,9 @@ package bi_data
 import (
 	"context"
 	"fmt"
-	gerrors "github.com/mao888/go-errors"
-	gutil "github.com/mao888/go-utils/json"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	gerrors "github.com/mao888/mao-gerrors"
+	gutil "github.com/mao888/mao-gutils/json"
 	"go.mongodb.org/mongo-driver/bson"
 	"time"
 )

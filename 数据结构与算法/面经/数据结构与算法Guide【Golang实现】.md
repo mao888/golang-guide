@@ -319,7 +319,7 @@ package sequence_list
 import (
 	"fmt"
 
-	"github.com/mao888/go-utils/constants"
+	"github.com/mao888/mao-gutils/constants"
 )
 
 // 数据结构之线性表--顺序表

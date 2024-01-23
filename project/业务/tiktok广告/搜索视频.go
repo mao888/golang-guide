@@ -3,7 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	gutil "github.com/mao888/go-utils/http"
+	gutil "github.com/mao888/mao-gutils/http"
 	"time"
 )
 

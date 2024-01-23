@@ -1,13 +1,17 @@
-/**
-    @author:Hasee
-    @data:2022/11/25
-    @note:
-**/
+/*
+*
+
+	@author:Hasee
+	@data:2022/11/25
+	@note:
+
+*
+*/
 package main
 
 import (
 	"fmt"
-	"github.com/mao888/go-utils/slice"
+	"github.com/mao888/mao-gutils/slice"
 )
 
 func main() {

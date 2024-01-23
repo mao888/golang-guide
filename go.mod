@@ -1,12 +1,15 @@
 module github.com/mao888/golang-guide
 
-go 1.18
+go 1.19
 
 require (
 	github.com/qiniu/qmgo v1.1.4
 	go.mongodb.org/mongo-driver v1.11.1
 	gorm.io/driver/mysql v1.4.5
 	gorm.io/gorm v1.25.3
+	github.com/mao888/mao-gutils v1.3.0
+	github.com/mao888/mao-gerrors v1.1.0
+	github.com/mao888/mao-glog v1.1.0
 )
 
 require (
@@ -47,9 +50,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/leodido/go-urn v1.2.1 // indirect
-	github.com/mao888/go-errors v1.0.0 // indirect
-	github.com/mao888/go-log v1.0.7
-	github.com/mao888/go-utils v1.1.6
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect

@@ -3,8 +3,8 @@ package mysql_to_mysql
 import (
 	"context"
 	"fmt"
-	"github.com/mao888/go-utils/constants"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"github.com/mao888/mao-gutils/constants"
 	"go.mongodb.org/mongo-driver/bson"
 )
 

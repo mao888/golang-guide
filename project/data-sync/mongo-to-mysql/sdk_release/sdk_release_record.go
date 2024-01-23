@@ -3,10 +3,10 @@ package sdk_release
 import (
 	"context"
 	"fmt"
-	"github.com/mao888/go-utils/constants"
-	"github.com/mao888/go-utils/json"
-	"github.com/mao888/go-utils/version"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"github.com/mao888/mao-gutils/constants"
+	gutil "github.com/mao888/mao-gutils/json"
+	"github.com/mao888/mao-gutils/version"
 	"go.mongodb.org/mongo-driver/bson"
 	"time"
 )

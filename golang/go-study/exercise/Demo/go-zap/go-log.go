@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	glog "github.com/mao888/go-log"
-	"github.com/mao888/go-utils/constants"
+	glog "github.com/mao888/mao-glog"
+	"github.com/mao888/mao-gutils/constants"
 )
 
 func init() {

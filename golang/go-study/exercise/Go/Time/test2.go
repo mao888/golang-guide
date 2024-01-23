@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/mao888/go-utils/constants"
+	"github.com/mao888/mao-gutils/constants"
 	"time"
 )
 

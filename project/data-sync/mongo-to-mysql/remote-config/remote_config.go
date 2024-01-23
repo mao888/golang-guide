@@ -3,9 +3,9 @@ package remote_config
 import (
 	"context"
 	"fmt"
-	"github.com/mao888/go-utils/constants"
-	gutil "github.com/mao888/go-utils/json"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"github.com/mao888/mao-gutils/constants"
+	gutil "github.com/mao888/mao-gutils/json"
 	"go.mongodb.org/mongo-driver/bson"
 	"time"
 )

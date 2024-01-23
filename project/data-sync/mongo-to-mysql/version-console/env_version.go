@@ -3,10 +3,10 @@ package version_console
 import (
 	"context"
 	"fmt"
-	"github.com/mao888/go-utils/constants"
-	gj "github.com/mao888/go-utils/json"
-	gutil "github.com/mao888/go-utils/strings"
 	db2 "github.com/mao888/golang-guide/project/data-sync/db"
+	"github.com/mao888/mao-gutils/constants"
+	gj "github.com/mao888/mao-gutils/json"
+	gutil "github.com/mao888/mao-gutils/strings"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
