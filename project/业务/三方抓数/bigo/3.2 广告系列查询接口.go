@@ -8,7 +8,7 @@ import (
 )
 
 type (
-	campaignRes struct {
+	CampaignRes struct {
 		Result struct {
 			Total int `json:"total"`
 			List  []struct {
@@ -57,7 +57,7 @@ func main() {
 	}
 	glog.Infof(ctx, "resp:%s", string(resp.Body()))
 
-	var campaign campaignRes
+	var campaign CampaignRes
 	err = json.Unmarshal(resp.Body(), &campaign)
 	if err != nil {
 		glog.Errorf(ctx, "Unmarshal err:%s", err)
