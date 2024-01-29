@@ -32,17 +32,16 @@ type (
 	}
 )
 
-var (
-	timezone      = "-8"
-	startDate     = "2024-01-20"
-	endDate       = "2024-01-29"
-	aggregateType = 2
-	pageNo        = 1
-	pageSize      = 200
-)
-
 func main() {
-	ctx := context.Background()
+	var (
+		ctx           = context.Background()
+		timezone      = "-8"
+		startDate     = "2024-01-20"
+		endDate       = "2024-01-29"
+		aggregateType = 2
+		pageNo        = 1
+		pageSize      = 200
+	)
 
 	reportUrl := "https://api.adsbigo.com/openapi/report/list"
 
