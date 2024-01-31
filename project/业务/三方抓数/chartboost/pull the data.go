@@ -163,19 +163,19 @@ func parseCSV(csvData []byte) ([]JobDataRes, error) {
 		}
 
 		// 检查记录的长度是否符合预期
-		if len(record) != 1 {
-			fmt.Errorf("wrong number of fields in CSV record, expected 1, got %d", len(record))
-			glog.Errorf(context.Background(), "line:%d; record:%+v; len(record):%d", i, record, len(record))
-			i = i + 1
-			lenRecordError++
-			continue
-		}
+		//if len(record) != 1 {
+		//	fmt.Errorf("wrong number of fields in CSV record, expected 1, got %d", len(record))
+		//	glog.Errorf(context.Background(), "line:%d; record:%+v; len(record):%d", i, record, len(record))
+		//	i = i + 1
+		//	lenRecordError++
+		//	continue
+		//}
 
-		parsed := parseRecord(record[0])
+		//parsed := parseRecord(record[0])
+		parsed := extractStrings(record[0])
 		// 确保至少有27个字段
 		if len(parsed) < 27 {
-			glog.Errorf(context.Background(), "line:%d; record:%+v; parsed:%+v", i, record, parsed)
-			fmt.Errorf("line:%d; not enough fields in CSV record, expected at least 27, got %d", i, len(parsed))
+			glog.Errorf(context.Background(), "line:%d; record:%+v; parsed:%+v; not enough fields in CSV record, expected at least 27, got %d", i, record, parsed, len(parsed))
 			i = i + 1
 			lenParsedError++
 			continue
@@ -228,4 +228,38 @@ func parseRecord(record string) []string {
 		matches[i] = match[1 : len(match)-1]
 	}
 	return matches
+}
+
+func extractStrings(input string) []string {
+	var result []string
+
+	// 移除空格，方便处理
+	input = strings.ReplaceAll(input, " ", "")
+
+	// 查找引号的位置
+	start := strings.Index(input, "\"")
+	for start != -1 {
+		// 找到第一个引号
+		end := strings.Index(input[start+1:], "\"")
+		if end != -1 {
+			// 找到第二个引号
+			end += start + 1
+			// 提取子字符串并加入结果数组
+			result = append(result, input[start+1:end])
+		} else {
+			// 如果没有找到第二个引号，结束循环
+			break
+		}
+
+		// 查找下一个引号的位置
+		start = strings.Index(input[end+1:], "\"")
+		if start != -1 {
+			start += end + 1
+		} else {
+			// 如果没有找到下一个引号，结束循环
+			break
+		}
+	}
+
+	return result
 }
