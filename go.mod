@@ -3,13 +3,13 @@ module github.com/mao888/golang-guide
 go 1.19
 
 require (
+	github.com/mao888/mao-gerrors v1.1.0
+	github.com/mao888/mao-glog v1.1.0
+	github.com/mao888/mao-gutils v1.3.0
 	github.com/qiniu/qmgo v1.1.4
 	go.mongodb.org/mongo-driver v1.11.1
 	gorm.io/driver/mysql v1.4.5
 	gorm.io/gorm v1.25.3
-	github.com/mao888/mao-gutils v1.3.0
-	github.com/mao888/mao-gerrors v1.1.0
-	github.com/mao888/mao-glog v1.1.0
 )
 
 require (
@@ -36,12 +36,14 @@ require (
 )
 
 require (
+	github.com/360EntSecGroup-Skylar/excelize v1.4.1 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.10.0 // indirect
 	github.com/go-sql-driver/mysql v1.7.0 // indirect
+	github.com/gocarina/gocsv v0.0.0-20231116093920-b87c2d0e983a // indirect
 	github.com/goccy/go-json v0.9.7 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/google/uuid v1.3.0 // indirect
@@ -53,9 +55,11 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421 // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
+	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/pelletier/go-toml/v2 v2.0.1 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/tealeg/xlsx v1.0.5 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/xdg-go/pbkdf2 v1.0.0 // indirect
 	github.com/xdg-go/scram v1.1.1 // indirect
