@@ -57,8 +57,8 @@ func main() {
 			"Authorization": authorization,
 		}).
 		SetBody(map[string]interface{}{
-			"start_time": "2024-02-03",
-			"end_time":   "2024-02-04",
+			"start_time": "2024-02-05",
+			"end_time":   "2024-02-06",
 			"group_by": []string{
 				"apps",
 				"campaigns",

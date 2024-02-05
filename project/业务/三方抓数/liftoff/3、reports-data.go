@@ -1,16 +1,13 @@
 package main
 
 import (
-	"bytes"
 	"context"
 	"encoding/base64"
 	"encoding/csv"
 	"fmt"
 	glog "github.com/mao888/mao-glog"
-	"golang.org/x/text/encoding/unicode"
-	"golang.org/x/text/transform"
 	"gopkg.in/resty.v1"
-	"io"
+	"strings"
 )
 
 type (
@@ -45,7 +42,7 @@ type (
 func main() {
 	ctx := context.Background()
 	var (
-		reportId        = "94ca462dfe"
+		reportId        = "1d728ae837"
 		apiKey          = "bacfa09c4f"
 		apiSecret       = "U1NUhwT2c1s0GRPka9DmZg=="
 		basicLiftoffUrl = "https://data.liftoff.io/api/v1/reports"
@@ -65,13 +62,9 @@ func main() {
 		glog.Infof(ctx, "Post err:%s", err)
 		return
 	}
-	// 读取响应体并将 UTF-16LE 转码为 UTF-8
-	bodyReader := bytes.NewReader(resp.Body())
-	utf16leDecoder := unicode.UTF16(unicode.LittleEndian, unicode.IgnoreBOM).NewDecoder()
-	utf8Reader := transform.NewReader(bodyReader, utf16leDecoder)
 
 	// 解析CSV文件
-	liftoffReportDataResList, err := parseCSVAll(utf8Reader)
+	liftoffReportDataResList, err := parseCSVAll(resp.Body())
 	if err != nil {
 		glog.Errorf(ctx, "parseCSVAll err:%s", err)
 		return
@@ -81,10 +74,10 @@ func main() {
 }
 
 // parseCSVAll
-func parseCSVAll(csvData io.Reader) ([]LiftoffReportDataRes, error) {
+func parseCSVAll(csvData []byte) ([]LiftoffReportDataRes, error) {
 	// 读取CSV文件中的所有记录
-	reader := csv.NewReader(csvData)
-	reader.Comma = '\t'
+	reader := csv.NewReader(strings.NewReader(string(csvData)))
+	reader.Comma = ','
 
 	// 读取CSV文件中的所有记录
 	records, err := reader.ReadAll()
