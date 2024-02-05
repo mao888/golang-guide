@@ -9,16 +9,15 @@ import (
 	"time"
 )
 
-type LiftoffCampaignsRes struct {
-	TrackerType        string      `json:"tracker_type"`
-	MinOsVersion       *string     `json:"min_os_version"`
-	Name               string      `json:"name"`
-	AppId              string      `json:"app_id"`
-	State              string      `json:"state"`
-	CampaignType       string      `json:"campaign_type"`
-	Id                 string      `json:"id"`
-	MaxOsVersion       interface{} `json:"max_os_version"`
-	StateLastChangedAt *time.Time  `json:"state_last_changed_at"`
+type LiftoffCreativesRes struct {
+	PreviewUrl         *string   `json:"preview_url"`
+	Width              int       `json:"width"`
+	Height             int       `json:"height"`
+	CreativeType       string    `json:"creative_type"`
+	FullHtmlPreviewUrl string    `json:"full_html_preview_url"`
+	CreatedAt          time.Time `json:"created_at"`
+	Id                 string    `json:"id"`
+	Name               string    `json:"name"`
 }
 
 func main() {
@@ -26,7 +25,7 @@ func main() {
 	var (
 		apiKey          = "bacfa09c4f"
 		apiSecret       = "U1NUhwT2c1s0GRPka9DmZg=="
-		basicLiftoffUrl = "https://data.liftoff.io/api/v1/campaigns"
+		basicLiftoffUrl = "https://data.liftoff.io/api/v1/creatives"
 	)
 	// 拼接client_id和secret，并转换为字节数组
 	data := []byte(apiKey + ":" + apiSecret)
@@ -44,7 +43,7 @@ func main() {
 	}
 	glog.Infof(ctx, "resp:%s", string(resp.Body()))
 
-	var res []LiftoffCampaignsRes
+	var res []LiftoffCreativesRes
 	err = json.Unmarshal(resp.Body(), &res)
 	if err != nil {
 		glog.Errorf(ctx, "Unmarshal err:%s", err)
