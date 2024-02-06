@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	glog "github.com/mao888/mao-glog"
+	"github.com/mao888/mao-gutils/constants"
 	"gopkg.in/resty.v1"
 	"time"
 )
@@ -44,7 +45,15 @@ func main() {
 		apiKey          = "bacfa09c4f"
 		apiSecret       = "U1NUhwT2c1s0GRPka9DmZg=="
 		basicLiftoffUrl = "https://data.liftoff.io/api/v1/reports"
+		date            = "2024-02-05"
 	)
+	nextDate, err := time.Parse(constants.TimeYMD, date)
+	if err != nil {
+		glog.Errorf(ctx, "time.Parse err:%s", err)
+		return
+	}
+	nextDate = nextDate.AddDate(0, 0, 1)
+
 	// 拼接client_id和secret，并转换为字节数组
 	data := []byte(apiKey + ":" + apiSecret)
 	// 使用base64进行编码
@@ -57,8 +66,8 @@ func main() {
 			"Authorization": authorization,
 		}).
 		SetBody(map[string]interface{}{
-			"start_time": "2024-02-05",
-			"end_time":   "2024-02-06",
+			"start_time": date,
+			"end_time":   nextDate.Format(constants.TimeYMD),
 			"group_by": []string{
 				"apps",
 				"campaigns",

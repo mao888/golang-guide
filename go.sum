@@ -74,6 +74,7 @@ github.com/leodido/go-urn v1.2.0/go.mod h1:+8+nEpDfqqsY+g338gtMEUOtuK+4dEMhiQEgx
 github.com/leodido/go-urn v1.2.1/go.mod h1:zt4jvISO2HfUBqxjfIshjdMTYS56ZS/qv49ictyFfxY=
 github.com/leodido/go-urn v1.2.4 h1:XlAE/cm/ms7TE/VMVoduSpNBoyc2dOxHs5MZSwAN63Q=
 github.com/leodido/go-urn v1.2.4/go.mod h1:7ZrI8mTSeBSHl/UaRyKQW1qZeMgak41ANeCNaVckg+4=
+github.com/mao888/mao-gerrors v1.1.0 h1:2VlBRlsbSNHGRenFN9yc5mX3DPGEuzQ+lxRiHI9KsVI=
 github.com/mao888/mao-gerrors v1.1.0/go.mod h1:5PYp52UyH4DPNtQaCD2xLLtxOivcd72AJa5ydzCcqsM=
 github.com/mao888/mao-glog v1.1.0 h1:P/Fo3uAf1H0SHo8WBTaw6O8bR7v+ZvqWQIFJHA1F3wk=
 github.com/mao888/mao-glog v1.1.0/go.mod h1:TgrWCm92WdcaaQzWgC0hYx4jEjQfWeAobSwco2fniJI=
