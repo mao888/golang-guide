@@ -41,7 +41,7 @@ func main() {
 		glog.Errorf(ctx, "Post err:%s", err)
 		return
 	}
-	glog.Infof(ctx, "resp:%s", string(resp.Body()))
+	//glog.Infof(ctx, "resp:%s", string(resp.Body()))
 
 	var res []LiftoffCreativesRes
 	err = json.Unmarshal(resp.Body(), &res)
@@ -50,4 +50,11 @@ func main() {
 		return
 	}
 	glog.Infof(ctx, "res的长度:%d", len(res))
+
+	// Id 和 Name 转成一个map
+	creatives := make(map[string]string)
+	for _, v := range res {
+		creatives[v.Id] = v.Name
+	}
+	glog.Infof(ctx, "creatives map的长度:%d", len(creatives))
 }
