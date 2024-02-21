@@ -42,7 +42,7 @@ func main() {
 	}
 	glog.Infof(ctx, "resp:%s", string(resp.Body()))
 
-	var appierRes []AppierRes
+	var appierRes []*AppierRes
 	err = json.Unmarshal(resp.Body(), &appierRes)
 	if err != nil {
 		glog.Errorf(ctx, "Unmarshal err:%s", err)
