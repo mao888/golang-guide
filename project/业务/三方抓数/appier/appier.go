@@ -26,9 +26,9 @@ func main() {
 	ctx := context.Background()
 	var (
 		basicUrl    = "https://mmp.appier.org/campaign_report"
-		accessToken = "54f5a1241bc64e5fb60b678414f14929"
-		startDate   = "2024-01-25"
-		endDate     = "2024-01-25"
+		accessToken = "f8a5f28b4c9f405797e8359737df122e"
+		startDate   = "2024-02-22"
+		endDate     = "2024-02-22"
 		timezone    = -8
 	)
 	url := fmt.Sprintf("%s?access_token=%s&start_date=%s&end_date=%s&timezone=%d",
