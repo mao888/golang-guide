@@ -391,7 +391,7 @@ a+b = 0总之类型溢出会出现难以意料的事
 
 golang中的字符串底层实现是通过byte数组的，中文字符在unicode下占2个字节，在utf-8编码下占3个字节，而golang默认编码正好是utf-8
 
-byte 等同于int8，常用来处理ascii字符
+byte 等同于uint8，常用来处理ascii字符
 
 rune 等同于int32,常用来处理unicode或utf-8字符
 
