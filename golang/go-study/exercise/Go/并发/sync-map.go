@@ -9,7 +9,7 @@ func main() {
 	var m sync.Map
 	// 1. 写入
 	m.Store("qcrao", 18)
-	m.Store("stefno", 20)
+	m.Store("qcrao", 20)
 
 	// 2. 读取
 	age, _ := m.Load("qcrao")
