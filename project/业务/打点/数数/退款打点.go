@@ -32,7 +32,7 @@ func main() {
 	// 将数据编码为 JSON 格式
 	jsonData, err := json.Marshal(data)
 	if err != nil {
-		fmt.Println("JSON 编码失败:", err)
+		fmt.Println("JSON 编码失败: ", err)
 		return
 	}
 
