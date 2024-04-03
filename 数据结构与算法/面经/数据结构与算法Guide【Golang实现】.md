@@ -143,10 +143,11 @@ func randomAccess(nums []int) (randomNum int) {
 ### 数组常用操作
 
 ```go
-package 数组与链表
+package array
 
 import (
-	"math/rand"
+   "fmt"
+   "math/rand"
 )
 
 /**
@@ -195,30 +196,21 @@ func remove(nums []int, index int) {
 
 /* 遍历数组 */
 func traverse(nums []int) {
-	count := 0
-	// 通过索引遍历数组
-	for i := 0; i < len(nums); i++ {
-		fmt.Println(nums[count])
-		count++
-	}
-	count = 0
-	// 直接遍历数组
-	for range nums {
-		fmt.Println(nums[count])
-		count++
-	}
+   for _, num := range nums {
+      fmt.Println(num)
+   }
 }
 
 /* 在数组中查找指定元素 */
 func find(nums []int, target int) (index int) {
-	index = -1
-	for i := 0; i < len(nums); i++ {
-		if nums[i] == target {
-			index = i
-			break
-		}
-	}
-	return
+   index = -1
+   for i, num := range nums {
+      if num == target {
+         index = i
+         break
+      }
+   }
+   return
 }
 package array
 
@@ -316,232 +308,224 @@ func TestArray(t *testing.T) {
 ```go
 package sequence_list
 
-import (
-	"fmt"
-
-	"github.com/mao888/mao-gutils/constants"
-)
+import "fmt"
 
 // 数据结构之线性表--顺序表
-
-type SqListInterface interface {
-	// 基本操作
-	NewSeqList(capacity int) *SqList // 初始化
-	InitList(capacity int)           // 初始化
-	ListEmpty() bool                 // 判空
-	ListFul() bool                   // 判满
-	ListLength() int                 // 返回数据元素个数
-	ClearList()                      // 清空
-	DestroyList()                    // 销毁
-	// 元素操作
-	ListInsert(index int, elem interface{}) bool // 插入元素
-	ListDelete(index int) bool                   // 删除元素
-	GetElem(index int) (interface{}, bool)       // 获取元素
-	SetElem(elem interface{}, index int) bool    // 更新元素
-	LocateELem(elem interface{}) (int, bool)     // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
-	// 其他操作
-	PriorElem(elem interface{}) (interface{}, bool) // 寻找元素的前驱（当前元素的前一个元素）
-	NextElem(elem interface{}) (interface{}, bool)  // 寻找元素的后驱（当前元素的后一个元素）
-	TraverseList()                                  // 遍历
-	Pop() interface{}                               // 从末尾弹出一个元素
-	Append(elem interface{}) bool                   // 从末尾插入一个元素
-	Reserve()                                       // 反转
+type SqListInterFace interface {
+   // 基本操作
+   NewSqList(capacity int) *SqList // 初始化
+   InitList(capacity int)          // 初始化
+   ListEmpty() bool                // 判空
+   ListFull() bool                 // 判满
+   ListLength() int                // 返回数据元素个数
+   ClearList()                     // 清空
+   DestroyList()                   // 销毁
+   // 元素操作
+   ListInsert(index int, elem interface{}) bool // 插入元素
+   ListDelete(index int) bool                   // 删除元素
+   GetElem(index int) (interface{}, bool)       // 获取元素
+   SetElem(elem interface{}, index int) bool    // 更新元素
+   LocateElem(elem interface{}) (int, bool)     // 返回第1个值与elem相同的元素的位置若这样的数据元素不存在,则返回值为0
+   // 其他操作
+   PriorElem(elem interface{}) (interface{}, bool) // 寻找元素的前驱（当前元素的前一个元素）
+   NextElem(elem interface{}) (interface{}, bool)  // 寻找元素的后驱（当前元素的后一个元素）
+   TraverseList()                                  // 遍历
+   Pop() interface{}                               // 从末尾弹出一个元素
+   Append(elem interface{}) bool                   // 从末尾插入一个元素
+   Reverse()                                       // 反转
 }
 
 // SqList 顺序表的结构类型为SqList
 // 使用golang语言的interface接口类型创建顺序表
 type SqList struct {
-	Len         int           // 线性表长度
-	Capacity    int           // 表容量
-	Data        []interface{} // 指向线性表空间指针
-	ExtendRatio int           // 每次列表扩容的倍数
+   Len         int
+   Capacity    int
+   Data        []interface{}
+   ExtendRatio int
 }
 
+const NumberTwo int = 2
+
 // NewSeqList 初始化
-func (l *SqList) NewSeqList(capacity int) *SqList {
-	return &SqList{
-		Len:         0,
-		Capacity:    capacity,
-		Data:        make([]interface{}, capacity),
-		ExtendRatio: constants.NumberTwo,
-	}
+func (l *SqList) NewSqList(capacity int) *SqList {
+   return &SqList{
+      Len:         0,
+      Capacity:    capacity,
+      Data:        make([]interface{}, capacity),
+      ExtendRatio: NumberTwo,
+   }
 }
 
 // InitList 初始化
 func (l *SqList) InitList(capacity int) {
-	l.Capacity = capacity
-	l.Len = 0
-	m := make([]interface{}, capacity)
-	l.Data = m
-	l.ExtendRatio = constants.NumberTwo
+   l.Capacity = capacity
+   l.Len = 0
+   m := make([]interface{}, capacity)
+   l.Data = m
+   l.ExtendRatio = NumberTwo
 }
 
 // ListEmpty 判空
 func (l *SqList) ListEmpty() bool {
-	if l.Len == 0 {
-		return true
-	} else {
-		return false
-	}
+   if l.Len == 0 {
+      return true
+   } else {
+      return false
+   }
 }
 
 // ListLength 获取长度
 func (l *SqList) ListLength() int {
-	return l.Len
+   return l.Len
 }
 
 // ListFul 判满
-func (l *SqList) ListFul() bool {
-	if l.Len == l.Capacity {
-		return true
-	} else {
-		return false
-	}
+func (l *SqList) ListFull() bool {
+   if l.Len == l.Capacity {
+      return true
+   } else {
+      return false
+   }
 }
 
 // GetElem 根据下标Get元素
 func (l *SqList) GetElem(index int) (interface{}, bool) {
-	if index < 0 || index > l.Len {
-		return nil, false
-	} else {
-		return l.Data[index], true
-	}
+   if index < 0 || index > l.Len {
+      return nil, false
+   } else {
+      return l.Data[index], true
+   }
 }
 
 // SetElem 更新元素
 func (l *SqList) SetElem(elem interface{}, index int) bool {
-	if index >= l.Len {
-		panic("索引越界")
-	}
-	l.Data[index] = elem
-	return true
+   if index < 0 || index > l.Len {
+      return false
+   } else {
+      l.Data[index] = elem
+      return true
+   }
 }
 
 // LocateELem 根据传入的值，返回第一个匹配的元素下标
-func (l *SqList) LocateELem(elem interface{}) (int, bool) {
-	for i, _ := range l.Data {
-		if elem == l.Data[i] {
-			return i, true
-		}
-	}
-	return -1, false
+func (l *SqList) LocateElem(elem interface{}) (int, bool) {
+   for i, _ := range l.Data {
+      if elem == l.Data[i] {
+         return i, true
+      }
+   }
+   return -1, false
 }
 
 // PriorElem 寻找元素的前驱（当前元素的前一个元素）
 func (l *SqList) PriorElem(elem interface{}) (interface{}, bool) {
-	i, _ := l.LocateELem(elem)
-	// 顺序表中不存在该元素，或者元素为第一个元素，无前驱元素
-	if i == -1 || i == 0 {
-		return nil, false
-	} else {
-		pre := l.Data[i-1]
-		return pre, true
-	}
+   i, _ := l.LocateElem(elem)
+   if i == -1 || i == 0 {
+      return nil, false
+   } else {
+      pre := l.Data[i-1]
+      return pre, true
+   }
 }
 
 // NextElem 寻找元素的后驱（当前元素的后一个元素）
 func (l *SqList) NextElem(elem interface{}) (interface{}, bool) {
-	i, _ := l.LocateELem(elem)
-	// 顺序表中不存在该元素，或者元素为最后一个元素，无后驱元素
-	if i == -1 || i == l.Len-1 {
-		return nil, false
-	} else {
-		N := l.Data[i+1]
-		return N, true
-	}
+   i, _ := l.LocateElem(elem)
+   if i == l.Len || i == -1 {
+      return nil, false
+   } else {
+      next := l.Data[i+1]
+      return next, true
+   }
 }
 
 // ListInsert 插入元素,index为插入的位置，elem为插入值
 func (l *SqList) ListInsert(index int, elem interface{}) bool {
-	// 判断下标有效性，以及表是否满
-	if index < 0 || index > l.Capacity || l.ListFul() {
-		return false
-	} else {
-		// 先将index位置元素以及之后的元素后移一位
-		for i := l.Len - 1; i >= index; i-- {
-			l.Data[i+1] = l.Data[i]
-		}
-		// 插入元素
-		l.Data[index] = elem
-		l.Len++
-		return true
-	}
+   if index < 0 || index > l.Capacity || l.ListFull() {
+      return false
+   } else {
+      for i := l.Len - 1; i >= index; i-- {
+         l.Data[i+1] = l.Data[i]
+      }
+      l.Data[index] = elem
+      l.Len++
+      return true
+   }
 }
 
 // ListDelete 删除元素
 func (l *SqList) ListDelete(index int) bool {
-	// 判断下标有效性，以及表是否空
-	if index < 0 || index > l.Capacity || l.ListEmpty() {
-		return false
-	} else {
-		// 注意边界
-		for i := index; i < l.Len-1; i++ {
-			l.Data[i] = l.Data[i+1]
-		}
-		l.Len--
-		return true
-	}
+   if index < 0 || index > l.Capacity || l.ListEmpty() {
+      return false
+   } else {
+      for i := index; i < l.Len-1; i++ {
+         l.Data[i] = l.Data[i+1]
+      }
+      l.Len--
+      return true
+   }
 }
 
 // TraverseList 遍历
 func (l *SqList) TraverseList() {
-	for i := 0; i < l.Len; i++ {
-		fmt.Println(l.Data[i])
-	}
+   for i := 0; i < l.Len; i++ {
+      fmt.Println(l.Data[i])
+   }
+   //下面这种遍历不可取，因为会把整个Capacity大小的空间里的值都打印出来
+   //for _, val := range l.Data {
+   //	fmt.Println(val)
+   //}
 }
 
 // ClearList 清空
 func (l *SqList) ClearList() {
-	l.Len = 0
-	// 指针为空
-	l.Data = nil
+   l.Len = 0
+   l.Data = nil
 }
 
 // DestroyList 销毁
 func (l *SqList) DestroyList() {
-	l.Data = nil
-	l.Len = 0
-	l.Capacity = 0
-	l.ExtendRatio = 0
+   l.Data = nil
+   l.Len = 0
+   l.Capacity = 0
+   l.ExtendRatio = 0
 }
 
 // Pop 从末尾弹出一个元素
 func (l *SqList) Pop() interface{} {
-	if l.ListEmpty() {
-		panic("线性表长度为0，没有可弹出的元素")
-	}
-	result := l.Data[l.Len-1]
-	l.Data = l.Data[:l.Len-1]
-	l.Len--
-	return result
+   if l.ListEmpty() {
+      panic("线性表为空，没有可弹出的元素")
+   }
+   result := l.Data[l.Len-1]
+   l.Data = l.Data[:l.Len-1]
+   l.Len--
+   return result
 }
 
 // Append 从末尾插入一个元素
 func (l *SqList) Append(elem interface{}) bool {
-	if l.Len == l.Capacity {
-		panic("线性表已满，无法添加数据")
-	}
-	l.Data = append(l.Data, elem)
-	l.Len++
-	return true
+   if l.ListFull() {
+      panic("线性表已满，无法插入元素")
+   }
+   l.Data = append(l.Data, elem)
+   l.Len++
+   return true
 }
 
 // ExtendCapacity 扩容
 func (l *SqList) ExtendCapacity() {
-	// 新建一个长度为 self.__size 的数组，并将原数组拷贝到新数组
-	l.Data = append(l.Data, make([]interface{}, l.Capacity*(l.ExtendRatio-1))...)
-	// 更新列表容量
-	l.Capacity = len(l.Data)
+   // 因为append函数自身实现有扩容机制，所以，不需要考虑l.Data后面连续空间不足的问题，不足的话会分配新的内存空间创建新的切片
+   l.Data = append(l.Data, make([]interface{}, l.Capacity*(l.ExtendRatio-1))...)
+   l.Capacity = len(l.Data)
 }
 
-// Reserve 反转
-func (l *SqList) Reserve() {
-	for i := 0; i < l.Len/2; i++ {
-		tmp := l.Data[i]
-		l.Data[i] = l.Data[l.Len-i-1]
-		l.Data[l.Len-i-1] = tmp
-	}
+// Reverse 反转
+func (l *SqList) Reverse() {
+   for i := 0; i < l.Len>>1; i++ {
+      l.Data[i], l.Data[l.Len-i-1] = l.Data[l.Len-i-1], l.Data[i]
+   }
 }
+
 ```
 
 #### 测试代码
@@ -555,100 +539,99 @@ func (l *SqList) Reserve() {
 package sequence_list
 
 import (
-	"fmt"
-	"testing"
+   "fmt"
+   "testing"
 )
 
 func TestSqList(t *testing.T) {
-	var li SqList
-	// 初始化 1
-	li.InitList(4)
-	// 初始化 2
-	//li = NewSeqList(4)
-	// 判空
-	fmt.Println(li.ListEmpty()) // true
-	// 判满
-	fmt.Println(li.ListFul()) // false
-	// 定义一个Struct类型
-	type s struct {
-		name string
-		age  int
-	}
-	student1 := s{name: "abc", age: 10}
-	student2 := s{name: "efg", age: 10}
-	// 插入元素
-	li.ListInsert(0, student1)
-	li.ListInsert(1, student2)
-	// 判空
-	fmt.Println(li.ListEmpty()) // false
-	// 插入元素
-	li.ListInsert(2, 1000)
-	li.ListInsert(3, "GOGO")
+   var sl SqList
+   //初始化
+   sl.InitList(4)
+   //sl = NewSqList(4)
+   //判空
+   fmt.Println(sl.ListEmpty()) // true
+   //判满
+   fmt.Println(sl.ListFull()) // false
+   // 定义一个Struct类型
+   type s struct {
+      name string
+      age  int
+   }
+   student1 := s{name: "hlb", age: 20}
+   student2 := s{name: "ljx", age: 18}
+   // 插入元素
+   sl.ListInsert(0, student1)
+   sl.ListInsert(1, student2)
+   // 判空
+   fmt.Println(sl.ListEmpty()) // false
+   // 插入元素
+   sl.ListInsert(2, 1000)
+   sl.ListInsert(3, "GOGO")
 
-	// 遍历
-	li.TraverseList() // {abc 10} {efg 10} 1000 GoGO
-	// 获取长度
-	fmt.Println(li.ListLength()) // 4
-	// 判满
-	fmt.Println(li.ListFul()) // true
-	// 插入元素
-	fmt.Println(li.ListInsert(4, "jjj")) // false,已满插入失败
+   // 遍历
+   sl.TraverseList() // {hlb 20} {ljx 18} 1000 GoGO
+   // 获取长度
+   fmt.Println(sl.ListLength()) // 4
+   // 判满
+   fmt.Println(sl.ListFull()) // true
+   // 插入元素
+   fmt.Println(sl.ListInsert(4, "jjj")) // false
 
-	// 扩容
-	li.ExtendCapacity()
-	// 获取长度
-	fmt.Println("扩容后的容量：", li.Capacity)  // 8
-	fmt.Println(li.ListInsert(4, "jjj")) // true
-	// 遍历
-	li.TraverseList() // {abc 10} {efg 10} 1000 GoGO jjj
+   // 扩容
+   sl.ExtendCapacity()
+   // 获取长度
+   fmt.Println("扩容后的容量：", sl.Capacity)  // 8
+   fmt.Println(sl.ListInsert(4, "jjj")) // true
+   // 遍历
+   sl.TraverseList() // {hlb 20} {ljx 18} 1000 GoGO jjj
 
-	// 删除元素,索引为2
-	li.ListDelete(2)
-	// 遍历
-	li.TraverseList() // {abc 10} {efg 10} GoGO jjj
+   // 删除元素,索引为2
+   sl.ListDelete(2)
+   // 遍历
+   sl.TraverseList() // {hlb 20} {ljx 18} GoGO jjj
 
-	// 根据下标Get元素
-	el, _ := li.GetElem(1)
-	fmt.Println(el) // {efg 10}
+   // 根据下标Get元素
+   el, _ := sl.GetElem(1)
+   fmt.Println(el) // {ljx 18}
 
-	// 更新元素
-	fmt.Println("更新元素：", li.SetElem("超哥哥", 2)) // true
-	// 遍历
-	li.TraverseList() // {abc 10} {efg 10} 超哥哥 jjj
+   // 更新元素
+   fmt.Println("更新元素：", sl.SetElem("超哥哥", 2)) // true
+   // 遍历
+   sl.TraverseList() // {hlb 20} {ljx 18} 超哥哥 jjj
 
-	// 根据传入的值，返回第一个匹配的元素下标
-	b, b1 := li.LocateELem(student2)
-	fmt.Println(b, b1) // 1 true
+   // 根据传入的值，返回第一个匹配的元素下标
+   b, b1 := sl.LocateElem(student2)
+   fmt.Println(b, b1) // 1 true
 
-	// 寻找元素的后驱
-	n1, n2 := li.NextElem(student2)
-	fmt.Println(n1, n2) // 超哥哥 true
+   // 寻找元素的后驱
+   n1, n2 := sl.NextElem(student2)
+   fmt.Println(n1, n2) // 超哥哥 true
 
-	// 寻找元素的前驱
-	p1, p2 := li.PriorElem("超哥哥")
-	fmt.Println(p1, p2) // {efg 10} true
+   // 寻找元素的前驱
+   p1, p2 := sl.PriorElem("超哥哥")
+   fmt.Println(p1, p2) // {ljx 18} true
 
-	// {abc 10} {efg 10} 超哥哥 jjj
-	// 从末尾弹出一个元素
-	p1 = li.Pop()
-	fmt.Println("从末尾弹出一个元素:", p1) // 从末尾弹出一个元素: jjj
-	li.TraverseList()             // 遍历 {abc 10} {efg 10} 超哥哥
+   // 从末尾弹出一个元素
+   p1 = sl.Pop()
+   fmt.Println("从末尾弹出一个元素:", p1) // 从末尾弹出一个元素: jjj
+   sl.TraverseList()             // 遍历 {hlb 20} {ljx 18} 超哥哥
 
-	// 从末尾插入一个元素
-	fmt.Println("从末尾插入一个元素", li.Append("超哥12")) // true
-	li.TraverseList()                           // 遍历 {abc 10} {efg 10} 超哥哥 超哥12
+   // 从末尾插入一个元素
+   fmt.Println("从末尾插入一个元素", sl.Append("gopher")) // true
+   sl.TraverseList()                             // 遍历 {hlb 20} {ljx 18} 超哥哥 gopher
 
-	// 反转
-	li.Reserve()
-	li.TraverseList() // 遍历   超哥12 超哥哥 {efg 10} {abc 10}
+   // 反转
+   sl.Reverse()
+   sl.TraverseList() // 遍历 gopher 超哥哥 {ljx 18} {hlb 20}
 
-	// 清空
-	li.ClearList()
-	fmt.Println(li.ListEmpty()) // true
+   // 清空
+   sl.ClearList()
+   fmt.Println(sl.ListEmpty()) // true
 
-	// 遍历
-	li.TraverseList()
+   // 遍历
+   sl.TraverseList()
 }
+
 ```
 
 #### 复杂度
