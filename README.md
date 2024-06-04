@@ -289,6 +289,9 @@
 * Redis深度历险：核心原理和应用实践【TALKDATA推荐】
 * Redis实战 【gebilxs推荐】
 
+## 💻 Web
+* [web](https://github.com/mao888/golang-guide/blob/main/web/README.md)
+
 ## 💻 设计模式
 * [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
 * [常见设计模式](https://github.com/mao888/golang-guide/blob/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
