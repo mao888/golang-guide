@@ -292,6 +292,53 @@
 ## 💻 Web
 * [web](https://github.com/mao888/golang-guide/blob/main/web/README.md)
 
+## 💻 项目
+### 规范
+* [git规范](https://github.com/mao888/golang-guide/tree/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83)
+* [CodeReview规则](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/CodeReview%E8%A7%84%E5%88%99.md)
+* [ssh远程登录报错：WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83/ARNING%20REMOTE%20HOST%20IDENTIFICATION%20HAS%20CHANGED.md)
+* [数据库的设计规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
+* [阿里官方 Redis 开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%98%BF%E9%87%8C%E5%AE%98%E6%96%B9%20Redis%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
+* [项目开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
+* [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
+* [Go风格指南](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
+### 👍 设计方案及调研
+* [Oauth2.0](https://github.com/mao888/golang-guide/tree/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Oauth2.0)
+* [golang迁移1亿条mysql数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E8%BF%81%E7%A7%BB1%E4%BA%BF%E6%9D%A1mysql%E6%95%B0%E6%8D%AE.md)
+* [高并发系统设计](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
+* [content-type](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/content-type.md)
+* [对象存储 OSS](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20OSS.md)
+* [登录方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
+* [第三方登陆](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95.md)
+* [基于RBAC的用户权限管理系统](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9F%BA%E4%BA%8ERBAC%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F.md)
+* [国内支付前后端方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BD%E5%86%85%E6%94%AF%E4%BB%98%E5%89%8D%E5%90%8E%E7%AB%AF%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
+* [图片-文字-动图敏感过滤](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BE%E7%89%87-%E6%96%87%E5%AD%97-%E5%8A%A8%E5%9B%BE%E6%95%8F%E6%84%9F%E8%BF%87%E6%BB%A4.md)
+* [PG VS Mysql](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/PG%20VS%20Mysql.md)
+* [Tidb](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Tidb.md)
+* [钉钉发送工作消息通知](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%92%89%E9%92%89%E5%8F%91%E9%80%81%E5%B7%A5%E4%BD%9C%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.md)
+* [golang实现根据图片url转成*os.File](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E5%AE%9E%E7%8E%B0%E6%A0%B9%E6%8D%AE%E5%9B%BE%E7%89%87url%E8%BD%AC%E6%88%90File.md)
+* [redis分布式锁及双重校验](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%8F%8A%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C.md)
+* [go实现判断当两个参数确定时,第三个参数必须是唯一的](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/go%E5%AE%9E%E7%8E%B0%E5%88%A4%E6%96%AD%E5%BD%93%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%E7%A1%AE%E5%AE%9A%E6%97%B6%2C%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E5%BF%85%E9%A1%BB%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84.md)
+* [Golang根据指定的两个字段，批量删除数据库中的相关记录](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Golang%E6%A0%B9%E6%8D%AE%E6%8C%87%E5%AE%9A%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AD%97%E6%AE%B5%EF%BC%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95.md)
+* [golang使用信号量并发安全的迁移千万条数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E4%BD%BF%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E7%9A%84%E8%BF%81%E7%A7%BB%E5%8D%83%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE.md)
+* [分类标签tree](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%88%86%E7%B1%BB%E6%A0%87%E7%AD%BEtree.md)
+### 业务
+* [三方抓数](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E4%B8%89%E6%96%B9%E6%8A%93%E6%95%B0)
+* [字节广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%AD%97%E8%8A%82%E5%B9%BF%E5%91%8A)
+* [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
+* [tiktok广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/tiktok%E5%B9%BF%E5%91%8A)
+* [小游戏归因](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BD%92%E5%9B%A0/%E5%B7%A8%E9%87%8F/%E5%BE%AE%E4%BF%A1)
+* [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
+* [golang递归实现类别树(CategoryTree)](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/golang%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%88%AB%E6%A0%91(CategoryTree).md)
+### 推荐项目
+* [golang项目](https://github.com/mao888/golang-guide/blob/main/project/%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md)
+
+### 数据迁移 data-sync
+* [mongo-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mongo-to-mysql)
+* [mysql-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mysql-to-mysql)
+> 由于涉及到数据库安全问题,故未上传db.go文件。请自行编写数据连接初始化文件。
+
+
 ## 💻 设计模式
 * [Go 语言设计模式](https://github.com/mao888/golang-guide/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)(必看👍 )
 * [常见设计模式](https://github.com/mao888/golang-guide/blob/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%B8%B8%E8%A7%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F.md)
@@ -461,52 +508,6 @@
 数据脱敏说的就是我们根据特定的规则对敏感信息数据进行变形，比如我们把手机号、身份证号某些位数使用 * 来代替。
 ### 敏感词过滤
 [敏感词过滤方案总结](https://github.com/Snailclimb/JavaGuide/blob/main/docs/system-design/security/sentive-words-filter.md)
-
-## 💻 项目
-### 规范
-* [git规范](https://github.com/mao888/golang-guide/tree/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83)
-* [CodeReview规则](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/CodeReview%E8%A7%84%E5%88%99.md)
-* [ssh远程登录报错：WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/git%E8%A7%84%E8%8C%83/ARNING%20REMOTE%20HOST%20IDENTIFICATION%20HAS%20CHANGED.md)
-* [数据库的设计规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83.md)
-* [阿里官方 Redis 开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%98%BF%E9%87%8C%E5%AE%98%E6%96%B9%20Redis%20%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
-* [项目开发规范](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83.md)
-* [Golang开发规约](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Golang%E5%BC%80%E5%8F%91%E8%A7%84%E7%BA%A6.md)
-* [Go风格指南](https://github.com/mao888/golang-guide/blob/main/project/%E8%A7%84%E8%8C%83/Go%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97.md)
-### 👍 设计方案及调研
-* [Oauth2.0](https://github.com/mao888/golang-guide/tree/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Oauth2.0)
-* [golang迁移1亿条mysql数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E8%BF%81%E7%A7%BB1%E4%BA%BF%E6%9D%A1mysql%E6%95%B0%E6%8D%AE.md)
-* [高并发系统设计](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%AB%98%E5%B9%B6%E5%8F%91%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1.md)
-* [content-type](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/content-type.md)
-* [对象存储 OSS](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%20OSS.md)
-* [登录方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%99%BB%E5%BD%95%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
-* [第三方登陆](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E7%AC%AC%E4%B8%89%E6%96%B9%E7%99%BB%E5%BD%95.md)
-* [基于RBAC的用户权限管理系统](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9F%BA%E4%BA%8ERBAC%E7%9A%84%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F.md)
-* [国内支付前后端方案调研](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BD%E5%86%85%E6%94%AF%E4%BB%98%E5%89%8D%E5%90%8E%E7%AB%AF%E6%96%B9%E6%A1%88%E8%B0%83%E7%A0%94.md)
-* [图片-文字-动图敏感过滤](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%9B%BE%E7%89%87-%E6%96%87%E5%AD%97-%E5%8A%A8%E5%9B%BE%E6%95%8F%E6%84%9F%E8%BF%87%E6%BB%A4.md)
-* [PG VS Mysql](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/PG%20VS%20Mysql.md)
-* [Tidb](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Tidb.md)
-* [钉钉发送工作消息通知](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E9%92%89%E9%92%89%E5%8F%91%E9%80%81%E5%B7%A5%E4%BD%9C%E6%B6%88%E6%81%AF%E9%80%9A%E7%9F%A5.md)
-* [golang实现根据图片url转成*os.File](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E5%AE%9E%E7%8E%B0%E6%A0%B9%E6%8D%AE%E5%9B%BE%E7%89%87url%E8%BD%AC%E6%88%90File.md)
-* [redis分布式锁及双重校验](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E5%8F%8A%E5%8F%8C%E9%87%8D%E6%A0%A1%E9%AA%8C.md)
-* [go实现判断当两个参数确定时,第三个参数必须是唯一的](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/go%E5%AE%9E%E7%8E%B0%E5%BD%93%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%E7%A1%AE%E5%AE%9A%E6%97%B6%2C%E7%AC%AC%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0%E5%BF%85%E9%A1%BB%E6%98%AF%E5%94%AF%E4%B8%80%E7%9A%84.md)
-* [Golang根据指定的两个字段，批量删除数据库中的相关记录](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/Golang%E6%A0%B9%E6%8D%AE%E6%8C%87%E5%AE%9A%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%AD%97%E6%AE%B5%EF%BC%8C%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84%E7%9B%B8%E5%85%B3%E8%AE%B0%E5%BD%95.md)
-* [golang使用信号量并发安全的迁移千万条数据](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/golang%E4%BD%BF%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%B9%B6%E5%8F%91%E5%AE%89%E5%85%A8%E7%9A%84%E8%BF%81%E7%A7%BB%E5%8D%83%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE.md)
-* [分类标签tree](https://github.com/mao888/golang-guide/blob/main/project/%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E5%8F%8A%E8%B0%83%E7%A0%94/%E5%88%86%E7%B1%BB%E6%A0%87%E7%AD%BEtree.md)
-### 业务
-* [三方抓数](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E4%B8%89%E6%96%B9%E6%8A%93%E6%95%B0)
-* [字节广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%AD%97%E8%8A%82%E5%B9%BF%E5%91%8A)
-* [腾讯广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E8%85%BE%E8%AE%AF%E5%B9%BF%E5%91%8A)
-* [tiktok广告](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/tiktok%E5%B9%BF%E5%91%8A)
-* [小游戏归因](https://github.com/mao888/golang-guide/tree/main/project/%E4%B8%9A%E5%8A%A1/%E5%B0%8F%E6%B8%B8%E6%88%8F%E5%BD%92%E5%9B%A0/%E5%B7%A8%E9%87%8F/%E5%BE%AE%E4%BF%A1)
-* [增量更新从Facebook获取的广告业务](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/%E5%A2%9E%E9%87%8F%E6%9B%B4%E6%96%B0%E4%BB%8EFacebook%E8%8E%B7%E5%8F%96%E7%9A%84%E5%B9%BF%E5%91%8A%E4%B8%9A%E5%8A%A1.md)
-* [golang递归实现类别树(CategoryTree)](https://github.com/mao888/golang-guide/blob/main/project/%E4%B8%9A%E5%8A%A1/golang%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E7%B1%BB%E5%88%AB%E6%A0%91(CategoryTree).md)
-### 推荐项目
-* [golang项目](https://github.com/mao888/golang-guide/blob/main/project/%E6%8E%A8%E8%8D%90%E9%A1%B9%E7%9B%AE/golang%E9%A1%B9%E7%9B%AE.md)
-
-### 数据迁移 data-sync
-* [mongo-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mongo-to-mysql)
-* [mysql-to-mysql](https://github.com/mao888/golang-guide/tree/main/project/data-sync/mysql-to-mysql)
-> 由于涉及到数据库安全问题,故未上传db.go文件。请自行编写数据连接初始化文件。
 
 ## 💻 分布式
 * [API 网关详解](https://github.com/mao888/golang-guide/blob/main/%E5%88%86%E5%B8%83%E5%BC%8F/API%20%E7%BD%91%E5%85%B3%E8%AF%A6%E8%A7%A3.md)
