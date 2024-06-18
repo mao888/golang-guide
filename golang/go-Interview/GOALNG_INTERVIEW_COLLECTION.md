@@ -572,6 +572,8 @@ import _ "test/food"
 
 https://www.cnblogs.com/waken-captain/p/10496454.html
 
+注：Golang1.22 版本对于for loop进行了修改，详见 [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview)  
+
 ### 20、写go单元测试的规范？
 
 1.  **单元测试文件命名规则 ：**
