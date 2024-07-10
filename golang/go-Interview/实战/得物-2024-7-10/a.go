@@ -13,6 +13,13 @@ import "fmt"
 //	Next *ListNode
 //}
 
+func f() {
+	defer fmt.Println("D")
+	fmt.Println("F")
+}
+
 func main() {
-	fmt.Println("hello")
+	defer fmt.Println("N")
+	f()
+	fmt.Println("M")
 }
