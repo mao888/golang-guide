@@ -5,12 +5,13 @@ import (
 	"sync"
 	"time"
 )
+
 // 6、设计一个好友管理系统，用户可以在系统中添加好友、发送消息、查看好友动态等。要求系统记录用户之间的交互，并提供查询功能。
 
 // User 用户结构体
 type User struct {
-	ID       string // 用户ID
-	Name     string // 用户名
+	ID       string          // 用户ID
+	Name     string          // 用户名
 	Friends  map[string]bool // 好友ID列表
 	Messages []Message       // 接收到的消息列表
 	Dynamics []Dynamic       // 用户动态列表
@@ -26,16 +27,16 @@ type Friendship struct {
 
 // Message 消息结构体
 type Message struct {
-	From   string // 发送者ID
-	To     string // 接收者ID
-	Content string // 消息内容
+	From    string    // 发送者ID
+	To      string    // 接收者ID
+	Content string    // 消息内容
 	Time    time.Time // 发送时间
 }
 
 // Dynamic 动态结构体
 type Dynamic struct {
 	UserID    string
-	Content   string // 动态内容
+	Content   string    // 动态内容
 	Timestamp time.Time // 发布时间
 }
 
@@ -52,8 +53,8 @@ func (u *User) SendMessage(toUserID, content string) {
 	defer u.mutex.Unlock()
 	// 在实际应用中，你可能需要验证toUserID是否为u的好友
 	msg := Message{
-		From:   u.ID,
-		To:     toUserID,
+		From:    u.ID,
+		To:      toUserID,
 		Content: content,
 		Time:    time.Now(),
 	}
@@ -117,3 +118,4 @@ func main() {
 
 	// Bob 发布动态
 	user2.PostDynamic("Just had a great day at the beach!")
+}
