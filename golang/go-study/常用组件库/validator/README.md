@@ -373,7 +373,7 @@ if err := v.RegisterValidation("checkDate", customFunc); err != nil {
 这样，我们就可以对请求参数中`date`字段执行自定义的`checkDate`进行校验了。 我们发送如下请求测试一下：
 
 ```bash
-curl -H "Content-type: application/json" -X POST -d '{"name":"q1mi","age":18,"email":"123@qq.com","password":"123", "re_password": "123", "date":"2020-01-02"}' http://127.0.0.1:8999/signup
+curl -H "Content-type: application/json" -X POST -d '{"name":"q1mi","age":18,"email":"123@QQ飞车手游.com","password":"123", "re_password": "123", "date":"2020-01-02"}' http://127.0.0.1:8999/signup
 ```
 
 此时得到的响应结果是：
