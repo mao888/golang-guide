@@ -5,42 +5,34 @@ import (
 	"time"
 )
 
-// 计算当前UTC时间距离下一个周五0点的秒数，并返回这是年初以来的第几周
-func timeToNextFridayUTC() (seconds int64, weekNumber int) {
-	// 获取当前UTC时间
+// GetNextFridayUTCCountdown 计算下一个 UTC 时间每周五 0 点的倒计时秒数，并返回当前是哪一周
+func GetNextFridayUTCCountdown() (int64, int) {
 	now := time.Now().UTC()
+	_, week := now.ISOWeek()
 
-	// 计算本周的周五（即本周几到周五的差值）
-	weekday := int(now.Weekday())
-	// 周一=0, 周二=1, ..., 周日=6
-	// 如果今天是周五或之后，则计算下周的周五
-	daysUntilFriday := 5 - weekday
-	if daysUntilFriday <= 0 {
-		daysUntilFriday += 7
+	// 计算本周五的日期
+	var nextFriday time.Time
+	if now.Weekday() <= time.Friday {
+		nextFriday = time.Date(now.Year(), now.Month(), now.Day()+(5-int(now.Weekday())), 0, 0, 0, 0, time.UTC)
+	} else {
+		// 如果今天是周五之后的某一天，计算下周五的日期
+		nextFriday = time.Date(now.Year(), now.Month(), now.Day()+(7-int(now.Weekday())+5), 0, 0, 0, 0, time.UTC)
+		// 因为我们计算的是下周五，所以周数需要加1
+		_, week = nextFriday.ISOWeek()
 	}
 
-	// 计算下一个周五的UTC时间
-	nextFriday := now.AddDate(0, 0, daysUntilFriday)
-
-	// 如果当前时间已经过了今天的0点，则nextFriday是今天之后的周五；
-	// 否则，如果现在是今天的0点之前，nextFriday实际上是“今天”的周五（如果今天是周五或之前）
-	// 但因为我们总是想要下一个周五（或今天的周五如果已经过了午夜），所以上面的逻辑已经处理了这一点
-
-	// 计算距离下一个周五0点的秒数
-	secondsUntilNextFriday := nextFriday.Sub(now.Truncate(24 * time.Hour)).Seconds()
-
-	// 计算这是年初以来的第几周
-	// 注意：ISO 8601周数计算可能稍微复杂一些，这里我们简化处理，只考虑从年初到今天的总天数然后除以7
-	// 注意这种方式可能不会完全符合ISO 8601标准（特别是年初和年末）
-	yearStart := time.Date(now.Year(), 1, 1, 0, 0, 0, 0, time.UTC)
-	daysSinceYearStart := int(now.Sub(yearStart).Hours() / 24)
-	weekNumber = (daysSinceYearStart / 7) + 1 // +1是因为我们想要的是周数，不是从0开始的索引
-
-	return int64(secondsUntilNextFriday), weekNumber
+	// 计算倒计时秒数
+	countdown := nextFriday.Sub(now).Seconds()
+	return int64(countdown), week
 }
 
 func main() {
-	seconds, weekNumber := timeToNextFridayUTC()
-	fmt.Printf("距离下一个周五0点还有 %d 秒\n", seconds)
-	fmt.Printf("这是年初以来的第 %d 周\n", weekNumber)
+	countdown, week := GetNextFridayUTCCountdown()
+	fmt.Printf("距离下一个 UTC 时间每周五 0 点的倒计时秒数: %d 秒\n", countdown)
+	fmt.Printf("当前是第 %d 周\n", week)
+
+	// 计算并显示北京时间
+	now := time.Now().UTC()
+	beijingTime := now.Add(8 * time.Hour)
+	fmt.Printf("当前北京时间: %s\n", beijingTime.Format("2006-01-02 15:04:05"))
 }
