@@ -383,6 +383,8 @@ import _ "test/food"
 引入包时，会先调用包中的初始化函数，这种使用方式仅让导入的包做初始化，而不使用包中其他功能
 ### 19、goroutine创建的时候如果要传一个参数进去有什么要注意的点？
 [https://www.cnblogs.com/waken-captain/p/10496454.html](https://www.cnblogs.com/waken-captain/p/10496454.html)
+注：Golang1.22 版本对于for loop进行了修改，详见 [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview)  
+
 ### 20、写go单元测试的规范？
 
 1. ** 单元测试文件命名规则 ：**
@@ -524,7 +526,11 @@ b:= make([]int,3,5)
 
 ### **2、**[**讲讲 Go 的 slice 底层数据结构和一些特性？**](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiaslice)
 答：Go 的 slice 底层数据结构是由一个 array 指针指向底层数组，len 表示切片长度，cap 表示切片容量。slice 的主要实现是扩容。对于 append 向 slice 添加元素时，假如 slice 容量够用，则追加新元素进去，slice.len++，返回原来的 slice。当原容量不够，则 slice 先扩容，扩容之后 slice 得到新的 slice，将元素追加进新的 slice，slice.len++，返回新的 slice。对于切片的扩容规则：当切片比较小时（容量小于 1024），则采用较大的扩容倍速进行扩容（新的扩容会是原来的 2 倍），避免频繁扩容，从而减少内存分配的次数和数据拷贝的代价。当切片较大的时（原来的 slice 的容量大于或者等于 1024），采用较小的扩容倍速（新的扩容将扩大大于或者等于原来 1.25 倍），主要避免空间浪费，网上其实很多总结的是 1.25 倍，那是在不考虑内存对齐的情况下，实际上还要考虑内存对齐，扩容是大于或者等于 1.25 倍。
+
+注：Go的切片扩容[源代码](https://github.com/golang/go/blob/master/src/runtime/slice.go)在runtime下的growslice函数
+
 （关于刚才问的 slice 为什么传到函数内可能被修改，如果 slice 在函数内没有出现扩容，函数外和函数内 slice 变量指向是同一个数组，则函数内复制的 slice 变量值出现更改，函数外这个 slice 变量值也会被修改。如果 slice 在函数内出现扩容，则函数内变量的值会新生成一个数组（也就是新的 slice，而函数外的 slice 指向的还是原来的 slice，则函数内的修改不会影响函数外的 slice。）
+
 ### 3、golang中数组和slice作为参数的区别？slice作为参数传递有什么问题？
 [golang数组和切片作为参数和返回值_weixin_44387482的博客-CSDN博客_golang 返回数组](https://blog.csdn.net/weixin_44387482/article/details/119763558)
 
@@ -1068,7 +1074,8 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 #### M0
 M0是启动程序后的编号为0的主线程，这个M对应的实例会在全局变量runtime.m0中，不需要在heap上分配，M0负责执行初始化操作和启动第一个G， 在之后M0就和其他的M一样了。
 #### G0
-G0是每次启动一个M都会第一个创建的gourtine，G0仅用于负责调度的G，G0不指向任何可执行的函数, 每个M都会有一个自己的G0。在调度或系统调用时会使用G0的栈空间, 全局变量的G0是M0的G0。
+G0是每次启动一个M都会第一个创建的goroutine，G0仅用于负责调度的G，G0不指向任何可执行的函数, 每个M都会有一个自己的G0。在调度或系统调用时会使用G0的栈空间, 全局变量的G0是M0的G0。
+
 我们来跟踪一段代码
 ```go
 package main 
