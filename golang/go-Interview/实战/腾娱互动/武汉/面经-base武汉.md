@@ -1,5 +1,4 @@
 # 一面-base武汉-挂-7.9
-[腾娱互动-一面- 2024-7-9.mp3](https://www.yuque.com/attachments/yuque/0/2024/mp3/22219483/1720615881909-b42d9e8f-9f2c-48f1-bffb-8bf77fdcf2b7.mp3?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2024%2Fmp3%2F22219483%2F1720615881909-b42d9e8f-9f2c-48f1-bffb-8bf77fdcf2b7.mp3%22%2C%22name%22%3A%22%E8%85%BE%E5%A8%B1%E4%BA%92%E5%8A%A8-%E4%B8%80%E9%9D%A2-%202024-7-9.mp3%22%2C%22size%22%3A103958877%2C%22ext%22%3A%22mp3%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22u1b70d509-9073-4dc8-aef4-2db8fac579d%22%2C%22taskType%22%3A%22transfer%22%2C%22type%22%3A%22audio%2Fmpeg%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22ua19dde2a%22%2C%22card%22%3A%22file%22%7D)
 
 1. 为什么想离职
 2. 对我们的招聘岗位有了解吗

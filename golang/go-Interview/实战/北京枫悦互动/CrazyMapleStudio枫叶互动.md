@@ -10,7 +10,6 @@
 
 ---
 
-[24 年 7月2号 枫悦互动一面.mp3](https://www.yuque.com/attachments/yuque/0/2024/mp3/22219483/1719921770470-14b1c81c-7585-4773-b28f-d1925acbc682.mp3?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2024%2Fmp3%2F22219483%2F1719921770470-14b1c81c-7585-4773-b28f-d1925acbc682.mp3%22%2C%22name%22%3A%2224%20%E5%B9%B4%207%E6%9C%882%E5%8F%B7%20%E6%9E%AB%E6%82%A6%E4%BA%92%E5%8A%A8%E4%B8%80%E9%9D%A2.mp3%22%2C%22size%22%3A243785020%2C%22ext%22%3A%22mp3%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22ub5c42a2d-1210-43c2-b8e2-9cb861fbbf2%22%2C%22taskType%22%3A%22upload%22%2C%22type%22%3A%22audio%2Fmpeg%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u544c2d0b%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 ##  一面-技术面-2024.7.2-过
 
 1. 笔试
@@ -45,7 +44,6 @@
    4. 团队正在组建 3 个人了
    5. 会把我的面试细节上报给项目组，项目组约业务面试，然后人事面
 ## 技术面+业务面 2024.7.9 - 挂
-[枫悦互动二面(技术加业务) - 现场面 - 2024-7-9.mp3](https://www.yuque.com/attachments/yuque/0/2024/mp3/22219483/1720540316458-a961b981-20c6-4aab-826e-ce02a57bf000.mp3?_lake_card=%7B%22src%22%3A%22https%3A%2F%2Fwww.yuque.com%2Fattachments%2Fyuque%2F0%2F2024%2Fmp3%2F22219483%2F1720540316458-a961b981-20c6-4aab-826e-ce02a57bf000.mp3%22%2C%22name%22%3A%22%E6%9E%AB%E6%82%A6%E4%BA%92%E5%8A%A8%E4%BA%8C%E9%9D%A2(%E6%8A%80%E6%9C%AF%E5%8A%A0%E4%B8%9A%E5%8A%A1)%20-%20%E7%8E%B0%E5%9C%BA%E9%9D%A2%20-%202024-7-9.mp3%22%2C%22size%22%3A103022877%2C%22ext%22%3A%22mp3%22%2C%22source%22%3A%22%22%2C%22status%22%3A%22done%22%2C%22download%22%3Atrue%2C%22taskId%22%3A%22ud9ccbc83-1daa-46f7-8a6b-a18c436d1af%22%2C%22taskType%22%3A%22upload%22%2C%22type%22%3A%22audio%2Fmpeg%22%2C%22__spacing%22%3A%22both%22%2C%22mode%22%3A%22title%22%2C%22id%22%3A%22u0c41eb9c%22%2C%22margin%22%3A%7B%22top%22%3Atrue%2C%22bottom%22%3Atrue%7D%2C%22card%22%3A%22file%22%7D)
 
 1.  领导进来，拿着电脑让深圳的同事先来一轮技术面试
 2. 深圳技术面
