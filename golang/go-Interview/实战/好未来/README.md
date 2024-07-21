@@ -1,8 +1,5 @@
 ![img](https://cdn.nlark.com/yuque/0/2022/png/22219483/1662559577785-11ae2ddd-fcf7-40fe-a1b7-06bf76ac267d.png)
 
-- https://www.bilibili.com/audio/au3503710?type=1
-- [📎好未来一面 - 技术面- 9月7号.mp3](https://www.yuque.com/attachments/yuque/0/2022/mp3/22219483/1662559593801-fc4f8dbe-f3f2-49a0-86c8-a44dcb362162.mp3)
-
 ------
 
 1.  自我介绍
