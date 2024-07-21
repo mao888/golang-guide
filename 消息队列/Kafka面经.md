@@ -1,5 +1,4 @@
-## 1. Apache Kafka是什么？
-
+## 1. [Apache Kafka是什么？](https://golangguide.top/%E4%B8%AD%E9%97%B4%E4%BB%B6/kafka/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/kafka%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9E%B6%E6%9E%84%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F.html)
 Apach Kafka是一款分布式流处理平台，用于实时构建流处理应用。它有一个核心的功能广为人知，即作为企业级的消息引擎被广泛使用（通常也会称之为消息总线message bus）。
 
 ## 2. Kafka 的设计是什么样的？
@@ -24,7 +23,7 @@ producers 通过网络将消息发送到 Kafka 集群，集群向消费者提供
 
 在 `Kafka 0.8` 以后，提供了 `HA` 机制，就是 `replica` 副本机制。每个 `partition` 上的数据都会同步到其它机器，形成自己的多个 `replica` 副本。所有 `replica` 会选举一个 `leader` 出来，消息的生产者和消费者都跟这个 `leader` 打交道，其他 `replica` 作为 `follower`。写的时候，`leader` 会负责把数据同步到所有 `follower` 上去，读的时候就直接读 `leader` 上的数据即可。`Kafka` 负责均匀的将一个 `partition` 的所有 `replica` 分布在不同的机器上，这样才可以提高容错性。
 
-![img](http://blog-img.coolsen.cn/img/Solve-MQ-Problem-With-Kafka-01.png)
+![](http://blog-img.coolsen.cn/img/Solve-MQ-Problem-With-Kafka-01.png#id=rYdVj&originHeight=283&originWidth=553&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 拥有了 `replica` 副本机制，如果某个 `broker` 宕机了，这个 `broker` 上的 `partition` 在其他机器上还存在副本。如果这个宕机的 `broker` 上面有某个 `partition` 的 `leader`，那么此时会从其 `follower` 中重新选举一个新的 `leader` 出来，这个新的 `leader` 会继续提供读写服务，这就有达到了所谓的高可用性。
 
@@ -32,7 +31,7 @@ producers 通过网络将消息发送到 Kafka 集群，集群向消费者提供
 
 消费数据的时候，消费者只会从 `leader` 节点去读取消息，但是只有当一个消息已经被所有 `follower` 都同步成功返回 `ack` 的时候，这个消息才会被消费者读到。
 
-![img](https://gitee.com/dongzl/article-images/raw/master/2020/13-Solve-MQ-Problem-With-Kafka/Solve-MQ-Problem-With-Kafka-02.png)
+![](https://gitee.com/dongzl/article-images/raw/master/2020/13-Solve-MQ-Problem-With-Kafka/Solve-MQ-Problem-With-Kafka-02.png#id=It5OH&originHeight=1534&originWidth=1633&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 ## 4. Kafka 消息是采用 Pull 模式，还是 Push 模式？
 
@@ -42,11 +41,9 @@ push模式很难适应消费速率不同的消费者，如果push的速度太快
 
 ## 5. Kafka 与传统消息系统之间的区别
 
-* Kafka 持久化日志，这些日志可以被重复读取和无限期保留
-
-* Kafka 是一个分布式系统：它以集群的方式运行，可以灵活伸缩，在内部通过复制数据提升容错能力和高可用性
-
-* Kafka 支持实时的流式处理
+-  Kafka 持久化日志，这些日志可以被重复读取和无限期保留 
+-  Kafka 是一个分布式系统：它以集群的方式运行，可以灵活伸缩，在内部通过复制数据提升容错能力和高可用性 
+-  Kafka 支持实时的流式处理 
 
 ## 6. 什么是消费者组？
 
@@ -56,7 +53,7 @@ push模式很难适应消费速率不同的消费者，如果push的速度太快
 
 需要注意的是：在消费者组中，多个实例共同订阅若干个主题，实现共同消费。同一个组下的每个实例都配置有相同的组ID，被分配不同的订阅分区。当某个实例挂掉的时候，其他实例会自动地承担起它负责消费的分区。 因此，消费者组在一定程度上也保证了消费者程序的高可用性。
 
-[![1.jpg](http://dockone.io/uploads/article/20201024/7b359b7a1381541fbacf3ecf20dfb347.jpg)](http://dockone.io/uploads/article/20201024/7b359b7a1381541fbacf3ecf20dfb347.jpg)
+![](http://dockone.io/uploads/article/20201024/7b359b7a1381541fbacf3ecf20dfb347.jpg#id=pdpbH&originHeight=225&originWidth=474&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 ## 7. 在Kafka中，ZooKeeper的作用是什么？
 
@@ -90,15 +87,15 @@ KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKe
 
 首先需要弄明白消息为什么会丢失，对于一个消息队列，会有 `生产者`、`MQ`、`消费者` 这三个角色，在这三个角色数据处理和传输过程中，都有可能会出现消息丢失。
 
-![img](http://blog-img.coolsen.cn/img/Solve-MQ-Problem-With-Kafka-03.png)
+![](http://blog-img.coolsen.cn/img/Solve-MQ-Problem-With-Kafka-03.png#id=fyJVA&originHeight=441&originWidth=1429&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
 消息丢失的原因以及解决办法：
 
 ### 消费者异常导致的消息丢失
 
-消费者可能导致数据丢失的情况是：消费者获取到了这条消息后，还未处理，`Kafka` 就自动提交了 `offset`，这时 `Kafka` 就认为消费者已经处理完这条消息，其实消费者才刚准备处理这条消息，这时如果消费者宕机，那这条消息就丢失了。
+**消费者可能导致数据丢失的情况是**：消费者获取到了这条消息后，还未处理，`Kafka` 就自动提交了 `offset`，这时 `Kafka` 就认为消费者已经处理完这条消息，其实消费者才刚准备处理这条消息，这时如果消费者宕机，那这条消息就丢失了。
 
-消费者引起消息丢失的主要原因就是消息还未处理完 `Kafka` 会自动提交了 `offset`，那么只要关闭自动提交 `offset`，消费者在处理完之后手动提交 `offset`，就可以保证消息不会丢失。但是此时需要注意重复消费问题，比如消费者刚处理完，还没提交 `offset`，这时自己宕机了，此时这条消息肯定会被重复消费一次，这就需要消费者根据实际情况保证幂等性。
+消费者引起消息丢失的主要原因就是消息还未处理完 `Kafka` 会自动提交了 `offset`，那么只要关闭自动提交 `offset`，消费者在处理完之后手动提交 `offset`，就可以保证消息不会丢失。但是此时需要注意重复消费问题，比如消费者刚处理完，还没提交 `offset`，这时自己宕机了，此时这条消息肯定会被重复消费一次，这就需要消费者根据实际情况保证**幂等性**。
 
 ### 生产者数据传输导致的消息丢失
 
@@ -106,7 +103,7 @@ KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKe
 
 ### Kafka 导致的消息丢失
 
-`Kafka` 导致的数据丢失一个常见的场景就是 `Kafka` 某个 `broker` 宕机，，而这个节点正好是某个 `partition` 的 `leader` 节点，这时需要重新重新选举该 `partition` 的 `leader`。如果该 `partition` 的 `leader` 在宕机时刚好还有些数据没有同步到 `follower`，此时 `leader` 挂了，在选举某个 `follower` 成 `leader` 之后，就会丢失一部分数据。
+`Kafka` 导致的数据丢失一个常见的场景就是 `Kafka` 某个 `broker` 宕机，而这个节点正好是某个 `partition` 的 `leader` 节点，这时需要重新重新选举该 `partition` 的 `leader`。如果该 `partition` 的 `leader` 在宕机时刚好还有些数据没有同步到 `follower`，此时 `leader` 挂了，在选举某个 `follower` 成 `leader` 之后，就会丢失一部分数据。
 
 对于这个问题，`Kafka` 可以设置如下 4 个参数，来尽量避免消息丢失：
 
@@ -139,6 +136,7 @@ ISR是由leader维护，follower从leader同步数据有一些延迟（包括`�
 
 > AR=ISR+OSR。
 
+
 ## 15. 描述下 Kafka 中的领导者副本（Leader Replica）和追随者副本（Follower Replica）的区别
 
 Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才能对外提供读写服务，响应Clients端的请求。Follower副本只是采用拉（PULL）的方式，被动地同步Leader副本中的数据，并且在Leader副本所在的Broker宕机后，随时准备应聘Leader副本。
@@ -147,7 +145,6 @@ Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才
 
 - 强调Follower副本也能对外提供读服务。自Kafka 2.4版本开始，社区通过引入新的Broker端参数，允许Follower副本有限度地提供读服务。
 - 强调Leader和Follower的消息序列在实际场景中不一致。通常情况下，很多因素可能造成Leader和Follower之间的不同步，比如程序问题，网络问题，broker问题等，短暂的不同步我们可以关注（秒级别），但长时间的不同步可能就需要深入排查了，因为一旦Leader所在节点异常，可能直接影响可用性。
-
 
 注意：之前确保一致性的主要手段是高水位机制（HW），但高水位值无法保证Leader连续变更场景下的数据一致性，因此，社区引入了Leader Epoch机制，来修复高水位值的弊端。
 
@@ -159,7 +156,6 @@ Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才
 - ReassignPartition Leader选举：当你手动运行kafka-reassign-partitions命令，或者是调用Admin的alterPartitionReassignments方法执行分区副本重分配时，可能触发此类选举。假设原来的AR是[1，2，3]，Leader是1，当执行副本重分配后，副本集合AR被设置成[4，5，6]，显然，Leader必须要变更，此时会发生Reassign Partition Leader选举。
 - PreferredReplicaPartition Leader选举：当你手动运行kafka-preferred-replica-election命令，或自动触发了Preferred Leader选举时，该类策略被激活。所谓的Preferred Leader，指的是AR中的第一个副本。比如AR是[3，2，1]，那么，Preferred Leader就是3。
 - ControlledShutdownPartition Leader选举：当Broker正常关闭时，该Broker上的所有Leader副本都会下线，因此，需要为受影响的分区执行相应的Leader选举。
-
 
 这4类选举策略的大致思想是类似的，即从AR中挑选首个在ISR中的副本，作为新Leader。
 
@@ -182,8 +178,8 @@ Kafka 并不支持主写从读，因为主写从读有 2 个很明 显的缺点:
 
 ## 参考
 
-http://dockone.io/article/10853
+[http://dockone.io/article/10853](http://dockone.io/article/10853)
 
-https://segmentfault.com/a/1190000023716306
+[https://segmentfault.com/a/1190000023716306](https://segmentfault.com/a/1190000023716306)
 
-https://dongzl.github.io/2020/03/16/13-Solve-MQ-Problem-With-Kafka/index.html
+[https://dongzl.github.io/2020/03/16/13-Solve-MQ-Problem-With-Kafka/index.html](https://dongzl.github.io/2020/03/16/13-Solve-MQ-Problem-With-Kafka/index.html)
