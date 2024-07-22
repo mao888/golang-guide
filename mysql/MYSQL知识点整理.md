@@ -1,3 +1,45 @@
+## MongoDb和mysql有什么区别
+MongoDB 和 MySQL 是两种常用的数据库系统，但它们在设计理念和功能上有很大的不同。以下是它们的一些主要区别：
+### 1. 数据模型
+
+- **MongoDB**:
+   - **类型**: 文档型数据库。
+   - **数据存储**: 数据以 JSON 类似的 BSON（Binary JSON）格式存储。每个数据项称为文档，存储在集合中。
+   - **灵活性**: 支持灵活的模式（Schema-less），可以存储不同结构的文档，这使得数据模型可以随着需求变化而灵活调整。
+- **MySQL**:
+   - **类型**: 关系型数据库（RDBMS）。
+   - **数据存储**: 数据以表格的形式存储，表格由行和列组成。每一行代表一个记录，每一列代表一个字段。
+   - **模式**: 强制的模式（Schema-based），表的结构需要预先定义，列的数据类型和约束条件在表创建时就已经确定。
+### 2. 查询语言
+
+- **MongoDB**:
+   - **查询语言**: 使用 MongoDB 查询语言，基于 JavaScript 语法，支持复杂的查询、聚合和数据操作。
+   - **灵活性**: 查询时可以直接处理文档，不需要像 SQL 那样进行表的联接（JOIN）。
+- **MySQL**:
+   - **查询语言**: 使用 SQL（Structured Query Language），是一种标准化的查询语言。
+   - **功能**: SQL 支持复杂的查询操作，包括多表联接、事务处理和数据完整性约束。
+### 3. 数据一致性和事务
+
+- **MongoDB**:
+   - **一致性**: 默认情况下，MongoDB 提供最终一致性，适合读写分离和高可用性场景。
+   - **事务支持**: MongoDB 4.0 及以上版本支持多文档事务，但在性能和复杂性方面通常不如传统的关系型数据库。
+- **MySQL**:
+   - **一致性**: 提供强一致性，事务具有 ACID（原子性、一致性、隔离性、持久性）特性。
+   - **事务支持**: MySQL 具备强大的事务支持，确保数据的一致性和完整性。
+### 4. 扩展性
+
+- **MongoDB**:
+   - **水平扩展**: 支持通过分片（Sharding）实现水平扩展，即将数据分布到多个服务器上。
+   - **灵活性**: 适用于大规模的数据存储和动态数据模式需求。
+- **MySQL**:
+   - **垂直扩展**: 主要通过增加单个服务器的资源（CPU、内存、存储）进行垂直扩展。
+   - **水平扩展**: 支持分库分表，但通常需要额外的工作来实现。
+### 5. 使用场景
+
+- **MongoDB**: 适用于需要处理大规模数据、数据结构动态变化或者需要快速开发的场景，如内容管理系统、实时分析、大数据存储等。
+- **MySQL**: 适用于需要复杂查询、高数据完整性保证的场景，如金融系统、事务处理、传统业务应用等。
+
+根据具体的应用需求，你可以选择最适合的数据库系统。
 ## 基础
 ### MySQL字符集
 字符集规定了字符在数据库中的存储格式，比如占多少空间，支持哪些字符等等。不同的字符集有不同的编码规则，在有些情况下，甚至还有校对规则的存在。在运维和使用MySQL数据库中，选取合适的字符集非常重要，如果选择不恰当，轻则影响数据库性能，严重的可能导致数据存储乱码。
@@ -62,7 +104,7 @@ mysql提供4种不同的颗粒度
 MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC是一种并发控制的方法，一般在数据库管理系统中，实现对数据库的并发访问，在编程语言中实现事务内存。
 
 ### MySQL执行查询过程
-![image-20220305154020996.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468335457-8f286a22-e1a3-4dbf-9a2a-e9f4d62371d3.png#averageHue=%23ebeee1&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=srts0&margin=%5Bobject%20Object%5D&name=image-20220305154020996.png&originHeight=507&originWidth=648&originalType=binary&ratio=1&rotation=0&showTitle=false&size=199722&status=done&style=none&taskId=u3abf2dfb-ddf9-48a2-9c0f-577a1ff1957&title=)
+![image-20220305154020996.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468335457-8f286a22-e1a3-4dbf-9a2a-e9f4d62371d3.png#averageHue=%23ebeee1&clientId=ub63f7278-093b-4&from=ui&id=srts0&originHeight=507&originWidth=648&originalType=binary&ratio=1&rotation=0&showTitle=false&size=199722&status=done&style=none&taskId=u3abf2dfb-ddf9-48a2-9c0f-577a1ff1957&title=)
 
 1. 客户端通过TCP连接发生连接请求到 MySQL 连接器, 连接器会对该请求进行权限验证以及连接资源分配
 2. **查询缓存**(8.0之后没了, 原因是一般失效会非常频繁)。
@@ -80,7 +122,7 @@ MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC
 - 检查约束 (Check Counstraint) 对该列数据的范围、格式的限制
 - 默认约束 (Default Counstraint) 该数据的默认值
 - 外键约束 (Foreign Key Counstraint) 需要建立两表间的关系并引用主表的列
-- [x] 
+- [x] [Mysql 数据库表设计 应该注意什么？_妖四灵.Shuen的博客-CSDN博客](https://shuen.blog.csdn.net/article/details/107319061?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107319061-blog-106685471.pc_relevant_multi_platform_whitelistv4eslandingctr&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-1-107319061-blog-106685471.pc_relevant_multi_platform_whitelistv4eslandingctr&utm_relevant_index=2)
 
 ---
 
@@ -90,11 +132,11 @@ MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC
 
 #### 哈希模型
 哈希表以 **键-值对(key - value)** 存储数据, key经过哈希函数的换算, 确定其在数组中存储的位置, 但是哈希存在冲突, 可以用采用拉链法来解决哈希冲突.
-![image-20220304135352101.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468348523-63b383f3-7aa6-4aa4-a540-63aa4ee0af76.png#averageHue=%23dbe3cf&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&height=446&id=tqEvJ&margin=%5Bobject%20Object%5D&name=image-20220304135352101.png&originHeight=446&originWidth=688&originalType=binary&ratio=1&rotation=0&showTitle=false&size=162646&status=done&style=none&taskId=u47c89065-8276-41af-8167-3472ba036c1&title=&width=688)
+![image-20220304135352101.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468348523-63b383f3-7aa6-4aa4-a540-63aa4ee0af76.png#averageHue=%23dbe3cf&clientId=ub63f7278-093b-4&from=ui&height=446&id=tqEvJ&originHeight=446&originWidth=688&originalType=binary&ratio=1&rotation=0&showTitle=false&size=162646&status=done&style=none&taskId=u47c89065-8276-41af-8167-3472ba036c1&title=&width=688)
 但是哈希后的数据不是有序的, 如果用于区间查询, 那么就必须一个个哈希查找了, 性能非常低, 所以哈希表这种存储结构只适用于**等值查询**的场景.
 
 #### 有序数组模型
-![image-20220304135919985.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468368777-adb059d2-9d60-4de6-b36d-3282405630ef.png#averageHue=%23d6e1ca&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=TeNHh&margin=%5Bobject%20Object%5D&name=image-20220304135919985.png&originHeight=225&originWidth=679&originalType=binary&ratio=1&rotation=0&showTitle=false&size=108377&status=done&style=none&taskId=ub4e6dfcf-89c1-4bc8-a3b0-4d2481a9ef4&title=)
+![image-20220304135919985.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468368777-adb059d2-9d60-4de6-b36d-3282405630ef.png#averageHue=%23d6e1ca&clientId=ub63f7278-093b-4&from=ui&id=TeNHh&originHeight=225&originWidth=679&originalType=binary&ratio=1&rotation=0&showTitle=false&size=108377&status=done&style=none&taskId=ub4e6dfcf-89c1-4bc8-a3b0-4d2481a9ef4&title=)
 有序数组无论是在**等值查询和范围查询**的场景都非常优秀, 因为有序可以使用二分法来查找, 时间复杂度是 ![](https://g.yuque.com/gr/latex?O(logN)#card=math&code=O%28logN%29&id=t3Usk). 范围查找 ![](https://g.yuque.com/gr/latex?k#card=math&code=k&id=d0DyN) 条数据, 只需要先二分查找首条数据, 之后向右遍历, 时间复杂度也就是 ![](https://g.yuque.com/gr/latex?O(klogN)#card=math&code=O%28klogN%29&id=En6iS)  .
 但是有序数组为了保持有序, 若在中间插入数据时, 必须移动后面所有数据, 成本开销大.
 所以, 有序数组索引只适用于**静态存储**引擎, 保存一些存储后就不会再去修改的数据.
@@ -102,18 +144,18 @@ MVCC，全称Multi-Version Concurrency Control，即多版本并发控制。MVCC
 #### 搜索树模型  
 [6.MySQL数据结构选择的合理性](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951782284-4a1be251-d755-4b55-863c-68f2b24946f0.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
 ##### BST和AVL等二叉树模型
-![image-20220304140528743.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468377486-65591b12-83e9-4431-82f9-246a81dbcb5b.png#averageHue=%23e5eadc&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=B1hjx&margin=%5Bobject%20Object%5D&name=image-20220304140528743.png&originHeight=506&originWidth=684&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195417&status=done&style=none&taskId=u9cde14c9-87db-45fe-8243-b26b6ea1b49&title=)
+![image-20220304140528743.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468377486-65591b12-83e9-4431-82f9-246a81dbcb5b.png#averageHue=%23e5eadc&clientId=ub63f7278-093b-4&from=ui&id=B1hjx&originHeight=506&originWidth=684&originalType=binary&ratio=1&rotation=0&showTitle=false&size=195417&status=done&style=none&taskId=u9cde14c9-87db-45fe-8243-b26b6ea1b49&title=)
 BST不管是查询还是更新, 都只需要 ![](https://g.yuque.com/gr/latex?O(logN)#card=math&code=O%28logN%29&id=mZrL0) 的时间复杂度. 但是BST在某种情况下, 会使得其退化成链表. 如果想让他保持平衡, 那么就可以使用AVL. 对于二叉树来说, 如果数据量十分大, 那么这个层数就会越堆越高, 而数据是存放在磁盘中, 那么意味着要访问非常多的数据块, 就非常影响性能.
 
 ##### B树模型
-![image-20220304142450189.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468389212-b9ca5523-2c1a-4e06-a11c-364b084240a8.png#averageHue=%23fafafa&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=xGYdZ&margin=%5Bobject%20Object%5D&name=image-20220304142450189.png&originHeight=222&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49245&status=done&style=none&taskId=u9dbce82b-d272-4c5f-a504-daa2e8700ac&title=)
+![image-20220304142450189.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468389212-b9ca5523-2c1a-4e06-a11c-364b084240a8.png#averageHue=%23fafafa&clientId=ub63f7278-093b-4&from=ui&id=xGYdZ&originHeight=222&originWidth=357&originalType=binary&ratio=1&rotation=0&showTitle=false&size=49245&status=done&style=none&taskId=u9dbce82b-d272-4c5f-a504-daa2e8700ac&title=)
 
 B树是多路搜索树, B树每个结点都存储着数据, 解决了二叉树随数据变大而层数变高导致对磁盘IO时的性能低下问题. 
 但是很明显, B树还不是最理想的存储结构, 试想一下如果进行范围查询, 对于范围中的数据来说, 那么不是每次都要从根节点开始往下找么, 必然有性能的问题.
 
 ##### B+树
 
-![image-20220304143146009.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468399152-97e94467-955e-4b83-8a87-a0ee42a69d18.png#averageHue=%23fbfafa&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=EWNiZ&margin=%5Bobject%20Object%5D&name=image-20220304143146009.png&originHeight=234&originWidth=410&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51302&status=done&style=none&taskId=u90b8f42e-6fd0-4000-abda-66c1d32e65a&title=)
+![image-20220304143146009.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468399152-97e94467-955e-4b83-8a87-a0ee42a69d18.png#averageHue=%23fbfafa&clientId=ub63f7278-093b-4&from=ui&id=EWNiZ&originHeight=234&originWidth=410&originalType=binary&ratio=1&rotation=0&showTitle=false&size=51302&status=done&style=none&taskId=u90b8f42e-6fd0-4000-abda-66c1d32e65a&title=)
 于是在基于B树的模型上, 出现了B+树, 
 B+树只有叶子节点是存储数据的, 而其他非叶子节点均为索引, 叶子节点用链表串起来, 且保证了有序. 在范围查询就只需找到其中一个数据, 之后向后遍历即可.
 
@@ -125,7 +167,7 @@ B+树只有叶子节点是存储数据的, 而其他非叶子节点均为索引,
 | name | varchar |  |
 
 假设有如上表结构, 那么建立起的索引结构如下图
-![image-20220304144720568.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468413069-f47294ff-f9e9-494d-ae20-f7e6fb44de8c.png#averageHue=%23e5ebdc&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=rhgRE&margin=%5Bobject%20Object%5D&name=image-20220304144720568.png&originHeight=321&originWidth=669&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121499&status=done&style=none&taskId=u87ddf3d4-a455-48c3-9d9f-42b6d34bb8d&title=)
+![image-20220304144720568.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468413069-f47294ff-f9e9-494d-ae20-f7e6fb44de8c.png#averageHue=%23e5ebdc&clientId=ub63f7278-093b-4&from=ui&id=rhgRE&originHeight=321&originWidth=669&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121499&status=done&style=none&taskId=u87ddf3d4-a455-48c3-9d9f-42b6d34bb8d&title=)
 从图中看出, 根据叶子节点内容的不同, 索引类型分为主键索引和非主键索引.
 
 - **主键索引**的叶子节点存储的是整行数据. 在InnoDB里, 主键索引也被称为**聚簇索引**
@@ -157,7 +199,7 @@ B+树为了有序性, 需要对插入和删除数据时做出对应的维护. �
 | ismale | tinyint |  |
 
 若有如上表结构, 对于INDEX(name, age)来说, 索引树结构如下, 可以看到, 索引项是按照索引定义里面出现的顺序排序的.
-![image-20220304154001675.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468426242-23685a2f-6a69-4c6f-9fe0-b78137a75cc4.png#averageHue=%23e5eadc&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=QrlWf&margin=%5Bobject%20Object%5D&name=image-20220304154001675.png&originHeight=381&originWidth=683&originalType=binary&ratio=1&rotation=0&showTitle=false&size=124428&status=done&style=none&taskId=uf60e76ab-e8e3-4aef-af80-3dec18840e8&title=)
+![image-20220304154001675.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468426242-23685a2f-6a69-4c6f-9fe0-b78137a75cc4.png#averageHue=%23e5eadc&clientId=ub63f7278-093b-4&from=ui&id=QrlWf&originHeight=381&originWidth=683&originalType=binary&ratio=1&rotation=0&showTitle=false&size=124428&status=done&style=none&taskId=uf60e76ab-e8e3-4aef-af80-3dec18840e8&title=)
 对于SQL语句 `SELECT * FROM t WHERE name LIKE '张%'` 来说, 也是能够用到INDEX(name, age)这个索引的, 只需检索到第一个姓为张的人, 之后向后遍历即可, 所以可以利用最左前缀来加速检索. **最左前缀**可以是**联合索引的最左N个字段**, 也可以是**字符串索引的最左M个字符**.
 
 其效果和单独创建一个INDEX(name)的效果是一样的, 如果你想使用INDEX(name, age)也想让name也拥有索引INDEX(name), 那么只需保留前者即可, **若通过调整索引字段的顺序, 可以少维护一个索引树, 那么这个顺序就是需要优先考虑采用的**. 但如果也有SQL语句条件类似 `WHERE age = 1` , 那么最好再维护一个INDEX(age)的索引.
@@ -172,9 +214,9 @@ B+树为了有序性, 需要对插入和删除数据时做出对应的维护. �
 ### 索引下推
 对于SQL语句 `SELECT * FROM t WHERE name LIKE '陈%' AND age = 10` , INDEX(name, age) 情况来说
 在 MySQL5.6 之前没有引入索引下推优化时, 执行流程如下图, 在定位完name字段的索引后, 需要一条条进行回表查询, 然后再判断其他字段是否满足条件.
-![image-20220304160409381.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468447625-ea605667-5913-4f4f-9a12-4dfc3cbb5030.png#averageHue=%23f0f0e9&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=dEDJf&margin=%5Bobject%20Object%5D&name=image-20220304160409381.png&originHeight=258&originWidth=666&originalType=binary&ratio=1&rotation=0&showTitle=false&size=119734&status=done&style=none&taskId=u001675a9-6ed7-480d-be40-64f2149c5f8&title=)
+![image-20220304160409381.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468447625-ea605667-5913-4f4f-9a12-4dfc3cbb5030.png#averageHue=%23f0f0e9&clientId=ub63f7278-093b-4&from=ui&id=dEDJf&originHeight=258&originWidth=666&originalType=binary&ratio=1&rotation=0&showTitle=false&size=119734&status=done&style=none&taskId=u001675a9-6ed7-480d-be40-64f2149c5f8&title=)
 而 MySQL5.6 引入了索引下推优化后, 可以在所有遍历过程中, **对索引中包含的字段先进行判断过滤**, 然后再进行后续操作, 减少了回表次数.
-![image-20220304160654992.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468451640-b30d74f6-06bb-4385-bb02-23db2d0368ce.png#averageHue=%23efefe8&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=RcWRF&margin=%5Bobject%20Object%5D&name=image-20220304160654992.png&originHeight=246&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123478&status=done&style=none&taskId=u10ab9e08-fc43-4d31-9eb1-283cc212fcf&title=)
+![image-20220304160654992.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468451640-b30d74f6-06bb-4385-bb02-23db2d0368ce.png#averageHue=%23efefe8&clientId=ub63f7278-093b-4&from=ui&id=RcWRF&originHeight=246&originWidth=656&originalType=binary&ratio=1&rotation=0&showTitle=false&size=123478&status=done&style=none&taskId=u10ab9e08-fc43-4d31-9eb1-283cc212fcf&title=)
 
 ### 自适应哈希索引
 InnoDB中不存在哈希索引, 但是哈希索引确实有利于快速查找, 于是InnoDB引入了"**自适应哈希索引**", 在某些索引值被使用的非常频繁时, InnoDB会在内存中的B+树结构之上创建一个哈希索引, 用于这些频繁使用的索引值的快速查找, 使得其存有哈希快速查找的特点.
@@ -308,7 +350,7 @@ _采用redo log的好处？_
 | 2 | B | 0 |
 
 其中id是主键，user_id为账户名，balance为余额。还是以转账两次为例，如下图所示
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663295801787-fb42a2ce-82bb-4653-b9a2-6ee5b8ee546f.png#averageHue=%23f3f2f2&clientId=ub06f29a5-b09f-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=323&id=uf3a4683b&margin=%5Bobject%20Object%5D&name=image.png&originHeight=645&originWidth=781&originalType=binary&ratio=1&rotation=0&showTitle=false&size=142118&status=done&style=none&taskId=u1f7cd164-d1f3-440c-bd6e-35452c2553c&title=&width=390.5)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663295801787-fb42a2ce-82bb-4653-b9a2-6ee5b8ee546f.png#averageHue=%23f3f2f2&clientId=ub06f29a5-b09f-4&from=paste&height=323&id=uf3a4683b&originHeight=645&originWidth=781&originalType=binary&ratio=1&rotation=0&showTitle=false&size=142118&status=done&style=none&taskId=u1f7cd164-d1f3-440c-bd6e-35452c2553c&title=&width=390.5)
 至于MVCC,即多版本并发控制(Multi Version Concurrency Control),一个行记录数据有多个版本对快照数据，这些快照数据在undo log中。
 如果一个事务读取的行正在做DELELE或者UPDATE操作，读取操作不会等行上的锁释放，而是读取该行的快照版本。
 由于MVCC机制在可重复读(Repeateable Read)和读已提交(Read Commited)的MVCC表现形式不同，就不赘述了。
@@ -352,7 +394,7 @@ _采用redo log的好处？_
 当一个处在 部分提交的 状态的事务将修改过的数据都 同步到磁盘 上之后，我们就可以说该事务处
 在了 提交的 状态。
 一个基本的状态转换图如下所示：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655343228326-9c236f52-d4e0-4fe7-84c9-9ce989e13e2e.png#averageHue=%23fbfbfb&clientId=u93f3805a-794b-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=404&id=ue26b1dc2&margin=%5Bobject%20Object%5D&name=image.png&originHeight=404&originWidth=555&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57775&status=done&style=none&taskId=u7b06426a-2d47-4624-8efa-c347eff5066&title=&width=555)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655343228326-9c236f52-d4e0-4fe7-84c9-9ce989e13e2e.png#averageHue=%23fbfbfb&clientId=u93f3805a-794b-4&from=paste&height=404&id=ue26b1dc2&originHeight=404&originWidth=555&originalType=binary&ratio=1&rotation=0&showTitle=false&size=57775&status=done&style=none&taskId=u7b06426a-2d47-4624-8efa-c347eff5066&title=&width=555)
 ### 并发事务带来的问题
 
 - **脏读 Dirty Read**
@@ -435,7 +477,7 @@ redo log 是物理日志, 记录的是"在某个数据页做出了什么修改",
 当有一条记录需要更新的时候, InnoDB引擎会先把记录写到 redo log 中, 并更新内存, 这时候更新就算完成. 同时, InnoDB引擎会在适当的时候, 将这个操作记录更新到磁盘里面, 往往是系统较为空闲时.
 
 InnoDB的redo log是固定大小的, 如可以配置为一组4个文件, 每个文件1GB, 那么redo log总共就可以记录4GB的操作. 从头开始写, 写到末尾又回到开头循环写.
-![image-20220304195247657.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468474598-8d818589-d1ec-4e9a-ae1b-bbb9540d96ea.png#averageHue=%23dfe6d4&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=GuR8t&margin=%5Bobject%20Object%5D&name=image-20220304195247657.png&originHeight=214&originWidth=547&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62322&status=done&style=none&taskId=ue7ee8264-f69f-4f72-9b9d-b2c439271c0&title=)
+![image-20220304195247657.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468474598-8d818589-d1ec-4e9a-ae1b-bbb9540d96ea.png#averageHue=%23dfe6d4&clientId=ub63f7278-093b-4&from=ui&id=GuR8t&originHeight=214&originWidth=547&originalType=binary&ratio=1&rotation=0&showTitle=false&size=62322&status=done&style=none&taskId=ue7ee8264-f69f-4f72-9b9d-b2c439271c0&title=)
 **write pos** 是当前记录的位置, 边写边后移, 写到第三号文件末尾后就回到0号文件开头.
 **checkpoint** 是当前要擦除的位置, 也是往后推移并循环的, 擦除记录前要把记录更新到数据文件.
 
@@ -488,7 +530,7 @@ mysql> show variables like '%innodb_log_buffer_size%';
 - 重做日志文件 (redo log file) ，保存在硬盘中，是持久的。
 #### 4 redo的整体流程
 以一个更新事务为例，redo log 流转过程，如下图所示：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655385880949-8b99c805-e7fe-48f5-90b6-45b5575da558.png#averageHue=%23f8f9f6&clientId=u3fe4f8a9-affe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=237&id=ub6795cbc&margin=%5Bobject%20Object%5D&name=image.png&originHeight=237&originWidth=776&originalType=binary&ratio=1&rotation=0&showTitle=false&size=85093&status=done&style=none&taskId=u4461b7e8-dc60-498d-964a-ed6fa9a0e09&title=&width=776)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655385880949-8b99c805-e7fe-48f5-90b6-45b5575da558.png#averageHue=%23f8f9f6&clientId=u3fe4f8a9-affe-4&from=paste&height=237&id=ub6795cbc&originHeight=237&originWidth=776&originalType=binary&ratio=1&rotation=0&showTitle=false&size=85093&status=done&style=none&taskId=u4461b7e8-dc60-498d-964a-ed6fa9a0e09&title=&width=776)
 > 第1步：先将原始数据从磁盘中读入内存中来，修改数据的内存拷贝
 > 第2步：生成一条重做日志并写入redo log buffer，记录的是数据被修改后的值
 > 第3步：当事务commit时，将redo log buffer中的内容刷新到 redo log file，对 redo log file采用追加
@@ -501,7 +543,7 @@ mysql> show variables like '%innodb_log_buffer_size%';
 #### 5 redo log的刷盘策略
 redo log的写入并不是直接写入磁盘的，InnoDB引擎会在写redo log的时候先写redo log buffer，之后以 一
 定的频率 刷入到真正的redo log file 中。这里的一定频率怎么看待呢？这就是我们要说的刷盘策略。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655385973460-052d91a1-c4df-410c-8e4d-44ccbb16b761.png#averageHue=%23eff0d4&clientId=u3fe4f8a9-affe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=427&id=u8fe0e39d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=427&originWidth=741&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79870&status=done&style=none&taskId=ua711ee70-40ee-4bf8-badc-5774a6a2f6f&title=&width=741)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655385973460-052d91a1-c4df-410c-8e4d-44ccbb16b761.png#averageHue=%23eff0d4&clientId=u3fe4f8a9-affe-4&from=paste&height=427&id=u8fe0e39d&originHeight=427&originWidth=741&originalType=binary&ratio=1&rotation=0&showTitle=false&size=79870&status=done&style=none&taskId=ua711ee70-40ee-4bf8-badc-5774a6a2f6f&title=&width=741)
 注意，redo log buffer刷盘到redo log file的过程并不是真正的刷到磁盘中去，只是刷入到 文件系统缓存
 （page cache）中去（这是现代操作系统为了提高文件写入效率做的一个优化），真正的写入会交给系
 统自己来决定（比如page cache足够大了）。那么对于InnoDB来说就存在一个问题，如果交给系统来同
@@ -512,13 +554,13 @@ redo log的写入并不是直接写入磁盘的，InnoDB引擎会在写redo log�
 - 设置为0 ：表示每次事务提交时不进行刷盘操作。（系统默认master thread每隔1s进行一次重做日志的同步）
 - 设置为1 ：表示每次事务提交时都将进行同步，刷盘操作（ 默认值 ）
 - 设置为2 ：表示每次事务提交时都只把 redo log buffer 内容写入 page cache，不进行同步。由os自己决定什么时候同步到磁盘文件。
-- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655386113630-5f0c3558-c6db-40c4-a5bc-d4da7ca9c946.png#averageHue=%23fcfbfa&clientId=u3fe4f8a9-affe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=656&id=u316e4578&margin=%5Bobject%20Object%5D&name=image.png&originHeight=656&originWidth=871&originalType=binary&ratio=1&rotation=0&showTitle=false&size=83974&status=done&style=none&taskId=ucbb01204-7507-4164-8b8d-3793c1b7c44&title=&width=871)
+- ![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655386113630-5f0c3558-c6db-40c4-a5bc-d4da7ca9c946.png#averageHue=%23fcfbfa&clientId=u3fe4f8a9-affe-4&from=paste&height=656&id=u316e4578&originHeight=656&originWidth=871&originalType=binary&ratio=1&rotation=0&showTitle=false&size=83974&status=done&style=none&taskId=ucbb01204-7507-4164-8b8d-3793c1b7c44&title=&width=871)
 
 
 ### binlog（二进制日志）
 binlog是逻辑日志, 记录的是SQL语句的原始逻辑, 属于 `MySQL Server` 层面.
 binlog 主要用来保证数据的一致性, 在主从等环境下, 需要通过 binlog 来进行数据的同步.
-![image-20220304200528837.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468485491-e2e4e686-f1b2-4bf0-ae12-05538a835fe8.png#averageHue=%23cafbc9&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=woc8w&margin=%5Bobject%20Object%5D&name=image-20220304200528837.png&originHeight=434&originWidth=983&originalType=binary&ratio=1&rotation=0&showTitle=false&size=85666&status=done&style=none&taskId=ue9b2d913-ea22-4e58-9596-baa453fdd55&title=)
+![image-20220304200528837.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468485491-e2e4e686-f1b2-4bf0-ae12-05538a835fe8.png#averageHue=%23cafbc9&clientId=ub63f7278-093b-4&from=ui&id=woc8w&originHeight=434&originWidth=983&originalType=binary&ratio=1&rotation=0&showTitle=false&size=85666&status=done&style=none&taskId=ue9b2d913-ea22-4e58-9596-baa453fdd55&title=)
 binlog 日志有三种记录格式
 
 - **statement**
@@ -547,7 +589,7 @@ redo log 在事务执行过程中可以不断写入, 而 binlog 只有在提交�
 
 若使用 redo log 恢复数据时, 发现处于 prepare 阶段, 且没有 binlog, 则会回滚该事务. 若 redo log commit 时异常, 但是存在对应 binlog, MySQL还是认为这一组操作是有效的, 并不会进行回滚.
 
-![image-20220304202100774.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468496177-312faa13-aa9e-4568-bb48-ad3e960f7dd9.png#averageHue=%23e1e7d6&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=Ux6md&margin=%5Bobject%20Object%5D&name=image-20220304202100774.png&originHeight=640&originWidth=433&originalType=binary&ratio=1&rotation=0&showTitle=false&size=141141&status=done&style=none&taskId=u4adb75c5-7cc8-47c7-a651-64c8aa2de9b&title=)
+![image-20220304202100774.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468496177-312faa13-aa9e-4568-bb48-ad3e960f7dd9.png#averageHue=%23e1e7d6&clientId=ub63f7278-093b-4&from=ui&id=Ux6md&originHeight=640&originWidth=433&originalType=binary&ratio=1&rotation=0&showTitle=false&size=141141&status=done&style=none&taskId=u4adb75c5-7cc8-47c7-a651-64c8aa2de9b&title=)
 
 ### undo log（回滚日志）
 如果需要保证事务的原子性, 就需要在异常发生时, 对已执行操作进行回滚. undo log 会保存事务未提交之前的版本数据, 在执行过程中异常时, 就可以直接利用 undo log 中的信息将数据回滚到未修改之前. 并且 undo log 中的数据可以作为数据的旧版本快照供其他并发事务进行快照读. 在 InnoDB 中也用于实现 MVCC.
@@ -608,7 +650,7 @@ undo表空间。
 - update undo log
 
 #### 5. undo log总结
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655387070230-7902c807-f5c4-4cc3-b2b9-7de80264d326.png#averageHue=%2389ada8&clientId=u3fe4f8a9-affe-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=410&id=ue5129c3a&margin=%5Bobject%20Object%5D&name=image.png&originHeight=410&originWidth=829&originalType=binary&ratio=1&rotation=0&showTitle=false&size=163277&status=done&style=none&taskId=u7fe50653-4d50-45cb-8072-6333e03242a&title=&width=829)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1655387070230-7902c807-f5c4-4cc3-b2b9-7de80264d326.png#averageHue=%2389ada8&clientId=u3fe4f8a9-affe-4&from=paste&height=410&id=ue5129c3a&originHeight=410&originWidth=829&originalType=binary&ratio=1&rotation=0&showTitle=false&size=163277&status=done&style=none&taskId=u7fe50653-4d50-45cb-8072-6333e03242a&title=&width=829)
 
 undo log是逻辑日志，对事务回滚时，只是将数据库逻辑地恢复到原来的样子。
 redo log是物理日志，记录的是数据页的物理变化，undo log不是redo log的逆过程。
@@ -627,7 +669,7 @@ redo log就是为了恢复更新了内存但是由于宕机等原因没有刷入
 2. undo log还可以提供多版本并发控制下的读取（MVCC）。
 #### （四）bin log
 MySQL的bin log日志是用来记录MySQL中增删改时的记录日志。简单来讲，就是当你的一条sql操作对数据库中的内容进行了更新，就会增加一条bin log日志。查询操作不会记录到bin log中。bin log最大的用处就是进行**主从复制**，以及数据库的恢复。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236050094-37f9663c-c825-4486-a07d-46a1ab73b3d4.png#averageHue=%23828098&clientId=uc9b92f8f-761c-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u606e8b9d&margin=%5Bobject%20Object%5D&name=image.png&originHeight=326&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&size=84791&status=done&style=none&taskId=u84bf4b2d-5dde-4c9c-8bfc-9b001527a2d&title=)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236050094-37f9663c-c825-4486-a07d-46a1ab73b3d4.png#averageHue=%23828098&clientId=uc9b92f8f-761c-4&from=paste&id=u606e8b9d&originHeight=326&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&size=84791&status=done&style=none&taskId=u84bf4b2d-5dde-4c9c-8bfc-9b001527a2d&title=)
 通过下面的命令可以查看是否开启binlog日志
 ```shell
 show VARIABLES like '%log_bin%'
@@ -668,7 +710,7 @@ general log 记录了客户端连接信息以及执行的SQL语句信息，通�
 show variables like '%general_log%';
 ```
 可以查看general log是否开启以及日志的位置。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236049994-8295d29e-98cb-4788-9751-0e7fba7e5ae5.png#averageHue=%230b0908&clientId=uc9b92f8f-761c-4&crop=0&crop=0&crop=1&crop=1&from=paste&id=u62c45274&margin=%5Bobject%20Object%5D&name=image.png&originHeight=152&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&size=62203&status=done&style=none&taskId=ufcd8b81a-05eb-41bf-bec0-49b1b989ed6&title=)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236049994-8295d29e-98cb-4788-9751-0e7fba7e5ae5.png#averageHue=%230b0908&clientId=uc9b92f8f-761c-4&from=paste&id=u62c45274&originHeight=152&originWidth=640&originalType=url&ratio=1&rotation=0&showTitle=false&size=62203&status=done&style=none&taskId=ufcd8b81a-05eb-41bf-bec0-49b1b989ed6&title=)
 general log 可通过配置文件启动，配置参数如下：
 general_log = on
 general_log_file = /usr/local/mysql/mysql-8.0.20/data/hecs-78422.log
@@ -701,7 +743,7 @@ general_log_file = /usr/local/mysql/mysql-8.0.20/data/hecs-78422.log
 ### MVCC 实现原理
 
 MVCC是通过保存数据在某个时间点的快照来实现的. 根据事务开始的时间不同, 每个事务对同一张表, 同一时刻看到数据可能是不一样的.
-![image-20220304210135517.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468515309-09d9dfe3-929e-46fb-91b7-3a169f96bd6e.png#averageHue=%23eaede1&clientId=ub63f7278-093b-4&crop=0&crop=0&crop=1&crop=1&from=ui&id=UWfiP&margin=%5Bobject%20Object%5D&name=image-20220304210135517.png&originHeight=299&originWidth=681&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121327&status=done&style=none&taskId=u17740057-d3c4-4067-9dff-5b35436a6a3&title=)
+![image-20220304210135517.png](https://cdn.nlark.com/yuque/0/2022/png/21380271/1646468515309-09d9dfe3-929e-46fb-91b7-3a169f96bd6e.png#averageHue=%23eaede1&clientId=ub63f7278-093b-4&from=ui&id=UWfiP&originHeight=299&originWidth=681&originalType=binary&ratio=1&rotation=0&showTitle=false&size=121327&status=done&style=none&taskId=u17740057-d3c4-4067-9dff-5b35436a6a3&title=)
 MVCC实现依赖于: **隐藏字段**, **Read View**, **undo log**
 
 #### 隐藏字段主要包含:
@@ -720,7 +762,7 @@ Innodb 中行记录的存储格式，有一些额外的字段：**DATA_TRX_ID **
 - **DATA_ROLL_PTR**：指向该行回滚段的指针。该行记录上所有旧版本，在 undo log 中都通过链表的形式组织。
 > undo log : 记录数据被修改之前的日志，后面会详细说。
 
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236594178-8dd5c313-e422-41c0-9602-f5f68a2b6ce5.png#averageHue=%236eac44&clientId=ub06f29a5-b09f-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=37&id=u0a2c85e4&margin=%5Bobject%20Object%5D&name=image.png&originHeight=73&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7568&status=done&style=none&taskId=uaec341e2-f127-493f-b51f-e3c91ad4772&title=&width=300)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1663236594178-8dd5c313-e422-41c0-9602-f5f68a2b6ce5.png#averageHue=%236eac44&clientId=ub06f29a5-b09f-4&from=paste&height=37&id=u0a2c85e4&originHeight=73&originWidth=600&originalType=binary&ratio=1&rotation=0&showTitle=false&size=7568&status=done&style=none&taskId=uaec341e2-f127-493f-b51f-e3c91ad4772&title=&width=300)
 #### ReadView
 在每一条 SQL 开始的时候被创建，有几个重要属性：
 
