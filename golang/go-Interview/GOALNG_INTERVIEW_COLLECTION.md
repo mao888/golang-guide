@@ -13,7 +13,7 @@
 - 封装
 - 继承
 - 多态
-### 1、Go语言和Java有什么区别? 
+### 1、Go语言和Java有什么区别?
 1、Go上不允许函数重载，必须具有方法和函数的唯一名称，而Java允许函数重载。
 2、在速度方面，Go的速度要比Java快。
 3、Java默认允许多态，而Go没有。
@@ -38,64 +38,63 @@
 Go 语言的例子如下：
 ```go
 type Animal struct {
-	name string
+    name string
 }
 
 func NewAnimal() *Animal {
- 	return &Animal{}
+     return &Animal{}
 }
 
 func (p *Animal) SetName(name string) {
- 	p.name = name
+     p.name = name
 }
 
 func (p *Animal) GetName() string {
- 	return p.name
+     return p.name
 }
 ```
-
 在上述例子中，我们声明了一个结构体 Animal，其属性 name 为小写。没法通过外部方法，在配套上存在 Setter 和 Getter 的方法，用于统一的访问和设置控制。
 以此实现在 Go 语言中的基本封装。
 #### 继承
 面向对象中的 “继承” 指的是子类继承父类的特征和行为，使得子类对象（实例）具有父类的实例域和方法，或子类从父类继承方法，使得子类具有父类相同的行为。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661876060993-91ac09c4-3a79-4b38-a09e-6450552a3bfe.png#averageHue=%23b4af98&clientId=u76154452-629b-4&errorMessage=unknown%20error&from=paste&id=uda016aff&originHeight=215&originWidth=438&originalType=url&ratio=1&rotation=0&showTitle=false&size=83768&status=error&style=none&taskId=uc1eb197b-57a1-4ef7-b025-40a7e323ccb&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661876060993-91ac09c4-3a79-4b38-a09e-6450552a3bfe.png#averageHue=%23b4af98&clientId=u76154452-629b-4&errorMessage=unknown%20error&from=paste&id=uda016aff&originHeight=215&originWidth=438&originalType=url&ratio=1&rotation=0&showTitle=false&size=83768&status=error&style=none&taskId=uc1eb197b-57a1-4ef7-b025-40a7e323ccb&title=#averageHue=%23b4af98&errorMessage=unknown%20error&id=KYhUk&originHeight=215&originWidth=438&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 从实际的例子来看，就是动物是一个大父类，下面又能细分为 “食草动物”、“食肉动物”，这两者会包含 “动物” 这个父类的基本定义。
 从实际的例子来看，就是动物是一个大父类，下面又能细分为 “食草动物”、“食肉动物”，这两者会包含 “动物” 这个父类的基本定义。
 **在 Go 语言中，是没有类似 extends 关键字的这种继承的方式，在语言设计上采取的是组合的方式**：
 ```go
 type Animal struct {
- 	Name string
+     Name string
 }
 
 type Cat struct {
- 	Animal
- 	FeatureA string
+     Animal
+     FeatureA string
 }
 
 type Dog struct {
- 	Animal
- 	FeatureB string
+     Animal
+     FeatureB string
 }
 
 ```
 在上述例子中，我们声明了 Cat 和 Dog 结构体，其在内部匿名组合了 Animal 结构体。因此 Cat 和 Dog 的实例都可以调用 Animal 结构体的方法：
 ```go
 func main() {
- 	p := NewAnimal()
- 	p.SetName("我是搬运工，去给煎鱼点赞~")
+     p := NewAnimal()
+     p.SetName("我是搬运工，去给煎鱼点赞~")
 
- 	dog := Dog{Animal: *p}
- 	fmt.Println(dog.GetName())
+     dog := Dog{Animal: *p}
+     fmt.Println(dog.GetName())
 }
 ```
 同时 Cat 和 Dog 的实例可以拥有自己的方法：
 ```go
 func (dog *Dog) HelloWorld() {
- 	fmt.Println("脑子进煎鱼了")
+     fmt.Println("脑子进煎鱼了")
 }
 
 func (cat *Cat) HelloWorld() {
- 	fmt.Println("煎鱼进脑子了")
+     fmt.Println("煎鱼进脑子了")
 }
 ```
 上述例子能够正常包含调用 Animal 的相关属性和方法，也能够拥有自己的独立属性和方法，在 Go 语言中达到了类似继承的效果。
@@ -106,35 +105,35 @@ func (cat *Cat) HelloWorld() {
 **在 Go 语言中，多态是通过接口来实现的：**
 ```go
 type AnimalSounder interface {
- 	MakeDNA()
+     MakeDNA()
 }
 
 func MakeSomeDNA(animalSounder AnimalSounder) {		// 参数是AnimalSounder接口类型
- 	animalSounder.MakeDNA()
+     animalSounder.MakeDNA()
 }
 ```
 在上述例子中，我们声明了一个接口类型 AnimalSounder，配套一个 MakeSomeDNA 方法，其接受 AnimalSounder 接口类型作为入参。
 因此在 Go 语言中。只要配套的 Cat 和 Dog 的实例也实现了 MakeSomeDNA 方法，那么我们就可以认为他是 AnimalSounder 接口类型：
 ```go
 type AnimalSounder interface {
- 	MakeDNA()
+     MakeDNA()
 }
 
 func MakeSomeDNA(animalSounder AnimalSounder) {
- 	animalSounder.MakeDNA()
+     animalSounder.MakeDNA()
 }
 
 func (c *Cat) MakeDNA() {
- 	fmt.Println("煎鱼是煎鱼")
+     fmt.Println("煎鱼是煎鱼")
 }
 
 func (c *Dog) MakeDNA() {
- 	fmt.Println("煎鱼其实不是煎鱼")
+     fmt.Println("煎鱼其实不是煎鱼")
 }
 
 func main() {
- 	MakeSomeDNA(&Cat{})
- 	MakeSomeDNA(&Dog{})
+     MakeSomeDNA(&Cat{})
+     MakeSomeDNA(&Dog{})
 }
 
 ```
@@ -191,7 +190,6 @@ Go 作为一门语言致力于使事情简单化。它并未引入很多新概�
 Go拥有强大的编译检查、严格的编码规范和完整的软件生命周期工具，具有很强的稳定性，稳定压倒一切。那么为什么Go相比于其他程序会更稳定呢？这是因为Go提供了软件生命周期（开发、测试、部署、维护等等）的各个环节的工具，如go tool、gofmt、go test。
 **9、跨平台**
 很多语言都支持跨平台，把这个优点单独拿出来，貌似没有什么值得称道的，但是结合上述优点，它的综合能力就非常强了。
-
 ### golang 缺点
 **①右大括号不允许换行，否则编译报错**
 **②不允许有未使用的包或变量**
@@ -235,7 +233,6 @@ func main() {
     fmt.Println("return:", b()) 
 } 
 ```
-
 **函数返回指针**
 ```go
 func c() *int { 	
@@ -259,13 +256,13 @@ func main() {
 var a uint8 =255
 var b uint8 =1
 a+b = 0总之类型溢出会出现难以意料的事
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378774-f5ecf978-5d67-4b9a-bd37-47d569ba7353.png#averageHue=%23eaf1f1&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u05228f93&originHeight=361&originWidth=788&originalType=url&ratio=1&rotation=0&showTitle=false&size=191645&status=error&style=none&taskId=udf5fdb2a-b812-44da-911b-f47cda57bdd&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378774-f5ecf978-5d67-4b9a-bd37-47d569ba7353.png#averageHue=%23eaf1f1&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u05228f93&originHeight=361&originWidth=788&originalType=url&ratio=1&rotation=0&showTitle=false&size=191645&status=error&style=none&taskId=udf5fdb2a-b812-44da-911b-f47cda57bdd&title=#averageHue=%23eaf1f1&errorMessage=unknown%20error&id=WGcb2&originHeight=361&originWidth=788&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 ### **6、能介绍下 rune 类型吗？**
 相当int32
 golang中的字符串底层实现是通过byte数组的，中文字符在unicode下占2个字节，在utf-8编码下占3个字节，而golang默认编码正好是utf-8
 byte 等同于int8，常用来处理ascii字符
 rune 等同于int32,常用来处理unicode或utf-8字符
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-48538a44-1ccb-47ac-9492-0b569d219e2b.png#averageHue=%23fcfafa&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u310184ba&originHeight=421&originWidth=720&originalType=url&ratio=1&rotation=0&showTitle=false&size=155056&status=error&style=none&taskId=u05214bff-6a88-483d-b9a3-664bd069a40&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-48538a44-1ccb-47ac-9492-0b569d219e2b.png#averageHue=%23fcfafa&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u310184ba&originHeight=421&originWidth=720&originalType=url&ratio=1&rotation=0&showTitle=false&size=155056&status=error&style=none&taskId=u05214bff-6a88-483d-b9a3-664bd069a40&title=#averageHue=%23fcfafa&errorMessage=unknown%20error&id=wumNS&originHeight=421&originWidth=720&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 ### **7、 golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级肯定会问，比较难，需要自己多去总结)**
 **参考如下连接**
 [golang中struct关于反射tag_paladinosment的博客-CSDN博客_golang 反射tagblog.csdn.net/paladinosment/article/details/42570937](https://link.zhihu.com/?target=https%3A//blog.csdn.net/paladinosment/article/details/42570937)
@@ -305,17 +302,17 @@ select 结构组成主要是由 case 语句和执行的函数组成 select 实�
 ### 13、go出现panic的场景
 ### [Go出现panic的场景](https://www.cnblogs.com/paulwhw/p/15585467.html)
 
-   - 数组/切片越界
-   - 空指针调用。比如访问一个 nil 结构体指针的成员
-   - 过早关闭 HTTP 响应体
-   - 除以 0
-   - 向已经关闭的 channel 发送消息
-   - 重复关闭 channel
-   - 关闭未初始化的 channel
-   - 未初始化 map。注意访问 map 不存在的 key 不会 panic，而是返回 map 类型对应的零值，但是不能直接赋值
-   - 跨协程的 panic 处理
-   - sync 计数为负数。
-   - 类型断言不匹配。`var a interface{} = 1; fmt.Println(a.(string))` 会 panic，建议用 `s,ok := a.(string)`
+- 数组/切片越界
+- 空指针调用。比如访问一个 nil 结构体指针的成员
+- 过早关闭 HTTP 响应体
+- 除以 0
+- 向已经关闭的 channel 发送消息
+- 重复关闭 channel
+- 关闭未初始化的 channel
+- 未初始化 map。注意访问 map 不存在的 key 不会 panic，而是返回 map 类型对应的零值，但是不能直接赋值
+- 跨协程的 panic 处理
+- sync 计数为负数。
+- 类型断言不匹配。`var a interface{} = 1; fmt.Println(a.(string))` 会 panic，建议用 `s,ok := a.(string)`
 ### 14、go是否支持while循环，如何实现这种机制
 [https://blog.csdn.net/chengqiuming/article/details/115573947](https://blog.csdn.net/chengqiuming/article/details/115573947)
 ### 15、go里面如何实现set？
@@ -358,7 +355,7 @@ cat.Eat() // cat is eating
 - 如果一个 struct 嵌套了多个匿名结构体，那么这个结构可以直接访问多个匿名结构体的属性和方法，从而实现多重继承。
 ### 17、怎么去复用一个接口的方法？
 [怎么在golang中通过接口嵌套实现复用 - 开发技术 - 亿速云](https://www.yisu.com/zixun/452409.html)
-### 18、go里面的 _ 
+### 18、go里面的 _
 
 1. **忽略返回值**
    1. 比如某个函数返回三个参数，但是我们只需要其中的两个，另外一个参数可以忽略，这样的话代码可以这样写：
@@ -367,7 +364,7 @@ v1, v2, _ := function(...)
 v1, _, _ := function(...)
 ```
 
-2. **用在变量(特别是接口断言)**
+1. **用在变量(特别是接口断言)**
 ```go
 type T struct{}
 var _ X = T{}
@@ -375,7 +372,7 @@ var _ X = T{}
 ```
 上面用来判断 type T是否实现了X,用作类型断言，如果T没有实现接口X，则编译错误.
 
-3. **用在import package**
+1. **用在import package**
 ```go
 import _ "test/food"
 ```
@@ -383,14 +380,13 @@ import _ "test/food"
 ### 19、goroutine创建的时候如果要传一个参数进去有什么要注意的点？
 [https://www.cnblogs.com/waken-captain/p/10496454.html](https://www.cnblogs.com/waken-captain/p/10496454.html)
 注：Golang1.22 版本对于for loop进行了修改，详见 [Fixing For Loops in Go 1.22](https://go.dev/blog/loopvar-preview)  
-
 ### 20、写go单元测试的规范？
 
 1. ** 单元测试文件命名规则 ：**
 
 单元测试需要创建单独的测试文件，不能在原有文件中书写，名字规则为 xxx_test.go。这个规则很好理解。
 
-2.  **单元测试包命令规则 **
+1. **单元测试包命令规则 **
 
 单元测试文件的包名为原文件的包名添加下划线接test，举例如下：
 ```go
@@ -403,7 +399,7 @@ package xxx
 package xxx_test
 ```
 
-3. ** 单元测试方法命名规则 **
+1. ** 单元测试方法命名规则 **
 
 单元测试文件中的测试方法和原文件中的待测试的方法名相对应，以Test开头，举例如下：
 ```go
@@ -414,7 +410,7 @@ func Xxx(name string) error
 func TestXxx()
 ```
 
-4.  **单元测试方法参数 **
+1. **单元测试方法参数 **
 
 单元测试方法的参数必须是t *testing.T，举例如下：
 ```go
@@ -482,18 +478,18 @@ func main() {
 
 1. **定义**：
    - goroutine 是 Go 语言中的一种轻量级线程，由 Go 运行时管理。
-2. **使用方法**：
+1. **使用方法**：
    - 使用 `go` 关键字启动一个新的 goroutine。例如：`go 函数名(参数列表)`。
-3. **优势**：
+1. **优势**：
    - goroutine 的创建和销毁开销非常小，可以高效地创建成千上万个 goroutine。
    - goroutine 是并发执行的，可以提高程序的执行效率。
-4. **调度**：
+1. **调度**：
    - 由 Go 运行时调度和管理，无需手动管理线程。
-5. **通信**：
+1. **通信**：
    - goroutine 之间通过 channel 进行通信，确保数据传递的安全性和同步性。
-6. **典型应用**：
+1. **典型应用**：
    - 适用于并发任务处理，如网络请求处理、并发计算等。
-7. **示例**：
+1. **示例**：
    - 在 Web 服务器中，每个请求可以由一个单独的 goroutine 处理，从而提高并发处理能力。
 
 这样回答简洁明了，可以帮助面试官快速了解你对 goroutine 的理解。
@@ -518,18 +514,13 @@ a1 := [...]int{1,2,3}
 a2 := [5]int{1,2,3}
 **切片的初始化**
 b:= make([]int,3,5)
-
 [数组和切片有什么异同 - 码农桃花源](https://qcrao91.gitbook.io/go/shu-zu-he-qie-pian/shu-zu-he-qie-pian-you-shi-mo-yi-tong)
 【引申1】 [3]int 和 [4]int 是同一个类型吗？
 不是。因为数组的长度是类型的一部分，这是与 slice 不同的一点。
-
 ### **2、**[**讲讲 Go 的 slice 底层数据结构和一些特性？**](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiaslice)
 答：Go 的 slice 底层数据结构是由一个 array 指针指向底层数组，len 表示切片长度，cap 表示切片容量。slice 的主要实现是扩容。对于 append 向 slice 添加元素时，假如 slice 容量够用，则追加新元素进去，slice.len++，返回原来的 slice。当原容量不够，则 slice 先扩容，扩容之后 slice 得到新的 slice，将元素追加进新的 slice，slice.len++，返回新的 slice。对于切片的扩容规则：当切片比较小时（容量小于 1024），则采用较大的扩容倍速进行扩容（新的扩容会是原来的 2 倍），避免频繁扩容，从而减少内存分配的次数和数据拷贝的代价。当切片较大的时（原来的 slice 的容量大于或者等于 1024），采用较小的扩容倍速（新的扩容将扩大大于或者等于原来 1.25 倍），主要避免空间浪费，网上其实很多总结的是 1.25 倍，那是在不考虑内存对齐的情况下，实际上还要考虑内存对齐，扩容是大于或者等于 1.25 倍。
-
 注：Go的切片扩容[源代码](https://github.com/golang/go/blob/master/src/runtime/slice.go)在runtime下的growslice函数
-
 （关于刚才问的 slice 为什么传到函数内可能被修改，如果 slice 在函数内没有出现扩容，函数外和函数内 slice 变量指向是同一个数组，则函数内复制的 slice 变量值出现更改，函数外这个 slice 变量值也会被修改。如果 slice 在函数内出现扩容，则函数内变量的值会新生成一个数组（也就是新的 slice，而函数外的 slice 指向的还是原来的 slice，则函数内的修改不会影响函数外的 slice。）
-
 ### 3、golang中数组和slice作为参数的区别？slice作为参数传递有什么问题？
 [golang数组和切片作为参数和返回值_weixin_44387482的博客-CSDN博客_golang 返回数组](https://blog.csdn.net/weixin_44387482/article/details/119763558)
 
@@ -538,22 +529,21 @@ b:= make([]int,3,5)
 3. 数组还是切片，在函数中传递的时候如果没有指定为指针传递的话，都是值传递，但是切片在传递的过程中，有着共享底层数组的风险，所以如果在函数内部进行了更改的时候，会修改到源数据，所以我们需要根据不同的需求来处理，如果我们不希望源数据被修改话的我们可以使用copy函数复制切片后再传入，如果希望源数据被修改的话我们应该使用指针传递的方式
 ### 4、从数组中取一个相同大小的slice有成本吗？
 或者这么问：从切片中取一个相同大小的数组有成本吗？
-
 从数组中截取切片：[https://blog.csdn.net/weixin_42117918/article/details/81913036](https://blog.csdn.net/weixin_42117918/article/details/81913036)
-
 ### 5、新旧扩容策略
 下面是对两段代码扩容逻辑的总结，并形成一个简单的表格：
 
 | **版本** | **扩容逻辑** | **主要区别** | **优势** |
 | --- | --- | --- | --- |
-| go1.16 | 
+| go1.16 |  |  |  |
+
 1. **基本设置：** 将新容量 **newcap** 初始化为旧切片的当前容量 **old.cap**。
 2. **判断两倍容量：** 计算双倍容量 **doublecap**，即 **newcap + newcap**。如果所需容量 **cap** 大于双倍容量，直接将新容量设置为所需容量 **cap**。
 3. **选择性扩容：** 如果所需容量不大于双倍容量，根据判断条件选择以下两种方式之一：
    - 如果旧切片的长度 **old.len** 小于 1024，将新容量设置为双倍容量 **newcap = doublecap**。
    - 如果旧切片的长度大于等于1024，那么会进入一个循环，逐步增加新容量直到满足所需容量。循环条件为 **newcap < cap**，每次增加的量为当前容量的1/4。
  | 相对简单的扩容逻辑，采用基本的条件判断和循环。 | 实现相对简单，适用于一般场景，性能较为平衡。 |
-| go1.19 | 
+| go1.19 |
 1. **基本设置：** 将新容量 **newcap** 初始化为旧切片的当前容量 **old.cap**。
 2. **判断两倍容量：** 计算双倍容量 **doublecap**，即 **newcap + newcap**。如果所需容量 **cap** 大于双倍容量，直接将新容量设置为所需容量 **cap**。
 3. **阈值判断：** 如果旧切片的容量小于阈值 **const** **threshold = 256**，将新容量设置为双倍容量 **doublecap**。
@@ -575,12 +565,11 @@ map的类型是map[key]，key类型的ke必须是可比较的，通常情况，�
 将map设置为nil后，内存被回收。
 **这个问题还需要大家去搜索下答案，我记得有不一样的说法，谨慎采用本题答案。**
 ### 4、怎么处理对 map 进行并发访问？有没有其他方案？ 区别是什么？
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-2e47defb-6941-4481-af64-a2ca6dda832d.png#averageHue=%23d6d9db&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u60e92167&originHeight=324&originWidth=720&originalType=url&ratio=1&rotation=0&showTitle=false&size=86154&status=error&style=none&taskId=uf512fa48-821f-4d3d-8bf4-3dedf9b2fff&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-2e47defb-6941-4481-af64-a2ca6dda832d.png#averageHue=%23d6d9db&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u60e92167&originHeight=324&originWidth=720&originalType=url&ratio=1&rotation=0&showTitle=false&size=86154&status=error&style=none&taskId=uf512fa48-821f-4d3d-8bf4-3dedf9b2fff&title=#averageHue=%23d6d9db&errorMessage=unknown%20error&id=qWgQw&originHeight=324&originWidth=720&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 **方式一、使用内置sync.Map，详细参考**
 [https://mbd.baidu.com/ma/s/7Hwd9yMcmbd.baidu.com/ma/s/7Hwd9yMc](https://link.zhihu.com/?target=https%3A//mbd.baidu.com/ma/s/7Hwd9yMc)
 **方式二、使用读写锁实现并发安全map**
 [https://mbd.baidu.com/ma/s/qO7b0VQUmbd.baidu.com/ma/s/qO7b0VQU](https://link.zhihu.com/?target=https%3A//mbd.baidu.com/ma/s/qO7b0VQU)
-
 [https://cloud.tencent.com/developer/article/1539049](https://cloud.tencent.com/developer/article/1539049)
 ### 5、 nil map 和空 map 有何不同？
 1）可以对未初始化的map进行取值，但取出来的东西是空：
@@ -601,7 +590,8 @@ panic: assignment to entry in nil map
 但是delete 空map是一个空操作（并不会panic）
 （这个区别在最新的Go tips中已经没有了，即：delete一个nil map也不会panic）
 ```
-3) 通过fmt打印map时，空map和nil map结果是一样的，都为map[]。所以，这个时候别断定map是空还是nil，而应该通过map == nil来判断。
+
+1. 通过fmt打印map时，空map和nil map结果是一样的，都为map[]。所以，这个时候别断定map是空还是nil，而应该通过map == nil来判断。
 **nil map 未初始化，空map是长度为空**
 ### 6、map 的数据结构是什么？
 [map-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamap)
@@ -621,7 +611,7 @@ type hmap struct {
 }
 ```
 **下图展示一个拥有4个bucket的map：**
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789793109-401b7c75-c26b-4893-bbf7-1f2dfa69316b.png#averageHue=%23434343&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u7a045b14&originHeight=224&originWidth=339&originalType=url&ratio=1&rotation=0&showTitle=false&size=7113&status=error&style=none&taskId=u806c40c9-539f-4849-b588-b376b7ae94f&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789793109-401b7c75-c26b-4893-bbf7-1f2dfa69316b.png#averageHue=%23434343&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u7a045b14&originHeight=224&originWidth=339&originalType=url&ratio=1&rotation=0&showTitle=false&size=7113&status=error&style=none&taskId=u806c40c9-539f-4849-b588-b376b7ae94f&title=#averageHue=%23434343&errorMessage=unknown%20error&id=jUPFj&originHeight=224&originWidth=339&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 本例中, hmap.B=2， 而hmap.buckets长度是2^B为4. 元素经过哈希运算后会落到某个bucket中进行存储。查找过程类似。
 bucket很多时候被翻译为桶，所谓的哈希桶实际上就是bucket。
 #### bucket数据结构
@@ -641,13 +631,13 @@ type bmap struct {
 
 注意：上述中data和overflow并不是在结构体中显示定义的，而是直接通过指针运算进行访问的。
 下图展示bucket存放8个key-value对：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789834784-c60b0cb4-96be-4c4c-8978-2bfc9ca716b9.png#averageHue=%23414141&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ueb411ead&originHeight=260&originWidth=664&originalType=url&ratio=1&rotation=0&showTitle=false&size=23558&status=error&style=none&taskId=u3f259a38-81e8-46dc-912d-aee35205a60&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789834784-c60b0cb4-96be-4c4c-8978-2bfc9ca716b9.png#averageHue=%23414141&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ueb411ead&originHeight=260&originWidth=664&originalType=url&ratio=1&rotation=0&showTitle=false&size=23558&status=error&style=none&taskId=u3f259a38-81e8-46dc-912d-aee35205a60&title=#averageHue=%23414141&errorMessage=unknown%20error&id=WzvZN&originHeight=260&originWidth=664&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 #### [解决哈希冲突（四种方法）](https://blog.csdn.net/qq_48241564/article/details/118613312)
 #### 哈希冲突
 当有两个或以上数量的键被哈希到了同一个bucket时，我们称这些键发生了冲突。Go使用链地址法来解决键冲突。
 由于每个bucket可以存放8个键值对，所以同一个bucket存放超过8个键值对时就会再创建一个键值对，用类似链表的方式将bucket连接起来。
 下图展示产生冲突后的map：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789900886-a77838be-46c8-4254-999b-b6e217721fbf.png#averageHue=%23333333&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u78c40a38&originHeight=440&originWidth=794&originalType=url&ratio=1&rotation=0&showTitle=false&size=37335&status=error&style=none&taskId=ua864d7b3-7683-4b48-96e5-7b2a743986d&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789900886-a77838be-46c8-4254-999b-b6e217721fbf.png#averageHue=%23333333&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u78c40a38&originHeight=440&originWidth=794&originalType=url&ratio=1&rotation=0&showTitle=false&size=37335&status=error&style=none&taskId=ua864d7b3-7683-4b48-96e5-7b2a743986d&title=#averageHue=%23333333&errorMessage=unknown%20error&id=mbRPc&originHeight=440&originWidth=794&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 bucket数据结构指示下一个bucket的指针称为overflow bucket，意为当前bucket盛不下而溢出的部分。事实上哈希冲突并不是好事情，它降低了存取效率，好的哈希算法可以保证哈希值的随机性，但冲突过多也是要控制的，后面会再详细介绍。
 #### 负载因子
 负载因子用于衡量一个哈希表冲突情况，公式为：
@@ -662,7 +652,7 @@ bucket数据结构指示下一个bucket的指针称为overflow bucket，意为�
 每个哈希表的实现对负载因子容忍程度不同，比如Redis实现中负载因子大于1时就会触发rehash，而Go则在在负载因子达到6.5时才会触发rehash，因为Redis的每个bucket只能存1个键值对，而Go的bucket可能存8个键值对，所以Go可以容忍更高的负载因子。
 ### 7、是怎么实现扩容？
 #### map 的容量大小
-底层调用 makemap 函数，计算得到合适的 B，map 容量最多可容纳 6.52^B 个元素，6.5 为装载因子阈值常量。装载因子的计算公式是：装载因子=填入表中的元素个数/散列表的长度，装载因子越大，说明空闲位置越少，冲突越多，散列表的性能会下降。底层调用 makemap 函数，计算得到合适的 B，map 容量最多可容纳 6.52^B 个元素，6.5 为装载因子阈值常量。装载因子的计算公式是：装载因子=填入表中的元素个数/散列表的长度，装载因子越大，说明空闲位置越少，冲突越多，散列表的性能会下降。
+底层调用 makemap 函数，计算得到合适的 B，map 容量最多可容纳 6.52B 个元素，6.5 为装载因子阈值常量。装载因子的计算公式是：装载因子=填入表中的元素个数/散列表的长度，装载因子越大，说明空闲位置越少，冲突越多，散列表的性能会下降。底层调用 makemap 函数，计算得到合适的 B，map 容量最多可容纳 6.52B 个元素，6.5 为装载因子阈值常量。装载因子的计算公式是：装载因子=填入表中的元素个数/散列表的长度，装载因子越大，说明空闲位置越少，冲突越多，散列表的性能会下降。
 #### 触发 map 扩容的条件
 为了保证访问效率，当新元素将要添加进map时，都会检查是否需要扩容，扩容实际上是以空间换时间的手段。
 触发扩容的条件有二个：
@@ -673,20 +663,20 @@ bucket数据结构指示下一个bucket的指针称为overflow bucket，意为�
 当负载因子过大时，就新建一个bucket，新的bucket长度是原来的2倍，然后旧bucket数据搬迁到新的bucket。
 考虑到如果map存储了数以亿计的key-value，一次性搬迁将会造成比较大的延时，Go采用逐步搬迁策略，即每次访问map时都会触发一次搬迁，每次搬迁2个键值对。
 下图展示了包含一个bucket满载的map(为了描述方便，图中bucket省略了value区域):
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723150-6a635c5e-5d5a-4173-972f-ac0fd0326ffe.png#averageHue=%233a3a3a&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u5fa641f3&originHeight=298&originWidth=544&originalType=url&ratio=1&rotation=0&showTitle=false&size=17886&status=error&style=none&taskId=u2a696829-6367-49c1-afea-f1323e72cbe&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723150-6a635c5e-5d5a-4173-972f-ac0fd0326ffe.png#averageHue=%233a3a3a&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u5fa641f3&originHeight=298&originWidth=544&originalType=url&ratio=1&rotation=0&showTitle=false&size=17886&status=error&style=none&taskId=u2a696829-6367-49c1-afea-f1323e72cbe&title=#averageHue=%233a3a3a&errorMessage=unknown%20error&id=i6zKR&originHeight=298&originWidth=544&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 当前map存储了7个键值对，只有1个bucket。此地负载因子为7。再次插入数据时将会触发扩容操作，扩容之后再将新插入键写入新的bucket。
 当第8个键值对插入时，将会触发扩容，扩容后示意图如下：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723181-66b62c5f-34bb-4427-8c68-446e7e05b4de.png#averageHue=%23303030&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u0d97cf57&originHeight=538&originWidth=594&originalType=url&ratio=1&rotation=0&showTitle=false&size=31768&status=error&style=none&taskId=uf6461dea-1b1c-4840-8265-8260d7c1111&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723181-66b62c5f-34bb-4427-8c68-446e7e05b4de.png#averageHue=%23303030&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u0d97cf57&originHeight=538&originWidth=594&originalType=url&ratio=1&rotation=0&showTitle=false&size=31768&status=error&style=none&taskId=uf6461dea-1b1c-4840-8265-8260d7c1111&title=#averageHue=%23303030&errorMessage=unknown%20error&id=FV5Uk&originHeight=538&originWidth=594&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申请的bucket。新的键值对被插入新的bucket中。
 后续对map的访问操作会触发迁移，将oldbuckets中的键值对逐步的搬迁过来。当oldbuckets中的键值对全部搬迁完毕后，删除oldbuckets。
 搬迁完成后的示意图如下：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723183-d1c03c9d-b6a9-4dd7-8410-a2674f1f1c0c.png#averageHue=%232e2e2e&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ud60acfcf&originHeight=538&originWidth=594&originalType=url&ratio=1&rotation=0&showTitle=false&size=30432&status=error&style=none&taskId=ua7f61057-3cd3-4e6d-873b-6c79d601a69&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789723183-d1c03c9d-b6a9-4dd7-8410-a2674f1f1c0c.png#averageHue=%232e2e2e&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ud60acfcf&originHeight=538&originWidth=594&originalType=url&ratio=1&rotation=0&showTitle=false&size=30432&status=error&style=none&taskId=ua7f61057-3cd3-4e6d-873b-6c79d601a69&title=#averageHue=%232e2e2e&errorMessage=unknown%20error&id=GNsrr&originHeight=538&originWidth=594&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 数据搬迁过程中原bucket中的键值对将存在于新bucket的前面，新插入的键值对将存在于新bucket的后面。
 实际搬迁过程中比较复杂，将在后续源码分析中详细介绍。
 #### 等量扩容
 所谓等量扩容，实际上并不是扩大容量，buckets数量不变，重新做一遍类似增量扩容的搬迁动作，把松散的键值对重新排列一次，以使bucket的使用率更高，进而保证更快的存取。
 在极端场景下，比如不断地增删，而键值对正好集中在一小部分的bucket，这样会造成overflow的bucket数量增多，但负载因子又不高，从而无法执行增量搬迁的情况，如下图所示：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789747828-6f31463b-a48d-4a4d-877b-828f7f6abc9d.png#averageHue=%233f3f3f&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u327c9fb4&originHeight=538&originWidth=906&originalType=url&ratio=1&rotation=0&showTitle=false&size=41071&status=error&style=none&taskId=u70800e4c-42cc-441b-b8b9-edcd9252f3b&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789747828-6f31463b-a48d-4a4d-877b-828f7f6abc9d.png#averageHue=%233f3f3f&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u327c9fb4&originHeight=538&originWidth=906&originalType=url&ratio=1&rotation=0&showTitle=false&size=41071&status=error&style=none&taskId=u70800e4c-42cc-441b-b8b9-edcd9252f3b&title=#averageHue=%233f3f3f&errorMessage=unknown%20error&id=IVXot&originHeight=538&originWidth=906&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 上图可见，overflow的bucket中大部分是空的，访问效率会很差。此时进行一次等量扩容，即buckets数量不变，经过重新组织后overflow的bucket数量会减少，即节省了空间又会提高访问效率。
 ### 8、查找过程
 查找过程如下：
@@ -719,6 +709,45 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 [golang 哪些类型可以作为map keyblog.csdn.net/lanyang123456/article/details/123765745](https://link.zhihu.com/?target=https%3A//blog.csdn.net/lanyang123456/article/details/123765745)
 ### 11、可以对map里面的一个元素取地址吗
 在 Go 中，不能直接对 map 中的元素取地址。这是因为 Go 的 map 在内部实现时会动态地重新分配和移动元素，取地址会导致指针失效，从而引发潜在的错误。
+### 12、sync.map
+`sync.Map` 是 Go 语言标准库中提供的并发安全的 Map 类型，它适用于读多写少的场景。以下是 `sync.Map` 的一些关键原理：
+
+1. **读写分离**：`sync.Map` 通过读写分离来提升性能。它内部维护了两种数据结构：一个只读的只读字典 (`read`)，一个读写字典 (`dirty`)。读操作优先访问只读字典，只有在只读字典中找不到数据时才会访问读写字典。
+2. **延迟写入**：写操作并不立即更新只读字典(`read`)，而是更新读写字典 (`dirty`)。只有在读操作发现只读字典的数据过时（即 `misses` 计数器超过阈值）时，才会将读写字典中的数据同步到只读字典。这种策略减少了写操作对读操作的影响。
+3. **原子操作**：读操作大部分是无锁的，因为它们主要访问只读的 `read` map，并通过原子操作 (`atomic.Value`) 来保护读操作；写操作会加锁（使用 `sync.Mutex`）保护写操作，以确保对 `dirty` map 的并发安全 ，确保高并发环境下的安全性。
+4. **条目淘汰**：当一个条目被删除时，它只从读写字典中删除。只有在下一次数据同步时，该条目才会从只读字典中删除。
+
+通过这种设计，`sync.Map` 在读多写少的场景下能够提供较高的性能，同时保证并发安全。
+### 13、sync.map的锁机制跟你自己用锁加上map有区别么
+`sync.Map` 的锁机制和自己使用锁（如 `sync.Mutex` 或 `sync.RWMutex`）加上 map 的方式有一些关键区别：
+**自己使用锁和 map**
+
+1. **全局锁**：
+   - 你需要自己管理锁，通常是一个全局的 `sync.Mutex` 或 `sync.RWMutex`。
+   - 对于读多写少的场景，使用 `sync.RWMutex` 可以允许多个读操作同时进行，但写操作依然会阻塞所有读操作。
+1. **手动处理**：
+   - 你需要自己编写代码来处理加锁、解锁、读写操作。
+   - 错误使用锁可能导致死锁、竞态条件等问题。
+1. **简单直观**：
+   - 实现简单，容易理解和调试。
+
+`**sync.Map**`
+
+1. **读写分离**：
+   - `sync.Map` 内部使用读写分离的策略，通过只读和读写两个 map 提高读操作的性能。
+   - 读操作大部分情况下是无锁的，只有在只读 map 中找不到数据时，才会加锁访问读写 map。
+1. **延迟写入**：
+   - 写操作更新读写 map（`dirty`），但不会立即更新只读 map（`read`）。只有当读操作发现只读 map 中的数据过时时，才会将读写 map 的数据同步到只读 map 中。
+1. **内置优化**：
+   - `sync.Map` 内部有各种优化措施，如原子操作、延迟写入等，使得它在读多写少的场景下性能更高。
+
+**区别总结**
+
+- **并发性能**：`sync.Map` 通过读写分离和延迟写入在读多写少的场景下提供更高的并发性能，而使用全局锁的 map 在读写频繁时性能较低。
+- **复杂性和易用性**：`sync.Map` 封装了复杂的并发控制逻辑，使用起来更简单，而自己管理锁和 map 需要处理更多的并发控制细节。
+- **适用场景**：`**sync.Map**`** 适用于读多写少的场景**，而使用**全局锁的 map 适用于读写操作较均衡或者对性能要求不高**的场景。
+
+如果你的应用场景是读多写少且对性能要求较高，`sync.Map` 会是一个更好的选择。而对于简单的并发访问控制，使用 `sync.Mutex` 或 `sync.RWMutex` 加上 map 也可以满足需求。
 ## 四、接口
 ### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
 总结一下，鸭子类型是一种动态语言的风格，在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由它"当前方法和属性的集合"决定。Go 作为一种静态语言，通过接口实现了 鸭子类型，实际上是 Go 的编译器在其中作了隐匿的转换工作。
@@ -784,7 +813,7 @@ type interfacetype struct {
 ```
 可以看到，它包装了 _type 类型，_type 实际上是描述 Go 语言中各种数据类型的结构体。我们注意到，这里还包含一个 mhdr 字段，表示接口所定义的函数列表， pkgpath 记录定义了接口的包名。
 这里通过一张图来看下 iface 结构体的全貌：
-![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113733638-8e2e9037-11a8-49af-8dd3-dfd37d7f5d21.png#averageHue=%23fdfbf6&clientId=u94645ec3-b072-4&from=paste&id=u5f4eeff1&originHeight=906&originWidth=904&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u01e4a865-729c-42e2-b928-27d8a760128&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113733638-8e2e9037-11a8-49af-8dd3-dfd37d7f5d21.png#averageHue=%23fdfbf6&clientId=u94645ec3-b072-4&from=paste&id=u5f4eeff1&originHeight=906&originWidth=904&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u01e4a865-729c-42e2-b928-27d8a760128&title=#averageHue=%23fdfbf6&errorMessage=unknown%20error&id=VRYAF&originHeight=906&originWidth=904&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 接着来看一下 eface 的源码：
 ```
 type eface struct {
@@ -793,7 +822,7 @@ type eface struct {
 }
 ```
 相比 iface，eface 就比较简单了。只维护了一个 _type 字段，表示空接口所承载的具体的实体类型。data 描述了具体的值。
-![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113735267-6bcdb7c8-dd73-432c-b933-d218fc1b7480.png#averageHue=%23fde6b9&clientId=u94645ec3-b072-4&from=paste&id=u3f71bac6&originHeight=280&originWidth=268&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e76f2f5-f84f-4995-9161-b0c76d70f3e&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113735267-6bcdb7c8-dd73-432c-b933-d218fc1b7480.png#averageHue=%23fde6b9&clientId=u94645ec3-b072-4&from=paste&id=u3f71bac6&originHeight=280&originWidth=268&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e76f2f5-f84f-4995-9161-b0c76d70f3e&title=#averageHue=%23fde6b9&errorMessage=unknown%20error&id=jzx8z&originHeight=280&originWidth=268&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 ### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
 从源码里可以看到：iface包含两个字段：tab 是接口表指针，指向类型信息；data 是数据指针，则指向具体的数据。它们分别被称为动态类型和动态值。而接口值包括动态类型和动态值。
 【引申1】接口类型和 nil 作比较
@@ -877,16 +906,83 @@ class Shape
 派生类需要明确地声明它继承自基类，并且需要实现基类中所有的纯虚函数。
 C++ 定义接口的方式称为“侵入式”，而 Go 采用的是 “非侵入式”，不需要显式声明，只需要实现接口定义的函数，编译器自动会识别。
 C++ 和 Go 在定义接口方式上的不同，也导致了底层实现上的不同。C++ 通过虚函数表来实现基类调用派生类的函数；而 Go 通过 itab 中的 fun 字段来实现接口变量调用实体类型的函数。C++ 中的虚函数表是在编译期生成的；而 Go 的 itab 中的 fun 字段是在运行期间动态生成的。原因在于，Go 中实体类型可能会无意中实现 N 多接口，很多接口并不是本来需要的，所以不能为类型实现的所有接口都生成一个 itab， 这也是“非侵入式”带来的影响；这在 C++ 中是不存在的，因为派生需要显示声明它继承自哪个基类。
-
-## 五**、context相关**
+## 五、context相关
 [Context-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/chapter055.3-context)
 ### **1、context 结构是什么样的？context 使用场景和用途？**
 **（难，也常常问你项目中怎么用，光靠记答案很难让面试官满意，反正有各种结合实际的问题）**
 **参考链接：**
 [go context详解 - 卷毛狒狒 - 博客园www.cnblogs.com/juanmaofeifei/p/14439957.html](https://link.zhihu.com/?target=https%3A//www.cnblogs.com/juanmaofeifei/p/14439957.html)
-答：Go 的 Context 的数据结构包含 Deadline，Done，Err，Value，Deadline 方法返回一个 time.Time，表示当前 Context 应该结束的时间，ok 则表示有结束时间，Done 方法当 Context 被取消或者超时时候返回的一个 close 的 channel，告诉给 context 相关的函数要停止当前工作然后返回了，Err 表示 context 被取消的原因，Value 方法表示 context 实现共享数据存储的地方，是协程安全的。context 在业务中是经常被使用的，
+答：Go 的 Context 的数据结构包含 Deadline，Done，Err，Value。Deadline 方法返回一个 time.Time，表示当前 Context 应该结束的时间，ok 则表示有结束时间，Done 方法当 Context 被取消或者超时时候返回的一个 close 的 channel，告诉给 context 相关的函数要停止当前工作然后返回了，Err 表示 context 被取消的原因，Value 方法表示 context 实现共享数据存储的地方，是协程安全的。context 在业务中是经常被使用的，
 **其主要的应用 ：**
 1：上下文控制，2：多个 goroutine 之间的数据交互等，3：超时控制：到某个时间点超时，过多久超时。
+### 2、context在go中一般可以用来做什么？
+在 Go 语言中，`context` 包提供了一种管理多个 goroutine 之间的**截止时间**、**取消信号**和**请求范围数据**的方法。以下是 `context` 常见的用途：
+
+1. **取消信号**：
+   - `context` 可以用来向多个 goroutine 传递取消信号。当一个 goroutine 需要取消其他 goroutine 时，可以调用 `context` 的 `CancelFunc`。
+   - 例如，在处理 HTTP 请求时，如果客户端关闭了连接，可以使用 `context` 取消所有相关的后台操作。
+2. **截止时间/超时控制**：
+   - `context` 可以设置一个截止时间或超时。当超过这个时间或超时发生时，`context` 会自动取消操作。
+   - 例如，在数据库查询或网络请求时，可以使用 `context` 设置一个超时时间，以防止长时间的等待。
+3. **传递请求范围的数据**：
+   - `context` 可以在多个 goroutine 之间传递请求范围的数据，例如请求的唯一 ID、用户认证信息等。
+   - 例如，在处理 HTTP 请求时，可以将请求的元数据存储在 `context` 中，并在各个处理函数之间传递这些数据。
+
+**具体示例**
+
+1. **创建带取消功能的 context**：
+```go
+ctx, cancel := context.WithCancel(context.Background())
+defer cancel()
+
+go func() {
+    // 执行一些操作
+    // 在需要取消操作时调用 cancel
+    cancel()
+}()
+
+select {
+case <-ctx.Done():
+    fmt.Println("操作取消")
+case result := <-someOperation():
+    fmt.Println("操作结果:", result)
+}
+```
+
+2. **创建带超时的 context**：
+```go
+ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+defer cancel()
+
+select {
+case <-ctx.Done():
+    if ctx.Err() == context.DeadlineExceeded {
+        fmt.Println("操作超时")
+    }
+case result := <-someOperation():
+    fmt.Println("操作结果:", result)
+}
+```
+
+3. **传递请求范围的数据**：
+```go
+ctx := context.WithValue(context.Background(), "requestID", "12345")
+
+go func(ctx context.Context) {
+    requestID := ctx.Value("requestID").(string)
+    fmt.Println("处理请求ID:", requestID)
+}(ctx)
+```
+### 常用函数
+
+- `context.Background()`: 返回一个空的 `Context`，通常用于根 `Context`。
+- `context.TODO()`: 返回一个空的 `Context`，用于暂时不知道该使用什么 `Context` 的情况。
+- `context.WithCancel(parent Context) (Context, CancelFunc)`: 创建一个可以取消的 `Context`。
+- `context.WithTimeout(parent Context, timeout time.Duration) (Context, CancelFunc)`: 创建一个带超时的 `Context`。
+- `context.WithDeadline(parent Context, d time.Time) (Context, CancelFunc)`: 创建一个带截止时间的 `Context`。
+- `context.WithValue(parent Context, key, val interface{}) Context`: 创建一个携带值的 `Context`。
+
+通过这些功能，`context` 在 Go 中为管理 goroutine 的生命周期和跨 goroutine 传递数据提供了便利和强大的支持。
 ## **六、channel相关**
 ### **1、channel 是否线程安全？锁用在什么地方？**
 
@@ -924,14 +1020,13 @@ type hchan struct {
     lock mutex //互斥锁，保证读写channel时不存在并发竞争问题
 }
 ```
-![](https://cdn.nlark.com/yuque/0/2022/webp/22219483/1661787750459-2608e3a8-f5f9-4d1c-a97f-314d4d83fecf.webp#averageHue=%23f5eadb&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ud2b2cad6&originHeight=906&originWidth=1266&originalType=url&ratio=1&rotation=0&showTitle=false&status=error&style=none&taskId=u23754328-a657-4b43-9730-5a80293ced0&title=)
+![](https://cdn.nlark.com/yuque/0/2022/webp/22219483/1661787750459-2608e3a8-f5f9-4d1c-a97f-314d4d83fecf.webp#averageHue=%23f5eadb&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ud2b2cad6&originHeight=906&originWidth=1266&originalType=url&ratio=1&rotation=0&showTitle=false&status=error&style=none&taskId=u23754328-a657-4b43-9730-5a80293ced0&title=#averageHue=%23f5eadb&errorMessage=unknown%20error&id=YcCVE&originHeight=906&originWidth=1266&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 总结hchan结构体的主要组成部分有四个：
 
 - 用来保存goroutine之间传递数据的循环链表。=====> buf。
 - 用来记录此循环链表当前发送或接收数据的下标值。=====> sendx和recvx。
 - 用于保存向该chan发送和从改chan接收数据的goroutine的队列。=====> sendq 和 recvq
 - 保证channel写入和读取数据时线程安全的锁。 =====> lock
-
 ### **3、nil、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样？（各类变种题型，重要）**
 #### Channel读写特性(15字口诀)
 首先，我们先复习一下Channel都有哪些特性？
@@ -952,7 +1047,7 @@ type hchan struct {
 3. 如果缓冲区中没有空余位置，将待发送数据写入G，将当前G加入sendq，进入睡眠，等待被读goroutine唤醒；
 
 简单流程图如下：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788117541-f82a3d7e-8b22-46cd-9bd9-dde26f0d290c.png#averageHue=%23323232&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=uc645cac1&originHeight=569&originWidth=488&originalType=url&ratio=1&rotation=0&showTitle=false&size=35907&status=error&style=none&taskId=u6802c438-331a-4483-b841-ea9876571eb&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788117541-f82a3d7e-8b22-46cd-9bd9-dde26f0d290c.png#averageHue=%23323232&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=uc645cac1&originHeight=569&originWidth=488&originalType=url&ratio=1&rotation=0&showTitle=false&size=35907&status=error&style=none&taskId=u6802c438-331a-4483-b841-ea9876571eb&title=#averageHue=%23323232&errorMessage=unknown%20error&id=jNKZ7&originHeight=569&originWidth=488&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 #### 接收流程：
 从一个channel读数据简单过程如下：
 
@@ -962,7 +1057,7 @@ type hchan struct {
 4. 将当前goroutine加入recvq，进入睡眠，等待被写goroutine唤醒；
 
 简单流程图如下：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788153163-c386fedf-84b2-42ed-9965-d5d80743650c.png#averageHue=%232c2c2c&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u74003dc2&originHeight=744&originWidth=608&originalType=url&ratio=1&rotation=0&showTitle=false&size=52767&status=error&style=none&taskId=u4efb3973-b0e4-48cf-a58a-9e7f57847cf&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661788153163-c386fedf-84b2-42ed-9965-d5d80743650c.png#averageHue=%232c2c2c&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u74003dc2&originHeight=744&originWidth=608&originalType=url&ratio=1&rotation=0&showTitle=false&size=52767&status=error&style=none&taskId=u4efb3973-b0e4-48cf-a58a-9e7f57847cf&title=#averageHue=%232c2c2c&errorMessage=unknown%20error&id=IG6k6&originHeight=744&originWidth=608&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 #### 关闭channel
 关闭channel时会把recvq中的G全部唤醒，本该写入G的数据位置为nil。把sendq中的G全部唤醒，但这些G会panic。
 除此之外，panic出现的常见场景还有：
@@ -999,7 +1094,7 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 
 1. G 的个数理论上是无限制的，但是受内存限制，
 2. P 的数量一般建议是逻辑 CPU 数量的 2 倍，
-   1. 由启动时环境变量$GOMAXPROCS或者是由runtime的方法GOMAXPROCS()决定。这意味着在程序执行的任意时刻都只有$GOMAXPROCS个goroutine在同时运行。
+   1. 由启动时环境变量![](https://cdn.nlark.com/yuque/__latex/6b61c00c658a846d5e75785e4e53b8e5.svg#card=math&code=GOMAXPROCS%E6%88%96%E8%80%85%E6%98%AF%E7%94%B1runtime%E7%9A%84%E6%96%B9%E6%B3%95GOMAXPROCS%28%29%E5%86%B3%E5%AE%9A%E3%80%82%E8%BF%99%E6%84%8F%E5%91%B3%E7%9D%80%E5%9C%A8%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BB%BB%E6%84%8F%E6%97%B6%E5%88%BB%E9%83%BD%E5%8F%AA%E6%9C%89&id=QIFT0)GOMAXPROCS个goroutine在同时运行。
 3. M 的数量
    1. go语言本身的限制：go程序启动时，会设置M的最大数量，默认10000.但是内核很难支持这么多的线程数，所以这个限制可以忽略。
    2. runtime/debug中的SetMaxThreads函数，设置M的最大数量
@@ -1014,22 +1109,22 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 1. **概述**：
    - GMP 模型是 Go 语言运行时用于管理 goroutine 的调度模型。
    - GMP 分别代表 Goroutines (G)、Machine (M) 和 Processor (P)。
-2. **G (Goroutine)**：
+1. **G (Goroutine)**：
    - G 代表 Goroutine，是 Go 语言中的轻量级线程。
    - 每个 goroutine 包含需要执行的函数、栈空间以及其他调度信息。
-3. **M (Machine)**：
+1. **M (Machine)**：
    - M 代表 Machine，是操作系统的内核线程。
    - M 负责执行 goroutine，多个 M 可以同时运行在多个 CPU 核上。
-4. **P (Processor)**：
+1. **P (Processor)**：
    - P 代表 Processor，是一个逻辑处理器，管理 goroutine 的执行队列。
    - 每个 P 维护一个本地队列，存储要运行的 goroutine。
    - P 的数量由 GOMAXPROCS 环境变量设置，默认值为 CPU 核心数。
-5. **GMP 模型的工作原理**：
+1. **GMP 模型的工作原理**：
    - 当一个 goroutine 被创建时，它会被放入到某个 P 的本地队列中。
    - P 从本地队列中取出 goroutine 并分配给 M 执行。
    - 如果一个 P 的本地队列为空，会从其他 P 的队列中窃取任务，保证工作负载均衡。
    - 当一个 goroutine 发生阻塞时，M 会释放 P，去寻找其他可运行的 goroutine，避免资源浪费。
-6. **优势**：
+1. **优势**：
    - GMP 模型使得 goroutine 调度高效且灵活，最大化 CPU 使用率。
    - goroutine 的轻量级特性和 GMP 模型的结合，使 Go 语言可以高效地处理大量并发任务。
 
@@ -1068,13 +1163,12 @@ M 会从 P 的队列中取一个可执行状态的 G 来执行，如果 P 的本
 基于时间片的抢占式调度有个明显的优点，能够避免CPU资源持续被少数线程占用，从而使其他线程长时间处于饥饿状态。goroutine的调度器也用到了时间片算法，但是和操作系统的线程调度还是有些区别的，因为整个Go程序都是运行在用户态的，所以不能像操作系统那样利用时钟中断来打断运行中的goroutine。也得益于完全在用户态实现，goroutine的调度切换更加轻量。
 **上面这两段文字只是对调度的一个概括，具体的协作式调度、信号量调度大家还需要去详细了解，这偏底层了，大厂或者中高级开发会问。（字节就问了）**
 ### 4、调度器的生命周期
-![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671108479128-e538cce4-0911-4683-ba0a-8a7866e4e2c1.png#averageHue=%23100e0b&clientId=u0c780b03-8a2a-4&from=paste&id=u64b405b9&originHeight=872&originWidth=439&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u7ffbc940-75e0-48b5-9b44-fd18fb87bd5&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671108479128-e538cce4-0911-4683-ba0a-8a7866e4e2c1.png#averageHue=%23100e0b&clientId=u0c780b03-8a2a-4&from=paste&id=u64b405b9&originHeight=872&originWidth=439&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u7ffbc940-75e0-48b5-9b44-fd18fb87bd5&title=#averageHue=%23100e0b&errorMessage=unknown%20error&id=GV1K0&originHeight=872&originWidth=439&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 特殊的M0和G0
 #### M0
 M0是启动程序后的编号为0的主线程，这个M对应的实例会在全局变量runtime.m0中，不需要在heap上分配，M0负责执行初始化操作和启动第一个G， 在之后M0就和其他的M一样了。
 #### G0
 G0是每次启动一个M都会第一个创建的goroutine，G0仅用于负责调度的G，G0不指向任何可执行的函数, 每个M都会有一个自己的G0。在调度或系统调用时会使用G0的栈空间, 全局变量的G0是M0的G0。
-
 我们来跟踪一段代码
 ```go
 package main 
@@ -1099,9 +1193,10 @@ func main() {
 [mutex-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamutex)
 [rwmutex-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiarwmutex)
 ### 1、除了 mutex 以外还有那些方式安全读写共享变量？
-* 将共享变量的读写放到一个 goroutine 中，其它 goroutine 通过 channel 进行读写操作。
-* 可以用个数为 1 的信号量（semaphore）实现互斥
-* 通过 Mutex 锁实现
+
+- 将共享变量的读写放到一个 goroutine 中，其它 goroutine 通过 channel 进行读写操作。
+- 可以用个数为 1 的信号量（semaphore）实现互斥
+- 通过 Mutex 锁实现
 ### 2、Go 如何实现原子操作？
 答：原子操作就是不可中断的操作，外界是看不到原子操作的中间状态，要么看到原子操作已经完成，要么看到原子操作已经结束。在某个值的原子操作执行的过程中，CPU 绝对不会再去执行其他针对该值的操作，那么其他操作也是原子操作。
 Go 语言的标准库代码包 sync/atomic 提供了原子的读取（Load 为前缀的函数）或写入（Store 为前缀的函数）某个值（这里细节还要多去查查资料）。
@@ -1195,6 +1290,7 @@ defer func() {
 **建议参考：**
 [Golang学习篇--协程池_Word哥的博客-CSDN博客_golang协程池blog.csdn.net/finghting321/article/details/106492915/](https://link.zhihu.com/?target=https%3A//blog.csdn.net/finghting321/article/details/106492915/)
 **这篇文章的目录是：**
+
 1. 为什么需要协程池？
 2. 简单的协程池
 3. go-playground/pool
@@ -1211,17 +1307,17 @@ import (
     "fmt"
     "io/ioutil"
     "net/http"
-	"time"
-	"sync"
-	"runtime"
+    "time"
+    "sync"
+    "runtime"
 )
  
 // 计数器
 var counter int = 0
  
 func httpget(lock *sync.Mutex){
-	lock.Lock()
-	counter++
+    lock.Lock()
+    counter++
     resp, err := http.Get("http://localhost:8000/rest/api/user")
     if err != nil {
         fmt.Println(err)
@@ -1234,20 +1330,20 @@ func httpget(lock *sync.Mutex){
     if resp.StatusCode == 200 {
         fmt.Println("ok")
     }
-	lock.Unlock()
+    lock.Unlock()
 }
  
 func main() {
     start := time.Now()
-	lock := &sync.Mutex{}
+    lock := &sync.Mutex{}
     for i := 0; i < 800; i++ {
         go httpget(lock)
     }
     for  {
         lock.Lock()
-		c := counter
-		lock.Unlock()
-		runtime.Gosched()
+        c := counter
+        lock.Unlock()
+        runtime.Gosched()
         if c >= 800 {
             break
         }
@@ -1268,7 +1364,7 @@ import (
     "fmt"
     "io/ioutil"
     "net/http"
-	"time"
+    "time"
 )
 // HTTP get请求
 func httpget(ch chan int){
@@ -1284,7 +1380,7 @@ func httpget(ch chan int){
     if resp.StatusCode == 200 {
         fmt.Println("ok")
     }
-	ch <- 1
+    ch <- 1
 }
 // 主方法
 func main() {
@@ -1408,113 +1504,68 @@ Channel 被设计用来实现协程间通信的组件，其作用域和生命周
 大对象：如果申请大于 32k 以上的大对象时，可能会触发 GC 行为。
 ## 十二、编译
 ### [逃逸分析是怎么进行的](http://golang.design/go-questions/compile/escape/)
-
 在编译原理中，分析指针动态范围的方法称之为逃逸分析。通俗来讲，当一个对象的指针被多个方法或线程引用时，我们称这个指针发生了逃逸。
-
 Go语言的逃逸分析是编译器执行静态代码分析后，对内存管理进行的优化和简化，它可以决定一个变量是分配到堆还栈上。
-
 写过C/C++的同学都知道，调用著名的malloc和new函数可以在堆上分配一块内存，这块内存的使用和销毁的责任都在程序员。一不小心，就会发生内存泄露。
-
 Go语言里，基本不用担心内存泄露了。虽然也有new函数，但是使用new函数得到的内存不一定就在堆上。堆和栈的区别对程序员“模糊化”了，当然这一切都是Go编译器在背后帮我们完成的。
-
 Go语言逃逸分析最基本的原则是：如果一个函数返回对一个变量的引用，那么它就会发生逃逸。
-
 简单来说，编译器会分析代码的特征和代码生命周期，Go中的变量只有在编译器可以证明在函数返回后不会再被引用的，才分配到栈上，其他情况下都是分配到堆上。
-
 Go语言里没有一个关键字或者函数可以直接让变量被编译器分配到堆上，相反，编译器通过分析代码来决定将变量分配到何处。
-
 对一个变量取地址，可能会被分配到堆上。但是编译器进行逃逸分析后，如果考察到在函数返回后，此变量不会被引用，那么还是会被分配到栈上。
-
 编译器会根据变量是否被外部引用来决定是否逃逸：
-
 > 1. 如果函数外部没有引用，则优先放到栈中；
 > 2. 如果函数外部存在引用，则必定放到堆中；
 
-
 Go的垃圾回收，让堆和栈对程序员保持透明。真正解放了程序员的双手，让他们可以专注于业务，“高效”地完成代码编写。把那些内存管理的复杂机制交给编译器，而程序员可以去享受生活。
-
 逃逸分析这种“骚操作”把变量合理地分配到它该去的地方。即使你是用new申请到的内存，如果我发现你竟然在退出函数后没有用了，那么就把你丢到栈上，毕竟栈上的内存分配比堆上快很多；反之，即使你表面上只是一个普通的变量，但是经过逃逸分析后发现在退出函数之后还有其他地方在引用，那我就把你分配到堆上。
-
 如果变量都分配到堆上，堆不像栈可以自动清理。它会引起Go频繁地进行垃圾回收，而垃圾回收会占用比较大的系统开销（占用CPU容量的25%）。
-
 堆和栈相比，堆适合不可预知大小的内存分配。但是为此付出的代价是分配速度较慢，而且会形成内存碎片。栈内存分配则会非常快。栈分配内存只需要两个CPU指令：“PUSH”和“RELEASE”，分配和释放；而堆分配内存首先需要去找到一块大小合适的内存块，之后要通过垃圾回收才能释放。
-
 通过逃逸分析，可以尽量把那些不需要分配到堆上的变量直接分配到栈上，堆上的变量少了，会减轻分配堆内存的开销，同时也会减少gc的压力，提高程序的运行速度。
-
 ### [GoRoot 和 GoPath 有什么用](http://golang.design/go-questions/compile/gopath/)
-
 GoRoot 是 Go 的安装路径。mac 或 unix 是在 `/usr/local/go` 路径上，来看下这里都装了些什么：
-
-![](https://golang.design/go-questions/compile/assets/1.png#id=a7Ono&originHeight=144&originWidth=2074&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
+![](https://golang.design/go-questions/compile/assets/1.png#id=a7Ono&originHeight=144&originWidth=2074&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=#errorMessage=unknown%20error&id=eX1on&originHeight=144&originWidth=2074&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 bin 目录下面：
-
-![](https://golang.design/go-questions/compile/assets/2.png#id=pbBTl&originHeight=142&originWidth=1576&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
+![](https://golang.design/go-questions/compile/assets/2.png#id=pbBTl&originHeight=142&originWidth=1576&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=#errorMessage=unknown%20error&id=Oqu5l&originHeight=142&originWidth=1576&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 pkg 目录下面：
-
-![](https://golang.design/go-questions/compile/assets/3.png#id=iycbe&originHeight=464&originWidth=2302&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
+![](https://golang.design/go-questions/compile/assets/3.png#id=iycbe&originHeight=464&originWidth=2302&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=#errorMessage=unknown%20error&id=DCntX&originHeight=464&originWidth=2302&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 Go 工具目录如下，其中比较重要的有编译器 `compile`，链接器 `link`：
-
-![](https://golang.design/go-questions/compile/assets/4.png#id=kVJYb&originHeight=184&originWidth=1624&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
+![](https://golang.design/go-questions/compile/assets/4.png#id=kVJYb&originHeight=184&originWidth=1624&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=#errorMessage=unknown%20error&id=FYooY&originHeight=184&originWidth=1624&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 GoPath 的作用在于提供一个可以寻找 `.go` 源码的路径，它是一个工作空间的概念，可以设置多个目录。Go 官方要求，GoPath 下面需要包含三个文件夹：
-
 ```go
 src
 pkg
 bin
 ```
-
 src 存放源文件，pkg 存放源文件编译后的库文件，后缀为 `.a`；bin 则存放可执行文件。
-
 ### [Go 编译链接过程概述](http://golang.design/go-questions/compile/link-process/)
-
 Go 程序并不能直接运行，每条 Go 语句必须转化为一系列的低级机器语言指令，将这些指令打包到一起，并以二进制磁盘文件的形式存储起来，也就是可执行目标文件。
-
 从源文件到可执行目标文件的转化过程：
-
-![](https://golang.design/go-questions/compile/assets/7.png#id=sXo2v&originHeight=396&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
-
+![](https://golang.design/go-questions/compile/assets/7.png#id=sXo2v&originHeight=396&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=#errorMessage=unknown%20error&id=zD9xO&originHeight=396&originWidth=1920&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 完成以上各个阶段的就是 Go 编译系统。你肯定知道大名鼎鼎的 GCC（GNU Compile Collection），中文名为 GNU 编译器套装，它支持像 C，C++，Java，Python，Objective-C，Ada，Fortran，Pascal，能够为很多不同的机器生成机器码。
-
 可执行目标文件可以直接在机器上执行。一般而言，先执行一些初始化的工作；找到 main 函数的入口，执行用户写的代码；执行完成后，main 函数退出；再执行一些收尾的工作，整个过程完毕。
-
 在接下来的文章里，我们将探索`编译`和`运行`的过程。
-
 Go 源码里的编译器源码位于 `src/cmd/compile` 路径下，链接器源码位于 `src/cmd/link` 路径下。
-
 ### [Go 编译相关的命令详解](http://golang.design/go-questions/compile/cmd/)
-
 和编译相关的命令主要是：
-
 ```go
 go build
 go install
 go run
 ```
-
 #### go build
-
 `go build` 用来编译指定 packages 里的源码文件以及它们的依赖包，编译的时候会到 `$GoPath/src/package` 路径下寻找源码文件。`go build` 还可以直接编译指定的源码文件，并且可以同时指定多个。
-
 通过执行 `go help build` 命令得到 `go build` 的使用方法：
-
 ```go
 usage: go build [-o output] [-i] [build flags] [packages]
 ```
-
 `-o` 只能在编译单个包的时候出现，它指定输出的可执行文件的名字。
-
 `-i` 会安装编译目标所依赖的包，安装是指生成与代码包相对应的 `.a` 文件，即静态库文件（后面要参与链接），并且放置到当前工作区的 pkg 目录下，且库文件的目录层级和源码层级一致。
-
 至于 build flags 参数，`build, clean, get, install, list, run, test` 这些命令会共用一套：
 
 | 参数 | 作用 |
 | --- | --- |
-| -a | 强制重新编译所有涉及到的包，包括标准库中的代码包，这会重写 /usr/local/go 目录下的 `.a`
- 文件 |
+| -a | 强制重新编译所有涉及到的包，包括标准库中的代码包，这会重写 /usr/local/go 目录下的 `.a` |
+| 文件 |  |
 | -n | 打印命令执行过程，不真正执行 |
 | -p n | 指定编译过程中命令执行的并行数，n 默认为 CPU 核数 |
 | -race | 检测并报告程序中的数据竞争问题 |
@@ -1522,26 +1573,17 @@ usage: go build [-o output] [-i] [build flags] [packages]
 | -x | 打印命令执行过程中所涉及到的命令，并执行 |
 | -work | 打印编译过程中的临时文件夹。通常情况下，编译完成后会被删除 |
 
-
 我们知道，Go 语言的源码文件分为三类：命令源码、库源码、测试源码。
-
 > 命令源码文件：是 Go 程序的入口，包含 `func main()` 函数，且第一行用 `package main` 声明属于 main 包。
-
 
 > 库源码文件：主要是各种函数、接口等，例如工具类的函数。
 
-
 > 测试源码文件：以 `_test.go` 为后缀的文件，用于测试程序的功能和性能。
 
-
 注意，`go build` 会忽略 `*_test.go` 文件。
-
 #### go install
-
 `go install` 用于编译并安装指定的代码包及它们的依赖包。相比 `go build`，它只是多了一个“安装编译后的结果文件到指定目录”的步骤。
-
 还是使用之前 hello-world 项目的例子，我们先将 pkg 目录删掉，在项目根目录执行：
-
 ```go
 go install src/main.go
 
@@ -1549,17 +1591,11 @@ go install src/main.go
 
 go install util
 ```
-
 两者都会在根目录下新建一个 `pkg` 目录，并且生成一个 `util.a` 文件。
-
 并且，在执行前者的时候，会在 GOBIN 目录下生成名为 main 的可执行文件。
-
 所以，运行 `go install` 命令，库源码包对应的 `.a` 文件会被放置到 `pkg` 目录下，命令源码包生成的可执行文件会被放到 GOBIN 目录。
-
 `go install` 在 GoPath 有多个目录的时候，会产生一些问题，具体可以去看郝林老师的 `Go 命令教程`，这里不展开了。
-
 #### go run
-
 `go run` 用于编译并运行命令源码文件。
 ### [Go 程序启动过程是怎样的](http://golang.design/go-questions/compile/booting/)
 ## 十三、框架
@@ -1624,7 +1660,7 @@ go install util
 ### go-zero
 文档：[https://go-zero.dev/cn/docs/introduction](https://go-zero.dev/cn/docs/introduction)
 > go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。
-> go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 api 文件一键生成 Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript 代码，并可直接运行。
+go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 api 文件一键生成 Go, iOS, Android, Kotlin, Dart, TypeScript, JavaScript 代码，并可直接运行。
 
 使用 go-zero 的好处：
 
@@ -1643,11 +1679,11 @@ go install util
 **特点**
 
 - 高易用性在开发过程中，快速写出来正确的代码往往是更重要的。因此，在 Hertz 在迭代过程中，积极听取用户意见，持续打磨框架，希望为用户提供一个更好的使用体验，帮助用户更快的写出正确的代码。
-- 高性能Hertz 默认使用自研的高性能网络库 Netpoll，在一些特殊场景相较于 go net，Hertz 在 QPS、时延上均具有一定优势。关于性能数据，可参考下图 Echo 数据。四个框架的对比:![image.png](https://cdn.nlark.com/yuque/0/2023/png/22219483/1675414683589-8ae9d18c-b2e6-43bd-943f-7392415e0e74.png#averageHue=%23fafaf9&clientId=ud2ddbc2a-ed25-4&from=paste&id=u520f65e4&originHeight=810&originWidth=3348&originalType=url&ratio=1&rotation=0&showTitle=false&size=367994&status=done&style=none&taskId=uc3977b71-ec2f-4b6f-a5d0-d878ea89ff1&title=)三个框架的对比:![image.png](https://cdn.nlark.com/yuque/0/2023/png/22219483/1675414685005-e51955bc-2290-48b8-8782-11f6a26f4efc.png#averageHue=%23fafaf9&clientId=ud2ddbc2a-ed25-4&from=paste&id=u5f7c2581&originHeight=730&originWidth=3470&originalType=url&ratio=1&rotation=0&showTitle=false&size=349770&status=done&style=none&taskId=u0dc010dc-65ab-4d9d-bc1f-c0f8cfb35c5&title=)关于详细的性能数据，可参考 [https://github.com/cloudwego/hertz-benchmark](https://github.com/cloudwego/hertz-benchmark)。
+- 高性能Hertz 默认使用自研的高性能网络库 Netpoll，在一些特殊场景相较于 go net，Hertz 在 QPS、时延上均具有一定优势。关于性能数据，可参考下图 Echo 数据。四个框架的对比:![](https://cdn.nlark.com/yuque/0/2023/png/22219483/1675414683589-8ae9d18c-b2e6-43bd-943f-7392415e0e74.png#averageHue=%23fafaf9&clientId=ud2ddbc2a-ed25-4&from=paste&id=u520f65e4&originHeight=810&originWidth=3348&originalType=url&ratio=1&rotation=0&showTitle=false&size=367994&status=done&style=none&taskId=uc3977b71-ec2f-4b6f-a5d0-d878ea89ff1&title=#averageHue=%23fafaf9&errorMessage=unknown%20error&id=qOeks&originHeight=810&originWidth=3348&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)三个框架的对比:![](https://cdn.nlark.com/yuque/0/2023/png/22219483/1675414685005-e51955bc-2290-48b8-8782-11f6a26f4efc.png#averageHue=%23fafaf9&clientId=ud2ddbc2a-ed25-4&from=paste&id=u5f7c2581&originHeight=730&originWidth=3470&originalType=url&ratio=1&rotation=0&showTitle=false&size=349770&status=done&style=none&taskId=u0dc010dc-65ab-4d9d-bc1f-c0f8cfb35c5&title=#averageHue=%23fafaf9&errorMessage=unknown%20error&id=SjO78&originHeight=730&originWidth=3470&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)关于详细的性能数据，可参考 [https://github.com/cloudwego/hertz-benchmark](https://github.com/cloudwego/hertz-benchmark)。
 - 高扩展性Hertz 采用了分层设计，提供了较多的接口以及默认的扩展实现，用户也可以自行扩展。同时得益于框架的分层设计，框架的扩展性也会大很多。目前仅将稳定的能力开源给社区，更多的规划参考 [RoadMap](https://github.com/cloudwego/hertz/blob/main/ROADMAP.md)。
 - 多协议支持Hertz 框架原生提供 HTTP1.1、ALPN 协议支持。除此之外，由于分层设计，Hertz 甚至支持自定义构建协议解析逻辑，以满足协议层扩展的任意需求。
 - 网络层切换能力Hertz 实现了 Netpoll 和 Golang 原生网络库 间按需切换能力，用户可以针对不同的场景选择合适的网络库，同时也支持以插件的方式为 Hertz 扩展网络库实现。
-### RPC-Kitex 
+### RPC-Kitex
 文档：[https://www.cloudwego.io/zh/docs/kitex/overview/](https://www.cloudwego.io/zh/docs/kitex/overview/)
 > 字节跳动内部的 Golang 微服务 RPC 框架，具有**高性能**、**强可扩展**的特点，在字节内部已广泛使用。如果对微服务性能有要求，又希望定制扩展融入自己的治理体系，Kitex 会是一个不错的选择。
 
@@ -1663,8 +1699,3 @@ go install util
 ## 参考并致谢
 1、可可酱 [可可酱：Golang常见面试题](https://zhuanlan.zhihu.com/p/434629143)
 2、Bel_Ami同学 [golang 面试题(从基础到高级)](https://link.zhihu.com/?target=https%3A//blog.csdn.net/Bel_Ami_n/article/details/123352478)
-
-
-
-
-
