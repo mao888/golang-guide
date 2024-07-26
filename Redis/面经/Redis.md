@@ -1052,21 +1052,60 @@ Redis自研的高可用解决方案，主要体现在配置中心、故障探测
 - 消息通知，如果某个Redis实例有故障，那么哨兵负责发送消息作为报警通知给管理员。
 - 故障转移，如果master node挂掉了，会自动转移到slave node上。
 - 配置中心，如果故障转移发生了，通知client客户端新的master地址。
-## 43. 了解主从复制的原理吗？
-**1、主从架构的核心原理**
-当启动一个slave node的时候，它会发送一个PSYNC命令给master node
-如果这是slave node重新连接master node，那么master node仅仅会复制给slave部分缺少的数据; 否则如果是slave node第一次连接master node，那么会触发一次full resynchronization
-开始full resynchronization的时候，master会启动一个后台线程，开始生成一份RDB快照文件，同时还会将从客户端收到的所有写命令缓存在内存中。RDB文件生成完毕之后，master会将这个RDB发送给slave，slave会先写入本地磁盘，然后再从本地磁盘加载到内存中。然后master会将内存中缓存的写命令发送给slave，slave也会同步这些数据。
-slave node如果跟master node有网络故障，断开了连接，会自动重连。master如果发现有多个slave node都来重新连接，仅仅会启动一个rdb save操作，用一份数据服务所有slave node。
-**2、主从复制的断点续传**
-从Redis 2.8开始，就支持主从复制的断点续传，如果主从复制过程中，网络连接断掉了，那么可以接着上次复制的地方，继续复制下去，而不是从头开始复制一份
-master node会在内存中常见一个backlog，master和slave都会保存一个replica offset还有一个master id，offset就是保存在backlog中的。如果master和slave网络连接断掉了，slave会让master从上次的replica offset开始继续复制
-但是如果没有找到对应的offset，那么就会执行一次resynchronization
-**3、无磁盘化复制**
-master在内存中直接创建rdb，然后发送给slave，不会在自己本地落地磁盘了
-repl-diskless-sync repl-diskless-sync-delay，等待一定时长再开始复制，因为要等更多slave重新连接过来
-**4、过期key处理**
-slave不会过期key，只会等待master过期key。如果master过期了一个key，或者通过LRU淘汰了一个key，那么会模拟一条del命令发送给slave。
+## 43. [**redis主从同步方式(redis数据同步原理)**](https://cloud.tencent.com/developer/article/2063597)
+**1.前言**
+在redis中为了保证redis的高可用，一般会搭建一种集群模式就是主从模式。
+主从模式可以保证redis的高可用，那么redis是怎么保证主从[服务器](https://cloud.tencent.com/act/pro/promotion-cvm?from_column=20065&from=20065)的数据一致性的，接下来我们浅谈下redis主(master)从(slave)同步的原理。
+**2.初次全量同步**
+当一个redis服务器初次向主服务器发送salveof命令时，redis从服务器会进行一次全量同步，同步的步骤如下图所示：
+![](https://cdn.nlark.com/yuque/0/2024/png/22219483/1721981551391-46081211-a749-44a7-9c7a-c11c9f6f4f9f.png#averageHue=%23f9f9f9&clientId=u937d522a-9d44-4&from=paste&id=u7a17886c&originHeight=510&originWidth=704&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=u331ada95-52d4-40c7-830d-4c12f39b33b&title=)
+在这里插入图片描述
+
+- **slave服务器向master发送psync命令（此时发送的是psync ? -1），告诉master我需要同步数据了。**
+- **master接收到psync命令后会进行BGSAVE命令生成RDB文件快照。**
+- **生成完后，会将RDB文件发送给slave。**
+- **slave接收到文件会载入RDB快照，并且将**[**数据库**](https://cloud.tencent.com/solution/database?from_column=20065&from=20065)**状态变更为master在执行BGSAVE时的状态一致。**
+- **master会发送保存在缓冲区里的所有写命令，告诉slave可以进行同步了**
+- **slave执行这些写命令。**
+
+**3.命令传播**
+slave已经同步过master了，那么如果后续master进行了写操作，比如说一个简单的set name redis，那么master执行过当前命令后，会将当前命令发送给slave执行一遍，达成数据一致性。
+**4.重新复制**
+当slave断开重连之后会进行重新同步，重新同步分完全同步和部分同步
+首先来看看部分同步大致的走向
+![](https://cdn.nlark.com/yuque/0/2024/png/22219483/1721981551205-f33c2c9a-8f59-4762-bbc4-9d31d706e6fe.png#averageHue=%23fafafa&clientId=u937d522a-9d44-4&from=paste&id=u0f668875&originHeight=528&originWidth=735&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=ua0567acb-ea17-4332-8df8-15822328821&title=)
+
+- 当slave断开重连后，会发送psync 命令给master。
+- master收到psync后会返回+continue回复，表示slave可以执行部分同步了。
+- master发送断线后的写命令给slave
+- slave执行写命令。
+
+实际上当slave发送psync命令给master之后，master还需要根据以下三点判断是否进行部分同步。
+先来介绍一下是哪三个方面：
+
+- 服务器运行ID
+
+每个redis服务器开启后会生成运行ID。 当进行初次同步时，master会将自己的ID告诉slave，slave会记录下来，当slave断线重连后，发现ID是这个master的就会尝试进行部分重同步。当ID与现在连接的master不一样时会进行完整重同步。 
+
+- 复制偏移量
+
+复制偏移量包括master复制偏移量和slave复制偏移量，当初次同步过后两个数据库的复制偏移量相同，之后master执行一次写命令，那么master的偏移量+1，master将写命令给slave，slave执行一次，slave偏移量+1，这样版本就能一致。 
+
+- 复制积压缓冲区
+
+复制积压缓冲区是由master维护的固定长度的先进先出的队列。 当slave发送psync，会将自己的偏移量也发送给master，当slave的偏移量之后的数据在缓冲区还存在，就会返回+continue通知slave进行部分重同步。 当slave的偏移量之后的数据不在缓冲区了，就会进行完整重同步。 
+结合以上三点，我们又可以总结下：
+
+- **当slave断开重连后，会发送psync 命令给master。**
+- **master首先会对服务器运行id进行判断，如果与自己相同就进行判断偏移量**
+- **master会判断自己的偏移量与slave的偏移量是否一致。**
+- **如果不一致，master会去缓冲区中判断slave的偏移量之后的数据是否存在。**
+- **如果存在就会返回+continue回复，表示slave可以执行部分同步了。**
+- **master发送断线后的写命令给slave**
+- **slave执行写命令。**
+
+**5.主从同步最终流程**
+![](https://cdn.nlark.com/yuque/0/2024/png/22219483/1721981551165-5c2d68b6-e18e-48ec-8d67-fabc1f601507.png#averageHue=%23f9f9f9&clientId=u937d522a-9d44-4&from=paste&id=ua3a8e679&originHeight=1021&originWidth=621&originalType=url&ratio=2&rotation=0&showTitle=false&status=done&style=none&taskId=ua7b86390-fcec-4314-ad94-657f41208c8&title=)
 ## 44. 由于主从延迟导致读取到过期数据怎么处理？
 
 1. 通过scan命令扫库：当Redis中的key被scan的时候，相当于访问了该key，同样也会做过期检测，充分发挥Redis惰性删除的策略。这个方法能大大降低了脏数据读取的概率，但缺点也比较明显，会造成一定的数据库压力，否则影响线上业务的效率。
