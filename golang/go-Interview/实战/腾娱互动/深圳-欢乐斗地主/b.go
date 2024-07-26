@@ -14,4 +14,5 @@ func main() {
 			wg.Done()
 		}(&wg)
 	}
+	wg.Wait()
 }
