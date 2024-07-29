@@ -429,6 +429,9 @@
 - [如何使用Docker部署Go Web应用](https://www.liwenzhou.com/posts/Go/how_to_deploy_go_app_using_docker/)
 - [Docker 10分钟快速入门](https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.788.recommend_more_video.-1&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 
+## 💻 K8S
+![img.png](img.png)
+
 ## 💻 消息队列
 <img align="centre" src="https://i.postimg.cc/sXZmVV2V/image.jpg" height="150" width="300"/>
 
