@@ -430,7 +430,10 @@
 - [Docker 10分钟快速入门](https://www.bilibili.com/video/BV1s54y1n7Ev/?spm_id_from=333.788.recommend_more_video.-1&vd_source=8321160752e4f07c473e11ebc0dd0a28)
 
 ## 💻 K8S
-![img.png](img.png)
+![https://mao888.github.io/picx-images-hosting/soft-learn/image.26ldszahww.webp](https://mao888.github.io/picx-images-hosting/soft-learn/image.26ldszahww.webp)
+
+- [K8S面经](https://github.com/mao888/golang-guide/blob/main/k8s/k8s%E9%9D%A2%E7%BB%8F.md)
+- [k8s操作命令](https://github.com/mao888/golang-guide/blob/main/k8s/k8s%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4.md)
 
 ## 💻 消息队列
 <img align="centre" src="https://i.postimg.cc/sXZmVV2V/image.jpg" height="150" width="300"/>

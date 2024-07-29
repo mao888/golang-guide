@@ -1,4 +1,4 @@
-![](https://cdn.nlark.com/yuque/0/2019/png/126351/1555230726609-a58ed064-7d08-44ef-beb8-01abdabf8afc.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_159%2Ctext_cG9sYXJpcw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10#averageHue=%23fdfcfb&errorMessage=unknown%20error&id=E9okP&originHeight=7010&originWidth=5592&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
+![https://mao888.github.io/picx-images-hosting/soft-learn/image.26ldszahww.webp](https://mao888.github.io/picx-images-hosting/soft-learn/image.26ldszahww.webp)
 # 生命周期管理
 ## 1. 创建
 ### 1. 创建资源
