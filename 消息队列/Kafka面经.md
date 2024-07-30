@@ -1,4 +1,4 @@
-## 1. [Apache Kafka是什么？](https://golangguide.top/%E4%B8%AD%E9%97%B4%E4%BB%B6/kafka/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/kafka%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9E%B6%E6%9E%84%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F.html)
+## [Apache Kafka是什么？](https://golangguide.top/%E4%B8%AD%E9%97%B4%E4%BB%B6/kafka/%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/kafka%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E6%9E%B6%E6%9E%84%E6%98%AF%E6%80%8E%E4%B9%88%E6%A0%B7%E7%9A%84%EF%BC%9F.html)
 ### Apache Kafka 介绍
 Apache Kafka 是一个分布式流处理平台，最初由 LinkedIn 开发并开源，目前由 Apache 基金会维护。它的核心概念包括：
 
@@ -35,7 +35,7 @@ Apache Kafka 是一个分布式流处理平台，最初由 LinkedIn 开发并开
 
 通过这些配置和优化，可以提升 Kafka 在高并发、大数据量场景下的性能和可靠性。
 
-## 2. Kafka 的设计是什么样的？
+## Kafka 的设计是什么样的？
 
 Kafka 将消息以 topic 为单位进行归纳
 
@@ -47,7 +47,7 @@ Kafka 以集群的方式运行，可以由一个或多个服务组成，每个�
 
 producers 通过网络将消息发送到 Kafka 集群，集群向消费者提供消息
 
-## 3. Kafka 如何保证高可用？
+## Kafka 如何保证高可用？
 
 `Kafka` 的基本架构组成是：由多个 `broker` 组成一个集群，每个 `broker` 是一个节点；当创建一个 `topic` 时，这个 `topic` 会被划分为多个 `partition`，每个 `partition` 可以存在于不同的 `broker` 上，每个 `partition` 只存放一部分数据。
 
@@ -67,19 +67,19 @@ producers 通过网络将消息发送到 Kafka 集群，集群向消费者提供
 
 ![](https://gitee.com/dongzl/article-images/raw/master/2020/13-Solve-MQ-Problem-With-Kafka/Solve-MQ-Problem-With-Kafka-02.png#id=It5OH&originHeight=1534&originWidth=1633&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
-## 4. Kafka 消息是采用 Pull 模式，还是 Push 模式？
+## Kafka 消息是采用 Pull 模式，还是 Push 模式？
 
 生产者使用push模式将消息发布到Broker，消费者使用pull模式从Broker订阅消息。
 
 push模式很难适应消费速率不同的消费者，如果push的速度太快，容易造成消费者拒绝服务或网络拥塞；如果push的速度太慢，容易造成消费者性能浪费。但是采用pull的方式也有一个缺点，就是当Broker没有消息时，消费者会陷入不断地轮询中，为了避免这点，kafka有个参数可以让消费者阻塞知道是否有新消息到达。
 
-## 5. Kafka 与传统消息系统之间的区别
+## Kafka 与传统消息系统之间的区别
 
 -  Kafka 持久化日志，这些日志可以被重复读取和无限期保留 
 -  Kafka 是一个分布式系统：它以集群的方式运行，可以灵活伸缩，在内部通过复制数据提升容错能力和高可用性 
 -  Kafka 支持实时的流式处理 
 
-## 6. 什么是消费者组？
+## 什么是消费者组？
 
 消费者组是Kafka独有的概念，即消费者组是Kafka提供的可扩展且具有容错性的消费者机制。
 
@@ -89,7 +89,7 @@ push模式很难适应消费速率不同的消费者，如果push的速度太快
 
 ![](http://dockone.io/uploads/article/20201024/7b359b7a1381541fbacf3ecf20dfb347.jpg#id=pdpbH&originHeight=225&originWidth=474&originalType=binary&ratio=1&rotation=0&showTitle=false&status=done&style=none&title=)
 
-## 7. 在Kafka中，ZooKeeper的作用是什么？
+## 在Kafka中，ZooKeeper的作用是什么？
 
 目前，Kafka使用ZooKeeper存放集群元数据、成员管理、Controller选举，以及其他一些管理类任务。之后，等KIP-500提案完成后，Kafka将完全不再依赖于ZooKeeper。
 
@@ -99,11 +99,11 @@ push模式很难适应消费速率不同的消费者，如果push的速度太快
 
 KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKeeper，实现Controller自选举。
 
-## 8. 解释下Kafka中位移（offset）的作用
+## 解释下Kafka中位移（offset）的作用
 
 在Kafka中，每个主题分区下的每条消息都被赋予了一个唯一的ID数值，用于标识它在分区中的位置。这个ID数值，就被称为位移，或者叫偏移量。一旦消息被写入到分区日志，它的位移值将不能被修改。
 
-## 9. kafka 为什么那么快？
+## kafka 为什么那么快？
 
 - Cache Filesystem Cache PageCache缓存
 - `顺序写`：由于现代的操作系统提供了预读和写技术，磁盘的顺序写大多数情况下比随机写内存还要快。
@@ -111,13 +111,13 @@ KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKe
 - `Batching of Messages`：批量量处理。合并小的请求，然后以流的方式进行交互，直顶网络上限。
 - `Pull 拉模式`：使用拉模式进行消息的获取消费，与消费端处理能力相符。
 
-## 10. kafka producer发送数据，ack为0，1，-1分别是什么意思？
+## kafka producer发送数据，ack为0，1，-1分别是什么意思？
 
 - `1`（默认） 数据发送到Kafka后，经过leader成功接收消息的的确认，就算是发送成功了。在这种情况下，如果leader宕机了，则会丢失数据。
 - `0` 生产者将数据发送出去就不管了，不去等待任何返回。这种情况下数据传输效率最高，但是数据可靠性确是最低的。
 - `-1`producer需要等待ISR中的所有follower都确认接收到数据后才算一次发送完成，可靠性最高。当ISR中所有Replica都向Leader发送ACK时，leader才commit，这时候producer才能认为一个请求中的消息都commit了。
 
-## 11. Kafka如何保证消息不丢失?
+## Kafka如何保证消息不丢失?
 
 首先需要弄明白消息为什么会丢失，对于一个消息队列，会有 `生产者`、`MQ`、`消费者` 这三个角色，在这三个角色数据处理和传输过程中，都有可能会出现消息丢失。
 
@@ -146,7 +146,31 @@ KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKe
 - 在 `producer` 端设置 `acks=all`，这个是要求每条数据，必须是写入所有 `replica` 之后，才能认为是写成功了；
 - 在 `producer` 端设置 `retries=MAX`（很大很大很大的一个值，无限次重试的意思）：这个参数的含义是一旦写入失败，就无限重试，卡在这里了。
 
-## 13. Kafka 如何保证消息的顺序性
+## kafka如果线上消费端挂了，积压了大量的消息该怎么处理，怎么做，将影响减少
+
+   1. 方法1: 启用备用消费端
+      1. **冗余设计**：部署多个消费者实例，确保在一个实例挂掉时，其他实例能继续处理消息。
+      2. **自动重启**：配置消费者实例自动重启策略，确保在挂掉后能尽快恢复。
+   2. 方法2: 增加消费者实例
+      1. **动态扩容**：根据消息积压情况，动态增加消费者实例数量，加速消息处理速度。
+      2. **水平扩展**：使用容器化和编排工具（如Docker和Kubernetes）快速扩展消费者实例。
+   3. 消费速率控制
+      1. **批量处理**：增大批量处理大小，一次性处理更多消息，提高吞吐量。
+      2. **异步处理**：使用异步处理方式，提升处理效率，减少处理时间。
+   4. 方法5: 优化消费者代码
+      1. **优化逻辑**：简化和优化消费者代码逻辑，确保每条消息处理时间最小化。
+      2. **提高并发度**：利用多线程或协程并发处理消息，提高消费速度。
+   5. 方法6: 持久化和备份
+      1. **持久化机制**：确保消息持久化到可靠存储系统，避免数据丢失。
+      2. **定期备份**：对消息和偏移量进行定期备份，确保在恢复时数据完整。
+   6. 方法7: 设置报警和监控
+      1. **实时监控**：使用Kafka监控工具（如Kafka Manager、Prometheus等）实时监控消费者状态和消息积压情况。
+      2. **报警机制**：设置报警机制，及时通知运维人员进行处理。
+   7. 方法8: 异常处理和降级策略
+      1. **异常处理**：完善异常处理逻辑，确保在遇到错误时不会导致消费者挂掉。
+      2. **降级策略**：在消费端挂掉时，启用降级策略，如暂时停止非关键业务的消息处理，确保关键业务优先处理。
+
+## Kafka 如何保证消息的顺序性
 
 在某些业务场景下，我们需要保证对于有逻辑关联的多条MQ消息被按顺序处理，比如对于某一条数据，正常处理顺序是`新增-更新-删除`，最终结果是数据被删除；如果消息没有按序消费，处理顺序可能是`删除-新增-更新`，最终数据没有被删掉，可能会产生一些逻辑错误。对于如何保证消息的顺序性，主要需要考虑如下两点：
 
@@ -161,7 +185,7 @@ KIP-500 思想，是使用社区自研的基于Raft的共识算法，替代ZooKe
 
 对于某个 `topic` 的一个 `partition`，只能被同组内部的一个 `consumer` 消费，如果这个 `consumer` 内部还是单线程处理，那么其实只要保证消息在 `MQ` 内部是有顺序的就可以保证消费也是有顺序的。但是单线程吞吐量太低，在处理大量 `MQ` 消息时，我们一般会开启多线程消费机制，那么如何保证消息在多个线程之间是被顺序处理的呢？对于多线程消费我们可以预先设置 `N` 个内存 `Queue`，具有相同 `key` 的数据都放到同一个内存 `Queue` 中；然后开启 `N` 个线程，每个线程分别消费一个内存 `Queue` 的数据即可，这样就能保证顺序性。当然，消息放到内存 `Queue` 中，有可能还未被处理，`consumer` 发生宕机，内存 `Queue` 中的数据会全部丢失，这就转变为上面提到的**如何保证消息的可靠传输**的问题了。
 
-## 14. Kafka中的ISR、AR代表什么？ISR的伸缩指什么？
+## Kafka中的ISR、AR代表什么？ISR的伸缩指什么？
 
 - `ISR`：In-Sync Replicas 副本同步队列
 - `AR`:Assigned Replicas 所有副本
@@ -171,7 +195,7 @@ ISR是由leader维护，follower从leader同步数据有一些延迟（包括`�
 > AR=ISR+OSR。
 
 
-## 15. 描述下 Kafka 中的领导者副本（Leader Replica）和追随者副本（Follower Replica）的区别
+## 描述下 Kafka 中的领导者副本（Leader Replica）和追随者副本（Follower Replica）的区别
 
 Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才能对外提供读写服务，响应Clients端的请求。Follower副本只是采用拉（PULL）的方式，被动地同步Leader副本中的数据，并且在Leader副本所在的Broker宕机后，随时准备应聘Leader副本。
 
@@ -182,7 +206,7 @@ Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才
 
 注意：之前确保一致性的主要手段是高水位机制（HW），但高水位值无法保证Leader连续变更场景下的数据一致性，因此，社区引入了Leader Epoch机制，来修复高水位值的弊端。
 
-## 16. 分区Leader选举策略有几种？
+## 分区Leader选举策略有几种？
 
 分区的Leader副本选举对用户是完全透明的，它是由Controller独立完成的。你需要回答的是，在哪些场景下，需要执行分区Leader选举。每一种场景对应于一种选举策略。
 
@@ -193,7 +217,7 @@ Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才
 
 这4类选举策略的大致思想是类似的，即从AR中挑选首个在ISR中的副本，作为新Leader。
 
-## 17. Kafka的哪些场景中使用了零拷贝（Zero Copy）？
+## Kafka的哪些场景中使用了零拷贝（Zero Copy）？
 
 在Kafka中，体现Zero Copy使用场景的地方有两处：基于mmap的索引和日志文件读写所用的TransportLayer。
 
@@ -201,7 +225,7 @@ Kafka副本当前分为领导者副本和追随者副本。只有Leader副本才
 
 再说第二个。TransportLayer是Kafka传输层的接口。它的某个实现类使用了FileChannel的transferTo方法。该方法底层使用sendfile实现了Zero Copy。对Kafka而言，如果I/O通道使用普通的PLAINTEXT，那么，Kafka就可以利用Zero Copy特性，直接将页缓存中的数据发送到网卡的Buffer中，避免中间的多次拷贝。相反，如果I/O通道启用了SSL，那么，Kafka便无法利用Zero Copy特性了。
 
-## 18. 为什么Kafka不支持读写分离？
+## 为什么Kafka不支持读写分离？
 
 在 Kafka 中，生产者写入消息、消费者读取消息的操作都是与 leader 副本进行交互的，从 而实现的是一种主写主读的生产消费模型。
 
