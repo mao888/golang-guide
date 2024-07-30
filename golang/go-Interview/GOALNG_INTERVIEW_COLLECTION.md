@@ -739,11 +739,16 @@ type bmap struct {
 ![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789834784-c60b0cb4-96be-4c4c-8978-2bfc9ca716b9.png#averageHue=%23414141&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=ueb411ead&originHeight=260&originWidth=664&originalType=url&ratio=1&rotation=0&showTitle=false&size=23558&status=error&style=none&taskId=u3f259a38-81e8-46dc-912d-aee35205a60&title=#averageHue=%23414141&errorMessage=unknown%20error&id=WzvZN&originHeight=260&originWidth=664&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 #### [解决哈希冲突（四种方法）](https://blog.csdn.net/qq_48241564/article/details/118613312)
 #### 哈希冲突
-当有两个或以上数量的键被哈希到了同一个bucket时，我们称这些键发生了冲突。Go使用链地址法来解决键冲突。
+当有两个或以上数量的键被哈希到了同一个bucket时，我们称这些键发生了冲突。Go使用**链地址法**来解决键冲突。
 由于每个bucket可以存放8个键值对，所以同一个bucket存放超过8个键值对时就会再创建一个键值对，用类似链表的方式将bucket连接起来。
 下图展示产生冲突后的map：
-![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789900886-a77838be-46c8-4254-999b-b6e217721fbf.png#averageHue=%23333333&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u78c40a38&originHeight=440&originWidth=794&originalType=url&ratio=1&rotation=0&showTitle=false&size=37335&status=error&style=none&taskId=ua864d7b3-7683-4b48-96e5-7b2a743986d&title=#averageHue=%23333333&errorMessage=unknown%20error&id=mbRPc&originHeight=440&originWidth=794&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1661789900886-a77838be-46c8-4254-999b-b6e217721fbf.png#averageHue=%23333333&clientId=uef4c3b7a-0bed-4&errorMessage=unknown%20error&from=paste&id=u78c40a38&originHeight=440&originWidth=794&originalType=url&ratio=1&rotation=0&showTitle=false&size=37335&status=error&style=none&taskId=ua864d7b3-7683-4b48-96e5-7b2a743986d&title=#averageHue=%23333333&errorMessage=unknown%20error&id=oPXDH&originHeight=440&originWidth=794&originalType=binary&ratio=1&rotation=0&showTitle=false&status=error&style=none)
 bucket数据结构指示下一个bucket的指针称为overflow bucket，意为当前bucket盛不下而溢出的部分。事实上哈希冲突并不是好事情，它降低了存取效率，好的哈希算法可以保证哈希值的随机性，但冲突过多也是要控制的，后面会再详细介绍。
+#### 链地址法：
+将所有哈希地址相同的记录都链接在同一链表中。
+
+- 当两个不同的键通过哈希函数计算得到相同的哈希值时，Go的map并不直接覆盖旧的值，而是将这些具有相同哈希值的键值对存储在同一个桶（bucket）中的链表中。这样，即使哈希值相同，也可以通过遍历链表来找到对应的键值对。
+- 当桶中的链表长度超过一定阈值时（通常是8个元素），Go的map会进行扩容和重新哈希，以减少哈希冲突，并优化查找、插入和删除操作的性能。
 #### 负载因子
 负载因子用于衡量一个哈希表冲突情况，公式为：
 > 负载因子 = 键数量/bucket数量
@@ -801,6 +806,11 @@ hmap数据结构中oldbuckets成员指身原bucket，而buckets指向了新申�
 2. 取哈希值低位与hmap.B取模确定bucket位置
 3. 查找该key是否已经存在，如果存在则直接更新值
 4. 如果没找到将key，将key插入
+### 增删查的时间复杂度 O(1)
+
+1. 在Go语言中，对于map的查找、插入和删除操作，在**大多数情况下**，它们的时间复杂度都可以视为O(1)，即常数时间复杂度。
+2. **这是因为map底层使用了哈希表来存储键值对，哈希表通过计算键的哈希值来实现快速访问、插入和删除操作。只要哈希函数能够均匀分布键，这些操作就可以在常数时间内完成。**
+3. 然而，需要明确的是，这个O(1)的复杂度是基于平均情况或假设哈希函数分布均匀的前提下的。在实际应用中，如果哈希函数设计不当或发生了大量的哈希冲突，那么这些操作的时间复杂度可能会受到影响，甚至退化为O(n)，其中n是map中元素的数量。但在正常、合理的使用场景下，这种极端情况是非常罕见的。
 ### 可以对map里面的一个元素取地址吗
 在Go语言中，你不能直接对map中的元素取地址，因为map的元素并不是固定的内存位置。当你从map中获取一个元素的值时，你实际上得到的是该值的一个副本，而不是它的实际存储位置的引用。这意味着，即使你尝试获取这个值的地址，你也只是得到了这个副本的地址，而不是map中原始元素的地址。
 例如，考虑以下代码：
