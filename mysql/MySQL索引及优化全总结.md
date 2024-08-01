@@ -435,17 +435,27 @@ INDEX idx_c1 (col1)
 会生成聚簇索引，所以定义的唯一索引和普通索引是重复的，这种情况要避免。
 
 # [MySQL优化（索引与查询优化）](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951783151-8bc26cca-b463-49bc-a72f-ad65e10b351f.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
-## 1. 如何定位及优化SQL语句的性能问题？
+## 为什么MySQL单表数据在2000W＋后会明显下降？
+
+- **索引树的层级增加**：MySQL使用B+树作为索引结构(B+树的特点是叶子节点存放数据，非叶子结点存放键值和子节点指针)。当数据量增加时，B+树的层级会增加，导致在进行索引查找时需要遍历更多的节点。每一次遍历节点都会增加查询的I/O操作，从而导致查询性能下降。
+- **磁盘I/O增加**：随着数据量的增加，索引和数据可能无法完全加载到内存中。每次查询需要更多的磁盘读取操作，而磁盘I/O是相对较慢的操作，导致查询性能下降。
+
+**总结一下：单表数据量越大，B+树高度越高，查询需要IO次数越多，性能越差。** 这里的几个分界值就是2W和2000W，也就是说1000W和100W通过主键来索引的性能其实是差不多的，都需要2次IO。
+**详细介绍：**
+
+- 最小储存单元：InnoDB存储引擎最小储存单元就是页（Page），页可以用于存放数据也可以用于存放键值+指针，一个页的大小默认是16K。也就是说InnoDB中不管你的数量量是多少，最终占用的存储空间肯定是16K的整数倍。
+- B+树数据存储计算：这里假设单条纪录的数据大小为1K（一般的业务数据记录也就在1K左右），那么单个叶子结节所能存储的纪录数：16K/1K=16。非叶子节点能够存储多少指针呢？一般我们的主键ID都是bigint类型，长度为8字节，而指针大小在InnoDB源码中设置为6字节，这样键值＋指针占用的大小就是14字节，一页能够存储的指针数：16K/14=1170。那么一棵高度为2的B+树能够存放的纪录数：1170_16=18720，一棵高度为3的B+树能够存放的纪录数：1170_1170*16＝21902400。在查找数据时，一次页的查找代表一次IO，而IO的字数又和B+树的高度有关，如果B+树为3层，那么通过主键索引数据时就需要3次IO，而IO的代价是非常高的，一般要控制在3以下，所以说一量数据量达到2000W+，那么B+树的高度将会变成4，从而导致每次主键索引都需要4次IO，IO次数的增加导致性能明显下降。
+##  如何定位及优化SQL语句的性能问题？
 对于低性能的SQL语句的定位，最重要也是最有效的方法就是使用执行计划，**MySQL提供了explain命令来查看语句的执行计划**。 我们知道，不管是哪种数据库，或者是哪种数据库引擎，在对一条SQL语句进行执行的过程中都会做很多相关的优化，对于查询语句，最重要的优化方式就是使用索引。
 而执行计划，就是显示数据库引擎对于SQL语句的执行的详细情况，其中包含了是否使用索引，使用什么索引，使用的索引的相关信息等。![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160348017-77b98e7a-f981-49a6-8f50-0726b105bed4.png#averageHue=%23e9edeb&clientId=u44f2ba8f-1dfe-4&from=paste&id=nkJww&originHeight=393&originWidth=1172&originalType=url&ratio=1&rotation=0&showTitle=false&size=229993&status=done&style=none&taskId=uf871b150-eb08-414e-855d-1192fbbdeea&title=)
-## 2. 大表数据查询，怎么优化
+## 大表数据查询，怎么优化
 
 - 优化shema、sql语句+索引；
 - 第二加缓存，memcached, redis；
 - 主从复制，读写分离；
 - 垂直拆分，根据你模块的耦合度，将一个大的系统分为多个小的系统，也就是分布式系统；
 - 水平切分，针对数据量大的表，这一步最麻烦，最能考验技术水平，要选择一个合理的sharding key, 为了有好的查询效率，表结构也要改动，做一定的冗余，应用也要改，sql中尽量带sharding key，将数据定位到限定的表上去查，而不是扫描全部的表；
-## 3. 超大分页怎么处理?
+## 超大分页怎么处理?
 数据库层面,这也是我们主要集中关注的(虽然收效没那么大),类似于select * from table where age > 20 limit 1000000,10 这种查询其实也是有可以优化的余地的. 这条语句需要 load1000000 数据然后基本上全部丢弃,只取 10 条当然比较慢. 当时我们可以修改为select * from table where id in (select id from table where age > 20 limit 1000000,10).这样虽然也 load 了一百万的数据,但是由于索引覆盖,要查询的所有字段都在索引中,所以速度会很快。
 **解决超大分页,其实主要是靠缓存,**可预测性的提前查到内容,缓存至redis等k-V数据库中,直接返回即可.
 在阿里巴巴《Java开发手册》中,对超大分页的解决办法是类似于上面提到的第一种.
@@ -453,7 +463,7 @@ INDEX idx_c1 (col1)
 说明：MySQL并不是跳过offset行，而是取offset+N行，然后返回放弃前offset行，返回N行，那当offset特别大的时候，效率就非常的低下，要么控制返回的总页数，要么对超过特定阈值的页数进行SQL改写。 
 正例：先快速定位需要获取的id段，然后再关联： 
 SELECT a.* FROM 表1 a, (select id from 表1 where 条件 LIMIT 100000,20 ) b where a.id=b.id
-## 4. 统计过慢查询吗？对慢查询都怎么优化过？
+## 统计过慢查询吗？对慢查询都怎么优化过？
 在业务系统中，除了使用主键进行的查询，其他的我都会在测试库上测试其耗时，慢查询的统计主要由运维在做，会定期将业务中的慢查询反馈给我们。
 
 定位执行慢的 SQL：慢查询日志
@@ -493,7 +503,7 @@ SHOW GLOBAL STATUS LIKE '%Slow_queries%';
 - 首先分析语句，看看是否load了额外的数据，可能是查询了多余的行并且抛弃掉了，可能是加载了许多结果中并不需要的列，对语句进行分析以及重写。
 - 分析语句的执行计划，然后获得其使用索引的情况，之后修改语句或者修改索引，使得语句可以尽可能的命中索引。
 - 如果对语句的优化已经无法进行，可以考虑表中的数据量是否太大，如果是的话可以进行横向或者纵向的分表。
-## 5. 如何优化查询过程中的数据访问
+## 如何优化查询过程中的数据访问
 
 - 访问数据太多导致查询性能下降
 - 确定应用程序是否在检索大量超过需要的数据，可能是太多行或列
@@ -505,7 +515,7 @@ SHOW GLOBAL STATUS LIKE '%Slow_queries%';
 - 是否在扫描额外的记录。解决办法：使用explain进行分析，如果发现查询需要扫描大量的数据，但只返回少数的行，可以通过如下技巧去优化：使用索引覆盖扫描，把所有的列都放到索引中，这样存储引擎不需要回表获取对应行就可以返回结果。
 - 改变数据库和表的结构，修改数据表范式
 - 重写SQL语句，让优化器可以以更优的方式执行查询。
-## 6. [如何优化关联查询](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951783151-8bc26cca-b463-49bc-a72f-ad65e10b351f.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
+## [如何优化关联查询](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951783151-8bc26cca-b463-49bc-a72f-ad65e10b351f.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
 
 - 确定ON或者USING子句中是否有索引。
 - 确保GROUP BY和ORDER BY只有一个表中的列，这样MySQL才有可能使用索引。
@@ -518,7 +528,7 @@ SHOW GLOBAL STATUS LIKE '%Slow_queries%';
 - 能够直接多表关联的尽量直接关联，不用子查询。(减少查询的趟数)
 - 不建议使用子查询，建议将子查询SQL拆开结合程序多次查询，或使用 JOIN 来代替子查询。
 - 衍生表建不了索引
-## 7. 子查询优化
+## 子查询优化
 MySQL从4.1版本开始支持子查询，使用子查询可以进行SELECT语句的嵌套查询，即一个SELECT查询的结
 果作为另一个SELECT语句的条件。 子查询可以一次性完成很多逻辑上需要多个步骤才能完成的SQL操作 。
 
@@ -534,7 +544,7 @@ MySQL从4.1版本开始支持子查询，使用子查询可以进行SELECT语句
 要快 ，如果查询中使用索引的话，性能就会更好。
 > 结论：尽量不要使用NOT IN 或者 NOT EXISTS，用LEFT JOIN xxx ON xx WHERE xx IS NULL替代
 
-## 8. 排序优化
+## 排序优化
 **问题**：在 WHERE 条件字段上加索引，但是为什么在 ORDER BY 字段上还要加索引呢？
 **优化建议：**
 
@@ -552,7 +562,7 @@ idx_age_stuno_name）。但是， 随着数据量的变化，选择的索引也�
 滤数量，如果过滤的数据足够多，而需要排序的数据并不多时，优先把索引放在范围字段
 上。反之，亦然**。
 
-## 9. GROUP BY优化
+## GROUP BY优化
 
 - group by 使用索引的原则几乎跟order by一致 ，group by 即使没有过滤条件用到索引，也可以直接
 - 使用索引。
@@ -563,7 +573,7 @@ idx_age_stuno_name）。但是， 随着数据量的变化，选择的索引也�
 - by、distinct这些语句较为耗费CPU，数据库的CPU资源是极其宝贵的。
 - 包含了order by、group by、distinct这些查询的语句，where条件过滤出来的结果集请保持在1000行
 - 以内，否则SQL会很慢。
-## 10. 优化分页查询
+## 优化分页查询
 **优化思路一**
 在索引上完成排序分页操作，最后根据主键关联回原表查询所需要的其他列内容。
 ```sql
@@ -576,7 +586,7 @@ WHERE t.id = a.id;
 ```sql
 EXPLAIN SELECT * FROM student WHERE id > 2000000 LIMIT 10;
 ```
-## 11. 优先考虑覆盖索引
+## 优先考虑覆盖索引
 什么是覆盖索引？
 > **理解方式一**：索引是高效找到行的一个方法，但是一般数据库也能使用索引找到一个列的数据，因此它
 > 不必读取整个行。毕竟索引叶子节点存储了它们索引的数据；当能通过读取索引就可以得到想要的数
@@ -594,7 +604,7 @@ EXPLAIN SELECT * FROM student WHERE id > 2000000 LIMIT 10;
 弊端：**
 索引字段的维护 总是有代价的。因此，在建立冗余索引来支持覆盖索引时就需要权衡考虑了。这是业务
 DBA，或者称为业务数据架构师的工作。
-## 12. (前缀索引)如何给字符串添加索引
+## (前缀索引)如何给字符串添加索引
 MySQL是支持前缀索引的。默认地，如果你创建索引的语句不指定前缀长度，那么索引就会包含整个字
 符串。
 ```sql
@@ -629,7 +639,7 @@ mysql> alter table teacher add index index2(email(6));
 > 使用前缀索引就用不上覆盖索引对查询性能的优化了，这也是你在选择是否使用前缀索引时需要考
 > 虑的一个因素。
 
-## 13. 索引下推
+## 索引下推
 > Index Condition Pushdown(ICP)是MySQL 5.6中新特性，是一种在存储引擎层使用索引过滤数据的一种优
 > 化方式。ICP可以减少存储引擎访问基表的次数以及MySQL服务器访问存储引擎的次数。
 
@@ -641,7 +651,7 @@ mysql> alter table teacher add index index2(email(6));
 ④ ICP可以用于MyISAM和InnnoDB存储引擎
 ⑤ MySQL 5.6版本的不支持分区表的ICP功能，5.7版本的开始支持。
 ⑥ 当SQL使用覆盖索引时，不支持ICP优化方法。
-## 14. 普通索引 vs 唯一索引
+## 普通索引 vs 唯一索引
 **从性能的角度考虑，你选择唯一索引还是普通索引呢？选择的依据是什么呢？**
 假设，我们有一个主键列为ID的表，表中有字段k，并且在k上有索引，假设字段 k 上的值都不重复。
 
@@ -687,7 +697,7 @@ buffer中与这个页有关的操作。通过这种方式就能保证这个数�
 - 然后，在一些“ 归档库 ”的场景，你是可以考虑使用唯一索引的。比如，线上数据只需要保留半年，
 然后历史数据保存在归档库。这时候，归档数据已经是确保没有唯一键冲突了。要提高归档效率，
 可以考虑把表里面的唯一索引改成普通索引。
-## 16. 其它查询优化策略
+##  其它查询优化策略
 **1、EXISTS 和 IN 的区分**
 > 问题：
 > 不太理解哪种情况下应该使用 EXISTS，哪种情况应该用 IN。选择的标准是看能否使用表的索引吗？
@@ -718,7 +728,7 @@ COMMIT 所释放的资源：
 - 被程序语句获得的锁
 - redo / undo log buffer 中的空间
 - 管理上述 3 种资源中的内部花费
-## 17. 主键如何设计的？
+## 主键如何设计的？
 **自增ID的问题**
 > 自增ID做主键，简单易懂，几乎所有数据库都支持自增类型，只是实现上各自有所不同而已。自增ID除
 了简单，其他都是缺点，总体来看存在以下几方面的问题：
@@ -812,7 +822,7 @@ SELECT @uuid，uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 作为新会员的“id”，同时，更新总部 MySQL 数据库管理信息表中的当 前会员编号的最大值。
 这样一来，各个门店添加会员的时候，都对同一个总部 MySQL 数据库中的数据表字段进 行操作，就解
 决了各门店添加会员时会员编号冲突的问题。
-## 18. 数据库结构优化
+##  数据库结构优化
 一个好的数据库设计方案对于数据库的性能往往会起到事半功倍的效果。
 需要考虑数据冗余、查询和更新的速度、字段的数据类型是否合理等多方面的内容。
 **1 拆分表：冷热数据分离（将字段很多的表分解成多个表）**
@@ -861,12 +871,12 @@ SELECT @uuid，uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 **6 使用非空约束**
 **在设计字段的时候，如果业务允许，建议尽量使用非空约束**
 **7 分析表、检查表与优化表**
-## 19. MySQL数据库cpu飙升到500%的话他怎么处理？
+##  MySQL数据库cpu飙升到500%的话他怎么处理？
 当 cpu 飙升到 500%时，先用操作系统命令 top 命令观察是不是 MySQLd 占用导致的，如果不是，找出占用高的进程，并进行相关处理。
 如果是 MySQLd 造成的， show processlist，看看里面跑的 session 情况，是不是有消耗资源的 sql 在运行。找出消耗高的 sql，看看执行计划是否准确， index 是否缺失，或者实在是数据量太大造成。
 一般来说，肯定要 kill 掉这些线程(同时观察 cpu 使用率是否下降)，等进行相应的调整(比如说加索引、改 sql、改内存参数)之后，再重新跑这些 SQL。
 也有可能是每个 sql 消耗资源并不多，但是突然之间，有大量的 session 连进来导致 cpu 飙升，这种情况就需要跟应用一起来分析为何连接数会激增，再做出相应的调整，比如说限制连接数等。
-## 20[. 大表怎么优化？](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951782617-d0326ea9-d839-4724-8f0f-e26dc4667172.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
+## [ 大表怎么优化？](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951782617-d0326ea9-d839-4724-8f0f-e26dc4667172.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
 类似的问题：某个表有近千万数据，CRUD比较慢，如何优化？分库分表了是怎么做的？分表分库了有什么问题？有用到中间件么？他们的原理知道么？
 当MySQL单表记录数过大时，数据库的CRUD性能会明显下降，一些常见的优化措施如下：
 
@@ -879,7 +889,7 @@ SELECT @uuid，uuid_to_bin(@uuid),uuid_to_bin(@uuid,TRUE);
 - **缓存：** 使用MySQL的缓存，另外对重量级、更新少的数据可以考虑；
 - 通过分库分表的方式进行优化，主要有垂直分表和水平分表。 
 
-## 2[1. 分析查询语句：EXPLAIN](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951781581-a7908912-a615-4fb0-adbb-859f69535636.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
+## [ 分析查询语句：EXPLAIN](https://www.yuque.com/office/yuque/0/2022/pdf/22219483/1652951781581-a7908912-a615-4fb0-adbb-859f69535636.pdf?from=file%3A%2F%2F%2FE%3A%2FProgram%2520Files%2F%25E8%25AF%25AD%25E9%259B%2580%2Fyuque-desktop%2Fresources%2Fapp.asar%2Fbuild%2Frenderer%2Findex.html%3Flocale%3Dzh-CN%26isYuque%3Dtrue%26theme%3D%26isWebview%3Dtrue%26editorType%3Deditor%26useLocalPath%3Dundefined%23%2Feditor)
 > MySQL 5.6.3以前只能 EXPLAIN SELECT ；MYSQL 5.6.3以后就可以 EXPLAIN SELECT，UPDATE，
 > DELETE
 
@@ -1000,7 +1010,7 @@ EXPLAIN SELECT * FROM s1;
 **unique_subquery > index_subquery > range > index > ALL 其中比较重要的几个提取出来（见上图中的蓝**
 **色）。SQL 性能优化的目标：至少要达到 range 级别，要求是 ref 级别，最好是 consts级别。（阿里巴巴**
 **开发手册要求）**
-## 22. [MySQL 对于千万级的大表要怎么优化？](https://www.toutiao.com/article/6633207458275787268/?tt_from=weixin&utm_campaign=client_share&wxshare_count=2&from=singlemessage&timestamp=1544497057&app=news_article&utm_source=weixin&iid=36618779372&utm_medium=toutiao_android&group_id=6633207458275787268&pbid=6634051816228275726)
+## [MySQL 对于千万级的大表要怎么优化？](https://www.toutiao.com/article/6633207458275787268/?tt_from=weixin&utm_campaign=client_share&wxshare_count=2&from=singlemessage&timestamp=1544497057&app=news_article&utm_source=weixin&iid=36618779372&utm_medium=toutiao_android&group_id=6633207458275787268&pbid=6634051816228275726)
 **问题概述**
 使用阿里云rds for MySQL数据库（就是MySQL5.6版本），有个用户上网记录表6个月的数据量近2000万，保留最近一年的数据量达到4000万，查询速度极慢，日常卡死。严重影响业务。
 **方案概述**
@@ -1182,7 +1192,7 @@ hadoop家族。hbase/hive怼上就是了。但是有很高的运维成本，一�
 MaxCompute可以理解为开源的Hive，提供sql/mapreduce/ai算法/python脚本/shell脚本等方式操作数据，数据以表格的形式展现，以分布式方式存储，采用定时任务和批处理的方式处理数据。DataWorks提供了一种工作流的方式管理你的数据处理任务和调度监控。
 当然你也可以选择阿里云hbase等其他产品，我这里主要是离线处理，故选择MaxCompute，基本都是图形界面操作，大概写了300行sql，费用不超过100块钱就解决了数据处理问题。
 
-## 23 .索引相关高频面试题
+## 索引相关高频面试题
 > 1. 索引是什么? 索引优缺点? 
 >    - 索引类似于目录, 进行数据的快速定位
 >    - 优点: 加快数据检索速度
