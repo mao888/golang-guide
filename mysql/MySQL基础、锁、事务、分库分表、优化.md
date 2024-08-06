@@ -104,7 +104,7 @@ redo log 不是随着事务的提交才写入的，而是在事务的执行过�
 ![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160345897-5222f993-19b1-433f-a0c7-ac6dd1985656.png#clientId=u44f2ba8f-1dfe-4&from=paste&id=ua3791ba4&originHeight=584&originWidth=998&originalType=url&ratio=1&rotation=0&showTitle=false&size=86773&status=done&style=none&taskId=u89d968da-a240-484f-9a39-139abec4aa0&title=)
 ### undo log
 undo log 用来回滚行记录到某个版本。事务未提交之前，Undo 保存了未提交之前的版本数据，Undo 中的数据可作为数据旧版本快照供其他并发事务进行快照读。是为了实现事务的原子性而出现的产物,在 MySQL innodb 存储引擎中用来实现多版本并发控制。
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160346864-a059b9af-f7f4-4af5-8dd8-4f9f94685889.png#clientId=u44f2ba8f-1dfe-4&from=paste&id=u403729df&originHeight=474&originWidth=993&originalType=url&ratio=1&rotation=0&showTitle=false&size=100457&status=done&style=none&taskId=u5f0b7447-10f7-45ff-bc56-e5749287836&title=)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160346864-a059b9af-f7f4-4af5-8dd8-4f9f94685889.png#averageHue=%23dfdcd3&clientId=u44f2ba8f-1dfe-4&from=paste&id=u403729df&originHeight=474&originWidth=993&originalType=url&ratio=1&rotation=0&showTitle=false&size=100457&status=done&style=none&taskId=u5f0b7447-10f7-45ff-bc56-e5749287836&title=)
 ## 7. 什么是MySQL的 binlog？
 MySQL的 binlog 是记录所有数据库表结构变更（例如 CREATE、ALTER TABLE）以及表数据修改（INSERT、UPDATE、DELETE）的二进制日志。binlog 不会记录 SELECT 和 SHOW 这类操作，因为这类操作对数据本身并没有修改，但你可以通过查询通用日志来查看 MySQL 执行过的所有语句。
 MySQL binlog 以事件形式记录，还包含语句所执行的消耗的时间，MySQL 的二进制日志是事务安全型的。binlog 的主要目的是复制和恢复。
@@ -131,7 +131,7 @@ MVCC， 即多版本并发控制。MVCC 的实现，是通过**保存数据在�
 - 回滚指针：指向这条记录的上一个版本。
 
 我们拿上面的例子，对应解释下 MVCC 的实现原理，如下图：
-![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160347032-8a5cb969-2fb8-4d0e-b4ee-621544ac9253.png#clientId=u44f2ba8f-1dfe-4&from=paste&id=u822e5d53&originHeight=681&originWidth=1080&originalType=url&ratio=1&rotation=0&showTitle=false&size=131430&status=done&style=none&taskId=udfc423a6-f808-42fb-bfb3-e7b598a3729&title=)
+![image.png](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160347032-8a5cb969-2fb8-4d0e-b4ee-621544ac9253.png#averageHue=%2395f595&clientId=u44f2ba8f-1dfe-4&from=paste&id=u822e5d53&originHeight=681&originWidth=1080&originalType=url&ratio=1&rotation=0&showTitle=false&size=131430&status=done&style=none&taskId=udfc423a6-f808-42fb-bfb3-e7b598a3729&title=)
 如图，首先 insert 语句向表 t1 中插入了一条数据，a 字段为 1，b 字段为 1， ROW ID 也为 1 ，事务 ID 假设为 1，回滚指针假设为 null。当执行 update t1 set b=666 where a=1 时，大致步骤如下：
 
 - 数据库会先对满足 a=1 的行加排他锁；
@@ -145,10 +145,10 @@ MVCC， 即多版本并发控制。MVCC 的实现，是通过**保存数据在�
 InnoDB 每一行数据都有一个隐藏的回滚指针，用于指向该行修改前的最后一个历史版本，这个历史版本存放在 undo log 中。如果要执行更新操作，会将原记录放入 undo log 中，并通过隐藏的回滚指针指向 undo log 中的原记录。其它事务此时需要查询时，就是查询 undo log 中这行数据的最后一个历史版本。
 MVCC 最大的好处是读不加锁，读写不冲突，极大地增加了 MySQL 的并发性。通过 MVCC，保证了事务 ACID 中的 I（隔离性）特性。
 # 锁
-## 1. 为什么要加锁?
+## 为什么要加锁?
 当多个用户**并发地存取数据**时，在[数据库](https://cloud.tencent.com/solution/database?from=10680)中就会**产生多个事务同时存取同一数据的情况**。若对并发操作不加控制就可能会读取和存储不正确的数据，破坏数据库的一致性。
 保证多用户环境下保证数据库完整性和一致性。
-## 2. 按照锁的粒度分数据库锁有哪些？
+## 按照锁的粒度分数据库锁有哪些？
 在关系型数据库中，可以**按照锁的粒度把数据库锁分**为行级锁(INNODB引擎)、表级锁(MYISAM引擎 )和页级锁(BDB引擎 )。
 行级锁
 
@@ -169,7 +169,20 @@ MVCC 最大的好处是读不加锁，读写不冲突，极大地增加了 MySQL
 
 - MyISAM采用表级锁(table-level locking)。
 - InnoDB支持行级锁(row-level locking)和表级锁，默认为行级锁
-## 3. 从锁的类别上分MySQL都有哪些锁呢？
+## sql语句怎么来实现一条锁呢
+在MySQL中，实现行级锁通常不需要显式地写SQL语句来加锁，因为InnoDB存储引擎在执行更新、删除等操作时会自动加上行级锁。但你可以通过事务控制来实现锁的效果。
+
+- 锁等待通常是在执行事务中的某条SQL语句时自动发生的，比如当一个事务试图更新已经被另一个事务锁定的行时，该事务就会等待锁释放。
+- 要显式地实现“锁”的效果，可以使用`SELECT ... FOR UPDATE`语句来锁定特定的行，让其他事务在该锁释放之前无法修改这些行。但是，这种方式主要用于实现应用级别的锁逻辑，而非MySQL自身的锁机制。
+```sql
+START TRANSACTION; -- 开始事务  
+SELECT * FROM your_table WHERE id = 100 FOR UPDATE; -- 锁定id为100的行  
+-- 进行一些处理，比如更新该行数据  
+UPDATE your_table SET column_name = 'new_value' WHERE id = 100;  
+COMMIT; -- 提交事务，释放锁
+```
+如果因为锁等待导致事务长时间未能提交，你可能需要分析当前数据库的锁等待情况，优化事务的处理逻辑或数据库的结构设计。
+## 从锁的类别上分MySQL都有哪些锁呢？
 从锁的类别上来讲，有共享锁和排他锁。
 
 - 共享锁: 又叫做读锁。 当用户要进行数据的读取时，对数据加上共享锁。共享锁可以同时加上多个。
@@ -178,7 +191,7 @@ MVCC 最大的好处是读不加锁，读写不冲突，极大地增加了 MySQL
 用上面的例子来说就是用户的行为有两种，一种是来看房，多个用户一起看房是可以接受的。 一种是真正的入住一晚，在这期间，无论是想入住的还是想看房的都不可以。
 锁的粒度取决于具体的存储引擎，InnoDB实现了行级锁，页级锁，表级锁。
 他们的加锁开销从大到小，并发能力也是从大到小。
-## 4. 数据库的乐观锁和悲观锁是什么？怎么实现的？
+## 数据库的乐观锁和悲观锁是什么？怎么实现的？
 数据库管理系统（DBMS）中的并发控制的任务是确保在多个事务同时存取数据库中同一数据时不破坏事务的隔离性和统一性以及数据库的统一性。乐观并发控制（乐观锁）和悲观并发控制（悲观锁）是并发控制主要采用的技术手段。
 
 - 悲观锁：假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作。在查询完数据的时候就把事务锁起来，直到提交事务。实现方式：使用数据库中的锁机制
@@ -187,23 +200,23 @@ MVCC 最大的好处是读不加锁，读写不冲突，极大地增加了 MySQL
 **两种锁的使用场景**
 从上面对两种锁的介绍，我们知道两种锁各有优缺点，不可认为一种好于另一种，像乐观锁适用于写比较少的情况下（多读场景），即冲突真的很少发生的时候，这样可以省去了锁的开销，加大了系统的整个吞吐量。
 但如果是多写的情况，一般会经常产生冲突，这就会导致上层应用会不断的进行retry，这样反倒是降低了性能，所以一般多写的场景下用悲观锁就比较合适。
-## 5. InnoDB引擎的行锁是怎么实现的？
+## InnoDB引擎的行锁是怎么实现的？
 InnoDB是基于索引来完成行锁
 例: select * from tab_with_index where id = 1 for update;
 for update 可以根据条件来完成行锁锁定，并且 id 是有索引键的列，如果 id 不是索引键那么InnoDB将完成表锁，并发将无从谈起
-## 6. 什么是死锁？怎么解决？
+## 什么是死锁？怎么解决？
 死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。
 常见的解决死锁的方法
 1、如果不同程序会并发存取多个表，**尽量约定以相同的顺序访问表，可以大大降低死锁机会。**
 2、在同一个事务中，尽可能做到**一次锁定所需要的所有资源**，减少死锁产生概率；
 3、对于**非常容易产生死锁**的业务部分，可以尝试使用**升级锁定颗粒度，通过表级锁定来减少死锁产生的概率**；
 如果业务处理不好可以用分布式事务锁或者使用乐观锁
-## 7. 隔离级别与锁的关系
+## 隔离级别与锁的关系
 在Read Uncommitted级别下，读取数据不需要加共享锁，这样就不会跟被修改的数据上的排他锁冲突
 在Read Committed级别下，读操作需要加共享锁，但是在语句执行完以后释放共享锁；
 在Repeatable Read级别下，读操作需要加共享锁，但是在事务提交之前并不释放共享锁，也就是必须等待事务执行完毕以后才释放共享锁。
 SERIALIZABLE 是限制性最强的隔离级别，因为该级别锁定整个范围的键，并一直持有锁，直到事务完成。
-## 8. 优化锁方面的意见？
+## 优化锁方面的意见？
 
 - 使用较低的隔离级别
 - 设**计索引，尽量使用索引去访问数据，加锁更加精确**，从而减少锁冲突
@@ -221,7 +234,7 @@ SERIALIZABLE 是限制性最强的隔离级别，因为该级别锁定整个范�
 **分库**
 分库就是你一个库一般我们经验而言，最多支撑到并发 2000，一定要扩容了，而且**一个健康的单库并发值你最好保持在每秒 1000 左右，不要太大**。那么你可以将一个库的数据拆分到多个库中，访问的时候就访问一个库好了。
 这就是所谓的分库分表。
-![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160346605-c24b9326-c173-4a33-b1c3-7f87393229da.png#clientId=u44f2ba8f-1dfe-4&from=paste&id=u563c3138&originHeight=139&originWidth=675&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u9a18375e-2446-494a-9509-e30d94dc30c&title=)
+![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1647160346605-c24b9326-c173-4a33-b1c3-7f87393229da.png#averageHue=%23e5c086&clientId=u44f2ba8f-1dfe-4&from=paste&id=u563c3138&originHeight=139&originWidth=675&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u9a18375e-2446-494a-9509-e30d94dc30c&title=)
 ## 2. 用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？
 这个其实就是看看你了解哪些分库分表的中间件，各个中间件的优缺点是啥？然后你用过哪些分库分表的中间件。
 比较常见的包括：
