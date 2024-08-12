@@ -40,7 +40,7 @@
 
 ## 更多
 <a name="download"></a>
-<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛；QQ交流群3：805360166；QQ交流群2(满)：579480724；QQ交流群1(满) :1007576722</summary></b>
+<b><details><summary> :orange_book:(点击此处可展开)官方公众号:Gopher毛；QQ交流群3：805360166（活跃 巨佬云集）；QQ交流群2(满)：579480724；QQ交流群1(满) :1007576722</summary></b>
 请扫描或搜索下方二维码、公众号，获取想要的资料、八股或进群交流。
 
 <a name="公众号"></a>
