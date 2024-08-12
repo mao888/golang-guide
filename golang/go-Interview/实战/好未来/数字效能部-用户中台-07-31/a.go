@@ -34,35 +34,40 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// levelOrder 返回二叉树的层序遍历
+// levelOrder 返回二叉树的层序遍历结果
 func levelOrder(root *TreeNode) [][]int {
-	var result [][]int
-	if root == nil {
+	var result [][]int // 存储最终的层序遍历结果
+	if root == nil {   // 如果根节点为空，直接返回空结果
 		return result
 	}
 
-	queue := []*TreeNode{root}
+	queue := []*TreeNode{root} // 初始化队列，并将根节点加入队列
 
+	// 当队列不为空时，继续处理
 	for len(queue) > 0 {
-		var level []int
-		n := len(queue)
+		var level []int // 存储当前层的节点值
+		n := len(queue) // 当前层的节点数量
 
+		// 遍历当前层的所有节点
 		for i := 0; i < n; i++ {
-			node := queue[0]
-			queue = queue[1:]
-			level = append(level, node.Val)
+			node := queue[0]                // 取出队列中的第一个节点
+			queue = queue[1:]               // 移除已经处理的节点
+			level = append(level, node.Val) // 将节点值加入当前层结果中
 
+			// 如果左子节点不为空，加入队列
 			if node.Left != nil {
 				queue = append(queue, node.Left)
 			}
+			// 如果右子节点不为空，加入队列
 			if node.Right != nil {
 				queue = append(queue, node.Right)
 			}
 		}
+		// 将当前层的节点值加入最终结果
 		result = append(result, level)
 	}
 
-	return result
+	return result // 返回层序遍历的最终结果
 }
 
 func main() {
@@ -88,6 +93,26 @@ func main() {
 
 	// 打印输出
 	for _, level := range result {
+		fmt.Println(level)
+	}
+
+	fmt.Println("-----------------")
+
+	// 构建一个示例二叉树
+	//        1
+	//       / \
+	//      2   3
+	//     /|   |\
+	//    4 5   6 7
+	root2 := &TreeNode{Val: 1}
+	root2.Left = &TreeNode{Val: 2}
+	root2.Right = &TreeNode{Val: 3}
+	root2.Left.Left = &TreeNode{Val: 4}
+	root2.Left.Right = &TreeNode{Val: 5}
+	root2.Right.Left = &TreeNode{Val: 6}
+	root2.Right.Right = &TreeNode{Val: 7}
+	result2 := levelOrder(root2)
+	for _, level := range result2 {
 		fmt.Println(level)
 	}
 }
