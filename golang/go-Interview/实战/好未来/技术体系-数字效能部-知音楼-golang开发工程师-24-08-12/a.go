@@ -1,33 +1,44 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
-//type ListNode struct {
-//	Val  int
-//	Next *ListNode
-//}
+// Counter 一个线程安全的计数器结构体
+type Counter struct {
+	mu    sync.Mutex
+	count int
+}
 
-//	type TreeNode struct {
-//		Val   int
-//		Left  *TreeNode
-//		Right *TreeNode
-//	}
-//
-// 构建一个示例二叉树
-//
-//	    1
-//	   / \
-//	  2   3
-//	 /|   |\
-//	4 5   6 7
-//
-// root := &TreeNode{Val: 1}
-// root.Left = &TreeNode{Val: 2}
-// root.Right = &TreeNode{Val: 3}
-// root.Left.Left = &TreeNode{Val: 4}
-// root.Left.Right = &TreeNode{Val: 5}
-// root.Right.Left = &TreeNode{Val: 6}
-// root.Right.Right = &TreeNode{Val: 7}
+// Increment 增加计数
+func (c *Counter) Increment() {
+	c.mu.Lock() // 加锁，确保线程安全
+	c.count++
+	c.mu.Unlock() // 解锁
+}
+
+// Value 获取当前计数值
+func (c *Counter) Value() int {
+	c.mu.Lock()         // 加锁，确保读取时的线程安全
+	defer c.mu.Unlock() // defer确保方法结束时解锁
+	return c.count
+}
+
 func main() {
-	fmt.Println("hello world")
+	counter := &Counter{}
+
+	var wg sync.WaitGroup
+
+	// 启动多个 goroutine 并发地增加计数器
+	for i := 0; i < 1000; i++ {
+		wg.Add(1)
+		go func() {
+			defer wg.Done()
+			counter.Increment()
+		}()
+	}
+
+	wg.Wait()
+	fmt.Println("Value:", counter.Value())
 }
