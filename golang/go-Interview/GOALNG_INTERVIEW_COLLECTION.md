@@ -1,4 +1,4 @@
-## 零、go与其他语言
+## go与其他语言
 ### 0、什么是[面向对象](https://so.csdn.net/so/search?q=%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1&spm=1001.2101.3001.7020)
 在了解 Go 语言是不是面向对象（简称：OOP） 之前，我们必须先知道 OOP 是啥，得先给他 “下定义”
 根据 Wikipedia 的定义，我们梳理出 OOP 的几个基本认知：
@@ -163,7 +163,7 @@ Python的语法使用缩进来指示代码块。Go的语法基于打开和关闭
 ### 5、go 与 node.js
 深入对比Node.js和Golang 到底谁才是NO.1 : [https://zhuanlan.zhihu.com/p/421352168](https://zhuanlan.zhihu.com/p/421352168)
 从 Node 到 Go：一个粗略的比较 : [https://zhuanlan.zhihu.com/p/29847628](https://zhuanlan.zhihu.com/p/29847628)
-## **一、基础部分**
+## **基础部分**
 ### 0、为什么选择golang
 **0、高性能-协程**
 golang 源码级别支持协程，实现简单；对比进程和线程，协程占用资源少，能够简洁高效地处理高并发问题。
@@ -493,7 +493,7 @@ func main() {
    - 在 Web 服务器中，每个请求可以由一个单独的 goroutine 处理，从而提高并发处理能力。
 
 这样回答简洁明了，可以帮助面试官快速了解你对 goroutine 的理解。
-## 二、slice
+## slice
 ### **数组和切片的区别 （基本必问）**
 **相同点：**
 1)只能存储一组相同类型的数据结构
@@ -568,7 +568,7 @@ Go的设计者不断优化切片扩容的机制，其目的只有一个：**就�
 如果只选择翻倍的扩容策略，那么对于较大的切片来说，现有的方法可以更好的节省内存。
 如果只选择每次系数为1.25的扩容策略，那么对于较小的切片来说扩容会很低效。
 之所以选择一个小于2的系数，在扩容时被释放的内存块会在下一次扩容时更容易被重新利用。
-## **三、map相关**
+## **map相关**
 ### 什么类型可以作为map 的key
 在Go语言中，map的key可以是任何可以**比较**的类型。这包括所有的基本类型，如**整数、浮点数、字符串和布尔值，以及结构体和数组**，只要它们没有被定义为包含不可比较的类型（如切片、映射或函数）。
 以下是一些可以作为map key的类型的例子：
@@ -889,7 +889,7 @@ fmt.Println(*m["key"]) // 输出42
 - **适用场景**：`**sync.Map**`** 适用于读多写少的场景**，而使用**全局锁的 map 适用于读写操作较均衡或者对性能要求不高**的场景。
 
 如果你的应用场景是读多写少且对性能要求较高，`sync.Map` 会是一个更好的选择。而对于简单的并发访问控制，使用 `sync.Mutex` 或 `sync.RWMutex` 加上 map 也可以满足需求。
-## 四、接口
+## 接口
 ### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
 总结一下，鸭子类型是一种动态语言的风格，在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由它"当前方法和属性的集合"决定。Go 作为一种静态语言，通过接口实现了 鸭子类型，实际上是 Go 的编译器在其中作了隐匿的转换工作。
 ### 2、[值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
@@ -1047,7 +1047,7 @@ class Shape
 派生类需要明确地声明它继承自基类，并且需要实现基类中所有的纯虚函数。
 C++ 定义接口的方式称为“侵入式”，而 Go 采用的是 “非侵入式”，不需要显式声明，只需要实现接口定义的函数，编译器自动会识别。
 C++ 和 Go 在定义接口方式上的不同，也导致了底层实现上的不同。C++ 通过虚函数表来实现基类调用派生类的函数；而 Go 通过 itab 中的 fun 字段来实现接口变量调用实体类型的函数。C++ 中的虚函数表是在编译期生成的；而 Go 的 itab 中的 fun 字段是在运行期间动态生成的。原因在于，Go 中实体类型可能会无意中实现 N 多接口，很多接口并不是本来需要的，所以不能为类型实现的所有接口都生成一个 itab， 这也是“非侵入式”带来的影响；这在 C++ 中是不存在的，因为派生需要显示声明它继承自哪个基类。
-## 五、context相关
+## context相关
 [Context-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/chapter055.3-context)
 ### **1、context 结构是什么样的？context 使用场景和用途？**
 **（难，也常常问你项目中怎么用，光靠记答案很难让面试官满意，反正有各种结合实际的问题）**
@@ -1124,7 +1124,7 @@ go func(ctx context.Context) {
 - `context.WithValue(parent Context, key, val interface{}) Context`: 创建一个携带值的 `Context`。
 
 通过这些功能，`context` 在 Go 中为管理 goroutine 的生命周期和跨 goroutine 传递数据提供了便利和强大的支持。
-## **六、channel相关**
+## **channel相关**
 ### **1、channel 是否线程安全？锁用在什么地方？**
 
 1. Golang的Channel,发送一个数据到Channel 和 从Channel接收一个数据 都是 原子性的。
@@ -1216,7 +1216,7 @@ type hchan struct {
 ### 6、有缓存channel和无缓存channel
 [Go语言进阶--有缓存channel和无缓存channel](https://zhuanlan.zhihu.com/p/355487940)
 无缓存channel适用于数据要求同步的场景，而有缓存channel适用于无数据同步的场景。可以根据实现项目需求选择。
-## **七、GMP相关**
+## **GMP相关**
 
 - [x] [Golang的协程调度器原理及GMP设计思想-地鼠文档](https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmeduvk27bo0)
 - [x] [GMP问题集合 - 幕布](https://www.mubucm.com/doc/7pukUL_nuCI)-刘超
@@ -1315,7 +1315,7 @@ func main() {
 7. G退出，再次回到M获取可运行的G，这样重复下去，直到main.main退出，runtime.main执行Defer和Panic处理，或调用runtime.exit退出程序。
 
 调度器的生命周期几乎占满了一个Go程序的一生，runtime.main的goroutine执行之前都是为调度器做准备工作，runtime.main的goroutine运行，才是调度器的真正开始，直到runtime.main结束而结束。
-## 八、锁相关
+## 锁相关
 [mutex-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiamutex)
 [rwmutex-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiarwmutex)
 ### 除了 mutex 以外还有那些方式安全读写共享变量？
@@ -1469,7 +1469,7 @@ Goroutine 的自旋占用资源问题主要涉及到 Goroutine 在等待锁或�
 充分利用多核 CPU：通过设置 runtime.GOMAXPROCS 来指定 Go 运行时使用的逻辑处理器数量，使其尽可能接近或等于物理 CPU 核心数，从而充分利用多核 CPU 的并行处理能力。
 **使用 Channel 进行通信**：Go 鼓励使用 Channel 进行 Goroutine 之间的通信和同步，而不是直接使用锁。Channel 可以有效地避免死锁和竞态条件，并且减少了锁的使用，从而降低了资源占用的风险。
 综上所述，解决 Goroutine 的自旋占用资源问题需要从多个方面入手，包括减少自旋锁的使用、优化自旋锁的实现、监控和调整系统资源以及充分利用 Go 的并发特性等。通过这些措施的综合应用，可以有效地降低 Goroutine 在自旋过程中对系统资源的占用。
-## **九、并发相关**
+## **并发相关**
 ### Go 中主协程如何等待其余协程退出?
 答：Go 的 sync.WaitGroup 是等待一组协程结束，sync.WaitGroup 只有 3 个方法，Add()是添加计数，Done()减去一个计数，Wait()阻塞直到所有的任务完成。Go 里面还能通过有缓冲的 channel 实现其阻塞等待一组协程结束，这个不能保证一组 goroutine 按照顺序执行，可以并发执行协程。Go 里面能通过无缓冲的 channel 实现其阻塞等待一组协程结束，这个能保证一组 goroutine 按照顺序执行，但是不能并发执行。
 **啰嗦一句：**循环智能二面，手写代码部分时，三个协程按交替顺序打印数字，最后题目做出来了，问我代码中Add()是什么意思，我回答的不是很清晰，这家公司就没有然后了。Add()表示协程计数，可以一次Add多个，如Add(3),可以多次Add(1);然后每个子协程必须调用done（）,这样才能保证所有子协程结束，主协程才能结束。
@@ -1684,7 +1684,7 @@ pool.Put(obj)
 3. **不适合所有场景**：`sync.Pool` 并不适合所有需要对象池的场景。特别是对于那些需要精确控制对象生命周期的场景，你可能需要实现自定义的对象池。
 
 总的来说，`sync.Pool` 是 Go 语言提供的一个非常有用的工具，它可以帮助你减少内存分配和垃圾回收的开销，提高程序的性能。然而，在使用时需要注意其特性和局限，以免发生不可预见的问题。
-## **十、GC相关**
+## **垃圾回收-GC**
 [垃圾回收原理-地鼠文档](https://www.topgoer.cn/docs/gozhuanjia/chapter044.2-garbage_collection)
 [Golang三色标记+混合写屏障GC模式全分析-地鼠文档](https://www.topgoer.cn/docs/golangxiuyang/golangxiuyang-1cmee076rjgk7)
 
@@ -1751,14 +1751,17 @@ pool.Put(obj)
 Go 语言的垃圾回收机制随着版本的演变不断优化，从早期的全局停止到现在的并发标记和清除，逐步减少了垃圾回收对应用程序性能的影响。未来的版本将继续致力于降低垃圾回收的停顿时间和提高内存管理效率，为开发者提供更高效、更稳定的运行环境。
 ### 三色标记法的流程
 #### 为什么需要三色标记？
-三色标记的目的，主要是利用Tracing GC(Tracing GC 是垃圾回收的一个大类，另外一个大类是引用计数)做增量式垃圾回收，降低最大暂停时间。原生Tracing GC只有黑色和白色，没有中间的状态，这就要求GC扫描过程必须一次性完成，得到最后的黑色和白色对象。在前面增量式GC中介绍到了，这种方式会存在较大的暂停时间。
-三色标记增加了中间状态灰色，增量式GC运行过程中，应用线程的运行可能改变了对象引用树，只要让黑色对象直接引用白色对象，GC就可以增量式的运行，减少停顿时间。
+**三色标记的目的**：
+
+1. 主要是利用Tracing GC(Tracing GC 是垃圾回收的一个大类，另外一个大类是引用计数) 做增量式垃圾回收，降低最大暂停时间。
+2. 原生Tracing GC只有黑色和白色，没有中间的状态，这就要求GC扫描过程必须一次性完成，得到最后的黑色和白色对象。在前面增量式GC中介绍到了，这种方式会存在较大的暂停时间。
+3. 三色标记增加了中间状态灰色，增量式GC运行过程中，应用线程的运行可能改变了对象引用树，只要让黑色对象直接引用白色对象，GC就可以增量式的运行，减少停顿时间。
 #### 什么是三色标记？
 三色标记，通过字面意思我们就可以知道它由3种颜色组成：
 
-1. 黑色 Black：表示对象是可达的，即使用中的对象，黑色是已经被扫描的对象。
-2. 灰色 Gary：表示被黑色对象直接引用的对象，但还没对它进行扫描。
-3. 白色 White：白色是对象的初始颜色，如果扫描完成后，对象依然还是白色的，说明此对象是垃圾对象。
+1. **黑色 **Black：表示对象是可达的，即使用中的对象，黑色是已经被扫描的对象。
+2. **灰色** Gary：表示被黑色对象直接引用的对象，但还没对它进行扫描。
+3. **白色** White：白色是对象的初始颜色，如果扫描完成后，对象依然还是白色的，说明此对象是垃圾对象。
 #### 三色标记规则
 黑色不能指向白色对象。即黑色可以指向灰色，灰色可以指向白色。
 #### 三色标记法，主要流程如下：
@@ -1834,7 +1837,7 @@ Go V1.8 引入的混合写屏障（Hybrid Write Barrier）是一种优化垃圾�
 2）gcTriggerTime：当距离上一个 GC 周期的时间超过一定时间时，将会触发。时间周期以runtime.forcegcperiod 变量为准，默认 2 分钟。
 3）gcTriggerCycle：如果没有开启 GC，则启动 GC。
 4）手动触发的 runtime.GC 方法。
-## **十一、内存相关**
+## **内存相关**
 ### [内存分配原理](https://www.topgoer.cn/docs/gozhuanjia/gozhuanjiachapter044.1-memory_alloc)
 ### [垃圾回收原理](https://www.topgoer.cn/docs/gozhuanjia/chapter044.2-garbage_collection)
 ### [逃逸分析](https://www.topgoer.cn/docs/gozhuanjia/chapter044.3-escape_analysis)
@@ -1893,7 +1896,7 @@ Channel 被设计用来实现协程间通信的组件，其作用域和生命周
 小于等于 32k 的对象就是小对象，其它都是大对象。一般小对象通过 mspan 分配内存；大对象则直接由 mheap 分配内存。通常小对象过多会导致 GC 三色法消耗过多的 CPU。优化思路是，减少对象分配。
 小对象：如果申请小对象时，发现当前内存空间不存在空闲跨度时，将会需要调用 nextFree 方法获取新的可用的对象，可能会触发 GC 行为。
 大对象：如果申请大于 32k 以上的大对象时，可能会触发 GC 行为。
-## 十二、编译
+## 编译
 ### [逃逸分析是怎么进行的](http://golang.design/go-questions/compile/escape/)
 在编译原理中，分析指针动态范围的方法称之为逃逸分析。通俗来讲，当一个对象的指针被多个方法或线程引用时，我们称这个指针发生了逃逸。
 Go语言的逃逸分析是编译器执行静态代码分析后，对内存管理进行的优化和简化，它可以决定一个变量是分配到堆还栈上。
@@ -1989,7 +1992,7 @@ go install util
 #### go run
 `go run` 用于编译并运行命令源码文件。
 ### [Go 程序启动过程是怎样的](http://golang.design/go-questions/compile/booting/)
-## 十三、框架
+## 框架
 ### Gin
 文档：[https://gin-gonic.com/zh-cn/docs/introduction/](https://gin-gonic.com/zh-cn/docs/introduction/)
 #### 0、特性
@@ -2004,6 +2007,7 @@ go install util
    1. Gin 可以解析并验证请求的 JSON，例如检查所需值的存在。
 5. **路由组**
    1. 更好地组织路由。是否需要授权，不同的 API 版本…… 此外，这些组可以无限制地嵌套而不会降低性能。
+   2.  Gin 使用基于树状结构的路由匹配算法，能够快速地匹配 URL 路径  
 6. **错误管理**
    1. Gin 提供了一种方便的方法来收集 HTTP 请求期间发生的所有错误。最终，中间件可以将它们写入日志文件，数据库并通过网络发送。
 7. **内置渲染**
@@ -2087,6 +2091,104 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 - **多种消息类型**支持 **PingPong**、**Oneway**、**双向 Streaming**。其中 Oneway 目前只对 Thrift 协议支持，双向 Streaming 只对 gRPC 支持，后续会考虑支持 Thrift 的双向 Streaming。
 - **服务治理**支持服务注册/发现、负载均衡、熔断、限流、重试、监控、链路跟踪、日志、诊断等服务治理模块，大部分均已提供默认扩展，使用者可选择集成。
 - **代码生成**Kitex 内置代码生成工具，可支持生成 **Thrift**、**Protobuf** 以及脚手架代码。
+## 场景
+### 有没有遇到过cpu不高但是内存高的场景？怎么排查的
+ 在实际开发中，遇到 CPU 使用率不高但内存占用很高的情况并不少见。这种现象通常表明程序中存在内存泄漏、内存占用过大、或者内存管理不当的问题。下面是一个排查的步骤：  
+在实际开发中，遇到 CPU 使用率不高但内存占用很高的情况并不少见。这种现象通常表明程序中存在内存泄漏、内存占用过大、或者内存管理不当的问题。下面是一个排查的步骤：
+#### 检查内存占用情况
+
+- **工具：**`top`**, **`htop`**, **`ps`
+使用这些系统工具查看内存占用较高的进程，确认是否是你的 Go 程序导致的内存消耗。
+- `pmap`
+使用 `pmap <PID>` 查看进程的内存分布，确定是哪个内存段占用最大（如 heap、stack）。
+#### 分析 Go 程序的内存使用
+
+- **内存分配情况：**`pprof`
+使用 Go 的 `pprof` 工具生成内存快照（heap profile）:
+```bash
+go tool pprof http://localhost:6060/debug/pprof/heap
+```
+分析结果可以帮助你识别哪些对象在堆上占用最多的内存。
+
+- **查看 Goroutine 状态**
+使用 `pprof` 中的 Goroutine 分析工具：
+```bash
+go tool pprof http://localhost:6060/debug/pprof/goroutine
+```
+查看是否存在大量 Goroutine 导致内存占用。
+#### 检查内存泄漏
+
+- **是否有未释放的内存**
+检查代码中是否存在未释放的资源，如未关闭的文件描述符、数据库连接、未清理的缓存等。
+- **工具：**`leaktest`**, **`goleak`
+使用 `leaktest` 或 `goleak` 工具检测 Goroutine 泄漏，这些泄漏可能会导致内存无法被回收。
+#### 优化内存使用
+
+- **减少对象分配**
+尽量复用内存，如使用 `sync.Pool` 来管理重复使用的对象，避免频繁的内存分配和 GC 压力。
+- **优化数据结构**
+检查是否使用了不必要的大型数据结构（如 map, slice），考虑更合适的替代方案。
+
+通过以上步骤，通常可以较为全面地排查和解决 CPU 不高但内存高的问题。
+
+### 怎么实时查看k8s内存占用的
+要实时查看 Kubernetes 集群中 Pod 的内存占用情况，有几种常见的方法：
+#### 使用 `kubectl top` 命令
+`**kubectl top**` 是 Kubernetes 提供的一个工具，可以实时查看 Pod 和节点的资源使用情况（包括 CPU 和内存）。
+```bash
+# 查看某个命名空间下所有 Pod 的资源使用情况
+kubectl top pod -n <namespace>
+
+# 查看指定 Pod 的资源使用情况
+kubectl top pod <pod-name> -n <namespace>
+
+# 查看集群中所有节点的资源使用情况
+kubectl top nodes
+```
+这个命令会显示每个 Pod 当前的 CPU 和内存使用量，以及节点的总资源消耗。
+#### 使用 `kubectl describe pod` 命令
+`kubectl describe` 命令可以查看单个 Pod 的详细信息，包括资源请求和限制：
+```bash
+kubectl describe pod <pod-name> -n <namespace>
+```
+这不会直接显示实时内存使用情况，但你可以看到 Pod 所请求和限制的内存资源。
+#### 使用 Kubernetes Dashboard
+Kubernetes Dashboard 是一个 web 界面的 UI，可以查看集群中各种资源的使用情况，包括实时的内存消耗。
+
+- 安装 Kubernetes Dashboard：
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+```
+
+- 访问 Dashboard：
+```bash
+kubectl proxy
+```
+然后在浏览器中打开 `http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/`。
+在 Dashboard 中，你可以查看各个 Pod 的详细资源使用情况，包括实时的内存和 CPU 使用。
+#### 使用 Prometheus + Grafana 监控
+如果你的集群已经配置了 Prometheus 和 Grafana，你可以使用它们来实时监控内存使用情况：
+
+- **Prometheus**：收集和存储 Kubernetes 中的指标数据。
+- **Grafana**：提供丰富的仪表盘，可以实时显示集群中各个资源的使用情况。
+
+在 Grafana 中，你可以创建或使用现有的仪表盘来监控 Pod 和节点的内存使用情况。
+#### 直接查看容器内的内存使用
+如果你想直接查看某个容器的内存使用情况，可以进入容器内部，然后使用 `top` 或 `free` 等命令：
+```bash
+kubectl exec -it <pod-name> -n <namespace> -- bash
+
+# 在容器内使用 top 或 free 命令
+top
+free -m
+```
+### 6. **使用 **`kubectl get --raw`** 命令**
+你可以直接通过 Kubernetes API 获取内存使用情况，返回结果为 JSON 格式：
+```bash
+kubectl get --raw /apis/metrics.k8s.io/v1beta1/namespaces/<namespace>/pods/<pod-name>
+```
+这个方法适合进行脚本化或编程访问资源使用数据。
+通过以上这些方法，你可以实时查看 Kubernetes 中的内存使用情况，并及时了解资源的分配与消耗。
 ## 参考并致谢
 1、可可酱 [可可酱：Golang常见面试题](https://zhuanlan.zhihu.com/p/434629143)
 2、Bel_Ami同学 [golang 面试题(从基础到高级)](https://link.zhihu.com/?target=https%3A//blog.csdn.net/Bel_Ami_n/article/details/123352478)
