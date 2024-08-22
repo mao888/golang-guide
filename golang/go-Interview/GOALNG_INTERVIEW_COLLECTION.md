@@ -1995,7 +1995,17 @@ go install util
 ## 框架
 ### Gin
 文档：[https://gin-gonic.com/zh-cn/docs/introduction/](https://gin-gonic.com/zh-cn/docs/introduction/)
-#### 0、特性
+Gin框架介绍及使用-李文周：[https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0](https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0)
+Gin源码阅读与分析：[https://www.yuque.com/iveryimportantpig/huchao/zd24cb3z2bco5304](https://www.yuque.com/iveryimportantpig/huchao/zd24cb3z2bco5304)
+#### 理解
+
+1. Gin 是一个用 Go 语言编写的轻量级 Web 框架，专注于高效的 HTTP 路由和中间件管理。它以简洁易用的 API 和极高的性能著称，适合开发 RESTful API 和 Web 服务。
+2. Gin 的**核心是路由机制**，通过将 HTTP 请求路由到相应的处理函数来实现。它支持路由分组，便于组织和管理复杂的路由结构。
+3. 同时，Gin 提供了一套强大的中间件机制，允许在请求到达处理函数之前进行预处理，如日志记录、认证、错误处理等。
+4. Gin 的**另一个亮点是它的 JSON 解析和响应处理能力**，通过内置的 `c.JSON` 方法，可以轻松地将数据结构序列化为 JSON 格式返回给客户端。
+
+总的来说，Gin 适合用于开发性能要求高的 Web 应用，尤其是对于需要处理大量并发请求的场景。
+#### 特性
 
 1. **快速**
    1. 基于 Radix 树的路由，小内存占用。没有反射。可预测的 API 性能。
@@ -2014,7 +2024,67 @@ go install util
    1. Gin 为 JSON，XML 和 HTML 渲染提供了易于使用的 API。
 8. **可扩展性**
    1. 新建一个中间件非常简单，去查看[示例代码](https://gin-gonic.com/zh-cn/docs/examples/using-middleware/)吧。
-#### 1、[gin目录结构](https://blog.csdn.net/qq_34877350/article/details/107959381)
+#### Gin路由机制  
+**Gin 的路由机制非常灵活和高效，主要有以下几个方面：**
+
+1. **路由定义**：
+Gin 使用 `*gin.Engine` 对象来定义路由。可以通过 `GET`、`POST` 等方法为不同的 HTTP 请求定义处理函数。例如：
+```go
+r := gin.Default()
+r.GET("/ping", func(c *gin.Context) {
+    c.String(http.StatusOK, "pong")
+})
+r.Run()
+```
+
+2. **路由组**：
+Gin 支持通过 `Group` 方法创建路由组，方便管理相关的路由。例如：
+```go
+v1 := r.Group("/v1")
+{
+    v1.GET("/users", getUsers)
+    v1.GET("/posts", getPosts)
+}
+```
+
+3. **路由参数**：
+可以在路由中使用动态参数，Gin 会自动提取这些参数。例如：
+```go
+r.GET("/user/:id", func(c *gin.Context) {
+    id := c.Param("id")
+    c.String(http.StatusOK, "User ID: %s", id)
+})
+```
+
+4. **路由方法**：
+Gin 支持 HTTP 的各种请求方法，包括 `GET`、`POST`、`PUT`、`DELETE` 等，通过对应的方法定义不同的路由处理函数。
+5. **路由优先级**：
+更具体的路由定义优先匹配，例如带有路径参数的路由会比通用的路由更优先匹配。
+6. **中间件**：
+Gin 允许为路由定义中间件，用于处理请求的预处理、认证、日志记录等任务。例如：
+```go
+r.Use(gin.Logger())
+r.Use(gin.Recovery())
+```
+**总结**：Gin 的路由机制通过提供清晰的路由定义、灵活的路由分组、动态参数支持、方法匹配和中间件支持，使得构建高效、结构化的 Web 应用变得简单和高效。
+####  请求打入到响应的一个过程  
+**Gin 框架的请求处理过程大致分为以下几个步骤：**
+
+1. **请求接收**：
+当 HTTP 请求到达 Gin 应用时，Gin 框架会首先接收到请求。这些请求会被 `*gin.Engine` 对象处理，`Engine` 是 Gin 的核心组件。
+2. **路由匹配**：
+Gin 根据请求的 URL 和 HTTP 方法（如 GET、POST）来匹配路由。框架会查找定义的路由规则，并找到与请求最匹配的处理函数（Handler）。
+3. **中间件处理**：
+在执行路由处理函数之前，Gin 会依次执行与该路由关联的中间件。中间件可以用于请求的预处理，如认证、日志记录等。
+4. **执行处理函数**：
+中间件执行完毕后，Gin 会调用匹配的路由处理函数。处理函数可以访问请求数据、处理业务逻辑，并准备响应数据。
+5. **生成响应**：
+处理函数会通过 `*gin.Context` 对象生成响应。可以设置响应状态码、响应头以及响应体。Gin 提供了多种方法来构造响应，比如 `c.String()`、`c.JSON()`、`c.XML()` 等。
+6. **响应返回**：
+最终，Gin 将响应数据发送回客户端，完成请求-响应周期。
+
+**总结**：Gin 框架处理请求的流程从接收请求开始，经过路由匹配和中间件处理，执行处理函数，生成并返回响应。整个过程高效且结构清晰，帮助开发者快速构建 Web 应用。
+#### [gin目录结构](https://blog.csdn.net/qq_34877350/article/details/107959381)
 文档：[https://blog.csdn.net/qq_34877350/article/details/107959381](https://blog.csdn.net/qq_34877350/article/details/107959381)
 ```
 ├── gin
@@ -2048,10 +2118,6 @@ go install util
 - Sessions 为session初始化目录
 - 文件 引用顺序 大致如下：
 - main.go(在main中关闭数据库) - router(Middlewares) - Controllers - Services(sessions) - Models - Databases
-#### 2、[Gin框架介绍及使用 - 李文周的博客](https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0)
-文档：[https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0](https://www.liwenzhou.com/posts/Go/Gin_framework/#autoid-0-0-0)
-#### 3、源码
-[Gin源码阅读与分析](https://www.yuque.com/iveryimportantpig/huchao/zd24cb3z2bco5304)：[https://www.yuque.com/iveryimportantpig/huchao/zd24cb3z2bco5304](https://www.yuque.com/iveryimportantpig/huchao/zd24cb3z2bco5304)
 ### go-zero
 文档：[https://go-zero.dev/cn/docs/introduction](https://go-zero.dev/cn/docs/introduction)
 > go-zero 是一个集成了各种工程实践的 web 和 rpc 框架。通过弹性设计保障了大并发服务端的稳定性，经受了充分的实战检验。
@@ -2091,6 +2157,33 @@ go-zero 包含极简的 API 定义和生成工具 goctl，可以根据定义的 
 - **多种消息类型**支持 **PingPong**、**Oneway**、**双向 Streaming**。其中 Oneway 目前只对 Thrift 协议支持，双向 Streaming 只对 gRPC 支持，后续会考虑支持 Thrift 的双向 Streaming。
 - **服务治理**支持服务注册/发现、负载均衡、熔断、限流、重试、监控、链路跟踪、日志、诊断等服务治理模块，大部分均已提供默认扩展，使用者可选择集成。
 - **代码生成**Kitex 内置代码生成工具，可支持生成 **Thrift**、**Protobuf** 以及脚手架代码。
+
+## ORM
+### GORM
+GORM 是一个强大的 Golang ORM（对象关系映射）库，它能够简化数据库操作，使开发者能够通过 Golang 代码与数据库进行交互，而不需要直接编写 SQL 语句。GORM 支持自动映射数据库表结构到 Golang 结构体，并提供了丰富的链式调用方法来进行增删改查操作。
+使用 GORM 时，我们可以通过结构体字段标签（例如 `gorm:"column:name"`）来指定数据库表的列名、数据类型、索引等。它还支持事务、预加载、关联关系（如一对一、一对多、多对多）等高级特性，适合构建复杂的业务系统。
+在性能方面，GORM 的操作虽然较为直观和简洁，但它会带来一定的性能开销，特别是在处理大批量数据或高并发场景时，需要注意优化查询语句或选择适当的数据库操作方式，比如使用原生 SQL 语句。
+总的来说，GORM 适合大多数应用场景，特别是对于中小型项目或者需要快速开发的项目来说，能显著提高开发效率。
+### GORM GEN
+GORM Gen 是 GORM 的一个插件，它可以根据数据库的表结构自动生成 Golang 的结构体代码和数据访问层（DAO）代码。这对于那些需要频繁操作数据库的大型项目非常有帮助，因为它可以减少手写代码的时间，提高开发效率，并确保生成的代码与数据库表结构保持一致。
+#### GORM Gen 的主要特点：
+
+1. **代码生成**：通过分析数据库表结构，自动生成对应的 Golang 结构体和数据库操作代码。这些代码通常包括基础的增删改查方法，还可以根据需求生成自定义查询。
+2. **自动更新**：当数据库表结构发生变化时，GORM Gen 可以重新生成代码，保证数据访问层与数据库结构的一致性，减少手动维护代码的麻烦。
+3. **增强的类型安全**：生成的代码类型更为安全，避免了常见的类型转换错误。
+4. **支持复杂查询**：GORM Gen 可以生成支持复杂查询的代码，比如联合查询、条件查询、分页等，减少了开发者手写复杂 SQL 的负担。
+#### 使用 GORM Gen 的流程：
+
+1. **安装**：首先需要通过 `go install` 安装 GORM Gen 工具。
+2. **配置**：使用 YAML 文件或在代码中配置数据库连接等相关信息。
+3. **生成代码**：通过运行 GORM Gen 工具，自动生成数据库表对应的 Golang 结构体和 DAO 层代码。
+4. **使用生成的代码**：在项目中直接调用生成的代码来执行数据库操作，而无需手写 SQL。
+#### 适用场景：
+
+- 对于拥有大量数据库表的大型项目，使用 GORM Gen 能够显著提高开发效率。
+- 当项目的数据库结构频繁变化时，GORM Gen 可以帮助开发者快速更新代码，保持数据库与代码的同步。
+
+总的来说，GORM Gen 适合那些需要高效、稳定的数据库操作代码的项目，通过减少重复劳动和手动错误来提高开发质量。
 ## 场景
 ### 有没有遇到过cpu不高但是内存高的场景？怎么排查的
  在实际开发中，遇到 CPU 使用率不高但内存占用很高的情况并不少见。这种现象通常表明程序中存在内存泄漏、内存占用过大、或者内存管理不当的问题。下面是一个排查的步骤：  
