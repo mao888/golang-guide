@@ -2,30 +2,25 @@ package main
 
 import "fmt"
 
-//type ListNode struct {
-//	Val  int
-//	Next *ListNode
-//}
+//一个n米深的井，每分钟只能爬u米，每次爬之前都要休息一分钟，休息期间会下滑d米，求爬出井需要多少分钟？
+//输入n，u，d，输出所需分钟
 
-//type TreeNode struct {
-//	Val   int
-//	Left  *TreeNode
-//	Right *TreeNode
-//}
-// 构建一个示例二叉树
-//        1
-//       / \
-//      2   3
-//     /|   |\
-//    4 5   6 7
-//root := &TreeNode{Val: 1}
-//root.Left = &TreeNode{Val: 2}
-//root.Right = &TreeNode{Val: 3}
-//root.Left.Left = &TreeNode{Val: 4}
-//root.Left.Right = &TreeNode{Val: 5}
-//root.Right.Left = &TreeNode{Val: 6}
-//root.Right.Right = &TreeNode{Val: 7}
+func minute(n, u, d int) int {
+	// 爬升净值
+	netClimb := u - d
+	if n <= u {
+		return 1
+	}
+	// 除最后一次爬升的循环次数
+	cycles := n/netClimb - 1
+	// 总时长：每次循环 2 分钟，加上最后一次爬升1分钟
+	total := cycles*2 + 1
+	return total
+}
 
 func main() {
-	fmt.Println("Hello World!")
+	n := 10
+	u := 2
+	d := 1
+	fmt.Println(minute(n, u, d))
 }
