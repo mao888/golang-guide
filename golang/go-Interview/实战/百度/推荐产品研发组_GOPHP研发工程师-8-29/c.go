@@ -2,10 +2,7 @@ package main
 
 import "fmt"
 
-//type ListNode struct {
-//	Val  int
-//	Next *ListNode
-//}
+// 题目：给一个无序的数组，找出第k大的数
 
 // partation 对数组进行划分，返回划分后的索引,小于等于pivot的在左边，大于pivot的在右边
 func partation(nums []int, left, right int) int {
