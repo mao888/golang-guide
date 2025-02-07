@@ -1025,10 +1025,10 @@ fmt.Println(*m["key"]) // 输出42
 如果你的应用场景是读多写少且对性能要求较高，`sync.Map` 会是一个更好的选择。而对于简单的并发访问控制，使用 `sync.Mutex` 或 `sync.RWMutex` 加上 map 也可以满足需求。
 
 ## 接口
-### 1、[Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
+### [Go 语言与鸭子类型的关系](http://golang.design/go-questions/interface/duck-typing/)
 总结一下，鸭子类型是一种动态语言的风格，在这种风格中，一个对象有效的语义，不是由继承自特定的类或实现特定的接口，而是由它"当前方法和属性的集合"决定。Go 作为一种静态语言，通过接口实现了 鸭子类型，实际上是 Go 的编译器在其中作了隐匿的转换工作。
 
-### 2、[值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
+### [值接收者和指针接收者的区别](http://golang.design/go-questions/interface/receiver/)
 #### 方法
 方法能给用户自定义的类型添加新的行为。它和函数的区别在于方法有一个接收者，给一个函数添加一个接收者，那么它就变成了方法。接收者可以是值接收者，也可以是指针接收者。  
 在调用方法的时候，值类型既可以调用值接收者的方法，也可以调用指针接收者的方法；指针类型既可以调用指针接收者的方法，也可以调用值接收者的方法。  
@@ -1059,7 +1059,7 @@ fmt.Println(*m["key"]) // 输出42
 如果类型具备“原始的本质”，也就是说它的成员都是由 Go 语言里内置的原始类型，如字符串，整型值等，那就定义值接收者类型的方法。像内置的引用类型，如 slice，map，interface，channel，这些类型比较特殊，声明他们的时候，实际上是创建了一个 header， 对于他们也是直接定义值接收者类型的方法。这样，调用函数时，是直接 copy 了这些类型的 header，而 header 本身就是为复制设计的。  
 如果类型具备非原始的本质，不能被安全地复制，这种类型总是应该被共享，那就定义指针接收者的方法。比如 go 源码里的文件结构体（struct File）就不应该被复制，应该只有一份实体。
 
-### 3、[iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
+### [iface 和 eface 的区别是什么](http://golang.design/go-questions/interface/iface-eface/)
 iface 和 eface 都是 Go 中描述接口的底层结构体，区别在于 iface 描述的接口包含方法，而 eface 则是不包含任何方法的空接口：interface{}。  
 从源码层面看一下：
 
@@ -1110,14 +1110,14 @@ type eface struct {
 相比 iface，eface 就比较简单了。只维护了一个 _type 字段，表示空接口所承载的具体的实体类型。data 描述了具体的值。  
 ![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1671113735267-6bcdb7c8-dd73-432c-b933-d218fc1b7480.png#averageHue=%23fde6b9&clientId=u94645ec3-b072-4&from=paste&id=u3f71bac6&originHeight=280&originWidth=268&originalType=url&ratio=1&rotation=0&showTitle=false&status=done&style=none&taskId=u1e76f2f5-f84f-4995-9161-b0c76d70f3e&title=)
 
-### 4、[接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
+### [接口的动态类型和动态值](http://golang.design/go-questions/interface/dynamic-typing/)
 从源码里可以看到：iface包含两个字段：tab 是接口表指针，指向类型信息；data 是数据指针，则指向具体的数据。它们分别被称为动态类型和动态值。而接口值包括动态类型和动态值。  
 【引申1】接口类型和 nil 作比较  
 接口值的零值是指动态类型和动态值都为 nil。当仅且当这两部分的值都为 nil 的情况下，这个接口值就才会被认为 接口值 == nil。
 
-### 5、[编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
-### 6、[接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
-### 7、[类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
+### [编译器自动检测类型是否实现接口](http://golang.design/go-questions/interface/detect-impl/)
+### [接口的构造过程是怎样的](http://golang.design/go-questions/interface/construct/)
+### [类型转换和断言的区别](http://golang.design/go-questions/interface/assert/)
 我们知道，Go 语言中不允许隐式类型转换，也就是说 = 两边，不允许出现类型不相同的变量。  
 类型转换、类型断言本质都是把一个类型转换成另外一个类型。不同之处在于，类型断言是对接口变量进行的操作。
 
@@ -1163,7 +1163,7 @@ func main() {
 
 断言其实还有另一种形式，就是用在利用 switch 语句判断接口的类型。每一个 case 会被顺序地考虑。当命中一个 case 时，就会执行 case 中的语句，因此 case 语句的顺序是很重要的，因为很有可能会有多个 case 匹配的情况。
 
-### 8、[接口转换的原理](http://golang.design/go-questions/interface/convert/)
+### [接口转换的原理](http://golang.design/go-questions/interface/convert/)
 通过前面提到的 iface 的源码可以看到，实际上它包含接口的类型 interfacetype 和 实体类型的类型 _type，这两者都是 iface 的字段 itab 的成员。也就是说生成一个 itab 同时需要接口的类型和实体的类型。  
 <interface 类型， 实体类型> ->itable  
 当判定一种类型是否满足某个接口时，Go 使用类型的方法集和接口所需要的方法集进行匹配，如果类型的方法集完全包含接口的方法集，则可认为该类型实现了该接口。  
@@ -1174,7 +1174,7 @@ func main() {
 2. 具体类型转非空接口时，入参 tab 是编译器在编译阶段预先生成好的，新接口 tab 字段直接指向入参 tab 指向的 itab；调用 mallocgc 获得一块新内存，把值复制进去，data 再指向这块新内存。
 3. 而对于接口转接口，itab 调用 getitab 函数获取。只用生成一次，之后直接从 hash 表中获取。
 
-### 9、[如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
+### [如何用 interface 实现多态](http://golang.design/go-questions/interface/polymorphism/)
 Go 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承等概念，但它通过接口却非常优雅地支持了面向对象的特性。  
 多态是一种运行期的行为，它有以下几个特点：
 
@@ -1185,7 +1185,7 @@ Go 语言并没有设计诸如虚函数、纯虚函数、继承、多重继承�
 
 main 函数里先生成 Student 和 Programmer 的对象，再将它们分别传入到函数 whatJob 和 growUp。函数中，直接调用接口函数，实际执行的时候是看最终传入的实体类型是什么，调用的是实体类型实现的函数。于是，不同对象针对同一消息就有多种表现，多态就实现了。
 
-### 10、[Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
+### [Go 接口与 C++ 接口有何异同](http://golang.design/go-questions/interface/compare-to-cpp/)
 接口定义了一种规范，描述了类的行为和功能，而不做具体实现。  
 C++ 的接口是使用抽象类来实现的，如果类中至少有一个函数被声明为纯虚函数，则这个类就是抽象类。纯虚函数是通过在声明中使用 “= 0” 来指定的。例如：
 
