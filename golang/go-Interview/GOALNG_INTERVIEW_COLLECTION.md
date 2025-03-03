@@ -322,9 +322,27 @@ rune 等同于int32,常用来处理unicode或utf-8字符
 ![](https://cdn.nlark.com/yuque/0/2022/png/22219483/1659259378747-48538a44-1ccb-47ac-9492-0b569d219e2b.png#averageHue=%23fcfafa&clientId=ube5f509c-2a72-4&errorMessage=unknown%20error&from=paste&id=u310184ba&originHeight=421&originWidth=720&originalType=url&ratio=1&rotation=0&showTitle=false&size=155056&status=error&style=none&taskId=u05214bff-6a88-483d-b9a3-664bd069a40&title=)
 
 ### **golang 中解析 tag 是怎么实现的？反射原理是什么？(中高级肯定会问，比较难，需要自己多去总结)**
-**参考如下连接**  
-[golang中struct关于反射tag_paladinosment的博客-CSDN博客_golang 反射tagblog.csdn.net/paladinosment/article/details/42570937](https://link.zhihu.com/?target=https%3A//blog.csdn.net/paladinosment/article/details/42570937)  
-type User struct { 	name string `json:name-field` 	age  int } func main() { 	user := &User{"John Doe The Fourth", 20} 	field, ok := reflect.TypeOf(user).Elem().FieldByName("name") 	if !ok { 		panic("Field not found") 	} 	fmt.Println(getStructTag(field)) } func getStructTag(f reflect.StructField) string { 	return string(f.Tag) }  
+**参考如下连接**
+[golang中struct关于反射tag](https://blog.csdn.net/paladinosment/article/details/42570937)  
+```go
+type User struct { 	
+	name string `json:name-field` 	
+	age  int 
+} 
+
+func main() { 	
+	user := &User{"John Doe The Fourth", 20} 	
+	field, ok := reflect.TypeOf(user).Elem().FieldByName("name") 	
+	if !ok { 
+		panic("Field not found") 	
+	} 	
+	fmt.Println(getStructTag(field)) 
+} 
+
+func getStructTag(f reflect.StructField) string {
+	return string(f.Tag) 
+}
+``` 
 Go 中解析的 tag 是通过反射实现的，反射是指计算机程序在运行时（Run time）可以访问、检测和修改它本身状态或行为的一种能力或动态知道给定数据对象的类型和结构，并有机会修改它。反射将接口变量转换成反射对象 Type 和 Value；反射可以通过反射对象 Value 还原成原先的接口变量；反射可以用来修改一个变量的值，前提是这个值可以被修改；tag是啥:结构体支持标记，name string `json:name-field` 就是 `json:name-field` 这部分  
 **gorm json yaml gRPC protobuf gin.Bind()都是通过反射来实现的**
 
@@ -363,7 +381,6 @@ select 结构组成主要是由 case 语句和执行的函数组成 select 实�
 双引号，才是字符串，实际上是字符数组。可以用索引号访问某字节，也可以用len()函数来获取字符串所占的字节长度。  
 反引号，表示字符串字面量，但不支持任何转义序列。字面量 raw literal string 的意思是，你定义时写的啥样，它就啥样，你有换行，它就换行。你写转义字符，它也就展示转义字符。
 
-### go出现panic的场景
 ### [Go出现panic的场景](https://www.cnblogs.com/paulwhw/p/15585467.html)
 + 数组/切片越界
 + 空指针调用。比如访问一个 nil 结构体指针的成员
