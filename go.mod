@@ -1,6 +1,6 @@
 module github.com/mao888/golang-guide
 
-go 1.19
+go 1.25
 
 require (
 	github.com/mao888/mao-gerrors v1.1.0
