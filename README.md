@@ -141,6 +141,12 @@
 
 [//]: # "[![Go.jpg]&#40;https://i.postimg.cc/MH9rg45y/Go.jpg&#41;]&#40;https://postimg.cc/K3gNM0dz&#41;"
 
+<img align="center" src=https://i.postimg.cc/HnmVwkBP/AI-AGENTS.png width="400" />
+
+## 💻 AI Agent
+### 面经
+* [AI Agent](https://github.com/mao888/golang-guide/blob/main/AI%20Agent/AI%20Agent.md) 🔥  <span style="color:red;"><strong>NEW</strong></span>
+
 
 <img align="center" src=https://i.postimg.cc/PqnXKHkR/R-C.jpg width="400" />
 
