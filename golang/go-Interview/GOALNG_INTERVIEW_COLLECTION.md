@@ -1348,7 +1348,7 @@ type waitq struct {
 
 ![chan data structure](https://cdn.nlark.com/yuque/0/2025/png/22219483/1738911901432-804f643d-fc18-4e93-8b74-ba34003d629c.png)
 
-### **nil、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样？（各类变种题型，重要）**
+### **nil channel、关闭的 channel、有数据的 channel，再进行读、写、关闭会怎么样？（各类变种题型，重要）**
 #### Channel读写特性(15字口诀)
 首先，我们先复习一下Channel都有哪些特性？
 
